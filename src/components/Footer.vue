@@ -1,16 +1,11 @@
 <template>
   <div id="app">
-
-      <h1>footer - Gaji</h1>
+    <h1>footer - Gaji</h1>
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
-
-</style>
+<style lang="scss" scoped></style>
