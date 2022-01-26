@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>footer - Gaji</h1>
+    <h1>🍆Gaji</h1>
   </div>
 </template>
 
