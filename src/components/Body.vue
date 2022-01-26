@@ -41,14 +41,16 @@ export default {};
 
 <style>
 .kategorie {
+  margin-top: 80px;
 }
 .kitchen,
 .car,
 .camp,
 .interior,
 .tool {
+  margin-top: 50px;
   font-size: 19px;
-  padding: 20px;
+  padding: 50px;
   font-size: 15px;
   font-weight: bold;
   text-align: center;
@@ -69,5 +71,8 @@ export default {};
 .item {
   max-width: 300px;
   max-height: 300px;
+}
+.favorite {
+  margin-top: 50px;
 }
 </style>
