@@ -53,14 +53,39 @@
     <input
       class="nickname"
       type="text"
-      style="width: 380px"
+      style="width: 380px; margin-bottom: 30px"
       placeholder="별명 (2~15자)"
     />
+    <h1>약관동의</h1>
+    <div class="agree" style="margin-top: 20px">
+      <input
+        type="checkbox"
+        name="agreeCheck"
+        value="selectAll"
+        class="selectAll"
+        id="selectAll"
+      />
+      <b>전체동의</b>
+      <hr />
+      <br />
+      <input type="checkbox" name="agreeCheck" value="age" /> 만 14세
+      이상입니다. (필수)
+      <br />
+      <input type="checkbox" name="agreeCheck" value="use" /> 이용약관 (필수)
+      <br />
+      <input type="checkbox" name="agreeCheck" value="informationAgree" />
+      개인정보수집 및 이용동의 (필수)
+      <br />
+      <input type="checkbox" name="agreeCheck" value="alert" /> 이벤트, 프로모션
+      알림 메일 및 SMS 수신 (선택)
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {},
+};
 </script>
 
 <style>
@@ -93,5 +118,15 @@ export default {};
   opacity: 0.5;
   margin: auto;
   width: 380px;
+}
+.agree {
+  width: 350px;
+  height: 150px;
+  border: 1px solid gray;
+  align-content: center;
+  margin: auto;
+  text-align: left;
+  font-size: 14px;
+  padding: 20px;
 }
 </style>
