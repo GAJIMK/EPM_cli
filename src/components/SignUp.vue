@@ -79,13 +79,21 @@
       <input type="checkbox" name="agreeCheck" value="alert" /> 이벤트, 프로모션
       알림 메일 및 SMS 수신 (선택)
     </div>
-    <button class="signup" style="margin-top: 30px">회원가입하기</button>
+    <button class="signup" style="margin-top: 30px; margin-bottom: 30px">
+      회원가입하기
+    </button>
+    <span style="margin-right: 10px">이미 아이디가 있으신가요?</span
+    ><span @click="gologin">로그인</span>
   </div>
 </template>
 
 <script>
 export default {
-  methods: {},
+  methods: {
+    gologin: function () {
+      this.$router.push({ name: "Login" }).catch(() => {});
+    },
+  },
 };
 </script>
 
