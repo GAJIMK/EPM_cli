@@ -16,7 +16,7 @@
             <i class="fas fa-shopping-cart"></i>
           </span>
           <button class="btn" @click="goLogin">로그인</button>
-          <button class="btn2">회원가입</button>
+          <button class="btn2" @click="goSignUp">회원가입</button>
           <button class="btn3">글 작성</button>
         </div>
       </div>
@@ -36,6 +36,9 @@ export default {
   methods: {
     goLogin: function () {
       this.$router.push({ name: "Login" }).catch(() => {});
+    },
+    goSignUp: function () {
+      this.$$router.push({ name: "SignUp" }).catch(() => {});
     },
   },
 };
