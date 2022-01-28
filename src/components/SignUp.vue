@@ -46,6 +46,16 @@
       style="width: 380px"
       placeholder="비밀번호 확인"
     />
+    <h1 style="margin-top: 30px">닉네임</h1>
+    <h1 style="margin-top: 10px">
+      다른 유저와 겹치지 않는 별명을 입력해주세요. (2~15자)
+    </h1>
+    <input
+      class="nickname"
+      type="text"
+      style="width: 380px"
+      placeholder="별명 (2~15자)"
+    />
   </div>
 </template>
 
@@ -56,7 +66,8 @@ export default {};
 <style>
 .email,
 .password,
-.passwordCertify {
+.passwordCertify,
+.nickname {
   display: inline;
   margin-top: 30px;
   font-size: 15px;
