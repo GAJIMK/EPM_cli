@@ -97,7 +97,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .email,
 .password,
 .passwordCertify,
@@ -135,6 +135,8 @@ export default {
 .signup:hover {
   background-color: lightslategrey;
 }
+.email:focus,
+.password:focus,
 .passwordCertify:focus,
 .nickname:focus {
   outline: 2px solid hsl(278, 100%, 65%);
