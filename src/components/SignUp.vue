@@ -4,19 +4,27 @@
     <p style="margin-top: 50px">SNS계정으로 간편하게 회원가입</p>
     <span
       ><i
-        style="margin-right: 30px; margin-top: 30px"
+        style="margin-right: 30px; margin-top: 30px; cursor: pointer"
         class="fab fa-facebook-square"
       ></i
     ></span>
-    <span><i style="margin-right: 30px" class="fab fa-kickstarter-k"></i></span>
+    <span
+      ><i
+        style="margin-right: 30px; cursor: pointer"
+        class="fab fa-kickstarter-k"
+      ></i
+    ></span>
     <span><i class="fab fa-instagram"></i></span>
-    <hr width="300px" style="margin-top: 30px; margin-bottom: 30px" />
+    <hr
+      width="300px"
+      style="margin-top: 30px; margin-bottom: 30px; cursor: pointer"
+    />
 
     <h1>이메일</h1>
     <span>
       <input class="email" type="email" placeholder="이메일" />
       <span style="margin-left: 10px">@</span>
-      <select style="margin-left: 10px" class="emailSelect">
+      <select style="margin-left: 10px; cursor: pointer" class="emailSelect">
         <option value="none">선택해주세요</option>
         <option value="naver">naver.com</option>
         <option value="hanmail">hanmail.net</option>
@@ -28,7 +36,9 @@
         <option value="icloud">icloud.com</option>
       </select>
     </span>
-    <button class="emailCertify">이메일 인증하기</button>
+    <button class="emailCertify" style="cursor: pointer">
+      이메일 인증하기
+    </button>
     <h1 style="margin-top: 50px">비밀번호</h1>
     <h1 style="margin-top: 10px">
       영문, 숫자를 포함한 8자 이상의 비밀번호를 입력해주세요.
@@ -79,11 +89,14 @@
       <input type="checkbox" name="agreeCheck" value="alert" /> 이벤트, 프로모션
       알림 메일 및 SMS 수신 (선택)
     </div>
-    <button class="signup" style="margin-top: 30px; margin-bottom: 30px">
+    <button
+      class="signup"
+      style="margin-top: 30px; margin-bottom: 30px; cursor: pointer"
+    >
       회원가입하기
     </button>
     <span style="margin-right: 10px">이미 아이디가 있으신가요?</span
-    ><span @click="gologin">로그인</span>
+    ><span @click="gologin" style="cursor: pointer">로그인</span>
   </div>
 </template>
 
