@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="signup" style="margin-top: 50px">회원가입</h1>
+    <h1 style="margin-top: 50px">회원가입</h1>
     <p style="margin-top: 50px">SNS계정으로 간편하게 회원가입</p>
     <span
       ><i
@@ -29,6 +29,23 @@
       </select>
     </span>
     <button class="emailCertify">이메일 인증하기</button>
+    <h1 style="margin-top: 50px">비밀번호</h1>
+    <h1 style="margin-top: 10px">
+      영문, 숫자를 포함한 8자 이상의 비밀번호를 입력해주세요.
+    </h1>
+    <input
+      class="password"
+      type="password"
+      style="width: 380px"
+      placeholder="비밀번호"
+    />
+    <h1 style="margin-top: 30px">비밀번호 확인</h1>
+    <input
+      class="passwordCertify"
+      type="password"
+      style="width: 380px"
+      placeholder="비밀번호 확인"
+    />
   </div>
 </template>
 
@@ -37,7 +54,9 @@ export default {};
 </script>
 
 <style>
-.email {
+.email,
+.password,
+.passwordCertify {
   display: inline;
   margin-top: 30px;
   font-size: 15px;
