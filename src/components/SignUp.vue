@@ -10,7 +10,7 @@
     ></span>
     <span><i style="margin-right: 30px" class="fab fa-kickstarter-k"></i></span>
     <span><i class="fab fa-instagram"></i></span>
-    <hr width="300px" style="margin-top: 30px" />
+    <hr width="300px" style="margin-top: 30px; margin-bottom: 30px" />
 
     <h1>이메일</h1>
     <span>
@@ -79,6 +79,7 @@
       <input type="checkbox" name="agreeCheck" value="alert" /> 이벤트, 프로모션
       알림 메일 및 SMS 수신 (선택)
     </div>
+    <button class="signup" style="margin-top: 30px">회원가입하기</button>
   </div>
 </template>
 
@@ -109,7 +110,8 @@ export default {
   opacity: 0.5;
   margin-bottom: 20px;
 }
-.emailCertify {
+.emailCertify,
+.signup {
   display: block;
   margin-top: 50px;
   font-size: 15px;
@@ -118,6 +120,17 @@ export default {
   opacity: 0.5;
   margin: auto;
   width: 380px;
+  background-color: #a3a0ed;
+  color: white;
+}
+.emailCertify:hover,
+.signup:hover {
+  background-color: lightslategrey;
+}
+.passwordCertify:focus,
+.nickname:focus {
+  outline: 2px solid hsl(278, 100%, 65%);
+  border: hsl(278, 100%, 65%);
 }
 .agree {
   width: 350px;
@@ -128,5 +141,6 @@ export default {
   text-align: left;
   font-size: 14px;
   padding: 20px;
+  border-radius: 0.5rem;
 }
 </style>
