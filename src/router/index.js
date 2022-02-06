@@ -10,5 +10,15 @@ export default new Router({
       name: "Home",
       component: () => import("@/components/Body.vue"),
     },
+    {
+      path: "/",
+      name: "Login",
+      component: () => import("@/components/Login.vue"),
+    },
+    {
+      path: "/",
+      name: "SignUp",
+      component: () => import("@/components/SignUp.vue"),
+    },
   ],
 });
