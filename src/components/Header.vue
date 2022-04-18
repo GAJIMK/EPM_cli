@@ -35,10 +35,10 @@
 export default {
   methods: {
     goLogin: function () {
-      this.$router.push({ name: "Login" }).catch(() => {});
+      this.$router.push({ name: "Login" }).catch(() => {})
     },
   },
-};
+}
 </script>
 
 <style>
