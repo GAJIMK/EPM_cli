@@ -39,13 +39,13 @@
 export default {
   methods: {
     goLogin: function () {
-      this.$router.push({ name: "Login" }).catch(() => {});
+      this.$router.push({ name: "Login" }).catch(() => {})
     },
     goSignUp: function () {
       this.$router.push({ name: "SignUp" }).catch(() => {});
     },
   },
-};
+}
 </script>
 
 <style>
