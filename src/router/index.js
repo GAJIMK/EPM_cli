@@ -8,17 +8,22 @@ export default new Router({
     {
       path: "/",
       name: "Home",
-      component: () => import("@/components/Body.vue"),
+      component: () => import("@/components/common/Login.vue"),
     },
     {
-      path: "/",
+      path: "/login",
       name: "Login",
-      component: () => import("@/components/Login.vue"),
+      component: () => import("@/components/common/Login.vue"),
     },
     {
-      path: "/",
+      path: "/signup",
       name: "SignUp",
-      component: () => import("@/components/SignUp.vue"),
+      component: () => import("@/components/common/SignUp.vue"),
     },
+    // {
+    //   path: "/manage",
+    //   name: "Management",
+    //   component: () => import("@/components/Management.vue"),
+    // },
   ],
 });
