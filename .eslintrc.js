@@ -5,7 +5,7 @@ module.exports = {
   },
   extends: ["plugin:vue/essential", "@vue/prettier"],
   rules: {
-    "max-len": ["error", { code: 360 }],
+    "max-len": ["error", { code: 120 }],
     "linebreak-style": 0,
     "prettier/prettier": ['error', {
       singleQuote: false,
