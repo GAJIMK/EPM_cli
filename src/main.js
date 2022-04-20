@@ -7,11 +7,17 @@ import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
+import Default from "@/layouts/Default.vue";
+import EmptySpace from "@/layouts/Empty.vue";
+
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
 Vue.config.productionTip = false;
+
+Vue.component("default-layout", Default);
+Vue.component("empty-layout", EmptySpace);
 
 router.beforeEach((to, from, next) => {
   // Ensure we checked auth before each page load.
