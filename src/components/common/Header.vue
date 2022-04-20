@@ -2,7 +2,7 @@
   <div id="app">
     <div class="headercolor"></div>
     <div class="container">
-      <div class="name">🍆 G.J MARKET</div>
+      <div class="name">💸</div>
       <div>
         <div class="inputBox shadow">
           <input type="text" />
