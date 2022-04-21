@@ -2,7 +2,7 @@
   <div class="container">
     <h2 class="header">🍆Gaji MarKet🍆</h2>
     <b-col>
-      <b-row><b-input type="email" class="email" placeholder="이메일" /></b-row>
+      <b-row><b-input type="email" class="email" placeholder="이메일"/></b-row>
       <b-row
         ><b-input type="password" class="password" placeholder="비밀번호"
       /></b-row>
@@ -30,6 +30,7 @@ export default {};
 .header {
   margin-top: 50px;
   font-size: 35px;
+  padding: 10%;
 }
 .email,
 .password {
@@ -39,7 +40,7 @@ export default {};
   border-radius: 0.3rem;
   opacity: 0.5;
   width: 400px;
-  margin: auto;
+  margin: 2% auto;
 }
 .password {
   margin-top: -1px;
@@ -56,7 +57,7 @@ export default {};
   opacity: 0.5;
   background-color: #a3a0ed;
   width: 295px;
-  margin: auto;
+  margin: 5% auto;
   color: white;
   border: 0;
   outline: 0;
