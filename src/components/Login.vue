@@ -1,35 +1,29 @@
 <template>
   <div class="container">
     <h2 class="header">🍆Gaji MarKet🍆</h2>
-    <div><input type="email" class="email" placeholder="이메일" /></div>
-    <div><input type="password" class="password" placeholder="비밀번호" /></div>
-    <div><button class="loginBtn" style="cursor: pointer">로그인</button></div>
-    <div style="margin-top: 20px">
-      <span class="rePassword" style="cursor: pointer">비밀번호 재설정</span>
-      <span style="margin-right: 30px">|</span>
-      <span class="signUp" style="cursor: pointer">회원가입</span>
-    </div>
-    <div style="margin-top: 90px; cursor: pointer">
-      sns 계정으로 간편 로그인/회원가입
-    </div>
-    <span
-      ><i
-        style="margin-right: 30px; margin-top: 30px; cursor: pointer"
-        class="fab fa-facebook-square"
-      ></i
-    ></span>
-    <span
-      ><i
-        style="margin-right: 30px; cursor: pointer"
-        class="fab fa-kickstarter-k"
-      ></i
-    ></span>
-    <span><i style="cursor: pointer" class="fab fa-instagram"></i></span>
+    <b-col>
+      <b-row><b-input type="email" class="email" placeholder="이메일" /></b-row>
+      <b-row
+        ><b-input type="password" class="password" placeholder="비밀번호"
+      /></b-row>
+
+      <b-row><b-button class="loginBtn">로그인</b-button></b-row>
+
+      <span class="rePassword">비밀번호 재설정</span>
+      <span>|</span>
+      <span class="signUp">회원가입</span>
+
+      <div>sns 계정으로 간편 로그인/회원가입</div>
+
+      <span><i class="fab fa-facebook-square"></i></span>
+      <span><i class="fab fa-kickstarter-k"></i></span>
+      <span><i class="fab fa-instagram"></i></span>
+    </b-col>
   </div>
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
 
 <style>
@@ -44,6 +38,8 @@ export default {}
   padding: 20px;
   border-radius: 0.3rem;
   opacity: 0.5;
+  width: 400px;
+  margin: auto;
 }
 .password {
   margin-top: -1px;
@@ -60,7 +56,7 @@ export default {}
   opacity: 0.5;
   background-color: #a3a0ed;
   width: 295px;
-  margin-top: 50px;
+  margin: auto;
   color: white;
   border: 0;
   outline: 0;
@@ -70,5 +66,10 @@ export default {}
 }
 .rePassword {
   margin-right: 30px;
+}
+.fab {
+  margin-right: 30px;
+  margin-top: 30px;
+  cursor: pointer;
 }
 </style>
