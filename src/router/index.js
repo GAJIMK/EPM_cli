@@ -18,7 +18,12 @@ export default new Router({
       meta: { layout: "empty" },
       component: () => import("@/view/Login.vue"),
     },
-
+    {
+      path: "/user",
+      name: "user",
+      meta: { layout: "empty" },
+      component: () => import("@/view/UserPage.vue"),
+    },
     // {
     //   path: "/manage",
     //   name: "Management",
