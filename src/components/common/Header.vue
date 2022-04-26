@@ -38,10 +38,10 @@
 <script>
 export default {
   methods: {
-    goLogin: function () {
+    goLogin: function() {
       this.$router.push({ name: "Login" }).catch(() => {});
     },
-    goSignUp: function () {
+    goSignUp: function() {
       this.$router.push({ name: "SignUp" }).catch(() => {});
     },
   },
