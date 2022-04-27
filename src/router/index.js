@@ -9,6 +9,11 @@ export default new Router({
     { path: "/", redirect: "/login" },
     {
       path: "/",
+      name: "index",
+      component: () => import("@/view/Index.vue"),
+    },
+    {
+      path: "/",
       name: "Home",
       component: () => import("@/view/Login.vue"),
     },
