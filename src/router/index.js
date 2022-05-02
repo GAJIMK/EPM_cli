@@ -31,6 +31,12 @@ export default new Router({
       name: "SignUp",
       component: () => import("@/components/common/SignUp.vue"),
     },
+    {
+      path: "/expense-list",
+      name: "expenseList",
+      component: () =>
+        import("@/components/management/expense/ExpenseListPage.vue"),
+    },
     // {
     //   path: "/manage",
     //   name: "Management",

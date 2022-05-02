@@ -35,7 +35,7 @@
       </div>
       <div class="management-menu">
         <ul class="menu-items">
-          <li class="list-item">
+          <li class="list-item" @click="handleExpenseList">
             <div class="icon-container">
               <font-awesome-icon icon="fa-solid fa-sliders" class="icon" />
             </div>
@@ -88,7 +88,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    handleExpenseList: function() {
+      this.$router.push({ name: "expenseList" });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
