@@ -10,6 +10,18 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 import Default from "@/layouts/Default.vue";
 import EmptySpace from "@/layouts/Empty.vue";
 
+/* import font awesome icon component */
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+
+/* import specific icons */
+import { fas } from "@fortawesome/free-solid-svg-icons";
+
+/* add icons to the library */
+library.add(fas);
+
+/* add font awesome icon component */
+Vue.component("font-awesome-icon", FontAwesomeIcon);
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
