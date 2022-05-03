@@ -6,7 +6,15 @@ Vue.use(Router);
 export default new Router({
   mode: "history",
   routes: [
-    { path: "/", redirect: "/login" },
+    //로그인 시 대체
+    // { path: "/", redirect: "/login" },
+    { path: "/", redirect: "/home" },
+    {
+      path: "/home",
+      name: "home",
+      meta: { layout: "empty" },
+      component: () => import("@/view/Home.vue"),
+    },
     {
       path: "/",
       name: "Home",
