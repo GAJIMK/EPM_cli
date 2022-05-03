@@ -33,8 +33,8 @@
         </div>
       </nav>
     </div>
-    <d-card>
-      <d-card-body class="card-body">
+    <div class="card">
+      <div class="card-body">
         <div class="form-group row">
           <label for="inputPassword" class="col-sm-2 col-form-label"
             >제목 :
@@ -86,8 +86,8 @@
             <td>금액</td>
           </tr>
         </table>
-      </d-card-body>
-    </d-card>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -112,19 +112,6 @@ export default {
         newCell = newRow.insertCell(i);
         newCell.innerText = ".";
       }
-      // const newCell1 = newRow.insertCell(0);
-      // const newCell2 = newRow.insertCell(1);
-      // const newCell3 = newRow.insertCell(2);
-      // const newCell4 = newRow.insertCell(3);
-      // const newCell5 = newRow.insertCell(4);
-      // const newCell6 = newRow.insertCell(5);
-
-      // newCell1.innerText = ".";
-      // newCell2.innerText = ".";
-      // newCell3.innerText = ".";
-      // newCell4.innerText = ".";
-      // newCell5.innerText = ".";
-      // newCell6.innerText = ".";
     },
   },
 };
@@ -141,5 +128,8 @@ export default {
 }
 .table_1 {
   width: 95%;
+}
+.card {
+  padding: 4%;
 }
 </style>
