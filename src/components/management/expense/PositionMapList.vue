@@ -73,7 +73,6 @@ export default {
   methods: {
     loadExpense() {
       const res = fetchExpense();
-      console.log(res);
     },
     addItem() {},
   },

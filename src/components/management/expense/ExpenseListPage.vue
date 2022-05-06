@@ -40,7 +40,7 @@ export default {
 }
 .title {
   width: 100%;
-  font-size: 1.3em;
+  font-size: 1.1em;
   margin-bottom: 1em;
   button {
     float: right;

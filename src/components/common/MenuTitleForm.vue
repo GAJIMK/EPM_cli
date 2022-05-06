@@ -10,7 +10,7 @@ export default {
 
 <style lang="scss" scoped>
 .title {
-  font-size: 2em;
+  font-size: 1.5em;
   margin: 1em 0px;
 }
 </style>
