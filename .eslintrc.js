@@ -17,7 +17,7 @@ module.exports = {
         printWidth: 80,
         bracketSpacing: true,
         endOfLine: 'auto',
-        arrowParens: 'avoid', //함수 파라미터 1개일때 괄호 안해도 되도록
+        arrowParens: 'always', //함수 파라미터 1개일때 괄호 안해도 되도록
       },
     ],
   },

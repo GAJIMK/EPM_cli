@@ -25,12 +25,17 @@ export default {
 </script>
 
 <style lang="scss">
+.container {
+  z-index: 1;
+  position: relative;
+}
 .btn {
   color: #fff;
   font-weight: 600;
   float: right;
 }
 .contents {
+  z-index: 2;
   display: flex;
   justify-content: space-around;
 }

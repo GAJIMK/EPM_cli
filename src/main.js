@@ -1,35 +1,35 @@
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 
 // Import Bootstrap and BootstrapVue CSS files (order is important)
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 
-import Default from "@/layouts/Default.vue";
-import EmptySpace from "@/layouts/Empty.vue";
+import Default from '@/layouts/Default.vue';
+import EmptySpace from '@/layouts/Empty.vue';
 
 /* import font awesome icon component */
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
 /* import specific icons */
-import { fas } from "@fortawesome/free-solid-svg-icons";
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
 /* add icons to the library */
 library.add(fas);
 
 /* add font awesome icon component */
-Vue.component("font-awesome-icon", FontAwesomeIcon);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue);
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
 Vue.config.productionTip = false;
 
-Vue.component("default-layout", Default);
-Vue.component("empty-layout", EmptySpace);
+Vue.component('default-layout', Default);
+Vue.component('empty-layout', EmptySpace);
 
 router.beforeEach((to, from, next) => {
   // Ensure we checked auth before each page load.
@@ -46,4 +46,4 @@ router.beforeEach((to, from, next) => {
 new Vue({
   router,
   render: (h) => h(App),
-}).$mount("#app");
+}).$mount('#app');

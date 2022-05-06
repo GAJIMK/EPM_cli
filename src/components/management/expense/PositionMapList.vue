@@ -4,7 +4,7 @@
       직위별 경비항목
       <b-button variant="warning" @click="addItem">항목추가</b-button>
     </div>
-    <div v-for="d in data" :key="d.position" class="lists">
+    <div v-for="d in data" :key="d" class="lists">
       <div class="sub-title">{{ d.position }}</div>
       <div class="list">
         <div class="line">
@@ -82,10 +82,11 @@ export default {
 <style lang="scss" scoped>
 .map {
   width: 22em;
+  z-index: 2;
 }
 .item,
 .price {
-  flex-basis: 50%;
+  flex-basis: 60%;
 }
 .sub-title {
   font-weight: 600;

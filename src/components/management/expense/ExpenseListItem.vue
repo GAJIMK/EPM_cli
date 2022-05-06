@@ -2,9 +2,7 @@
   <div class="content">
     <div class="title">
       경비항목
-      <b-button v-b-modal.modal-1 variant="warning" @click="addItem"
-        >항목추가</b-button
-      >
+      <b-button variant="warning" @click="show">항목추가</b-button>
     </div>
     <div class="list">
       <div class="line">
@@ -21,7 +19,7 @@
         </ul>
       </div>
     </div>
-    <Modal id="modal-1" />
+    <Modal :state="modalState" :modalTitle="modalTitle" />
   </div>
 </template>
 
@@ -29,12 +27,14 @@
 import { createExpense, fetchExpense } from '@/api/expense/expense.js';
 import Modal from './modal/ListModal.vue';
 export default {
-  components() {
-    Modal;
+  components: {
+    Modal,
   },
   data() {
     return {
       items: ['팀활동비', '문화체험비'],
+      modalState: false,
+      modalTitle: '경비항목 추가',
     };
   },
   mounted() {},
@@ -43,7 +43,9 @@ export default {
       const res = fetchExpense();
       console.log(res);
     },
-    addItem() {},
+    show() {
+      this.modalState = true;
+    },
   },
 };
 </script>

@@ -6,17 +6,16 @@
 
 <script>
 export default {
-  name: "App",
+  name: 'App',
   computed: {
     layout() {
-      return `${this.$route.meta.layout || "default"}-layout`;
+      return `${this.$route.meta.layout || 'default'}-layout`;
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/scss/main.scss";
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
