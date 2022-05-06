@@ -4,12 +4,13 @@
 
 <script>
 export default {
-  props: ["menuTitle"],
+  props: ['menuTitle'],
 };
 </script>
 
 <style lang="scss" scoped>
 .title {
   font-size: 2em;
+  margin: 1em 0px;
 }
 </style>

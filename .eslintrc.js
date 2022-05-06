@@ -3,26 +3,25 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: ["plugin:vue/essential", "@vue/prettier"],
+  extends: ['plugin:vue/essential', '@vue/prettier'],
   rules: {
-    "max-len": ["error", { code: 120 }],
-    "linebreak-style": 0,
-    "prettier/prettier": [
-      "error",
+    'linebreak-style': 0,
+    'prettier/prettier': [
+      'error',
       {
-        singleQuote: false,
+        singleQuote: true,
         semi: true,
         useTabs: false,
         tabWidth: 2,
-        trailingComma: "all",
+        trailingComma: 'all',
         printWidth: 80,
         bracketSpacing: true,
-        endOfLine: "auto",
-        arrowParens: "always", //함수 파라미터 1개일때 괄호 안해도 되도록
+        endOfLine: 'auto',
+        arrowParens: 'avoid', //함수 파라미터 1개일때 괄호 안해도 되도록
       },
     ],
   },
   parserOptions: {
-    parser: "babel-eslint",
+    parser: 'babel-eslint',
   },
 };
