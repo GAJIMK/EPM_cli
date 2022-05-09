@@ -35,7 +35,7 @@
       </div>
       <div class="management-menu">
         <ul class="menu-items">
-          <li class="list-item">
+          <li class="list-item" @click="handleExpenseList">
             <div class="icon-container">
               <font-awesome-icon icon="fa-solid fa-sliders" class="icon" />
             </div>
@@ -50,7 +50,7 @@
             </div>
             <div class="menu-content">등급별 관리</div>
           </li>
-          <li class="list-item">
+          <li class="list-item" @click="handleUsersList">
             <div class="icon-container">
               <font-awesome-icon icon="fa-solid fa-user-check" class="icon" />
             </div>
@@ -88,7 +88,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    handleExpenseList: function() {
+      this.$router.push({ name: 'expenseList' });
+    },
+    handleUsersList: function() {
+      this.$router.push({ name: 'usersExpense' });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,1 +1,29 @@
-@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+//Default variable overrides
+$primary: #fdc000;
+$container-max-widths: (
+  sm: 540px,
+  md: 704px,
+  lg: 924px,
+  xl: 1140px,
+  xxl: 1364px,
+);
+//primary의 변수는 아래의 variables에 영향을 줘서 primary가 사용자 지어 색으로 적용되도록 한다.
+//그러므로 variables위에 정의해줘야함
+@import '../../node_modules/bootstrap/scss/functions';
+@import '../../node_modules/bootstrap/scss/variables';
+@import '../../node_modules/bootstrap/scss/mixins';
+
+//bootstrap 의 색상을 재사용 하는 경우
+// 정의되어있는 변수를 사용하는 경우 varivales밑에 두어야 에러를 방지할 수 있다.
+$theme-colors: (
+  'primary': #fdc000,
+  'secondary': $secondary,
+  'success': $success,
+  'info': $info,
+  'warning': $warning,
+  'danger': $danger,
+  'dark': $dark,
+  'light': $light,
+);
+
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
