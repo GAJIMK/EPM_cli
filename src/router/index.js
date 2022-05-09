@@ -42,5 +42,10 @@ export default new Router({
     //   name: "Management",
     //   component: () => import("@/components/Management.vue"),
     // },
+    {
+      path: '/users-expense',
+      name: 'usersExpense',
+      component: () => import('@/components/management/UsersExpensePage'),
+    },
   ],
 });
