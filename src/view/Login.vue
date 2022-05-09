@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h2 class="header">🍆Gaji MarKet🍆</h2>
+    <h2 class="header">💸Expense System💸</h2>
     <b-col>
       <b-row><b-input type="email" class="email" placeholder="이메일"/></b-row>
       <b-row
@@ -27,10 +27,12 @@ export default {};
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
 .header {
   margin-top: 50px;
   font-size: 35px;
   padding: 10%;
+  font-family: "Itim", cursive;
 }
 .email,
 .password {
