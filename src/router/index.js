@@ -36,17 +36,12 @@ export default new Router({
       name: 'expenseList',
       component: () =>
         import('@/components/management/expense/ExpenseListPage.vue'),
-
+    },
+    {
       path: '/user',
       name: 'user',
       meta: { layout: 'empty' },
       component: () => import('@/view/user/UserPage.vue'),
-    },
-    {
-      path: '/userwrite',
-      name: 'userwrite',
-      meta: { layout: 'empty' },
-      component: () => import('@/view/user/UserWrite.vue'),
     },
     {
       path: '/userwrite',

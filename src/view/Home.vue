@@ -82,6 +82,7 @@ export default {
   components: { Lunch, Memo },
   methods: {
     handleExpenseList: function() {
+      console.log('?');
       this.$router.push({ name: 'expenseList' });
     },
     handleUsersList: function() {
