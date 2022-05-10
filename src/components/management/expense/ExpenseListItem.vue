@@ -41,7 +41,6 @@ export default {
   methods: {
     loadExpense() {
       const res = fetchExpense();
-      console.log(res);
     },
     show() {
       this.modalState = true;
