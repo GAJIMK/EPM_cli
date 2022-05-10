@@ -49,17 +49,7 @@
             />
           </div>
         </div>
-        <div class="custom-file">
-          <label class="custom-file-label" for="customFile">{{
-            file_name
-          }}</label>
-          <input
-            class="custom-file-control"
-            id="customFile"
-            type="file"
-            @change="handleFileChange"
-          />
-        </div>
+
         <hr />
         <d-row>
           <span>&lt;팀활동비></span>
@@ -69,7 +59,7 @@
           <button class="BtnStyle" @click="matching()">담긴내용확인</button>
         </d-row>
 
-        <div class="imdiv" @mousemove="message()">
+        <div class="imdiv">
           <table
             contenteditable="true"
             id="table_1"
@@ -128,16 +118,25 @@
                 </td>
               </tr>
             </thead>
-
             <tbody class="tbody_1">
               <newTable></newTable>
               <newTable v-for="item in items" :key="item.id"> </newTable>
             </tbody>
           </table>
         </div>
-
         <div id="ShowMoney" style="float:right ; margin-bottom:50px;">
           합계 : {{ ShowMoney }} 원
+        </div>
+        <div class="custom-file">
+          <label class="custom-file-label" for="customFile">{{
+            file_name
+          }}</label>
+          <input
+            class="custom-file-control"
+            id="customFile"
+            type="file"
+            @change="handleFileChange"
+          />
         </div>
       </div>
     </div>
@@ -188,7 +187,6 @@ export default {
       // table element 찾기
       const table = document.getElementById('table_1');
       const totalRowCnt = table.rows.length;
-      console.log(rownum);
 
       if (totalRowCnt != 2) {
         const newRow = table.deleteRow(rownum);
