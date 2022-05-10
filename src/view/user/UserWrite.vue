@@ -41,10 +41,11 @@
           </label>
           <div class="col-sm-10">
             <input
-              type="text"
+              type="month"
               class="caption form-control"
-              id="inputPassword"
+              id="Title"
               placeholder="제목을 입력하세요 ( 2022-04 형태로 입력할 것 )"
+              max="9999-12"
             />
           </div>
         </div>
@@ -145,6 +146,9 @@
 <script>
 import newTable from '../../components/User/NewTable.vue';
 export default {
+  mounted() {
+    this.title();
+  },
   name: 'app',
   components: { newTable },
   data: function() {
@@ -155,8 +159,10 @@ export default {
   },
 
   methods: {
-    message() {
-      this.matching();
+    title() {
+      document.getElementById('Title').value = new Date()
+        .toISOString()
+        .slice(0, 7);
     },
     add() {
       this.items.push({});

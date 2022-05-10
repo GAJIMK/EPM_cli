@@ -5,6 +5,7 @@
         type="date"
         style="border:0 solid black; width:100%"
         tabindex="0"
+        max="9999-12-31"
       />
     </td>
     <td>
