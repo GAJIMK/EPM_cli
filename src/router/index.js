@@ -38,6 +38,13 @@ export default new Router({
       meta: { layout: "empty" },
       component: () => import("@/view/user/UserWrite.vue"),
     },
+    {
+      path: "/userwrite",
+      name: "userwrite",
+      meta: { layout: "empty" },
+      component: () => import("@/view/user/UserWrite.vue"),
+    },
+
     // {
     //   path: "/manage",
     //   name: "Management",

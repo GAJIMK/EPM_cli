@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  components: {},
   name: "App",
   computed: {
     layout() {

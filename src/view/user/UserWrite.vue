@@ -1,5 +1,5 @@
 <template>
-  <div class="inputBox">
+  <div id="app">
     <div class=" shadow shadow">
       <h1 class="named">User Page</h1>
       <b-row>
@@ -44,7 +44,7 @@
               type="text"
               class="caption form-control"
               id="inputPassword"
-              placeholder="제목을 입력하세요"
+              placeholder="제목을 입력하세요 ( 2022-04 형태로 입력할 것 )"
             />
           </div>
         </div>
@@ -60,135 +60,154 @@
           />
         </div>
         <hr />
-        <b-button class="plusRow" @click="addRow()">행추가</b-button>
-        <b-button @click="deleteRow(-1)">행삭제</b-button>
-        <p>&lt;팀활동비></p>
-        <table
-          contenteditable="true"
-          id="table_1"
-          class="table_1 table-bordered table-hover"
-        >
-          <thead class="thead_1" id="thead_1">
-            <tr class="select">
-              <td>
-                <input class="thead" type="text" disabled="true" value="일자" />
-              </td>
-              <td>
-                <input class="thead" type="text" disabled="true" value="내역" />
-              </td>
-              <td>
-                <input class="thead" type="text" disabled="true" value="장소" />
-              </td>
-              <td>
-                <input
-                  class="thead"
-                  type="text"
-                  disabled="true"
-                  value="동반인"
-                />
-              </td>
-              <td>
-                <input
-                  class="thead"
-                  type="text"
-                  disabled="true"
-                  value="현금/개인카드"
-                />
-              </td>
-              <td>
-                <input class="thead" type="text" disabled="true" value="금액" />
-              </td>
-            </tr>
-          </thead>
+        <d-row>
+          <span>&lt;팀활동비></span>
+          <button class="plusRow BtnStyle" @click="add()">행추가</button>
+          <button class="BtnStyle" @click="deleteRow(-1)">행삭제</button>
+          <button class="BtnStyle" @click="calcSum()">합계구하기</button>
+          <button class="BtnStyle" @click="matching()">담긴내용확인</button>
+        </d-row>
 
-          <tbody class="tbody_1">
-            <tr>
-              <td>
-                <input type="date" style="border:0 solid black;" />
-              </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="imdiv" @mousemove="message()">
+          <table
+            contenteditable="true"
+            id="table_1"
+            class="table_1 table-bordered table-hover"
+            v-bind="this.items"
+          >
+            <thead class="thead_1" id="thead_1">
+              <tr class="select">
+                <td>
+                  <input
+                    class="thead"
+                    type="text"
+                    disabled="true"
+                    value="일자"
+                  />
+                </td>
+                <td>
+                  <input
+                    class="thead"
+                    type="text"
+                    disabled="true"
+                    value="내역"
+                  />
+                </td>
+                <td>
+                  <input
+                    class="thead"
+                    type="text"
+                    disabled="true"
+                    value="장소"
+                  />
+                </td>
+                <td>
+                  <input
+                    class="thead"
+                    type="text"
+                    disabled="true"
+                    value="동반인"
+                  />
+                </td>
+                <td>
+                  <input
+                    class="thead"
+                    type="text"
+                    disabled="true"
+                    value="개인카드/현금"
+                  />
+                </td>
+                <td>
+                  <input
+                    class="thead"
+                    type="text"
+                    disabled="true"
+                    value="금액"
+                  />
+                </td>
+              </tr>
+            </thead>
 
-        <hr />
-        <h>&lt;문화활동비></h>
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <td>일자</td>
-              <td>내역</td>
-              <td>장소</td>
-              <td>동반인</td>
-              <td>현금 / 개인카드</td>
-              <td>금액</td>
-            </tr>
-          </thead>
-        </table>
+            <tbody class="tbody_1">
+              <newTable v-for="item in items" :key="item.id"> </newTable>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="ShowMoney" style="float:right ; margin-bottom:50px;">
+          합계 : {{ ShowMoney }} 원
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import newTable from "../../components/User/NewTable.vue";
 export default {
+  name: "app",
+  components: { newTable },
   data: function() {
     return {
       file_name: "영수증을 업로드하세요",
-      trIdx: 0,
+
+      SumMoney: 0,
+      ShowMoney: 0,
+      Newvalue: 0,
+      value: 0,
+      sum: 0,
+      money_1: 0,
+      moeny_list: [],
+      print: 0,
+
+      items: [
+        {
+          datd: "2022-07-12",
+          some: "가정매니저",
+          where: ".",
+          with: ".",
+          card: "",
+          money: "",
+        },
+      ],
     };
   },
 
   methods: {
+    message() {
+      this.matching();
+    },
+    add() {
+      this.items.push({});
+    },
+
+    calcSum() {
+      // table 안에 있는 게 input 이 아닐때 가능함!!!!!!!!!
+      const table = document.getElementById("table_1");
+
+      //초기화
+      this.SumMoney = 0;
+      // 합계 계산
+      for (var i = 1; i < table.rows.length; i++) {
+        this.SumMoney += parseInt(table.rows[i].cells[5].innerHTML);
+      }
+    },
+    //영수증 파일 업로드 하는 메소드
     handleFileChange(e) {
       this.file_name = e.target.files[0].name;
     },
-    addRow() {
-      // const table = document.getElementById("table_1");
+    //표 추가하고 삭제하는 메소드
 
-      // const newRow = table.insertRow();
-
-      // for (var i = 0; i < 6; i++) {
-      //   var newCell = "newCell" + i;
-      //   newCell = newRow.insertCell(i);
-      //   // if (newCell + 0) {
-      //   //   newCell.innerText = "dd";
-      //   // }
-
-      //   // table head 는 삭제 안되도록 하는 기능 추가 , 추가했을 때도 date 인풋값 자동으로 나오게 추가
-      //   newCell.innerText = ".";
-      // }
-
-      var tables = document.getElementById("table_1").childNodes.length - 1;
-
-      var tr =
-        '<tr onmouseover="getRowIdx(this)" ><td><input type=date style="border:0 solid black;" name=title value="' +
-        tables +
-        '" /></td><td><td/>' +
-        "<td><td/><td><td/></tr>";
-      document.getElementById("table_1").innerHTML += tr;
-    },
-    deleteRow(rownum) {
+    deleteRow(rownum, val) {
       // table element 찾기
       const table = document.getElementById("table_1");
-      const newRow = table.deleteRow(rownum);
+      const totalRowCnt = table.rows.length;
+      console.log(rownum);
 
-      //console.log(table.ariaRowCount); //table length 가 1 이면 ( head밖에 남지 않았다면) 삭제 하지 않도록 구현
-
-      // var table = document.getElementById("table_1");
-      // if (param == 1) {
-      //   table.removeChild(table.childNodes[trIdx]);
-      // } else {
-      //   table.removeChild(table.childNodes[table.childNodes.length - 1]);
-      // }
+      if (totalRowCnt != 2) {
+        const newRow = table.deleteRow(rownum);
+      }
     },
   },
-  // getRowIdx(tr) {
-  //   trIdx = tr.rowIndex;
-  // },
 };
 </script>
 
@@ -212,12 +231,29 @@ export default {
   padding: 6%;
 }
 .thead_1 {
-  border: 2px solid #ffd45e;
+  width: 95%;
+  border: 2px solid #ffc75f;
   background-color: rgb(255, 254, 174);
 }
 .thead {
   background-color: transparent;
-  border: #ffd45e;
-  margin: auto;
+  border: #ffc75f;
 }
+.BtnStyle {
+  border: 0;
+  outline: 0;
+  border-radius: 10%;
+  background-color: #fffad1;
+  color: black;
+  margin: 0.5%;
+}
+.tbody_1:focus {
+  background-color: yellow;
+}
+.new {
+  background-color: #e3ffc8;
+}
+/* .imdiv {
+  background-color: #ff5e00;
+} */
 </style>
