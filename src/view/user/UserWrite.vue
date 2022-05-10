@@ -1,9 +1,9 @@
 <template>
-  <div class="inputBox">
+  <div id="app">
     <div class=" shadow shadow">
       <h1 class="named">User Page</h1>
       <b-row>
-        <b-col>user name</b-col>
+        <b-col class="name">user name</b-col>
         <b-col>프로필 사진</b-col>
       </b-row>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,10 +33,10 @@
         </div>
       </nav>
     </div>
-    <d-card>
-      <d-card-body class="card-body">
+    <div class="card">
+      <div class="card-body">
         <div class="form-group row">
-          <label for="inputPassword" class="col-sm-2 col-form-label"
+          <label for="inputPassword" class="col-sm-1 col-form-label"
             >제목 :
           </label>
           <div class="col-sm-10">
@@ -44,11 +44,10 @@
               type="text"
               class="caption form-control"
               id="inputPassword"
-              placeholder="제목을 입력하세요"
+              placeholder="제목을 입력하세요 ( 2022-04 형태로 입력할 것 )"
             />
           </div>
         </div>
-
         <div class="custom-file">
           <label class="custom-file-label" for="customFile">{{
             file_name
@@ -61,70 +60,148 @@
           />
         </div>
         <hr />
-        <button class="plusRow" @click="addRow()">행추가</button>
-        <p>&lt;팀활동비></p>
-        <table id="table_1" class="table_1 table-bordered table-hover">
-          <tr>
-            <td>일자</td>
-            <td>내역</td>
-            <td>장소</td>
-            <td>동반인</td>
-            <td>현금/개인카드</td>
-            <td>금액</td>
-          </tr>
-        </table>
+        <d-row>
+          <span>&lt;팀활동비></span>
+          <button class="plusRow BtnStyle" @click="add()">행추가</button>
+          <button class="BtnStyle" @click="deleteRow(-1)">행삭제</button>
+          <button class="BtnStyle" @click="calcSum()">합계구하기</button>
+          <button class="BtnStyle" @click="matching()">담긴내용확인</button>
+        </d-row>
 
-        <hr />
-        <h>&lt;문화활동비></h>
-        <table class="table table-bordered table-hover">
-          <tr>
-            <td>일자</td>
-            <td>내역</td>
-            <td>장소</td>
-            <td>동반인</td>
-            <td>현금/개인카드</td>
-            <td>금액</td>
-          </tr>
-        </table>
-      </d-card-body>
-    </d-card>
+        <div class="imdiv" @mousemove="message()">
+          <table
+            contenteditable="true"
+            id="table_1"
+            class="table_1 table-bordered table-hover"
+            v-bind="this.items"
+          >
+            <thead class="thead_1" id="thead_1">
+              <tr class="select">
+                <td>
+                  <input
+                    class="thead"
+                    type="text"
+                    disabled="true"
+                    value="일자"
+                  />
+                </td>
+                <td>
+                  <input
+                    class="thead"
+                    type="text"
+                    disabled="true"
+                    value="내역"
+                  />
+                </td>
+                <td>
+                  <input
+                    class="thead"
+                    type="text"
+                    disabled="true"
+                    value="장소"
+                  />
+                </td>
+                <td>
+                  <input
+                    class="thead"
+                    type="text"
+                    disabled="true"
+                    value="동반인"
+                  />
+                </td>
+                <td>
+                  <input
+                    class="thead"
+                    type="text"
+                    disabled="true"
+                    value="개인카드/현금"
+                  />
+                </td>
+                <td>
+                  <input
+                    class="thead"
+                    type="text"
+                    disabled="true"
+                    value="금액"
+                  />
+                </td>
+              </tr>
+            </thead>
+
+            <tbody class="tbody_1">
+              <newTable v-for="item in items" :key="item.id"> </newTable>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="ShowMoney" style="float:right ; margin-bottom:50px;">
+          합계 : {{ ShowMoney }} 원
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
+import newTable from "../../components/User/NewTable.vue";
 export default {
+  name: "app",
+  components: { newTable },
   data: function() {
     return {
+
+    
+
       file_name: '영수증을 업로드하세요',
+
     };
   },
 
   methods: {
+    message() {
+      this.matching();
+    },
+    add() {
+      this.items.push({});
+    },
+
+    calcSum() {
+      // table 안에 있는 게 input 이 아닐때 가능함!!!!!!!!!
+      const table = document.getElementById("table_1");
+
+      //초기화
+      this.SumMoney = 0;
+      // 합계 계산
+      for (var i = 1; i < table.rows.length; i++) {
+        this.SumMoney += parseInt(table.rows[i].cells[5].innerHTML);
+      }
+    },
+    //영수증 파일 업로드 하는 메소드
     handleFileChange(e) {
       this.file_name = e.target.files[0].name;
     },
+<<<<<<< HEAD
+    //표 추가하고 삭제하는 메소드
+=======
     addRow() {
       const table = document.getElementById('table_1');
+>>>>>>> develop
 
-      const newRow = table.insertRow();
+    deleteRow(rownum, val) {
+      // table element 찾기
+      const table = document.getElementById("table_1");
+      const totalRowCnt = table.rows.length;
+      console.log(rownum);
 
+<<<<<<< HEAD
+      if (totalRowCnt != 2) {
+        const newRow = table.deleteRow(rownum);
+=======
       for (var i = 0; i < 6; i++) {
         var newCell = 'newCell' + i;
         newCell = newRow.insertCell(i);
         newCell.innerText = '.';
+>>>>>>> develop
       }
-      // const newCell1 = newRow.insertCell(0);
-      // const newCell2 = newRow.insertCell(1);
-      // const newCell3 = newRow.insertCell(2);
-      // const newCell4 = newRow.insertCell(3);
-      // const newCell5 = newRow.insertCell(4);
-      // const newCell6 = newRow.insertCell(5);
-
-      // newCell1.innerText = ".";
-      // newCell2.innerText = ".";
-      // newCell3.innerText = ".";
-      // newCell4.innerText = ".";
-      // newCell5.innerText = ".";
-      // newCell6.innerText = ".";
     },
   },
 };
@@ -137,9 +214,42 @@ export default {
 .form-group {
   padding: 0.2%;
   margin-top: 2%;
-  width: 95%;
+  width: 100%;
 }
 .table_1 {
   width: 95%;
+  margin: auto;
+  text-align: center;
+  position: sticky;
+  top: 0;
 }
+.card {
+  padding: 6%;
+}
+.thead_1 {
+  width: 95%;
+  border: 2px solid #ffc75f;
+  background-color: rgb(255, 254, 174);
+}
+.thead {
+  background-color: transparent;
+  border: #ffc75f;
+}
+.BtnStyle {
+  border: 0;
+  outline: 0;
+  border-radius: 10%;
+  background-color: #fffad1;
+  color: black;
+  margin: 0.5%;
+}
+.tbody_1:focus {
+  background-color: yellow;
+}
+.new {
+  background-color: #e3ffc8;
+}
+/* .imdiv {
+  background-color: #ff5e00;
+} */
 </style>

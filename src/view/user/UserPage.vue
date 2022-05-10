@@ -52,19 +52,19 @@
 export default {
   data() {
     return {
-      mylists: ["지혜", "가정", "의정"],
+      mylists: ['지혜', '가정', '의정'],
     };
   },
   methods: {
     writelist() {
-      this.$router.push({ name: "userwrite" }).catch(() => {});
+      this.$router.push({ name: 'userwrite' }).catch(() => {});
     },
   },
 };
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 
 .inputBox {
   padding: 0.1%;
@@ -73,7 +73,7 @@ export default {
   float: right;
 }
 .named {
-  font-family: "Itim", cursive;
+  font-family: 'Itim', cursive;
 }
 .wirteBtn {
   padding: 0.3%;
