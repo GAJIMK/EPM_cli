@@ -148,27 +148,11 @@ export default {
   components: { newTable },
   data: function() {
     return {
-      file_name: "영수증을 업로드하세요",
 
-      SumMoney: 0,
-      ShowMoney: 0,
-      Newvalue: 0,
-      value: 0,
-      sum: 0,
-      money_1: 0,
-      moeny_list: [],
-      print: 0,
+    
 
-      items: [
-        {
-          datd: "2022-07-12",
-          some: "가정매니저",
-          where: ".",
-          with: ".",
-          card: "",
-          money: "",
-        },
-      ],
+      file_name: '영수증을 업로드하세요',
+
     };
   },
 
@@ -195,7 +179,12 @@ export default {
     handleFileChange(e) {
       this.file_name = e.target.files[0].name;
     },
+<<<<<<< HEAD
     //표 추가하고 삭제하는 메소드
+=======
+    addRow() {
+      const table = document.getElementById('table_1');
+>>>>>>> develop
 
     deleteRow(rownum, val) {
       // table element 찾기
@@ -203,8 +192,15 @@ export default {
       const totalRowCnt = table.rows.length;
       console.log(rownum);
 
+<<<<<<< HEAD
       if (totalRowCnt != 2) {
         const newRow = table.deleteRow(rownum);
+=======
+      for (var i = 0; i < 6; i++) {
+        var newCell = 'newCell' + i;
+        newCell = newRow.insertCell(i);
+        newCell.innerText = '.';
+>>>>>>> develop
       }
     },
   },
