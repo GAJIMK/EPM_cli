@@ -94,7 +94,7 @@
 export default {
   data: function() {
     return {
-      file_name: "영수증을 업로드하세요",
+      file_name: '영수증을 업로드하세요',
     };
   },
 
@@ -103,14 +103,14 @@ export default {
       this.file_name = e.target.files[0].name;
     },
     addRow() {
-      const table = document.getElementById("table_1");
+      const table = document.getElementById('table_1');
 
       const newRow = table.insertRow();
 
       for (var i = 0; i < 6; i++) {
-        var newCell = "newCell" + i;
+        var newCell = 'newCell' + i;
         newCell = newRow.insertCell(i);
-        newCell.innerText = ".";
+        newCell.innerText = '.';
       }
       // const newCell1 = newRow.insertCell(0);
       // const newCell2 = newRow.insertCell(1);
