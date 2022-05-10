@@ -26,4 +26,20 @@ $theme-colors: (
   'light': $light,
 );
 
+body {
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+.green {
+  color: #007564;
+}
+.red {
+  color: #c1564c;
+}
+.gray {
+  color: #999;
+}
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
