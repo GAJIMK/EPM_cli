@@ -27,7 +27,6 @@ export default new Router({
       component: () => import('@/view/Login.vue'),
     },
     {
-
       path: '/signup',
       name: 'SignUp',
       component: () => import('@/components/common/SignUp.vue'),
@@ -38,17 +37,16 @@ export default new Router({
       component: () =>
         import('@/components/management/expense/ExpenseListPage.vue'),
 
-      path: "/user",
-      name: "user",
-      meta: { layout: "empty" },
-      component: () => import("@/view/user/UserPage.vue"),
+      path: '/user',
+      name: 'user',
+      meta: { layout: 'empty' },
+      component: () => import('@/view/user/UserPage.vue'),
     },
     {
-      path: "/userwrite",
-      name: "userwrite",
-      meta: { layout: "empty" },
-      component: () => import("@/view/user/UserWrite.vue"),
-
+      path: '/userwrite',
+      name: 'userwrite',
+      meta: { layout: 'empty' },
+      component: () => import('@/view/user/UserWrite.vue'),
     },
     // {
     //   path: "/manage",
