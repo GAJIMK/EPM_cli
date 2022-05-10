@@ -142,17 +142,13 @@
   </div>
 </template>
 <script>
-import newTable from "../../components/User/NewTable.vue";
+import newTable from '../../components/User/NewTable.vue';
 export default {
-  name: "app",
+  name: 'app',
   components: { newTable },
   data: function() {
     return {
-
-    
-
       file_name: '영수증을 업로드하세요',
-
     };
   },
 
@@ -166,7 +162,7 @@ export default {
 
     calcSum() {
       // table 안에 있는 게 input 이 아닐때 가능함!!!!!!!!!
-      const table = document.getElementById("table_1");
+      const table = document.getElementById('table_1');
 
       //초기화
       this.SumMoney = 0;
@@ -179,28 +175,27 @@ export default {
     handleFileChange(e) {
       this.file_name = e.target.files[0].name;
     },
-<<<<<<< HEAD
+
     //표 추가하고 삭제하는 메소드
-=======
+
     addRow() {
       const table = document.getElementById('table_1');
->>>>>>> develop
+    },
 
     deleteRow(rownum, val) {
       // table element 찾기
-      const table = document.getElementById("table_1");
+      const table = document.getElementById('table_1');
       const totalRowCnt = table.rows.length;
       console.log(rownum);
 
-<<<<<<< HEAD
       if (totalRowCnt != 2) {
         const newRow = table.deleteRow(rownum);
-=======
-      for (var i = 0; i < 6; i++) {
-        var newCell = 'newCell' + i;
-        newCell = newRow.insertCell(i);
-        newCell.innerText = '.';
->>>>>>> develop
+
+        for (var i = 0; i < 6; i++) {
+          var newCell = 'newCell' + i;
+          newCell = newRow.insertCell(i);
+          newCell.innerText = '.';
+        }
       }
     },
   },
