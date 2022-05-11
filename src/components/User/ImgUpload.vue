@@ -25,7 +25,7 @@
         :value="progressValue"
       />
     </div>
-    <b-button @click="remove()">삭제</b-button>
+
     <DxFileUploader
       class="file-uploader"
       id="file-uploader"
@@ -65,7 +65,6 @@ export default {
   },
 
   methods: {
-    remove() {},
     onDropZoneEnter(e) {
       if (e.dropZoneElement.id === 'dropzone-external') {
         this.isDropZoneActive = true;
