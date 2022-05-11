@@ -41,24 +41,15 @@
           </label>
           <div class="col-sm-10">
             <input
-              type="text"
+              type="month"
               class="caption form-control"
-              id="inputPassword"
+              id="Title"
               placeholder="제목을 입력하세요 ( 2022-04 형태로 입력할 것 )"
+              max="9999-12"
             />
           </div>
         </div>
-        <div class="custom-file">
-          <label class="custom-file-label" for="customFile">{{
-            file_name
-          }}</label>
-          <input
-            class="custom-file-control"
-            id="customFile"
-            type="file"
-            @change="handleFileChange"
-          />
-        </div>
+
         <hr />
         <d-row>
           <span>&lt;팀활동비></span>
@@ -68,7 +59,7 @@
           <button class="BtnStyle" @click="matching()">담긴내용확인</button>
         </d-row>
 
-        <div class="imdiv" @mousemove="message()">
+        <div class="imdiv">
           <table
             contenteditable="true"
             id="table_1"
@@ -127,34 +118,59 @@
                 </td>
               </tr>
             </thead>
-
             <tbody class="tbody_1">
-              <newTable v-for="item in items" :key="item.id"> </newTable>
+              <newTable></newTable>
+              <newTable
+                v-for="item in items"
+                :key="item.id"
+                @message="updateSum"
+              >
+              </newTable>
             </tbody>
           </table>
         </div>
-
         <div id="ShowMoney" style="float:right ; margin-bottom:50px;">
-          합계 : {{ ShowMoney }} 원
+          합계 : {{ showsum }} 원
         </div>
+        <span
+          ><ImgUpload v-for="item in items" :key="item.id"></ImgUpload
+        ></span>
       </div>
     </div>
   </div>
 </template>
 <script>
 import newTable from '../../components/User/NewTable.vue';
+
+import ImgUpload from '../../components/User/ImgUpload.vue';
 export default {
   name: 'app',
-  components: { newTable },
+
+  components: { newTable, ImgUpload },
   data: function() {
     return {
+      items: [],
       file_name: '영수증을 업로드하세요',
+      showsum: 0,
+
+
     };
   },
 
+  mounted() {
+    this.title();
+  },
+
   methods: {
-    message() {
-      this.matching();
+    title() {
+      document.getElementById('Title').value = new Date()
+        .toISOString()
+        .slice(0, 7);
+    },
+    updateSum() {
+      this.showsum = 0;
+      this.showsum = this.sum;
+      console.log('showsum', this.showsum);
     },
     add() {
       this.items.push({});
@@ -176,26 +192,14 @@ export default {
       this.file_name = e.target.files[0].name;
     },
 
-    //표 추가하고 삭제하는 메소드
-
-    addRow() {
-      const table = document.getElementById('table_1');
-    },
 
     deleteRow(rownum, val) {
       // table element 찾기
       const table = document.getElementById('table_1');
       const totalRowCnt = table.rows.length;
-      console.log(rownum);
 
       if (totalRowCnt != 2) {
         const newRow = table.deleteRow(rownum);
-
-        for (var i = 0; i < 6; i++) {
-          var newCell = 'newCell' + i;
-          newCell = newRow.insertCell(i);
-          newCell.innerText = '.';
-        }
       }
     },
   },
@@ -244,7 +248,4 @@ export default {
 .new {
   background-color: #e3ffc8;
 }
-/* .imdiv {
-  background-color: #ff5e00;
-} */
 </style>
