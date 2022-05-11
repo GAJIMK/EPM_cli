@@ -25,24 +25,23 @@
         :value="progressValue"
       />
     </div>
+    <b-button @click="remove()">삭제</b-button>
     <DxFileUploader
       class="file-uploader"
       id="file-uploader"
       dialog-trigger="#dropzone-external"
       drop-zone="#dropzone-external"
-      :multiple="false"
+      :multiple="true"
       :allowed-file-extensions="allowedFileExtensions"
       upload-mode="instantly"
       upload-url="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
       :visible="false"
-      onDisposing:null,
       @drop-zone-enter="onDropZoneEnter"
       @drop-zone-leave="onDropZoneLeave"
       @uploaded="onUploaded"
       @progress="onProgress"
       @upload-started="onUploadStarted"
     />
-    <button @click="remover()"></button>
   </div>
 </template>
 
@@ -66,12 +65,7 @@ export default {
   },
 
   methods: {
-    remover() {
-      var uploadControl = document
-        .getElementById('dropzone-external')
-        .dxFileUploader('instance');
-      uploadControl.removeFile(1);
-    },
+    remove() {},
     onDropZoneEnter(e) {
       if (e.dropZoneElement.id === 'dropzone-external') {
         this.isDropZoneActive = true;

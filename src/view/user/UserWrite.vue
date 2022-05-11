@@ -22,8 +22,6 @@
           <span>&lt;팀활동비></span>
           <button class="plusRow BtnStyle" @click="add()">행추가</button>
           <button class="BtnStyle" @click="deleteRow(-1)">행삭제</button>
-          <button class="BtnStyle" @click="calcSum()">합계구하기</button>
-          <button class="BtnStyle" @click="matching()">담긴내용확인</button>
         </d-row>
 
         <div class="imdiv">
@@ -86,6 +84,7 @@
               </tr>
             </thead>
             <tbody class="tbody_1">
+              <!-- <newTable @message="updateSum" /> -->
               <newTable
                 v-for="item in items"
                 :key="item.id"
@@ -94,12 +93,10 @@
             </tbody>
           </table>
         </div>
-        <div id="ShowMoney" style="float:right ; margin-bottom:50px;">
-          합계 : {{ showsum }} 원
-        </div>
-        <span
-          ><ImgUpload v-for="item in items" :key="item.id"></ImgUpload
-        ></span>
+        <div class="ShowMoney" id="ShowMoney">합계 : {{ showsum }}</div>
+        <div class="leftMoney" id="leftMoney">남은 금액 : {{ leftmeoney }}</div>
+
+        <span> <ImgUpload v-for="img in imgs" :key="img.id"></ImgUpload></span>
       </div>
     </div>
   </div>
@@ -115,8 +112,10 @@ export default {
   data: function() {
     return {
       items: [],
+      imgs: [],
       file_name: '영수증을 업로드하세요',
-      showsum: 0,
+      showsum: '',
+      leftmeoney: '',
     };
   },
 
@@ -132,35 +131,38 @@ export default {
     },
     updateSum(e) {
       this.showsum = 0;
-      this.showsum = e;
-      console.log('showsum', this.showsum);
-    },
-    add() {
-      this.items.push({});
-    },
+      //this.showsum = e;
+      const num = 50000 - e;
+      const n1 = e.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+      const n2 = num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+      this.showsum = n1 + '원';
 
-    calcSum() {
-      // table 안에 있는 게 input 이 아닐때 가능함!!!!!!!!!
-      const table = document.getElementById('table_1');
-
-      //초기화
-      this.SumMoney = 0;
-      // 합계 계산
-      for (var i = 1; i < table.rows.length; i++) {
-        this.SumMoney += parseInt(table.rows[i].cells[5].innerHTML);
+      if (num < 0) {
+        this.leftmeoney = '초과되었습니다.';
+        var target = document.getElementById('leftMoney');
+        target.style.color = 'red';
+      } else {
+        this.leftmeoney = n2 + '원';
       }
     },
+
     //영수증 파일 업로드 하는 메소드
     handleFileChange(e) {
       this.file_name = e.target.files[0].name;
     },
-
+    add() {
+      this.items.push({});
+      this.imgs.push({});
+    },
     deleteRow(rownum, val) {
       // table element 찾기
       const table = document.getElementById('table_1');
       const totalRowCnt = table.rows.length;
 
-      if (totalRowCnt != 2) {
+      console.log('아이템', this.items, this.items.length);
+      this.imgs.pop({});
+
+      if (totalRowCnt != 1) {
         const newRow = table.deleteRow(rownum);
       }
     },
@@ -209,5 +211,7 @@ export default {
 }
 .new {
   background-color: #e3ffc8;
+}
+.ShowMoney .leftMoney {
 }
 </style>

@@ -1,12 +1,7 @@
 <template>
   <tr>
     <td contenteditable="true">
-      <input
-        type="date"
-        style="border:0 solid black; width:100%"
-        tabindex="0"
-        max="9999-12-31"
-      />
+      <input type="date" tabindex="0" max="9999-12-31" class="date" />
     </td>
     <td>
       .
@@ -18,7 +13,7 @@
       .
     </td>
     <td>
-      <select style="border:0 solid black; width:100%;"
+      <select class="select"
         ><option>개인카드</option
         ><option>현금</option></select
       >
@@ -28,8 +23,8 @@
         type="text"
         class="mm"
         value="0"
-        style="border:0 solid black; width:100%"
         @blur="message()"
+        @keyup.enter="$event.target.blur()"
       />
     </td>
   </tr>
@@ -50,16 +45,22 @@ export default {
       for (var i = 0; i < value.length; i++) {
         //console.log(value[i].value);
         this.nums.push(value[i].value);
-        console.log('숫자들', this.nums);
       }
       this.nums.forEach((item) => {
         this.sum += parseInt(item);
       });
-      console.log('합계', this.sum);
+
       this.$emit('message', this.sum);
     },
   },
 };
 </script>
 
-<style></style>
+<style>
+.date,
+.select,
+.mm {
+  border: 0 solid black;
+  width: 100%;
+}
+</style>
