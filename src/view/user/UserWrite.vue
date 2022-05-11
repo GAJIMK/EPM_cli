@@ -141,6 +141,7 @@
 </template>
 <script>
 import newTable from '../../components/User/NewTable.vue';
+
 import ImgUpload from '../../components/User/ImgUpload.vue';
 export default {
   name: 'app',
@@ -151,6 +152,8 @@ export default {
       items: [],
       file_name: '영수증을 업로드하세요',
       showsum: 0,
+
+
     };
   },
 
@@ -188,6 +191,7 @@ export default {
     handleFileChange(e) {
       this.file_name = e.target.files[0].name;
     },
+
 
     deleteRow(rownum, val) {
       // table element 찾기

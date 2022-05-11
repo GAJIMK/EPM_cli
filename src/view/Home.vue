@@ -69,28 +69,20 @@
       </div>
     </div>
     <div class="adds">
-      <div class="alarm">
-        <ul>
-          <li>김가정 귀염둥이</li>
-          <li>지혜 생축</li>
-          <li>차차 꾸며나가보자,,</li>
-        </ul>
-      </div>
-      <div class="weather">
-        <ul>
-          <li>
-            오늘의 날씨 🌦️ 약간 흐림
-          </li>
-        </ul>
-      </div>
+      <Memo />
+      <Lunch />
     </div>
   </div>
 </template>
 
 <script>
+import Lunch from './ect/Lunch.vue';
+import Memo from './ect/Memo.vue';
 export default {
+  components: { Lunch, Memo },
   methods: {
     handleExpenseList: function() {
+      console.log('?');
       this.$router.push({ name: 'expenseList' });
     },
     handleUsersList: function() {
@@ -142,6 +134,20 @@ export default {
     width: 2rem;
     height: 2rem;
     color: #fff;
+  }
+}
+.menu-container {
+  border: 4px solid #fdc000;
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  background-color: whitesmoke;
+}
+.adds {
+  * {
+    margin-top: 20px;
   }
 }
 </style>
