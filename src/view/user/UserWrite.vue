@@ -84,7 +84,7 @@
               </tr>
             </thead>
             <tbody class="tbody_1">
-              <newTable @message="updateSum" />
+              <!-- <newTable @message="updateSum" /> -->
               <newTable
                 v-for="item in items"
                 :key="item.id"
@@ -93,14 +93,10 @@
             </tbody>
           </table>
         </div>
-        <div class="ShowMoney" id="ShowMoney">합계 : {{ showsum }} 원</div>
-        <div class="leftMoney" id="leftMoney">
-          남은 금액 : {{ leftmeoney }} 원
-        </div>
+        <div class="ShowMoney" id="ShowMoney">합계 : {{ showsum }}</div>
+        <div class="leftMoney" id="leftMoney">남은 금액 : {{ leftmeoney }}</div>
 
-        <span
-          ><ImgUpload v-for="item in items" :key="item.id"></ImgUpload
-        ></span>
+        <span> <ImgUpload v-for="img in imgs" :key="img.id"></ImgUpload></span>
       </div>
     </div>
   </div>
@@ -116,6 +112,7 @@ export default {
   data: function() {
     return {
       items: [],
+      imgs: [],
       file_name: '영수증을 업로드하세요',
       showsum: '',
       leftmeoney: '',
@@ -138,36 +135,34 @@ export default {
       const num = 50000 - e;
       const n1 = e.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
       const n2 = num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
-      this.showsum = n1;
+      this.showsum = n1 + '원';
 
-      this.leftmeoney = n2;
-    },
-    add() {
-      this.items.push({});
-    },
-
-    calcSum() {
-      // table 안에 있는 게 input 이 아닐때 가능함!!!!!!!!!
-      const table = document.getElementById('table_1');
-
-      //초기화
-      this.SumMoney = 0;
-      // 합계 계산
-      for (var i = 1; i < table.rows.length; i++) {
-        this.SumMoney += parseInt(table.rows[i].cells[5].innerHTML);
+      if (num < 0) {
+        this.leftmeoney = '초과되었습니다.';
+        var target = document.getElementById('leftMoney');
+        target.style.color = 'red';
+      } else {
+        this.leftmeoney = n2 + '원';
       }
     },
+
     //영수증 파일 업로드 하는 메소드
     handleFileChange(e) {
       this.file_name = e.target.files[0].name;
     },
-
+    add() {
+      this.items.push({});
+      this.imgs.push({});
+    },
     deleteRow(rownum, val) {
       // table element 찾기
       const table = document.getElementById('table_1');
       const totalRowCnt = table.rows.length;
 
-      if (totalRowCnt != 2) {
+      console.log('아이템', this.items, this.items.length);
+      this.imgs.pop({});
+
+      if (totalRowCnt != 1) {
         const newRow = table.deleteRow(rownum);
       }
     },
