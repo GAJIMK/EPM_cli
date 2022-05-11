@@ -22,8 +22,6 @@
           <span>&lt;팀활동비></span>
           <button class="plusRow BtnStyle" @click="add()">행추가</button>
           <button class="BtnStyle" @click="deleteRow(-1)">행삭제</button>
-          <button class="BtnStyle" @click="calcSum()">합계구하기</button>
-          <button class="BtnStyle" @click="matching()">담긴내용확인</button>
         </d-row>
 
         <div class="imdiv">
@@ -86,6 +84,7 @@
               </tr>
             </thead>
             <tbody class="tbody_1">
+              <newTable @message="updateSum" />
               <newTable
                 v-for="item in items"
                 :key="item.id"
@@ -95,6 +94,7 @@
           </table>
         </div>
         <div class="ShowMoney" id="ShowMoney">합계 : {{ showsum }} 원</div>
+
         <span
           ><ImgUpload v-for="item in items" :key="item.id"></ImgUpload
         ></span>
@@ -114,7 +114,7 @@ export default {
     return {
       items: [],
       file_name: '영수증을 업로드하세요',
-      showsum: 0,
+      showsum: '',
     };
   },
 
@@ -130,8 +130,9 @@ export default {
     },
     updateSum(e) {
       this.showsum = 0;
-      this.showsum = e;
-      console.log('showsum', this.showsum);
+      //this.showsum = e;
+      const n1 = e.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+      this.showsum = n1;
     },
     add() {
       this.items.push({});

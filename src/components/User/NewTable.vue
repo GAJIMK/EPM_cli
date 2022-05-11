@@ -39,12 +39,11 @@ export default {
       for (var i = 0; i < value.length; i++) {
         //console.log(value[i].value);
         this.nums.push(value[i].value);
-        console.log('숫자들', this.nums);
       }
       this.nums.forEach((item) => {
         this.sum += parseInt(item);
       });
-      console.log('합계', this.sum);
+
       this.$emit('message', this.sum);
     },
   },
