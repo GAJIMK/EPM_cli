@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     writelist() {
-      this.$router.push({ name: 'userwrite' }).catch(() => {});
+      this.$router.push({ name: 'userWrite' }).catch(() => {});
     },
   },
 };

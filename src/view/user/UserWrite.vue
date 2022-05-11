@@ -94,9 +94,7 @@
             </tbody>
           </table>
         </div>
-        <div id="ShowMoney" style="float:right ; margin-bottom:50px;">
-          합계 : {{ showsum }} 원
-        </div>
+        <div class="ShowMoney" id="ShowMoney">합계 : {{ showsum }} 원</div>
         <span
           ><ImgUpload v-for="item in items" :key="item.id"></ImgUpload
         ></span>
@@ -209,5 +207,9 @@ export default {
 }
 .new {
   background-color: #e3ffc8;
+}
+.ShowMoney {
+  float: right;
+  margin-bottom: 50px;
 }
 </style>
