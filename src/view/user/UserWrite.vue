@@ -94,6 +94,9 @@
           </table>
         </div>
         <div class="ShowMoney" id="ShowMoney">합계 : {{ showsum }} 원</div>
+        <div class="leftMoney" id="leftMoney">
+          남은 금액 : {{ leftmeoney }} 원
+        </div>
 
         <span
           ><ImgUpload v-for="item in items" :key="item.id"></ImgUpload
@@ -115,6 +118,7 @@ export default {
       items: [],
       file_name: '영수증을 업로드하세요',
       showsum: '',
+      leftmeoney: '',
     };
   },
 
@@ -131,8 +135,12 @@ export default {
     updateSum(e) {
       this.showsum = 0;
       //this.showsum = e;
+      const num = 50000 - e;
       const n1 = e.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+      const n2 = num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
       this.showsum = n1;
+
+      this.leftmeoney = n2;
     },
     add() {
       this.items.push({});
@@ -209,8 +217,6 @@ export default {
 .new {
   background-color: #e3ffc8;
 }
-.ShowMoney {
-  float: right;
-  margin-bottom: 50px;
+.ShowMoney .leftMoney {
 }
 </style>

@@ -19,7 +19,13 @@
       >
     </td>
     <td>
-      <input type="text" class="mm" value="0" @blur="message()" />
+      <input
+        type="text"
+        class="mm"
+        value="0"
+        @blur="message()"
+        @keyup.enter="$event.target.blur()"
+      />
     </td>
   </tr>
 </template>
