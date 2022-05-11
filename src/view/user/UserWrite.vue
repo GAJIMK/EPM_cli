@@ -120,41 +120,42 @@
             </thead>
             <tbody class="tbody_1">
               <newTable></newTable>
-              <newTable v-for="item in items" :key="item.id"> </newTable>
+              <newTable
+                v-for="item in items"
+                :key="item.id"
+                @message="updateSum"
+              >
+              </newTable>
             </tbody>
           </table>
         </div>
         <div id="ShowMoney" style="float:right ; margin-bottom:50px;">
-          합계 : {{ ShowMoney }} 원
+          합계 : {{ showsum }} 원
         </div>
-        <div class="custom-file">
-          <label class="custom-file-label" for="customFile">{{
-            file_name
-          }}</label>
-          <input
-            class="custom-file-control"
-            id="customFile"
-            type="file"
-            @change="handleFileChange"
-          />
-        </div>
+        <span
+          ><ImgUpload v-for="item in items" :key="item.id"></ImgUpload
+        ></span>
       </div>
     </div>
   </div>
 </template>
 <script>
 import newTable from '../../components/User/NewTable.vue';
+import ImgUpload from '../../components/User/ImgUpload.vue';
 export default {
-  mounted() {
-    this.title();
-  },
   name: 'app',
-  components: { newTable },
+
+  components: { newTable, ImgUpload },
   data: function() {
     return {
       items: [],
       file_name: '영수증을 업로드하세요',
+      showsum: 0,
     };
+  },
+
+  mounted() {
+    this.title();
   },
 
   methods: {
@@ -162,6 +163,11 @@ export default {
       document.getElementById('Title').value = new Date()
         .toISOString()
         .slice(0, 7);
+    },
+    updateSum() {
+      this.showsum = 0;
+      this.showsum = this.sum;
+      console.log('showsum', this.showsum);
     },
     add() {
       this.items.push({});

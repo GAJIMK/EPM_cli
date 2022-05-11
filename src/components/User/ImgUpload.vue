@@ -1,6 +1,6 @@
 <template>
   <div class="widget-container flex-box">
-    <span>Profile Picture</span>
+    <p>영수증 사진을 업로드하세요</p>
     <div
       id="dropzone-external"
       class="flex-box"
@@ -35,12 +35,14 @@
       upload-mode="instantly"
       upload-url="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
       :visible="false"
+      onDisposing:null,
       @drop-zone-enter="onDropZoneEnter"
       @drop-zone-leave="onDropZoneLeave"
       @uploaded="onUploaded"
       @progress="onProgress"
       @upload-started="onUploadStarted"
     />
+    <button @click="remover()"></button>
   </div>
 </template>
 
@@ -62,7 +64,14 @@ export default {
       allowedFileExtensions: ['.jpg', '.jpeg', '.gif', '.png'],
     };
   },
+
   methods: {
+    remover() {
+      var uploadControl = document
+        .getElementById('dropzone-external')
+        .dxFileUploader('instance');
+      uploadControl.removeFile(1);
+    },
     onDropZoneEnter(e) {
       if (e.dropZoneElement.id === 'dropzone-external') {
         this.isDropZoneActive = true;
@@ -98,8 +107,8 @@ export default {
 
 <style>
 #dropzone-external {
-  width: 350px;
-  height: 350px;
+  width: 300px;
+  height: 300px;
   background-color: rgba(183, 183, 183, 0.1);
   border-width: 2px;
   border-style: dashed;

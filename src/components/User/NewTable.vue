@@ -41,6 +41,7 @@ export default {
     sum: 0;
     nums: [];
   },
+
   methods: {
     message() {
       const value = document.querySelectorAll('.mm');
@@ -53,8 +54,9 @@ export default {
       }
       this.nums.forEach((item) => {
         this.sum += parseInt(item);
-        console.log('합계', this.sum);
       });
+      console.log('합계', this.sum);
+      this.$emit('message', this.sum);
     },
   },
 };
