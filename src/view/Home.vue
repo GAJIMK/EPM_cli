@@ -4,7 +4,7 @@
       <!-- 서버에서 반복 통해  -->
       <div class="all-users-menu">
         <ul class="menu-items">
-          <li class="list-item">
+          <li class="list-item" @click="handleWrite">
             <div class="icon-container">
               <font-awesome-icon icon="fa-solid fa-pen-clip" class="icon" />
             </div>
@@ -81,8 +81,10 @@ import Memo from './ect/Memo.vue';
 export default {
   components: { Lunch, Memo },
   methods: {
+    handleWrite() {
+      this.$router.push({ name: 'userWrite' });
+    },
     handleExpenseList: function() {
-      console.log('?');
       this.$router.push({ name: 'expenseList' });
     },
     handleUsersList: function() {
