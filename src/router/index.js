@@ -9,6 +9,7 @@ export default new Router({
     //로그인 시 대체
     // { path: "/", redirect: "/login" },
     { path: '/', redirect: '/home' },
+
     {
       path: '/home',
       name: 'home',
@@ -20,6 +21,7 @@ export default new Router({
       name: 'Home',
       component: () => import('@/view/Login.vue'),
     },
+
     {
       path: '/login',
       name: 'login',

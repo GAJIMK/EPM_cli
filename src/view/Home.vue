@@ -1,7 +1,9 @@
 <template>
   <div class="container">
+    <b-button @click="goLogin()" class="BtnStyle">login</b-button>
     <div class="menu">
       <!-- 서버에서 반복 통해  -->
+
       <div class="all-users-menu">
         <ul class="menu-items">
           <li class="list-item" @click="handleWrite">
@@ -81,6 +83,9 @@ import Memo from './ect/Memo.vue';
 export default {
   components: { Lunch, Memo },
   methods: {
+    goLogin() {
+      this.$router.push({ name: 'login' });
+    },
     handleWrite() {
       this.$router.push({ name: 'userWrite' });
     },
@@ -95,6 +100,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.BtnStyle {
+  border: 0;
+  outline: 0;
+  border-radius: 10%;
+  background-color: #fff7b8;
+  color: black;
+  margin: 0.5%;
+}
 .menu {
   border: 4px solid #ffc75f;
   border-radius: 1rem;
