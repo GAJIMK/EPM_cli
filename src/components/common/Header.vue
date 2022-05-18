@@ -1,15 +1,18 @@
 <template>
   <div>
     <div class="headercolor"></div>
-    <!-- <div class="container">
-      <div class="name">💸나만의 경비</div>
-    </div> -->
+    <div class="container">
+      <h2 class="name" @click="gohome()">💸Expense System💸</h2>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   methods: {
+    gohome() {
+      this.$router.push({ name: 'home' });
+    },
     goLogin: function() {
       this.$router.push({ name: 'Login' }).catch(() => {});
     },
@@ -23,6 +26,9 @@ export default {
 <style>
 input:focus {
   outline: none;
+}
+.name {
+  cursor: pointer;
 }
 
 .headercolor {

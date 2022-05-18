@@ -1,12 +1,18 @@
 <template>
   <component :is="layout">
+    <Header></Header>
     <router-view></router-view>
   </component>
 </template>
 
 <script>
+import Header from './components/common/Header.vue';
+
 export default {
   name: 'App',
+  components: {
+    Header,
+  },
 
   computed: {
     layout() {
