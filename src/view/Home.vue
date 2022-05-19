@@ -12,7 +12,7 @@
             </div>
             <div class="menu-content">작성하기</div>
           </li>
-          <li class="list-item">
+          <li class="list-item" @click="writtenList()">
             <div class="icon-container">
               <font-awesome-icon
                 icon="fa-solid fa-clock-rotate-left"
@@ -88,6 +88,9 @@ export default {
     },
     handleWrite() {
       this.$router.push({ name: 'userWrite' });
+    },
+    writtenList() {
+      this.$router.push({ name: 'user' });
     },
     handleExpenseList: function() {
       this.$router.push({ name: 'expenseList' });
