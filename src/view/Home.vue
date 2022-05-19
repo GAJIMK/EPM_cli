@@ -18,7 +18,7 @@
                 class="icon"
               />
             </div>
-            <div class="menu-content">과거내역 조회</div>
+            <div class="menu-content" @click="writtenList">과거내역 조회</div>
           </li>
           <li class="list-item">
             <div class="icon-container">

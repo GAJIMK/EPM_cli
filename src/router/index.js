@@ -46,6 +46,24 @@ export default new Router({
       meta: { layout: 'default' },
       component: () => import('@/view/user/UserWrite.vue'),
     },
+    {
+      path: '/notice-board',
+      name: 'noticeBoard',
+      meta: { layout: 'default' },
+      component: () => import('~/src/view/notice/boardList.vue'),
+    },
+    {
+      path: '/notice-board-upload',
+      name: 'noticeBoardUpload',
+      meta: { layout: 'default' },
+      component: () => import('~/src/view/notice/boardUpload.vue'),
+    },
+    {
+      path: '/bill',
+      name: 'bill',
+      meta: { layout: 'empty' },
+      component: () => import('~/src/components/common/Bill.vue'),
+    },
 
     // {
     //   path: "/manage",
