@@ -62,5 +62,10 @@ export default new Router({
       name: 'usersExpense',
       component: () => import('@/components/management/UsersExpensePage'),
     },
+    {
+      path: '/read-expense',
+      name: 'userPersonal',
+      component: () => import('@/components/PersonalFee/PersonalFeePage.vue'),
+    },
   ],
 });

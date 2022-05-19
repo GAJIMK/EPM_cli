@@ -5,8 +5,13 @@
       <div class="position">직급</div>
       <div class="state">상태</div>
     </div>
-    <div class="lists">
-      <div class="list" v-for="user in users" :key="user.id">
+    <div class="user-lists">
+      <div
+        class="list"
+        v-for="user in users"
+        :key="user.id"
+        @click="handlePersonal"
+      >
         <div class="name">{{ user.name }}</div>
         <div class="position">{{ user.position }}</div>
         <div class="state green" v-if="user.state === 1">승인</div>
@@ -16,15 +21,15 @@
     </div>
     <div class="results">
       <div class="pass">
-        승인 :
+        승인
         <div class="green">{{ pass }}</div>
       </div>
       <div class="reject">
-        거부 :
+        거부
         <div class="red">{{ reject }}</div>
       </div>
       <div class="noncheck">
-        미확인 :
+        미확인
         <div class="gray">{{ noncheck }}</div>
       </div>
     </div>
@@ -45,6 +50,11 @@ export default {
       reject: 1,
       noncheck: 1,
     };
+  },
+  methods: {
+    handlePersonal() {
+      this.$router.push({ name: 'userPersonal' }).catch(() => {});
+    },
   },
 };
 </script>
@@ -74,7 +84,7 @@ export default {
   font-weight: 600;
 }
 
-.lists {
+.user-lists {
   height: 60vh;
   overflow-y: scroll;
   &::-webkit-scrollbar {
