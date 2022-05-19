@@ -1,6 +1,7 @@
 <template>
   <div class="container-fluid">
     <Header />
+
     <div class="container">
       <!-- 헤더 위치 -->
       <slot />

@@ -43,7 +43,7 @@ export default new Router({
     {
       path: '/user-write',
       name: 'userWrite',
-      meta: { layout: 'empty' },
+      meta: { layout: 'default' },
       component: () => import('@/view/user/UserWrite.vue'),
     },
 
