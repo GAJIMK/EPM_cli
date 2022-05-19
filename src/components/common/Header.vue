@@ -1,8 +1,9 @@
 <template>
   <div>
     <div class="headercolor"></div>
-    <div class="container">
+    <div class="title">
       <h2 class="name" @click="gohome()">💸Expense System💸</h2>
+      <b-button @click="goLogin()" class="login">login</b-button>
     </div>
   </div>
 </template>
@@ -10,12 +11,13 @@
 <script>
 export default {
   methods: {
+    goLogin() {
+      this.$router.push({ name: 'login' });
+    },
     gohome() {
       this.$router.push({ name: 'home' });
     },
-    goLogin: function() {
-      this.$router.push({ name: 'Login' }).catch(() => {});
-    },
+
     goSignUp: function() {
       this.$router.push({ name: 'SignUp' }).catch(() => {});
     },
@@ -23,7 +25,7 @@ export default {
 };
 </script>
 
-<style>
+<style scope>
 input:focus {
   outline: none;
 }
@@ -37,5 +39,18 @@ input:focus {
   background: #ffc75f;
   font-size: 10px;
   height: 30px;
+}
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.login {
+  border: 0;
+  outline: 0;
+  border-radius: 10%;
+  background-color: #fff7b8;
+  color: black;
+  margin: 0.5%;
 }
 </style>
