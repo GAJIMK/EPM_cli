@@ -3,7 +3,7 @@
     <div class="headercolor"></div>
     <div class="title">
       <h2 class="name" @click="gohome()">💸Expense System💸</h2>
-      <b-button @click="goLogin()" class="login">login</b-button>
+      <b-button @click="goLogin()" class="loginBtn">login</b-button>
     </div>
   </div>
 </template>
@@ -25,7 +25,7 @@ export default {
 };
 </script>
 
-<style scope>
+<style>
 input:focus {
   outline: none;
 }
@@ -45,12 +45,11 @@ input:focus {
   flex-direction: row;
   justify-content: space-around;
 }
-.login {
+.loginBtn {
   border: 0;
   outline: 0;
   border-radius: 10%;
   background-color: #fff7b8;
-  color: black;
   margin: 0.5%;
 }
 </style>
