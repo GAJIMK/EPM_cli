@@ -10,15 +10,14 @@
           placeholder="제목을 입력하세요 ( 2022-04 형태로 입력할 것 )"
           max="9999-12"
         />
-        <b-button>제출하기</b-button>
       </div>
     </div>
 
     <hr />
     <d-row>
       <span>&lt;팀활동비></span>
-      <button class="plusRow BtnStyle" @click="add()">행추가</button>
-      <button class="BtnStyle" @click="deleteRow(-1)">행삭제</button>
+      <button class="plusRow BtnStyle" @click="add()">+</button>
+      <button class="BtnStyle" @click="deleteRow(-1)">-</button>
     </d-row>
 
     <div class="imdiv">
