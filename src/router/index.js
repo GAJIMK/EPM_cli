@@ -13,21 +13,16 @@ export default new Router({
     {
       path: '/home',
       name: 'home',
-      meta: { layout: 'empty' },
+      meta: { layout: 'default' },
       component: () => import('@/view/Home.vue'),
     },
     {
       path: '/',
-      name: 'Home',
+      name: 'login',
+      meta: { layout: 'default' },
       component: () => import('@/view/Login.vue'),
     },
 
-    {
-      path: '/login',
-      name: 'login',
-      meta: { layout: 'empty' },
-      component: () => import('@/view/Login.vue'),
-    },
     {
       path: '/signup',
       name: 'SignUp',

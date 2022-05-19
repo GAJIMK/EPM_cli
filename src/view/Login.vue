@@ -1,14 +1,16 @@
 <template>
-  <b-col class="box">
-    <b-row
-      ><b-input type="email" class="email" placeholder="하이웍스 이메일"
-    /></b-row>
-    <b-row
-      ><b-input type="password" class="password" placeholder="비밀번호"
-    /></b-row>
+  <div class="container">
+    <b-col class="box">
+      <b-row
+        ><b-input type="email" class="email" placeholder="하이웍스 이메일"
+      /></b-row>
+      <b-row
+        ><b-input type="password" class="password" placeholder="비밀번호"
+      /></b-row>
 
-    <b-row><b-button class="loginBtn">로그인</b-button></b-row>
-  </b-col>
+      <b-row><b-button class="loginBtn">로그인</b-button></b-row>
+    </b-col>
+  </div>
 </template>
 
 <script>
