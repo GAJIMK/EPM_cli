@@ -25,5 +25,6 @@ export default {};
 <style>
 .container {
   display: flex;
+  flex-direction: column;
 }
 </style>

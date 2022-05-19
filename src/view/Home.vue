@@ -108,6 +108,8 @@ export default {
 .allUsersMenu {
   display: flex;
   justify-content: center;
+
+  flex-direction: column;
 }
 .list-item {
   display: flex;
