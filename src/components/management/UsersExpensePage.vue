@@ -89,5 +89,6 @@ export default {
   float: right;
   font-size: 1em;
   font-weight: 600;
+  width: 100px;
 }
 </style>
