@@ -3,7 +3,7 @@
     <div class="headercolor"></div>
     <div class="title">
       <h2 class="name" @click="gohome()">💸Expense System💸</h2>
-      <b-button @click="goLogin()" class="loginBtn">login</b-button>
+      <button @click="goLogin()" class="loginBtn">login</button>
     </div>
   </div>
 </template>
@@ -50,6 +50,5 @@ input:focus {
   outline: 0;
   border-radius: 10%;
   background-color: #fff7b8;
-  margin: 0.5%;
 }
 </style>

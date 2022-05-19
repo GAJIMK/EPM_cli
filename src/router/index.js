@@ -19,7 +19,7 @@ export default new Router({
     {
       path: '/',
       name: 'login',
-      meta: { layout: 'default' },
+      meta: { layout: 'empty' },
       component: () => import('@/view/Login.vue'),
     },
 

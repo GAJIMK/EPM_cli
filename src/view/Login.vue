@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <b-col class="box">
+    <div class="box">
+      <div class="headercolor"></div>
+      <h2 class="name" @click="gohome()">💸Expense System💸</h2>
+
       <b-row
         ><b-input type="email" class="email" placeholder="인트라넷 아이디"
       /></b-row>
@@ -8,13 +11,19 @@
         ><b-input type="password" class="password" placeholder="비밀번호"
       /></b-row>
 
-      <b-row><b-button class="loginBtn">로그인</b-button></b-row>
-    </b-col>
+      <b-button class="loginBtn">로그인</b-button>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    gohome() {
+      this.$router.push({ name: 'home' });
+    },
+  },
+};
 </script>
 
 <style>
@@ -22,7 +31,7 @@ export default {};
 .box {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .email,
@@ -42,16 +51,12 @@ export default {};
   border: #ffc75f;
 }
 .loginBtn {
-  font-size: 20px;
-  padding: 1%;
-  border-radius: 0.3rem;
-  opacity: 0.5;
-  background-color: #ffc75f;
-  width: 250px;
-  margin: 5% auto;
-  color: white;
   border: 0;
   outline: 0;
+  border-radius: 10%;
+  background-color: #fff7b8;
+  width: 100px;
+  margin: auto;
 }
 .loginBtn:hover {
   background-color: rgb(255, 204, 161);
