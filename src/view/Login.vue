@@ -1,7 +1,7 @@
 <template>
   <b-col class="box">
     <b-row
-      ><b-input type="email" class="email" placeholder="하이웍스 이메일"
+      ><b-input type="email" class="email" placeholder="인트라넷 아이디"
     /></b-row>
     <b-row
       ><b-input type="password" class="password" placeholder="비밀번호"

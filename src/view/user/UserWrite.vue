@@ -10,6 +10,7 @@
           placeholder="제목을 입력하세요 ( 2022-04 형태로 입력할 것 )"
           max="9999-12"
         />
+        <b-button>제출하기</b-button>
       </div>
     </div>
 
