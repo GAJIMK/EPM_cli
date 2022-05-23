@@ -25,6 +25,7 @@ export default {
           methods: '개인카드',
           part: 10,
           state: 90,
+          path: '',
         },
         {
           date: '2022-05-09',
@@ -34,6 +35,7 @@ export default {
           methods: '개인카드',
           part: 10,
           state: 90,
+          path: '',
         },
         {
           date: '2022-05-13',
