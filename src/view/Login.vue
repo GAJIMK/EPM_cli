@@ -26,7 +26,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 .box {
   display: flex;

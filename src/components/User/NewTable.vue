@@ -3,15 +3,9 @@
     <td contenteditable="true">
       <input type="date" tabindex="0" max="9999-12-31" class="date" />
     </td>
-    <td>
-      .
-    </td>
-    <td>
-      .
-    </td>
-    <td>
-      .
-    </td>
+    <td></td>
+    <td></td>
+    <td></td>
     <td>
       <select class="select"
         ><option>개인카드</option
@@ -31,6 +25,8 @@
 </template>
 
 <script>
+import { emit } from 'process';
+
 export default {
   data() {
     sum: 0;
@@ -39,12 +35,13 @@ export default {
 
   methods: {
     message() {
-      const value = document.querySelectorAll('.mm');
+      const values = document.querySelectorAll('.mm');
       this.nums = [];
       this.sum = 0;
-      for (var i = 0; i < value.length; i++) {
+      for (var i = 0; i < values.length; i++) {
         //console.log(value[i].value);
-        this.nums.push(value[i].value);
+
+        this.nums.push(values[i].value);
       }
       this.nums.forEach((item) => {
         this.sum += parseInt(item);
