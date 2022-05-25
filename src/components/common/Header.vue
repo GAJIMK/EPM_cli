@@ -26,6 +26,7 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Ubuntu:ital,wght@1,300&display=swap');
 input:focus {
   outline: none;
 }
@@ -44,6 +45,8 @@ input:focus {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  font-family: 'Dongle', sans-serif;
+  font-family: 'Dongle', sans-serif;
 }
 .loginBtn {
   border: 0;
