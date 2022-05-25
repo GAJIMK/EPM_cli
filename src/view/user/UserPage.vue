@@ -1,8 +1,11 @@
 <template>
-  <div>
-    <b-button class="wirteBtn" @click="writelist()">작성하기</b-button>
-    <ul class="listAll">
-      <li v-for="mylist in mylists" v-bind:key="mylist">
+  <div class="container">
+    <ul class="list-group" @click="message()">
+      <li
+        class="list-group-item disabled"
+        v-for="mylist in mylists"
+        v-bind:key="mylist"
+      >
         {{ mylist }}
       </li>
     </ul>
@@ -13,12 +16,20 @@
 export default {
   data() {
     return {
-      mylists: ['지혜', '가정', '의정'],
+      mylists: [
+        '2022-02 경비내역서',
+        '2022-03 경비내역서',
+        '2022-04 경비내역서',
+        '2022-05 경비내역서',
+        '2022-06 경비내역서',
+        '2022-07 경비내역서',
+        '2022-08 경비내역서',
+      ],
     };
   },
   methods: {
-    writelist() {
-      this.$router.push({ name: 'userWrite' }).catch(() => {});
+    message() {
+      alert('해당 경비내역서로 이동합니다');
     },
   },
 };
@@ -27,20 +38,9 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 
-.inputBox {
-  padding: 0.1%;
-}
-.wirte {
-  float: right;
-}
-.named {
-  font-family: 'Itim', cursive;
-}
-.wirteBtn {
-  padding: 0.3%;
-  margin: 1%;
-}
-.listAll {
-  padding: 5%;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <h2>☏ 다트 익명 게시판 ☏</h2>
+    <h2 class="title">📰 다트 익명 게시판 ✏️</h2>
     <table>
       <tr>
         <th>제목</th>
@@ -23,8 +23,14 @@ export default {};
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Ubuntu:ital,wght@1,300&display=swap');
 .container {
   display: flex;
   flex-direction: column;
+}
+.title {
+  font-family: 'Dongle', sans-serif;
+  font-family: 'Dongle', sans-serif;
+  padding: 2%;
 }
 </style>
