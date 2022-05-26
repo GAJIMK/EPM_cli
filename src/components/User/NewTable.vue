@@ -1,19 +1,13 @@
 <template>
-  <tr>
-    <td contenteditable="true">
+  <tr class="tbody">
+    <td contenteditable="true" class="td">
       <input type="date" tabindex="0" max="9999-12-31" class="date" />
     </td>
+    <td></td>
+    <td></td>
+    <td></td>
     <td>
-      .
-    </td>
-    <td>
-      .
-    </td>
-    <td>
-      .
-    </td>
-    <td>
-      <select class="select"
+      <select class="select_pass"
         ><option>개인카드</option
         ><option>현금</option></select
       >
@@ -31,6 +25,8 @@
 </template>
 
 <script>
+import { emit } from 'process';
+
 export default {
   data() {
     sum: 0;
@@ -39,12 +35,13 @@ export default {
 
   methods: {
     message() {
-      const value = document.querySelectorAll('.mm');
+      const values = document.querySelectorAll('.mm');
       this.nums = [];
       this.sum = 0;
-      for (var i = 0; i < value.length; i++) {
+      for (var i = 0; i < values.length; i++) {
         //console.log(value[i].value);
-        this.nums.push(value[i].value);
+
+        this.nums.push(values[i].value);
       }
       this.nums.forEach((item) => {
         this.sum += parseInt(item);
@@ -62,5 +59,21 @@ export default {
 .mm {
   border: 0 solid black;
   width: 100%;
+  color: rgb(219, 187, 41);
+  font-weight: bold;
+  text-align: center;
+}
+.select_pass {
+  color: rgb(107, 155, 67);
+  border: 0 solid black;
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+}
+.mm {
+  text-align: right;
+}
+.td {
+  padding: 0.3%;
 }
 </style>

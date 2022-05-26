@@ -1,20 +1,18 @@
 <template>
   <div id="container">
-    <h2>☏ 다트 익명 게시판 ☏</h2>
-    <table>
-      <tr>
-        <th>제목</th>
-        <td><b-input type="text" /></td>
-      </tr>
-      <tr>
-        <th>내용</th>
-        <td><b-textarea name="" id="" cols="130" rows="20"></b-textarea></td>
-      </tr>
-      <tr>
-        <th></th>
-        <td><b-button>작성완료</b-button><b-button>취소</b-button></td>
-      </tr>
-    </table>
+    <h2 class="title">📰 다트 익명 게시판 ✏️</h2>
+    <label for="name" class="title_2">제목 🙌</label
+    ><b-input class="name" type="text" placeholder="제목을 입력하세요" />
+    <label for="content"></label>
+    <b-textarea
+      name="content"
+      id="content"
+      cols="30"
+      rows="10"
+      placeholder="내용을 입력하세요"
+    ></b-textarea>
+    <b-button class="BtnStyle">확인</b-button>
+    <b-button class="BtnStyle">취소</b-button>
   </div>
 </template>
 
@@ -22,9 +20,22 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Ubuntu:ital,wght@1,300&display=swap');
 .container {
   display: flex;
   flex-direction: column;
+}
+.title {
+  font-family: 'Dongle', sans-serif;
+  font-family: 'Dongle', sans-serif;
+}
+.BtnStyle {
+  border: 0;
+  outline: 0;
+  border-radius: 10%;
+  background-color: #fffad1;
+  color: black;
+  margin: 0.5%;
 }
 </style>
