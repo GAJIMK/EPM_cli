@@ -65,10 +65,10 @@ export default new Router({
       component: () => import('~/src/components/common/Bill.vue'),
     },
     {
-      path: '/mypage',
+      path: '/myPage',
       name: 'myPage',
       meta: { layout: 'default' },
-      component: () => import('~/src/view/myPage.vue'),
+      component: () => import('@/view/myPage.vue'),
     },
 
     // {

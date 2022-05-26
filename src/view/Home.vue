@@ -28,7 +28,11 @@
           </li>
           <li class="list-item">
             <div class="icon-container">
-              <font-awesome-icon icon="fa-solid fa-user" class="icon" />
+              <font-awesome-icon
+                icon="fa-solid fa-user"
+                class="icon"
+                @click="goMypage()"
+              />
             </div>
             <div class="menu-content">마이페이지</div>
           </li>
@@ -85,13 +89,16 @@ export default {
     handleWrite() {
       this.$router.push({ name: 'userWrite' });
     },
+    goMypage() {
+      this.$router.push({ name: 'myPage' });
+    },
     writtenList() {
       this.$router.push({ name: 'user' });
     },
-    handleExpenseList: function() {
+    handleExpenseList() {
       this.$router.push({ name: 'expenseList' });
     },
-    handleUsersList: function() {
+    handleUsersList() {
       this.$router.push({ name: 'usersExpense' });
     },
   },
