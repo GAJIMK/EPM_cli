@@ -1,13 +1,13 @@
 <template>
-  <tr>
-    <td contenteditable="true">
+  <tr class="tbody">
+    <td contenteditable="true" class="td">
       <input type="date" tabindex="0" max="9999-12-31" class="date" />
     </td>
     <td></td>
     <td></td>
     <td></td>
     <td>
-      <select class="select"
+      <select class="select_pass"
         ><option>개인카드</option
         ><option>현금</option></select
       >
@@ -59,5 +59,21 @@ export default {
 .mm {
   border: 0 solid black;
   width: 100%;
+  color: rgb(219, 187, 41);
+  font-weight: bold;
+  text-align: center;
+}
+.select_pass {
+  color: rgb(107, 155, 67);
+  border: 0 solid black;
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+}
+.mm {
+  text-align: right;
+}
+.td {
+  padding: 0.3%;
 }
 </style>

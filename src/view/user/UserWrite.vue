@@ -15,9 +15,9 @@
 
     <hr />
     <d-row>
-      <span>&lt;팀활동비></span>
-      <button class="plusRow BtnStyle" @click="add()">+</button>
-      <button class="BtnStyle" @click="deleteRow(-1)">-</button>
+      <span class="mytitle">팀활동비👭</span>
+      <button class="plusRow radiBtn " @click="add()">+</button>
+      <button class="delRow radiBtn" @click="deleteRow(-1)">-</button>
     </d-row>
 
     <div class="imdiv">
@@ -25,7 +25,6 @@
         contenteditable="true"
         id="table_1"
         class="table_1 table-bordered table-hover"
-        v-bind="this.items"
       >
         <thead class="thead_1" id="thead_1">
           <tr class="select">
@@ -60,8 +59,10 @@
         </tbody>
       </table>
     </div>
-    <div class="ShowMoney" id="ShowMoney">합계 : {{ showsum }}</div>
-    <div class="leftMoney" id="leftMoney">남은 금액 : {{ leftmeoney }}</div>
+    <div class="money-container">
+      <div class="ShowMoney" id="ShowMoney">합계 : {{ showsum }}</div>
+      <div class="leftMoney" id="leftMoney">남은 금액 : {{ leftmeoney }}</div>
+    </div>
 
     <div class="fluid-container" id="billimg">
       <ImgUpload class="item" v-for="img in imgs" :key="img.id"></ImgUpload>
@@ -138,6 +139,43 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Jua&family=Ubuntu:ital,wght@1,300&display=swap');
+.mytitle {
+  font-family: 'Dongle', sans-serif;
+  font-family: 'Jua', sans-serif;
+  font-size: 25px;
+  padding: 1%;
+}
+
+.thead {
+  text-align: center;
+  font-family: 'Jua', sans-serif;
+  font-family: 'Jua', sans-serif;
+  padding: 2%;
+}
+
+.radiBtn {
+  border: 0;
+  outline: 0;
+  width: 30px;
+  height: 30px;
+  background-color: #fff083;
+  color: black;
+  margin: 0.5%;
+  border-radius: 50%;
+  display: inline;
+  font-weight: bold;
+}
+.radiBtn:active {
+  border: 0;
+  outline: 0;
+  width: 30px;
+  height: 30px;
+  background-color: #bbb163;
+  color: black;
+  margin: 0.5%;
+  border-radius: 50%;
+}
 .table {
   margin-top: 1%;
 }
@@ -158,21 +196,14 @@ export default {
 }
 .thead_1 {
   width: 95%;
-  border: 2px solid #ffc75f;
   background-color: rgb(255, 254, 174);
+  border-style: hidden;
 }
 .thead {
   background-color: transparent;
   border: #ffc75f;
 }
-.BtnStyle {
-  border: 0;
-  outline: 0;
-  border-radius: 10%;
-  background-color: #fffad1;
-  color: black;
-  margin: 0.5%;
-}
+
 .tbody_1:focus {
   background-color: yellow;
 }
@@ -182,8 +213,19 @@ export default {
 .fluid-container {
   display: flex;
   flex-wrap: wrap;
-
   justify-content: space-around;
   width: 100%;
+}
+
+.money-container {
+  margin-top: 30px;
+  margin-bottom: 80px;
+  border: 1px double orange;
+  border-radius: 0.75em;
+  font-family: 'Jua', sans-serif;
+  font-family: 'Jua', sans-serif;
+  padding: 0.9%;
+  width: 300px;
+  float: right;
 }
 </style>
