@@ -7,7 +7,7 @@
     <td></td>
     <td></td>
     <td>
-      <select class="select"
+      <select class="select_pass"
         ><option>개인카드</option
         ><option>현금</option></select
       >
@@ -59,5 +59,13 @@ export default {
 .mm {
   border: 0 solid black;
   width: 100%;
+  color: rgb(219, 187, 41);
+  font-weight: bold;
+}
+.select_pass {
+  color: rgb(107, 155, 67);
+  border: 0 solid black;
+  width: 100%;
+  font-weight: bold;
 }
 </style>
