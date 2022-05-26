@@ -25,7 +25,6 @@
         contenteditable="true"
         id="table_1"
         class="table_1 table-bordered table-hover"
-        v-bind="this.items"
       >
         <thead class="thead_1" id="thead_1">
           <tr class="select">
