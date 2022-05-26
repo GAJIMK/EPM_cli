@@ -21,6 +21,7 @@ function createInstanceWithAuth(url) {
 export const instance = createInstanceWithAuth('');
 export const login = createInstanceWithAuth('login');
 export const expense = createInstanceWithAuth('expense-list');
+export const userFeeList = createInstanceWithAuth('userFeeList');
 
 //export const [API_Name] = createInstanceWithAuth([API]);
 

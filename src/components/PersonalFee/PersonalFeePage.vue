@@ -2,11 +2,13 @@
   <div class="container">
     <MenuTitle menuTitle="🖱️개인별 경비계산서" />
     <div class="subTitle">{{ user }}님 {{ date }}경비계산서</div>
+    <button @click="show">sss</button>
   </div>
 </template>
 
 <script>
 import MenuTitle from '@/components/common/MenuTitleForm.vue';
+import { fetchUserList } from '@/api/userFeeList/userFeeList';
 export default {
   components: {
     MenuTitle,
@@ -48,6 +50,12 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    async show() {
+      const data = await fetchUserList('jihye.son', '2022-05');
+      console.log(data);
+    },
   },
 };
 </script>
