@@ -64,12 +64,19 @@ export default new Router({
       meta: { layout: 'empty' },
       component: () => import('~/src/components/common/Bill.vue'),
     },
+    {
+      path: '/mypage',
+      name: 'myPage',
+      meta: { layout: 'default' },
+      component: () => import('~/src/view/myPage.vue'),
+    },
 
     // {
     //   path: "/manage",
     //   name: "Management",
     //   component: () => import("@/components/Management.vue"),
     // },
+
     {
       path: '/users-expense',
       name: 'usersExpense',
