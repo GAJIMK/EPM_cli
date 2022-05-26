@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import { setInterceptors } from '@/api/common/interceptors';
+import { setInterceptors } from '@/api/common/interceptors';
 
 axios.defaults.withCredentials = true;
 
@@ -22,6 +22,7 @@ export const instance = createInstanceWithAuth('');
 export const login = createInstanceWithAuth('login');
 export const expense = createInstanceWithAuth('expense-list');
 export const userFeeList = createInstanceWithAuth('userFeeList');
+export const userFeeState = createInstanceWithAuth('userFeeState');
 
 //export const [API_Name] = createInstanceWithAuth([API]);
 

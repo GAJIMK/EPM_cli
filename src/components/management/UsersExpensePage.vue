@@ -11,7 +11,7 @@
         <font-awesome-icon icon="fa-solid fa-caret-right" />
       </div>
     </div>
-    <UserLists />
+    <UserLists :date="date" />
   </div>
 </template>
 
@@ -24,14 +24,15 @@ export default {
     UserLists,
     MenuTitle,
   },
-  created() {
-    this.getDate;
+  mounted() {
+    this.getDate();
   },
 
   data() {
     return {
-      year: moment().format('YYYY'),
-      month: moment().format('MM'),
+      year: '',
+      month: '',
+      date: '',
     };
   },
   methods: {
@@ -43,6 +44,7 @@ export default {
         let minus = parseInt(this.month) - 1;
         this.month = moment(String(minus)).format('MM');
       }
+      this.date = this.year + '-' + this.month;
     },
     increase() {
       if (
@@ -57,6 +59,12 @@ export default {
         let plus = parseInt(this.month) + 1;
         this.month = moment(String(plus)).format('MM');
       }
+      this.date = this.year + '-' + this.month;
+    },
+    getDate() {
+      this.year = moment().format('YYYY');
+      this.month = moment().format('MM');
+      this.date = this.year + '-' + this.month;
     },
   },
 };

@@ -2,6 +2,7 @@
   <div class="container">
     <div class="cols">
       <div class="name">이름</div>
+      <div class="id">아이디</div>
       <div class="position">직급</div>
       <div class="state">상태</div>
     </div>
@@ -9,51 +10,53 @@
       <div
         class="list"
         v-for="user in users"
-        :key="user.id"
+        :key="user.accountId"
         @click="handlePersonal"
       >
-        <div class="name">{{ user.name }}</div>
-        <div class="position">{{ user.position }}</div>
-        <div class="state green" v-if="user.state === 1">승인</div>
-        <div class="state red" v-if="user.state === 2">거부</div>
-        <div class="state gray" v-if="user.state === 3">미확인</div>
-      </div>
-    </div>
-    <div class="results">
-      <div class="pass">
-        승인
-        <div class="green">{{ pass }}</div>
-      </div>
-      <div class="reject">
-        거부
-        <div class="red">{{ reject }}</div>
-      </div>
-      <div class="noncheck">
-        미확인
-        <div class="gray">{{ noncheck }}</div>
+        <div class="name">{{ user.accountNm }}</div>
+        <div class="id">{{ user.accountId }}</div>
+        <div class="position">{{ user.commonName }}</div>
+        <div class="state green" v-if="user.state === 10">승인</div>
+        <div class="state blue" v-if="user.state === 30">승인요청</div>
+        <div class="state blue" v-if="user.state === 50">진행중</div>
+        <div class="state red" v-if="user.state === 40">거부</div>
+        <div class="state gray" v-if="user.state === 90">미확인</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { fetchUsersByMonth } from '@/api/userFeeState/userFeeState';
 export default {
+  props: {
+    date: {
+      type: String,
+    },
+  },
+  watch: {
+    date() {
+      this.propDate = this.date;
+      this.initData();
+    },
+  },
   data() {
     return {
-      users: [
-        { id: 'gajung.kim', name: '김가정', position: '매니저', state: 1 },
-        { id: 'jihye.son', name: '손지혜', position: '매니저', state: 1 },
-        { id: 'jinho.kim', name: '김진호', position: '차장', state: 2 },
-        { id: 'hojun.lee', name: '이호준', position: '부장', state: 3 },
-      ],
-      pass: 2,
-      reject: 1,
-      noncheck: 1,
+      users: '',
+      propDate: this.date,
     };
   },
+
   methods: {
     handlePersonal() {
       this.$router.push({ name: 'userPersonal' }).catch(() => {});
+    },
+    async initData() {
+      const res = await fetchUsersByMonth(this.propDate);
+      this.users = res.data.list;
+    },
+    async initDate() {
+      this.propDate = this.date;
     },
   },
 };
@@ -75,8 +78,9 @@ export default {
 
 .name,
 .position,
+.id,
 .state {
-  width: 33%;
+  width: 25%;
   text-align: center;
 }
 .state {
