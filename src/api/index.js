@@ -24,6 +24,8 @@ export const expense = createInstanceWithAuth('expense-list');
 export const userFeeList = createInstanceWithAuth('userFeeList');
 export const userFeeState = createInstanceWithAuth('userFeeState');
 
+export const board = createInstanceWithAuth('board'); //게시판 api
+
 //export const [API_Name] = createInstanceWithAuth([API]);
 
 // CREATE - project
