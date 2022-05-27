@@ -70,6 +70,12 @@ export default new Router({
       meta: { layout: 'default' },
       component: () => import('@/view/myPage.vue'),
     },
+    {
+      path: '/board-content',
+      name: 'boardcontent',
+      meta: { layout: 'default' },
+      component: () => import('@/view/notice/boardcontent.vue'),
+    },
 
     // {
     //   path: "/manage",

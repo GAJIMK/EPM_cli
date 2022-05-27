@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router';
 import vueMoment from 'vue-moment';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import vuex from 'vuex';
 
 // Import Bootstrap and BootstrapVue CSS files (order is important)
 import 'bootstrap/dist/css/bootstrap.css';
@@ -44,6 +45,14 @@ router.beforeEach((to, from, next) => {
     window.scrollTo(0, 0);
   }, 100);
 });
+
+Vue.use(Vuex),
+  new Vuex.Store({
+    state,
+    getters,
+    mutations,
+    actions,
+  });
 
 new Vue({
   router,

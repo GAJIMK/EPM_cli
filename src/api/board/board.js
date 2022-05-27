@@ -4,4 +4,14 @@ function fetchBoardList() {
   return board.get(`/findAll`);
 }
 
-export { fetchBoardList };
+function putBoardList(boardContent) {
+  let data = {
+    id: '10',
+    date: '',
+    content: boardContent.content,
+    title: boardContent.title,
+  };
+  return board.put('/', data);
+}
+
+export { fetchBoardList, putBoardList };
