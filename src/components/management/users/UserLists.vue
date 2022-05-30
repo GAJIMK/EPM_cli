@@ -11,10 +11,10 @@
         class="list"
         v-for="user in users"
         :key="user.accountId"
-        @click="handlePersonal"
+        @click="handlePersonal(user.accountId, user.accountNm)"
       >
         <div class="name">{{ user.accountNm }}</div>
-        <div class="id">{{ user.accountId }}</div>
+        <div class="id" name="id">{{ user.accountId }}</div>
         <div class="position">{{ user.commonName }}</div>
         <div class="state green" v-if="user.state === 10">승인</div>
         <div class="state blue" v-if="user.state === 30">승인요청</div>
@@ -48,8 +48,13 @@ export default {
   },
 
   methods: {
-    handlePersonal() {
-      this.$router.push({ name: 'userPersonal' }).catch(() => {});
+    handlePersonal(id, name) {
+      this.$router
+        .push({
+          name: 'userPersonal',
+          query: { id: id, name: name, date: this.propDate },
+        })
+        .catch(() => {});
     },
     async initData() {
       const res = await fetchUsersByMonth(this.propDate);
