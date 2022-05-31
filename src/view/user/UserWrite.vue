@@ -33,8 +33,8 @@
       </table>
     </div>
     <div class="money-container">
-      <div class="ShowMoney" id="ShowMoney">합계 : {{ showsum }}</div>
-      <div class="leftMoney" id="leftMoney">남은 금액 : {{ leftmeoney }}</div>
+      <div class="ShowMoney" id="ShowMoney">합계 : {{ sum }}</div>
+      <div class="leftMoney" id="leftMoney">남은 금액 : {{ remain }}</div>
     </div>
 
     <div class="fluid-container" id="billimg">
@@ -54,8 +54,8 @@ export default {
       items: [],
       imgs: [],
       file_name: '영수증을 업로드하세요',
-      showsum: '',
-      leftmeoney: '',
+      sum: '',
+      remain: '',
     };
   },
   mounted() {
@@ -68,18 +68,18 @@ export default {
         .slice(0, 7);
     },
     updateSum(e) {
-      this.showsum = 0;
+      this.sum = 0;
       const num = 50000 - e;
       const n1 = e.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
       const n2 = num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
       this.add();
-      this.showsum = n1 + '원';
+      this.sum = n1 + '원';
       if (num < 0) {
-        this.leftmeoney = '초과되었습니다.';
+        this.remain = '초과되었습니다.';
         var target = document.getElementById('leftMoney');
         target.style.color = 'red';
       } else {
-        this.leftmeoney = n2 + '원';
+        this.remain = n2 + '원';
       }
     },
     //영수증 파일 업로드 하는 메소드

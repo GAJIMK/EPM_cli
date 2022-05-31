@@ -1,6 +1,6 @@
 <template>
-  <tr class="tbody">
-    <td contenteditable="true" class="td">
+  <div class="table-cell">
+    <div class="col" contenteditable="true">
       <input
         type="date"
         tabindex="0"
@@ -8,27 +8,29 @@
         class="date"
         :value="list.date"
       />
-    </td>
-    <td>{{ list.content }}</td>
-    <td>{{ list.place }}</td>
-    <td>{{ list.companion }}</td>
-    <td>
+    </div>
+    <div class="col">
+      <input type="text" :value="list.content" />
+    </div>
+    <div class="col"><input type="text" :value="list.place" /></div>
+    <div class="col"><input type="text" :value="list.companion" /></div>
+    <div class="col">
       <p v-if="list.method">{{ list.method }}</p>
       <select v-else class="select_pass">
         <option>현금</option>
         <option>개인카드</option>
       </select>
-    </td>
-    <td>
+    </div>
+    <div>
       <input
         type="text"
-        class="mm"
+        class="col"
         :value="list.price"
         @blur="message()"
         @keyup.enter="$event.target.blur()"
       />
-    </td>
-  </tr>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -43,7 +45,7 @@ export default {
       sum: 0,
       nums: [],
       list: {
-        date: '연도-월-일',
+        date: '',
         content: '',
         price: '',
         companion: '',
@@ -80,15 +82,28 @@ export default {
 };
 </script>
 
-<style>
-.date,
-.select,
-.mm {
-  border: 0 solid black;
-  width: 100%;
-  color: rgb(219, 187, 41);
-  font-weight: bold;
+<style lang="scss">
+.table-cell {
   text-align: center;
+  font-family: 'Jua', sans-serif;
+  display: flex;
+  align-items: center;
+  height: 2em;
+  border: 0px;
+}
+
+.col {
+  border: 1px solid red;
+}
+input {
+  border: none;
+}
+input:focus {
+  border: none;
+  background-color: yellow;
+}
+.date {
+  border: none;
 }
 .select_pass {
   color: rgb(107, 155, 67);
@@ -99,9 +114,5 @@ export default {
 }
 .mm {
   text-align: right;
-}
-td {
-  padding: 0.3%;
-  text-align: center;
 }
 </style>
