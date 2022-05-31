@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <div class="form-group row">
-      <label for="inputPassword" class="col-sm-1 col-form-label">제목 : </label>
+      <label for="inputPassword" class="col-sm-1 col-form-label">제목 </label>
       <div class="col-sm-10">
         <input
           type="month"
