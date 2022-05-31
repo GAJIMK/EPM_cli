@@ -1,16 +1,22 @@
 <template>
   <tr class="tbody">
     <td contenteditable="true" class="td">
-      <input type="date" tabindex="0" max="9999-12-31" class="date" />
+      <input
+        type="date"
+        tabindex="0"
+        max="9999-12-31"
+        class="date"
+        :value="item.date"
+      />
     </td>
     <td></td>
     <td></td>
     <td></td>
     <td>
-      <select class="select_pass"
-        ><option>개인카드</option
-        ><option>현금</option></select
-      >
+      <select class="select_pass" :value="item.method">
+        <option>현금</option>
+        <option>개인카드</option>
+      </select>
     </td>
     <td>
       <input
@@ -28,6 +34,11 @@
 import { emit } from 'process';
 
 export default {
+  props: {
+    item: {
+      type: Object,
+    },
+  },
   data() {
     sum: 0;
     nums: [];
@@ -43,7 +54,7 @@ export default {
 
         this.nums.push(values[i].value);
       }
-      this.nums.forEach((item) => {
+      this.nums.forEach(item => {
         this.sum += parseInt(item);
       });
 
