@@ -43,9 +43,9 @@ export default {
       sum: 0,
       nums: [],
       list: {
-        date: '',
+        date: '연도-월-일',
         content: '',
-        price: 0,
+        price: '',
         companion: '',
         method: '',
       },

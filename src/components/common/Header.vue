@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="headercolor"></div>
-    <div class="title">
-      <h2 class="name" @click="gohome()">💸Expense System💸</h2>
+    <div id="header">
+      <div class="title" @click="gohome()">💸Expense System💸</div>
       <button @click="goLogin()" class="loginBtn">login</button>
     </div>
   </div>
@@ -25,11 +25,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Ubuntu:ital,wght@1,300&display=swap');
-input:focus {
-  outline: none;
-}
+
 .name {
   cursor: pointer;
 }
@@ -41,17 +39,24 @@ input:focus {
   font-size: 10px;
   height: 30px;
 }
-.title {
+#header {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   font-family: 'Dongle', sans-serif;
   font-family: 'Dongle', sans-serif;
+  padding: 0px 50px;
+  font-size: 30px;
+  :hover {
+    cursor: pointer;
+  }
 }
 .loginBtn {
+  display: block;
   border: 0;
   outline: 0;
   border-radius: 10%;
   background-color: #fff7b8;
+  font-size: 20px;
 }
 </style>

@@ -7,7 +7,6 @@
           type="month"
           class="caption form-control"
           id="Title"
-          placeholder="제목을 입력하세요 ( 2022-04 형태로 입력할 것 )"
           max="9999-12"
         />
       </div>
@@ -16,8 +15,8 @@
     <hr />
     <d-row>
       <span class="mytitle">팀활동비👭</span>
-      <button class="plusRow radiBtn " @click="add()">+</button>
-      <button class="delRow radiBtn" @click="deleteRow(-1)">-</button>
+      <button class="plusRow radiusBtn " @click="add">+</button>
+      <button class="delRow radiusBtn" @click="deleteRow(-1)">-</button>
     </d-row>
 
     <div class="imdiv">
@@ -29,7 +28,7 @@
         <TableHeader />
         <tbody class="tbody_1">
           <!-- <newTable @message="updateSum" /> -->
-          <newTable v-for="item in items" :key="item.id" @message="updateSum" />
+          <NewTable v-for="item in items" :key="item.id" @message="updateSum" />
         </tbody>
       </table>
     </div>
@@ -44,12 +43,12 @@
   </div>
 </template>
 <script>
-import newTable from '@/components/User/NewTable.vue';
+import NewTable from '@/components/User/NewTable.vue';
 import ImgUpload from '@/components/User/ImgUpload.vue';
 import TableHeader from '@/components/User/TableHeader.vue';
 export default {
   name: 'app',
-  components: { newTable, ImgUpload, TableHeader },
+  components: { NewTable, ImgUpload, TableHeader },
   data: function() {
     return {
       items: [],
@@ -70,10 +69,10 @@ export default {
     },
     updateSum(e) {
       this.showsum = 0;
-      //this.showsum = e;
       const num = 50000 - e;
       const n1 = e.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
       const n2 = num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+      this.add();
       this.showsum = n1 + '원';
       if (num < 0) {
         this.leftmeoney = '초과되었습니다.';
@@ -95,6 +94,7 @@ export default {
       // table element 찾기
       const table = document.getElementById('table_1');
       const totalRowCnt = table.rows.length;
+      const popItem = this.items.pop();
       console.log('아이템', this.items, this.items.length);
       this.imgs.pop({});
       if (totalRowCnt != 1) {
@@ -114,7 +114,7 @@ export default {
   padding: 1%;
 }
 
-.radiBtn {
+.radiusBtn {
   border: 0;
   outline: 0;
   width: 30px;
@@ -126,7 +126,7 @@ export default {
   display: inline;
   font-weight: bold;
 }
-.radiBtn:active {
+.radiusBtn:active {
   border: 0;
   outline: 0;
   width: 30px;
