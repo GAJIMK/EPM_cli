@@ -7,7 +7,6 @@
           type="month"
           class="caption form-control"
           id="Title"
-          placeholder="제목을 입력하세요 ( 2022-04 형태로 입력할 것 )"
           max="9999-12"
         />
       </div>
@@ -16,8 +15,8 @@
     <hr />
     <d-row>
       <span class="mytitle">팀활동비👭</span>
-      <button class="plusRow radiBtn " @click="add()">+</button>
-      <button class="delRow radiBtn" @click="deleteRow(-1)">-</button>
+      <button class="plusRow radiusBtn " @click="add">+</button>
+      <button class="delRow radiusBtn" @click="deleteRow(-1)">-</button>
     </d-row>
 
     <div class="imdiv">
@@ -26,36 +25,10 @@
         id="table_1"
         class="table_1 table-bordered table-hover"
       >
-        <thead class="thead_1" id="thead_1">
-          <tr class="select">
-            <td>
-              <input class="thead" type="text" disabled="true" value="일자" />
-            </td>
-            <td>
-              <input class="thead" type="text" disabled="true" value="내역" />
-            </td>
-            <td>
-              <input class="thead" type="text" disabled="true" value="장소" />
-            </td>
-            <td>
-              <input class="thead" type="text" disabled="true" value="동반인" />
-            </td>
-            <td>
-              <input
-                class="thead"
-                type="text"
-                disabled="true"
-                value="개인카드/현금"
-              />
-            </td>
-            <td>
-              <input class="thead" type="text" disabled="true" value="금액" />
-            </td>
-          </tr>
-        </thead>
+        <TableHeader />
         <tbody class="tbody_1">
           <!-- <newTable @message="updateSum" /> -->
-          <newTable v-for="item in items" :key="item.id" @message="updateSum" />
+          <NewTable v-for="item in items" :key="item.id" @message="updateSum" />
         </tbody>
       </table>
     </div>
@@ -70,13 +43,12 @@
   </div>
 </template>
 <script>
-import newTable from '../../components/User/NewTable.vue';
-
-import ImgUpload from '../../components/User/ImgUpload.vue';
+import NewTable from '@/components/User/NewTable.vue';
+import ImgUpload from '@/components/User/ImgUpload.vue';
+import TableHeader from '@/components/User/TableHeader.vue';
 export default {
   name: 'app',
-
-  components: { newTable, ImgUpload },
+  components: { NewTable, ImgUpload, TableHeader },
   data: function() {
     return {
       items: [],
@@ -86,11 +58,9 @@ export default {
       leftmeoney: '',
     };
   },
-
   mounted() {
     this.title();
   },
-
   methods: {
     title() {
       document.getElementById('Title').value = new Date()
@@ -99,12 +69,11 @@ export default {
     },
     updateSum(e) {
       this.showsum = 0;
-      //this.showsum = e;
       const num = 50000 - e;
       const n1 = e.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
       const n2 = num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+      this.add();
       this.showsum = n1 + '원';
-
       if (num < 0) {
         this.leftmeoney = '초과되었습니다.';
         var target = document.getElementById('leftMoney');
@@ -113,7 +82,6 @@ export default {
         this.leftmeoney = n2 + '원';
       }
     },
-
     //영수증 파일 업로드 하는 메소드
     handleFileChange(e) {
       this.file_name = e.target.files[0].name;
@@ -126,10 +94,9 @@ export default {
       // table element 찾기
       const table = document.getElementById('table_1');
       const totalRowCnt = table.rows.length;
-
+      const popItem = this.items.pop();
       console.log('아이템', this.items, this.items.length);
       this.imgs.pop({});
-
       if (totalRowCnt != 1) {
         const newRow = table.deleteRow(rownum);
       }
@@ -147,14 +114,7 @@ export default {
   padding: 1%;
 }
 
-.thead {
-  text-align: center;
-  font-family: 'Jua', sans-serif;
-  font-family: 'Jua', sans-serif;
-  padding: 2%;
-}
-
-.radiBtn {
+.radiusBtn {
   border: 0;
   outline: 0;
   width: 30px;
@@ -166,7 +126,7 @@ export default {
   display: inline;
   font-weight: bold;
 }
-.radiBtn:active {
+.radiusBtn:active {
   border: 0;
   outline: 0;
   width: 30px;
@@ -194,15 +154,6 @@ export default {
 .card {
   padding: 6%;
 }
-.thead_1 {
-  width: 95%;
-  background-color: rgb(255, 254, 174);
-  border-style: hidden;
-}
-.thead {
-  background-color: transparent;
-  border: #ffc75f;
-}
 
 .tbody_1:focus {
   background-color: yellow;
@@ -216,7 +167,6 @@ export default {
   justify-content: space-around;
   width: 100%;
 }
-
 .money-container {
   margin-top: 30px;
   margin-bottom: 80px;
