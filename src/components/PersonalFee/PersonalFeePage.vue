@@ -11,8 +11,8 @@
 
 <script>
 import MenuTitle from '@/components/common/MenuTitleForm.vue';
-import NewTable from '@/components/User/NewTable.vue';
-import TableHeader from '@/components/User/TableHeader.vue';
+import NewTable from '@/components/user/NewTable.vue';
+import TableHeader from '@/components/user/TableHeader.vue';
 import { fetchUserList } from '@/api/userFeeList/userFeeList';
 export default {
   components: {

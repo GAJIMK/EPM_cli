@@ -43,9 +43,9 @@
   </div>
 </template>
 <script>
-import NewTable from '@/components/User/NewTable.vue';
-import ImgUpload from '@/components/User/ImgUpload.vue';
-import TableHeader from '@/components/User/TableHeader.vue';
+import NewTable from '@/components/user/NewTable.vue';
+import ImgUpload from '@/components/user/ImgUpload.vue';
+import TableHeader from '@/components/user/TableHeader.vue';
 export default {
   name: 'app',
   components: { NewTable, ImgUpload, TableHeader },
