@@ -3,6 +3,7 @@
     <MenuTitle menuTitle="🖱️개인별 경비계산서" />
     <div class="subTitle">{{ date }} ,{{ name }}님 경비계산서</div>
     <div class="lists">
+      <TableHeader />
       <NewTable :item="item" v-for="item in data" :key="item.id" />
     </div>
   </div>
@@ -11,11 +12,13 @@
 <script>
 import MenuTitle from '@/components/common/MenuTitleForm.vue';
 import NewTable from '@/components/User/NewTable.vue';
+import TableHeader from '@/components/User/TableHeader.vue';
 import { fetchUserList } from '@/api/userFeeList/userFeeList';
 export default {
   components: {
     MenuTitle,
     NewTable,
+    TableHeader,
   },
   mounted() {
     this.show();

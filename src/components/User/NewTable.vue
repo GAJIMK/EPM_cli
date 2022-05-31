@@ -6,14 +6,15 @@
         tabindex="0"
         max="9999-12-31"
         class="date"
-        :value="item.date"
+        :value="list.date"
       />
     </td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>{{ list.content }}</td>
+    <td>{{ list.place }}</td>
+    <td>{{ list.companion }}</td>
     <td>
-      <select class="select_pass" :value="item.method">
+      <p v-if="list.method">{{ list.method }}</p>
+      <select v-else class="select_pass">
         <option>현금</option>
         <option>개인카드</option>
       </select>
@@ -22,7 +23,7 @@
       <input
         type="text"
         class="mm"
-        value="0"
+        :value="list.price"
         @blur="message()"
         @keyup.enter="$event.target.blur()"
       />
@@ -31,8 +32,6 @@
 </template>
 
 <script>
-import { emit } from 'process';
-
 export default {
   props: {
     item: {
@@ -40,10 +39,21 @@ export default {
     },
   },
   data() {
-    sum: 0;
-    nums: [];
+    return {
+      sum: 0,
+      nums: [],
+      list: {
+        date: '',
+        content: '',
+        price: 0,
+        companion: '',
+        method: '',
+      },
+    };
   },
-
+  mounted() {
+    this.fetchProps();
+  },
   methods: {
     message() {
       const values = document.querySelectorAll('.mm');
@@ -59,6 +69,12 @@ export default {
       });
 
       this.$emit('message', this.sum);
+    },
+    fetchProps() {
+      if (this.item !== null) {
+        const col = ['date', 'content', 'price', 'companion', 'method'];
+        col.forEach(e => (this.list[e] = this.item[e]));
+      }
     },
   },
 };
@@ -84,7 +100,8 @@ export default {
 .mm {
   text-align: right;
 }
-.td {
+td {
   padding: 0.3%;
+  text-align: center;
 }
 </style>
