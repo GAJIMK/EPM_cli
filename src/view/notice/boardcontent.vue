@@ -7,6 +7,7 @@
       type="text"
       placeholder="제목을 입력하세요"
       disabled
+      v-model="this.title"
     />
     <label for="content"></label>
     <b-textarea
@@ -16,14 +17,40 @@
       rows="10"
       placeholder="내용을 입력하세요"
       disabled
+      v-model="this.content"
     ></b-textarea>
-    <b-button class="BtnStyle" @click="putData()">확인</b-button>
-    <b-button class="BtnStyle">취소</b-button>
+    <font-awesome-icon icon="fa-solid fa-thumbs-up" />
+
+    <b-button class="BtnStyle" @click="goback()">목록</b-button>
   </div>
 </template>
 
 <script>
-export default {};
+import { fetchBoard } from '@/api/board/board';
+//import internal from 'stream';
+
+export default {
+  data() {
+    return {
+      id: '',
+      title: '',
+      content: '',
+    };
+  },
+  mounted() {
+    this.loadData();
+  },
+  methods: {
+    async loadData() {
+      const res = await fetchBoard(this.$route.query.id);
+      this.title = res.data.list[0].title;
+      this.content = res.data.list[0].content;
+    },
+    goback() {
+      window.history.go(-1);
+    },
+  },
+};
 </script>
 
 <style></style>

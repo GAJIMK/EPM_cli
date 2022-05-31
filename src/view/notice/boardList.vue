@@ -2,15 +2,14 @@
   <div>
     <h3 class="name">📰 다트 익명 게시판 ✏️</h3>
     <button class="BtnStyle" @click="goBoardWirte()">작성하기</button>
-
     <ul class="list-group">
       <li
-        class="list-group-item "
-        v-for="board in boardlists"
-        v-bind:key="board"
-        @click="goreport()"
+        class="list list-group-item "
+        v-for="(board, index) in boardlists"
+        v-bind:key="index"
+        @click="goreport(index)"
       >
-        {{ board }}
+        {{ board }} {{ date }}
       </li>
     </ul>
   </div>
@@ -22,17 +21,26 @@ import { fetchBoardList } from '@/api/board/board.js';
 export default {
   data() {
     return {
-      boardlists: [],
+      boardlists: [], //제목
       //boarddatelists: [],
       llist: [],
+      id: [],
+      num: '',
     };
   },
   created() {
     this.initData();
   },
   methods: {
-    goreport() {
-      this.$router.push({ name: 'boardcontent' });
+    goreport(index) {
+      const a = index;
+      console.log('id값', this.id[a]);
+      const res = this.id[a];
+
+      this.$router.push({
+        name: 'boardcontent',
+        query: { id: res },
+      });
     },
     goBoardWirte() {
       this.$router.push({ name: 'noticeBoardUpload' });
@@ -42,10 +50,10 @@ export default {
       this.llist.push(res.data.list);
       for (var i = 0; i < this.llist[0].length; i++) {
         const list = res.data.list[i].title;
-        //const datelist = res.data.list[i].date;
+        const iid = res.data.list[i].id;
+
+        this.id.push(iid);
         this.boardlists.push(list);
-        //this.boarddatelists.push(datelist);
-        //console.log(this.llist);
       }
     },
   },
