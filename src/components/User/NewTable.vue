@@ -23,8 +23,13 @@
         <option>개인카드</option>
       </select>
     </div>
-    <div class="col mm">
-      <input type="text" :value="list.price" @keyup.enter="message()" />
+    <div class="col">
+      <input
+        type="text"
+        class="mm"
+        :value="list.price"
+        @keyup.enter="message()"
+      />
     </div>
   </div>
 </template>
