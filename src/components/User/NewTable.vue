@@ -12,23 +12,19 @@
     <div class="col">
       <input type="text" :value="list.content" />
     </div>
-    <div class="col"><input type="text" :value="list.place" /></div>
-    <div class="col"><input type="text" :value="list.companion" /></div>
     <div class="col">
+      <input type="text" :value="list.place" />
+    </div>
+    <div class="col"><input type="text" :value="list.companion" /></div>
+    <div class="col pay">
       <p v-if="list.method">{{ list.method }}</p>
       <select v-else class="select_pass">
         <option>현금</option>
         <option>개인카드</option>
       </select>
     </div>
-    <div>
-      <input
-        type="text"
-        class="col"
-        :value="list.price"
-        @blur="message()"
-        @keyup.enter="$event.target.blur()"
-      />
+    <div class="col mm">
+      <input type="text" :value="list.price" @keyup.enter="message()" />
     </div>
   </div>
 </template>
@@ -81,38 +77,23 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.table-cell {
-  text-align: center;
-  font-family: 'Jua', sans-serif;
-  display: flex;
-  align-items: center;
-  height: 2em;
-  border: 0px;
-}
-
-.col {
-  border: 1px solid red;
-}
+<style>
 input {
-  border: none;
+  display: inline-block;
+  width: 100%;
+  padding: 0 0;
+  border: 0px solid #fff;
+  text-align: center;
 }
 input:focus {
-  border: none;
-  background-color: yellow;
+  border: 0px solid #fff;
 }
-.date {
-  border: none;
-}
+
 .select_pass {
   color: rgb(107, 155, 67);
   border: 0 solid black;
   width: 100%;
   font-weight: bold;
   text-align: center;
-}
-.mm {
-  text-align: right;
 }
 </style>
