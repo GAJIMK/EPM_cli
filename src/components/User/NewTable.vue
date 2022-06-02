@@ -1,6 +1,6 @@
 <template>
-  <tr class="tbody">
-    <td contenteditable="true" class="td">
+  <div class="table-cell">
+    <div class="col" contenteditable="true">
       <input
         type="date"
         tabindex="0"
@@ -8,27 +8,30 @@
         class="date"
         :value="list.date"
       />
-    </td>
-    <td>{{ list.content }}</td>
-    <td>{{ list.place }}</td>
-    <td>{{ list.companion }}</td>
-    <td>
+    </div>
+    <div class="col">
+      <input type="text" :value="list.content" />
+    </div>
+    <div class="col">
+      <input type="text" :value="list.place" />
+    </div>
+    <div class="col"><input type="text" :value="list.companion" /></div>
+    <div class="col pay">
       <p v-if="list.method">{{ list.method }}</p>
       <select v-else class="select_pass">
         <option>현금</option>
         <option>개인카드</option>
       </select>
-    </td>
-    <td>
+    </div>
+    <div class="col">
       <input
         type="text"
         class="mm"
         :value="list.price"
-        @blur="message()"
-        @keyup.enter="$event.target.blur()"
+        @keyup.enter="message()"
       />
-    </td>
-  </tr>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -43,7 +46,7 @@ export default {
       sum: 0,
       nums: [],
       list: {
-        date: '연도-월-일',
+        date: '',
         content: '',
         price: '',
         companion: '',
@@ -71,37 +74,33 @@ export default {
       this.$emit('message', this.sum);
     },
     fetchProps() {
-      if (this.item !== null) {
+      if (this.item !== undefined) {
         const col = ['date', 'content', 'price', 'companion', 'method'];
+
         col.forEach(e => (this.list[e] = this.item[e]));
       }
     },
   },
 };
 </script>
-
 <style>
-.date,
-.select,
-.mm {
-  border: 0 solid black;
+input {
+  display: inline-block;
   width: 100%;
-  color: rgb(219, 187, 41);
-  font-weight: bold;
+  padding: 0 0;
+  border: 0px solid #fff;
   text-align: center;
 }
+
+p {
+  margin: 0 0;
+}
+
 .select_pass {
   color: rgb(107, 155, 67);
   border: 0 solid black;
   width: 100%;
   font-weight: bold;
-  text-align: center;
-}
-.mm {
-  text-align: right;
-}
-td {
-  padding: 0.3%;
   text-align: center;
 }
 </style>
