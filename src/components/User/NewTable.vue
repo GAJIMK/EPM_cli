@@ -74,8 +74,9 @@ export default {
       this.$emit('message', this.sum);
     },
     fetchProps() {
-      if (this.item !== null) {
+      if (this.item !== undefined) {
         const col = ['date', 'content', 'price', 'companion', 'method'];
+
         col.forEach(e => (this.list[e] = this.item[e]));
       }
     },
@@ -90,8 +91,9 @@ input {
   border: 0px solid #fff;
   text-align: center;
 }
-input:focus {
-  border: 0px solid #fff;
+
+p {
+  margin: 0 0;
 }
 
 .select_pass {
