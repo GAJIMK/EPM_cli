@@ -3,8 +3,6 @@
     <MenuTitle menuTitle="경비리스트 관리" />
     <div class="contents">
       <ExpenseListItem />
-      <ExpensePositionItem />
-      <PositionMapList />
     </div>
   </div>
 </template>
@@ -12,14 +10,11 @@
 <script>
 import MenuTitle from '@/components/common/MenuTitleForm.vue';
 import ExpenseListItem from './ExpenseListItem.vue';
-import ExpensePositionItem from './ExpensePositionItem.vue';
-import PositionMapList from './PositionMapList.vue';
+
 export default {
   components: {
     MenuTitle,
     ExpenseListItem,
-    ExpensePositionItem,
-    PositionMapList,
   },
 };
 </script>

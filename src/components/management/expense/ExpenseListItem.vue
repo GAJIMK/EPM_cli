@@ -2,51 +2,73 @@
   <div class="content">
     <div class="title">
       경비항목
-      <b-button variant="warning" @click="show">항목추가</b-button>
+      <b-button variant="warning" @click="addItem">항목추가</b-button>
     </div>
     <div class="list">
       <div class="line">
         <ul>
-          <li v-for="item in items" :key="item">
-            <div class="name">{{ item }}</div>
+          <li v-for="item in items" :key="item.summCode">
+            <input
+              class="name"
+              type="text"
+              v-model="item.summCodeName"
+              @blur="updateData(item)"
+            />
             <div class="edit-btn">
               <font-awesome-icon icon="fa-solid fa-eraser" />
-            </div>
-            <div class="delete-btn">
-              <font-awesome-icon icon="fa-solid fa-trash-can" />
             </div>
           </li>
         </ul>
       </div>
     </div>
-    <Modal :state="modalState" :modalTitle="modalTitle" />
   </div>
 </template>
 
 <script>
-import { createExpense, fetchExpense } from '@/api/expense/expense.js';
-import Modal from './modal/ListModal.vue';
+import {
+  createExpense,
+  fetchExpense,
+  updateExpense,
+} from '@/api/expense/expense';
 export default {
-  components: {
-    Modal,
-  },
   data() {
     return {
-      items: ['팀활동비', '문화체험비'],
+      items: '',
       modalState: false,
       modalTitle: '경비항목 추가',
     };
   },
-  mounted() {},
+  mounted() {
+    this.fetchData();
+  },
   methods: {
-    loadExpense() {
-      const res = fetchExpense();
+    async fetchData() {
+      const res = await fetchExpense();
+      this.items = res.data.list;
     },
-    show() {
-      this.modalState = true;
+    addItem() {
+      this.items.push({
+        summCode: 0,
+        summCodeName: '',
+      });
+    },
+    async updateData(item) {
+      if (item.summCodeName == '') {
+        return null;
+      }
+      if (item.summCode === 0 && item.summCodeName != '') {
+        const res = createExpense(item);
+      }
+      try {
+        await updateExpense(item);
+      } catch (e) {
+        console.log(e);
+      }
     },
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import '@/scss/main.scss';
+</style>

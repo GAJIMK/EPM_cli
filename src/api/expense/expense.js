@@ -1,9 +1,14 @@
-import { expense } from '@/api/index';
+import { expenseList } from '@/api/index';
 
 function createExpense(data) {
-  return expense.put(data);
+  return expenseList.put('/', data);
 }
 
-function fetchExpense() {}
+function fetchExpense() {
+  return expenseList.get('/');
+}
 
-export default { createExpense, fetchExpense };
+function updateExpense(data) {
+  return expenseList.post('/', data);
+}
+export { createExpense, fetchExpense, updateExpense };

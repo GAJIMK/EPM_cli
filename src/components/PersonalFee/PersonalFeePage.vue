@@ -41,4 +41,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+input[type='text'] {
+  border: solid 2px #d2691e;
+  border-radius: 8px;
+}
+
+input[type='password'] {
+  border: none;
+  border-bottom: solid 2px #d2691e;
+}
+</style>

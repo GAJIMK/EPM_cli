@@ -20,7 +20,7 @@ function createInstanceWithAuth(url) {
 
 export const instance = createInstanceWithAuth('');
 export const login = createInstanceWithAuth('login');
-export const expense = createInstanceWithAuth('expense-list');
+export const expenseList = createInstanceWithAuth('expenseList');
 export const userFeeList = createInstanceWithAuth('userFeeList');
 export const userFeeState = createInstanceWithAuth('userFeeState');
 

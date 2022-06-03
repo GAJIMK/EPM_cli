@@ -34,6 +34,7 @@ export default {};
   display: flex;
   align-items: center;
   height: 2em;
+  flex-shrink: 0;
   border: 0px;
 }
 
@@ -44,7 +45,6 @@ export default {};
 .col {
   border-left: 1px solid #eee;
   border-right: 1px solid #eee;
-  flex-basis: 10rem;
   padding: 0 0;
   flex-shrink: 0;
   font-weight: 500;
