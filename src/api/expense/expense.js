@@ -1,7 +1,7 @@
 import { expenseList } from '@/api/index';
 
 function createExpense(data) {
-  return expenseList.put(data);
+  return expenseList.put('/', data);
 }
 
 function fetchExpense() {
@@ -9,6 +9,6 @@ function fetchExpense() {
 }
 
 function updateExpense(data) {
-  return expenseList.post(data);
+  return expenseList.post('/', data);
 }
 export { createExpense, fetchExpense, updateExpense };

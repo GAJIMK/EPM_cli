@@ -2,32 +2,35 @@
   <div class="content">
     <div class="title">
       경비항목
-      <b-button variant="warning" @click="show">항목추가</b-button>
+      <b-button variant="warning" @click="addItem">항목추가</b-button>
     </div>
     <div class="list">
       <div class="line">
         <ul>
           <li v-for="item in items" :key="item.summCode">
-            <input class="name" type="text" :value="item.summCodeName" />
-            <div class="edit-btn" @click="edit">
+            <input
+              class="name"
+              type="text"
+              v-model="item.summCodeName"
+              @blur="updateData(item)"
+            />
+            <div class="edit-btn">
               <font-awesome-icon icon="fa-solid fa-eraser" />
             </div>
           </li>
         </ul>
       </div>
     </div>
-    <Modal :state="modalState" :modalTitle="modalTitle" />
   </div>
 </template>
 
 <script>
-import { createExpense, fetchExpense } from '@/api/expense/expense';
-import { fetchUserList } from '@/api/userFeeList/userFeeList';
-import Modal from './modal/ListModal.vue';
+import {
+  createExpense,
+  fetchExpense,
+  updateExpense,
+} from '@/api/expense/expense';
 export default {
-  components: {
-    Modal,
-  },
   data() {
     return {
       items: '',
@@ -43,14 +46,24 @@ export default {
       const res = await fetchExpense();
       this.items = res.data.list;
     },
-    show() {
-      this.modalState = true;
+    addItem() {
+      this.items.push({
+        summCode: 0,
+        summCodeName: '',
+      });
     },
-
-    edit(e) {
-      const btn = e.currentTarget;
-      // const parent = btn.parentElement;
-      // const name = parent.getElementsByClassName('name');
+    async updateData(item) {
+      if (item.summCodeName == '') {
+        return null;
+      }
+      if (item.summCode === 0 && item.summCodeName != '') {
+        const res = createExpense(item);
+      }
+      try {
+        await updateExpense(item);
+      } catch (e) {
+        console.log(e);
+      }
     },
   },
 };
