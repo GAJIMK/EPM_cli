@@ -45,4 +45,16 @@ body {
 .blue {
   color: rgb(115, 159, 224);
 }
+
+input[type='text'],
+input[type='date'] {
+  border: 0px;
+  border-radius: 8px;
+  background: transparent;
+  padding: 0 0;
+  &:focus {
+    outline: none;
+  }
+}
+
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';

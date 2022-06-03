@@ -83,15 +83,12 @@ export default {
   },
 };
 </script>
-<style>
-input {
-  display: inline-block;
-  width: 100%;
-  padding: 0 0;
-  border: 0px solid #fff;
+<style lang="scss">
+@import '@/scss/main.scss';
+input[type='text'],
+input[type='date'] {
   text-align: center;
 }
-
 p {
   margin: 0 0;
 }

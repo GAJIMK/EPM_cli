@@ -7,13 +7,10 @@
     <div class="list">
       <div class="line">
         <ul>
-          <li v-for="item in items" :key="item">
-            <div class="name">{{ item }}</div>
-            <div class="edit-btn">
+          <li v-for="item in items" :key="item.summCode">
+            <input class="name" type="text" :value="item.summCodeName" />
+            <div class="edit-btn" @click="edit">
               <font-awesome-icon icon="fa-solid fa-eraser" />
-            </div>
-            <div class="delete-btn">
-              <font-awesome-icon icon="fa-solid fa-trash-can" />
             </div>
           </li>
         </ul>
@@ -24,7 +21,8 @@
 </template>
 
 <script>
-import { createExpense, fetchExpense } from '@/api/expense/expense.js';
+import { createExpense, fetchExpense } from '@/api/expense/expense';
+import { fetchUserList } from '@/api/userFeeList/userFeeList';
 import Modal from './modal/ListModal.vue';
 export default {
   components: {
@@ -32,21 +30,32 @@ export default {
   },
   data() {
     return {
-      items: ['팀활동비', '문화체험비'],
+      items: '',
       modalState: false,
       modalTitle: '경비항목 추가',
     };
   },
-  mounted() {},
+  mounted() {
+    this.fetchData();
+  },
   methods: {
-    loadExpense() {
-      const res = fetchExpense();
+    async fetchData() {
+      const res = await fetchExpense();
+      this.items = res.data.list;
     },
     show() {
       this.modalState = true;
+    },
+
+    edit(e) {
+      const btn = e.currentTarget;
+      // const parent = btn.parentElement;
+      // const name = parent.getElementsByClassName('name');
     },
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import '@/scss/main.scss';
+</style>
