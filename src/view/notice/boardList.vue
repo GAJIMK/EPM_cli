@@ -9,7 +9,7 @@
         v-bind:key="index"
         @click="goreport(index)"
       >
-        {{ board }} {{ date }}
+        {{ board }}
       </li>
     </ul>
   </div>
@@ -34,7 +34,6 @@ export default {
   methods: {
     goreport(index) {
       const a = index;
-      console.log('id값', this.id[a]);
       const res = this.id[a];
 
       this.$router.push({
