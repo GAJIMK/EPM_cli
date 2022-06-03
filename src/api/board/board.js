@@ -4,6 +4,10 @@ function fetchBoardList() {
   return board.get(`/findAll`);
 }
 
+function fetchBoard(id) {
+  return board.get(`/findById?id=${id}`);
+}
+
 function putBoardList(boardContent) {
   let data = {
     id: '10',
@@ -14,4 +18,4 @@ function putBoardList(boardContent) {
   return board.put('/', data);
 }
 
-export { fetchBoardList, putBoardList };
+export { fetchBoardList, putBoardList, fetchBoard };

@@ -4,4 +4,8 @@ function fetchUserList(userId, date) {
   return userFeeList.get(`/findByAccountId?accountId=${userId}&date=${date}`);
 }
 
-export { fetchUserList };
+function fetchUserAllList(userId) {
+  return userFeeList.get(`/findAll?accountId=${userId}`);
+}
+
+export { fetchUserList, fetchUserAllList };
