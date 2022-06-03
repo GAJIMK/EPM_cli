@@ -2,13 +2,15 @@
   <div class="container">
     <ul class="list-group">
       <li
-        class="list-group-item disabled"
+        class="list-group-item"
         v-for="(mylist, index) in mylists"
         v-bind:key="index"
+        @click="goreport(index)"
       >
         {{ mylist }} 경비 내역서
       </li>
     </ul>
+    <Personal-Fee-Page :name="userId" :ym="date" />
   </div>
 </template>
 
@@ -18,6 +20,8 @@ import {
   fetchUserAllList,
 } from '@/api/userFeeList/userFeeList.js';
 import moment from 'moment';
+import PersonalFeePage from '@/components/PersonalFee/PersonalFeePage.vue';
+
 export default {
   data() {
     return {
@@ -28,6 +32,9 @@ export default {
       llist: [],
       len: '',
     };
+  },
+  components: {
+    PersonalFeePage,
   },
   mounted() {
     this.initData();
@@ -42,7 +49,6 @@ export default {
         console.log('내용이 없습니다. ');
       } else {
         this.len = res.data.list.length;
-        console.log('this.len', this.len);
       }
     },
 
@@ -51,27 +57,34 @@ export default {
 
       if (res.data.code === -50) {
         // 조회할 내역이 없을 떄
-        console.log('내용이 없습니다. ');
       } else {
         console.log('현재 달 전체 리스트들', res.data);
-        this.mylists.push(this.date);
       }
 
       for (var i = 0; i < this.len; i++) {
         this.newdate = moment(this.date)
           .subtract(i, 'M')
           .format('YYYY-MM');
-        console.log('테스트', this.newdate);
         const res = await fetchUserList(this.userId, this.newdate);
 
         if (res.data.code === -50) {
           // 조회할 내역이 없을 떄
-          console.log('내용이 없습니다. ');
         } else {
           console.log('현재 달 전체 리스트들', res.data);
           this.mylists.push(this.newdate);
+          console.log('마이 리스트', this.mylists);
+          //this.mylists랑 userId를 props로 내려줘야함
         }
       }
+    },
+    goreport(index) {
+      const a = this.userId;
+      const b = this.mylists[index];
+
+      this.$router.push({
+        name: 'userPersonal',
+        query: { userId: a, date: b },
+      });
     },
   },
 };
