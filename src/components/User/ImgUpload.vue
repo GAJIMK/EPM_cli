@@ -100,8 +100,8 @@ export default {
 
 <style>
 #dropzone-external {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   background-color: rgba(183, 183, 183, 0.1);
   border-width: 2px;
   border-style: dashed;
