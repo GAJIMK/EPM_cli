@@ -1,10 +1,10 @@
 <template>
   <div class="part">
-    <d-row name="row">
-      <span class="mytitle">{{ expense.summCodeName }}</span>
+    <div class="row">
+      <div class="mytitle">{{ expense.summCodeName }}</div>
       <button class="plusRow radiusBtn " @click="addRow">+</button>
       <button class="delRow radiusBtn" @click="deleteRow()">-</button>
-    </d-row>
+    </div>
 
     <div class="imdiv">
       <TableHeader />
@@ -82,11 +82,15 @@ export default {
 </script>
 
 <style>
+.row {
+  align-items: center;
+}
 .part {
   border-bottom: 1px solid #eee;
   padding: 20px 0;
 }
 .mytitle {
+  width: 128px;
   font-family: 'Dongle', sans-serif;
   font-family: 'Jua', sans-serif;
   font-size: 25px;
@@ -98,7 +102,7 @@ export default {
   outline: 0;
   width: 30px;
   height: 30px;
-  background-color: #fff083;
+  background-color: #ffc107;
   color: black;
   margin: 0.5%;
   border-radius: 50%;
@@ -110,7 +114,7 @@ export default {
   outline: 0;
   width: 30px;
   height: 30px;
-  background-color: #bbb163;
+  background-color: #d8c0a4;
   color: black;
   margin: 0.5%;
   border-radius: 50%;
@@ -137,7 +141,7 @@ export default {
 .money-container {
   margin-top: 30px;
   margin-bottom: 80px;
-  border: 1px double orange;
+  border: 1px double #ffc107;
   border-radius: 0.75em;
   font-family: 'Jua', sans-serif;
   font-family: 'Jua', sans-serif;
