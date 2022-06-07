@@ -2,14 +2,19 @@
   <div>
     <d-row name="row">
       <span class="mytitle">팀활동비👭</span>
-      <button class="plusRow radiusBtn " @click="add">+</button>
+      <button class="plusRow radiusBtn " @click="addRow">+</button>
       <button class="delRow radiusBtn" @click="deleteRow()">-</button>
     </d-row>
 
     <div class="imdiv">
       <TableHeader />
       <div id="lists">
-        <NewTable v-for="item in items" :key="item.id" @message="updateSum" />
+        <NewTable
+          v-for="item in items"
+          :key="item.id"
+          @printSum="countSum"
+          :item="item"
+        />
       </div>
     </div>
     <div class="money-container">
@@ -18,7 +23,7 @@
     </div>
 
     <div class="fluid-container" id="billimg">
-      <ImgUpload class="item" v-for="img in imgs" :key="img.id"></ImgUpload>
+      <ImgUpload class="item" v-for="item in items" :key="item.id"></ImgUpload>
     </div>
   </div>
 </template>
@@ -32,33 +37,40 @@ export default {
   data() {
     return {
       items: [],
-      imgs: [],
       file_name: '영수증을 업로드하세요',
-      sum: '',
-      remain: '',
+      sum: 0,
+      remain: 50000,
+      id: 0,
     };
   },
   methods: {
-    updateSum(e) {
-      this.sum = 0;
-      const num = 50000 - e;
-      const n1 = e.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
-      const n2 = num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
-      this.add();
-      this.sum = n1 + '원';
-      if (num < 0) {
-        this.remain = '초과되었습니다.';
-        var target = document.getElementById('leftMoney');
-        target.style.color = 'red';
-      } else {
-        this.remain = n2 + '원';
-      }
+    addRow() {
+      const obj = {
+        id: this.id,
+        date: '',
+        content: '',
+        price: '',
+        companion: '',
+        method: '',
+        path: '',
+      };
+      this.items.push(obj);
+      this.imgs.push(obj);
+      this.id = this.id + 1;
     },
-    add() {
-      this.items.push({});
-      this.imgs.push({});
+    countSum() {
+      let sum = 0;
+      this.items.forEach(el => {
+        sum += parseInt(el['price']);
+      });
+      this.sum = sum;
+      this.remain = 50000 - sum;
+      this.addRow();
+      this.$event.target.nextElementSibling.focus();
     },
-    deleteRow() {},
+    deleteRow() {
+      this.items.pop();
+    },
   },
   handleFileChange(e) {
     this.file_name = e.target.files[0].name;
