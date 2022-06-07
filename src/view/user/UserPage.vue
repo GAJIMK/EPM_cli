@@ -89,7 +89,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding: 2%;
+  padding: 3%;
+  width: 85%;
 }
 .list-group {
   cursor: pointer;

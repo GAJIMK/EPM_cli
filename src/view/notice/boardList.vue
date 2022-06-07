@@ -68,8 +68,4 @@ export default {
   color: black;
   margin: 0.5%;
 }
-.boardList {
-  width: 150px;
-  margin-top: 100px;
-}
 </style>
