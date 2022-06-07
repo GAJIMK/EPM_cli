@@ -33,8 +33,8 @@ export default {};
   font-family: 'Jua', sans-serif;
   display: flex;
   align-items: center;
+
   height: 2em;
-  flex-shrink: 0;
   border: 0px;
 }
 
@@ -46,7 +46,8 @@ export default {};
   border-left: 1px solid #eee;
   border-right: 1px solid #eee;
   padding: 0 0;
-  flex-shrink: 0;
+  width: 2rem;
+  flex-basis: 120px;
   font-weight: 500;
 }
 </style>

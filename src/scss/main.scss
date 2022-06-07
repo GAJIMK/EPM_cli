@@ -55,5 +55,8 @@ input[type='date'] {
     outline: none;
   }
 }
+.inline-btn {
+  display: inline-block;
+}
 
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';

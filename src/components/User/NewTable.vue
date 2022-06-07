@@ -6,19 +6,20 @@
         tabindex="0"
         max="9999-12-31"
         class="date"
-        :value="list.date"
+        v-model="item.date"
+        @blur="update"
       />
     </div>
     <div class="col">
-      <input type="text" :value="list.content" />
+      <input type="text" v-model="item.content" />
     </div>
     <div class="col">
-      <input type="text" :value="list.place" />
+      <input type="text" v-model="item.place" @blur="update" />
     </div>
-    <div class="col"><input type="text" :value="list.companion" /></div>
+    <div class="col"><input type="text" v-model="item.companion" /></div>
     <div class="col pay">
-      <p v-if="list.method">{{ list.method }}</p>
-      <select v-else class="select_pass">
+      <p v-if="item.method">{{ item.method }}</p>
+      <select v-else class="select_pass" @blur="update">
         <option>현금</option>
         <option>개인카드</option>
       </select>
@@ -27,8 +28,9 @@
       <input
         type="text"
         class="mm"
-        :value="list.price"
-        @keyup.enter="message()"
+        v-model="item.price"
+        @keyup.enter="sendList"
+        @blur="update"
       />
     </div>
   </div>
@@ -45,33 +47,14 @@ export default {
     return {
       sum: 0,
       nums: [],
-      list: {
-        date: '',
-        content: '',
-        price: '',
-        companion: '',
-        method: '',
-      },
     };
   },
   mounted() {
     this.fetchProps();
   },
   methods: {
-    message() {
-      const values = document.querySelectorAll('.mm');
-      this.nums = [];
-      this.sum = 0;
-      for (var i = 0; i < values.length; i++) {
-        //console.log(value[i].value);
-
-        this.nums.push(values[i].value);
-      }
-      this.nums.forEach(item => {
-        this.sum += parseInt(item);
-      });
-
-      this.$emit('message', this.sum);
+    sendList() {
+      this.$emit('printSum', this.list);
     },
     fetchProps() {
       if (this.item !== undefined) {
@@ -80,6 +63,7 @@ export default {
         col.forEach(e => (this.list[e] = this.item[e]));
       }
     },
+    async update() {},
   },
 };
 </script>
@@ -99,5 +83,9 @@ p {
   width: 100%;
   font-weight: bold;
   text-align: center;
+}
+
+.col {
+  flex-shrink: 0;
 }
 </style>
