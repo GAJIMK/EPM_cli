@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <MenuTitle menuTitle="🖱️개인별 경비계산서" />
-    <div class="subTitle">{{ date }} 경비계산서</div>
+    <div class="subTitle">{{ dating }} 경비계산서</div>
     <div class="lists">
       <TableHeader />
       <NewTable :item="item" v-for="item in data" :key="item.id" />
@@ -26,8 +26,8 @@ export default {
   data() {
     return {
       data: '',
-      name: this.$route.query.name,
-      date: this.$route.query.date,
+      name: this.$route.query.userId,
+      dating: this.$route.query.date,
     };
   },
   methods: {
@@ -36,7 +36,6 @@ export default {
       const date = this.$route.query.date;
       const res = await fetchUserList(id, date);
       this.data = res.data.list;
-      console.log(id);
     },
   },
 };
