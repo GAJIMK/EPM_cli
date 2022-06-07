@@ -10,7 +10,6 @@
         {{ mylist }} 경비 내역서
       </li>
     </ul>
-    <Personal-Fee-Page :name="userId" :ym="date" />
   </div>
 </template>
 
@@ -20,7 +19,6 @@ import {
   fetchUserAllList,
 } from '@/api/userFeeList/userFeeList.js';
 import moment from 'moment';
-import PersonalFeePage from '@/components/PersonalFee/PersonalFeePage.vue';
 
 export default {
   data() {
@@ -33,9 +31,7 @@ export default {
       len: '',
     };
   },
-  components: {
-    PersonalFeePage,
-  },
+
   mounted() {
     this.initData();
     this.fetchAllData();
