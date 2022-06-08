@@ -39,6 +39,7 @@ export default {
         .toISOString()
         .slice(0, 7);
     },
+    submit() {},
 
     //영수증 파일 업로드 하는 메소드
   },
