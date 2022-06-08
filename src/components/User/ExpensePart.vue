@@ -1,12 +1,22 @@
 <template>
   <div class="part">
     <div class="row">
+      <font-awesome-icon
+        icon="fa-solid fa-angle-up"
+        v-if="state"
+        @click="changeState"
+      />
+      <font-awesome-icon
+        icon="fa-solid fa-angle-down"
+        v-else
+        @click="changeState"
+      />
       <div class="mytitle">{{ expense.summCodeName }}</div>
       <button class="plusRow radiusBtn " @click="addRow">+</button>
       <button class="delRow radiusBtn" @click="deleteRow()">-</button>
     </div>
 
-    <div class="imdiv">
+    <div class="imdiv" v-if="state">
       <TableHeader />
       <div id="lists">
         <NewTable
@@ -16,13 +26,17 @@
           :item="item"
         />
       </div>
-    </div>
-    <div class="money-container">
-      <div class="ShowMoney">합계 : {{ sum }}</div>
-    </div>
+      <div class="money-container">
+        <div class="ShowMoney">합계 : {{ sum }}</div>
+      </div>
 
-    <div class="fluid-container" id="billimg">
-      <ImgUpload class="item" v-for="item in items" :key="item.id"></ImgUpload>
+      <div class="fluid-container" id="billimg">
+        <ImgUpload
+          class="item"
+          v-for="item in items"
+          :key="item.id"
+        ></ImgUpload>
+      </div>
     </div>
   </div>
 </template>
@@ -45,6 +59,7 @@ export default {
       sum: 0,
       remain: 50000, //보류
       id: 0,
+      state: true,
     };
   },
   methods: {
@@ -74,6 +89,10 @@ export default {
     deleteRow() {
       this.items.pop();
     },
+    changeState() {
+      if (this.state === true) this.state = false;
+      else this.state = true;
+    },
   },
   handleFileChange(e) {
     this.file_name = e.target.files[0].name;
@@ -90,7 +109,6 @@ export default {
   padding: 20px 0;
 }
 .mytitle {
-  width: 128px;
   font-family: 'Dongle', sans-serif;
   font-family: 'Jua', sans-serif;
   font-size: 25px;
