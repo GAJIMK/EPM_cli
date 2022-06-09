@@ -7,12 +7,10 @@
           class="spinner-grow text-warning picked"
           role="status"
           v-if="loading"
-        >
-          <span class="sr-only"></span>
-        </div>
+        ></div>
         <div class="picked" v-else>
-          <div v-if="picked !== -1">{{ menus[picked] }}</div>
-          <div v-else>뭐먹지? 뭐먹어?</div>
+          <span class="food" v-if="picked !== -1">{{ menus[picked] }}</span>
+          <span v-else>뭐먹지? 뭐먹어?</span>
         </div>
       </div>
       <b-button
@@ -55,10 +53,12 @@ export default {
 
 <style lang="scss" scoped>
 .title {
+  width: 100%;
   margin-top: 20px;
   font-size: 1.3em;
   font-weight: 600;
   color: #444;
+  margin-right: 0;
 }
 
 .contents {
@@ -72,6 +72,7 @@ export default {
     height: 3em;
     .picked {
       font-size: 1.1em;
+      margin: 0 0;
     }
   }
 }

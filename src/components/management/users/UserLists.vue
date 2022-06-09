@@ -105,7 +105,7 @@ export default {
     padding: 10px 0;
     &:hover {
       cursor: pointer;
-      background-color: whitesmoke;
+      background-color: var(--color-smoke);
     }
   }
 }

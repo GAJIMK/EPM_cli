@@ -12,7 +12,7 @@ $container-max-widths: (
 @import '../../node_modules/bootstrap/scss/functions';
 @import '../../node_modules/bootstrap/scss/variables';
 @import '../../node_modules/bootstrap/scss/mixins';
-
+@import '@/styles/variables.scss';
 //bootstrap 의 색상을 재사용 하는 경우
 // 정의되어있는 변수를 사용하는 경우 varivales밑에 두어야 에러를 방지할 수 있다.
 $theme-colors: (
@@ -57,6 +57,25 @@ input[type='date'] {
 }
 .inline-btn {
   display: inline-block;
+}
+
+.yellowBtn {
+  color: #fff;
+  background-color: var(--color-yellow);
+  cursor: pointer;
+  &:hover {
+    background-color: #fff;
+    color: var(--color-yellow);
+  }
+}
+
+.menu-container {
+  border: 4px solid #fdc000;
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
 }
 
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';

@@ -47,8 +47,8 @@ export default {
 }
 .email:focus,
 .password:focus {
-  outline: 2px solid #ffc75f;
-  border: #ffc75f;
+  outline: 2px solid var(--color-yellow);
+  border: var(--color-yellow);
 }
 .loginBtn {
   border: 0;

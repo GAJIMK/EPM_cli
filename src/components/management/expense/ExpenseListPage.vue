@@ -49,7 +49,7 @@ export default {
 .list {
   display: flex;
   align-items: center;
-  background-color: whitesmoke;
+  background-color: var(--color-smoke);
   justify-content: center;
   width: 100%;
   padding: 5px 5px;
