@@ -4,6 +4,10 @@ function fetchBoardList() {
   return board.get(`/findAll`);
 }
 
+function fetchBoardPage(page) {
+  return board.get(`/findBypage?page=${page}`);
+}
+
 function fetchBoard(id) {
   return board.get(`/findById?id=${id}`);
 }
@@ -18,4 +22,4 @@ function putBoardList(boardContent) {
   return board.put('/', data);
 }
 
-export { fetchBoardList, putBoardList, fetchBoard };
+export { fetchBoardList, putBoardList, fetchBoard, fetchBoardPage };
