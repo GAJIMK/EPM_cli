@@ -2,7 +2,7 @@
   <div class="container">
     <div class="box">
       <div class="headercolor"></div>
-      <h2 class="name" @click="gohome()">💸Expense System💸</h2>
+      <h2 class="name" @click="goHome()">💸Expense System💸</h2>
 
       <b-row
         ><b-input type="email" class="email" placeholder="인트라넷 아이디"
@@ -19,7 +19,7 @@
 <script>
 export default {
   methods: {
-    gohome() {
+    goHome() {
       this.$router.push({ name: 'home' });
     },
   },

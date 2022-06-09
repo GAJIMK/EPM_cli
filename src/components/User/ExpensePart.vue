@@ -137,9 +137,6 @@ export default {
   margin: 0.5%;
   border-radius: 50%;
 }
-.imdiv {
-  border-bottom: 1px solid #eee;
-}
 .form-group {
   padding: 0.2%;
   margin-top: 2%;

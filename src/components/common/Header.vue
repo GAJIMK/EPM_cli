@@ -1,10 +1,7 @@
 <template>
-  <div>
-    <div class="headercolor"></div>
-    <div id="header">
-      <div class="title" @click="gohome()">💸Expense System💸</div>
-      <button @click="goLogin()" class="loginBtn">login</button>
-    </div>
+  <div id="header">
+    <div class="title" @click="goHome()">💸Expense System💸</div>
+    <button @click="goLogin()" class="loginBtn">login</button>
   </div>
 </template>
 
@@ -14,7 +11,7 @@ export default {
     goLogin() {
       this.$router.push({ name: 'login' });
     },
-    gohome() {
+    goHome() {
       this.$router.push({ name: 'home' });
     },
 
@@ -32,17 +29,14 @@ export default {
   cursor: pointer;
 }
 
-.headercolor {
-  top: 0;
+#header {
   width: 100%;
   background: #ffc75f;
   font-size: 10px;
-  height: 30px;
-}
-#header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   font-family: 'Dongle', sans-serif;
   font-family: 'Dongle', sans-serif;
   padding: 0px 50px;
@@ -51,6 +45,7 @@ export default {
     cursor: pointer;
   }
 }
+
 .loginBtn {
   display: block;
   border: 0;
