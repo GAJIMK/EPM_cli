@@ -26,13 +26,13 @@ export default {
   data() {
     return {
       data: '',
-      name: this.$route.query.userId,
+      name: this.$route.query.name,
       dating: this.$route.query.date,
     };
   },
   methods: {
     async show() {
-      const id = this.$route.query.userId;
+      const id = this.$route.query.id;
       const date = this.$route.query.date;
       const res = await fetchUserList(id, date);
       this.data = res.data.list;
