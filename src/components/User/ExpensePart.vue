@@ -59,7 +59,7 @@ export default {
       sum: 0,
       remain: 50000, //보류
       id: 0,
-      state: true,
+      state: false,
     };
   },
   methods: {
