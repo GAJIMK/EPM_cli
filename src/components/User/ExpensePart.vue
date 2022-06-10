@@ -2,12 +2,12 @@
   <div class="part">
     <div class="row">
       <font-awesome-icon
-        icon="fa-solid fa-angle-down"
+        icon="fa-solid fa-angle-up"
         v-if="state"
         @click="changeState"
       />
       <font-awesome-icon
-        icon="fa-solid fa-angle-up"
+        icon="fa-solid fa-angle-down"
         v-else
         @click="changeState"
       />
@@ -59,7 +59,8 @@ export default {
       sum: 0,
       remain: 50000, //보류
       id: 0,
-      state: true,
+      state: false,
+
     };
   },
   methods: {
@@ -90,11 +91,9 @@ export default {
       this.items.pop();
     },
     changeState() {
-      if (this.state === true) {
-        this.state = false;
-      } else {
-        this.state = true;
-      }
+      if (this.state === true) this.state = false;
+      else this.state = true;
+
     },
   },
   handleFileChange(e) {
@@ -138,9 +137,6 @@ export default {
   color: black;
   margin: 0.5%;
   border-radius: 50%;
-}
-.imdiv {
-  border-bottom: 1px solid #eee;
 }
 .form-group {
   padding: 0.2%;

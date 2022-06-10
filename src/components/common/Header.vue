@@ -1,10 +1,7 @@
 <template>
-  <div>
-    <div class="headercolor"></div>
-    <div id="header">
-      <div class="title" @click="gohome()">💸Expense System💸</div>
-      <button @click="goLogin()" class="loginBtn">login</button>
-    </div>
+  <div id="header">
+    <div class="title" @click="goHome()">💸다트의 손쉬운 경비관리💸</div>
+    <button @click="goLogin()" class="loginBtn yellowBtn">Login</button>
   </div>
 </template>
 
@@ -14,7 +11,7 @@ export default {
     goLogin() {
       this.$router.push({ name: 'login' });
     },
-    gohome() {
+    goHome() {
       this.$router.push({ name: 'home' });
     },
 
@@ -27,36 +24,35 @@ export default {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Ubuntu:ital,wght@1,300&display=swap');
-
+@import '@/styles/variables.scss';
+@import '@/scss/main.scss';
 .name {
   cursor: pointer;
 }
 
-.headercolor {
-  top: 0;
-  width: 100%;
-  background: #ffc75f;
-  font-size: 10px;
-  height: 30px;
-}
 #header {
+  width: 100%;
+  background: var(--color-yellow);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   font-family: 'Dongle', sans-serif;
   font-family: 'Dongle', sans-serif;
-  padding: 0px 50px;
-  font-size: 30px;
+  padding: 5px 50px;
+  font-size: var(--font-size-xl);
   :hover {
     cursor: pointer;
   }
 }
+
 .loginBtn {
   display: block;
-  border: 0;
+  border: 3px solid #fff;
   outline: 0;
-  border-radius: 10%;
-  background-color: #fff7b8;
-  font-size: 20px;
+
+  border-radius: 25px;
+  padding: 0px 16px;
+  font-size: var(--font-size-l);
 }
 </style>
