@@ -11,6 +11,7 @@
     />
     <label for="content"></label>
     <b-textarea
+      class="content"
       name="content"
       id="content"
       cols="30"
@@ -53,4 +54,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.title:disabled,
+.content:disabled {
+  background-color: aliceblue;
+}
+</style>
