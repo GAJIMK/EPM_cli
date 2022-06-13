@@ -11,7 +11,8 @@
         v-else
         @click="changeState"
       />
-      <div class="mytitle">{{ expense.summCodeName }}</div>
+      <div class="partTitle">{{ expense.summCodeName }}</div>
+      <div class="partCount radiusBtn">{{ count }}</div>
       <button class="plusRow radiusBtn " @click="addRow">+</button>
       <button class="delRow radiusBtn" @click="deleteRow()">-</button>
     </div>
@@ -60,7 +61,7 @@ export default {
       remain: 50000, //보류
       id: 0,
       state: false,
-
+      count: 0,
     };
   },
   methods: {
@@ -75,7 +76,7 @@ export default {
         path: '',
       };
       this.items.push(obj);
-      this.imgs.push(obj);
+      this.count = this.items.length;
       this.id = this.id + 1;
     },
     countSum() {
@@ -89,11 +90,11 @@ export default {
     },
     deleteRow() {
       this.items.pop();
+      this.count = this.items.length;
     },
     changeState() {
       if (this.state === true) this.state = false;
       else this.state = true;
-
     },
   },
   handleFileChange(e) {
@@ -109,7 +110,7 @@ export default {
 .part {
   padding: 20px 0;
 }
-.mytitle {
+.partTitle {
   font-family: 'Dongle', sans-serif;
   font-family: 'Jua', sans-serif;
   font-size: 25px;
@@ -127,6 +128,9 @@ export default {
   border-radius: 50%;
   display: inline;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .radiusBtn:active {
   border: 0;
@@ -164,5 +168,7 @@ export default {
   padding: 0.9%;
   width: 300px;
   float: right;
+}
+.partCount {
 }
 </style>

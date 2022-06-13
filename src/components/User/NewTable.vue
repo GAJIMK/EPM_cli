@@ -43,26 +43,13 @@ export default {
       type: Object,
     },
   },
-  data() {
-    return {
-      sum: 0,
-      nums: [],
-    };
-  },
-  mounted() {
-    this.fetchProps();
-  },
+
+  mounted() {},
   methods: {
     sendList() {
-      this.$emit('printSum', this.list);
+      this.$emit('printSum', this.item);
     },
-    fetchProps() {
-      if (this.item !== undefined) {
-        const col = ['date', 'content', 'price', 'companion', 'method'];
 
-        col.forEach(e => (this.list[e] = this.item[e]));
-      }
-    },
     async update() {},
   },
 };
