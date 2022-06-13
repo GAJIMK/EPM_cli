@@ -2,17 +2,22 @@
   <div>
     <h3 class="name">📰 다트 익명 게시판 ✏️</h3>
     <button class="BtnStyle" @click="goBoardWirte()">작성하기</button>
-    <ul class="list-group" id="section1">
-      <li
-        class="list list-group-item "
-        v-for="(board, index) in boardlists"
-        v-bind:key="index"
-        @click="goreport(index)"
-      >
-        {{ board }}
-      </li>
-    </ul>
-    <div id="re">
+    <hr />
+    <div class="container">
+      <ul class="list-group">
+        <li
+          class="list list-group-item "
+          v-for="(board, index) in boardlists"
+          v-bind:key="index"
+          @click="goreport(index)"
+        >
+          {{ board }}
+        </li>
+      </ul>
+    </div>
+
+    <hr />
+    <div class="re">
       <nav aria-label="Page navigation">
         <ul class="pagination ">
           <li class="page-item">
@@ -21,7 +26,6 @@
               v-for="(page, index) in PageNum"
               v-bind:key="index"
               @click="initDataPage(index)"
-              href="#section1"
               >{{ index + 1 }}</a
             >
           </li>
@@ -42,11 +46,15 @@ export default {
       llist: [],
       Fllist: [],
       id: [],
+      id_1: [],
       num: '',
       pageNo: 0,
       pages: [1, 2, 3],
       PageNum: '',
       in: '',
+      no: '',
+      val: '',
+      res: '',
     };
   },
   created() {
@@ -55,15 +63,6 @@ export default {
     this.FirstinitDataPage();
   },
   methods: {
-    goreport(index) {
-      const a = index;
-      const res = this.id[a];
-
-      this.$router.push({
-        name: 'boardcontent',
-        query: { id: res },
-      });
-    },
     goBoardWirte() {
       this.$router.push({ name: 'noticeBoardUpload' });
     },
@@ -72,14 +71,12 @@ export default {
 
       this.Fllist.push(res.data.list);
       const lengthAll = this.Fllist[0].length;
-      console.log('리스트 갯수', lengthAll);
 
-      this.PageNum = Math.round(lengthAll / 10);
-      console.log('페이지 갯수', this.PageNum);
+      this.PageNum = Math.ceil(lengthAll / 10);
     },
     async FirstinitDataPage() {
       const resp = await fetchBoardPage(this.pageNo);
-
+      this.id = [];
       this.llist.push(resp.data.list);
       for (var i = 0; i < this.llist[0].length; i++) {
         const list = resp.data.list[i].title;
@@ -91,10 +88,17 @@ export default {
     },
     async initDataPage(index) {
       this.boardlists = [];
-      this.in = index;
+      //this.id = [];
+      this.in = index; //페이징의 인덱스 (ex 1,2,3)
       const res = await fetchBoardPage(this.in);
 
-      this.llist.push(res.data.list);
+      this.llist = [];
+
+      this.llist.push(res.data.list); //길이를 구하기 위해서
+
+      //this.id = [];
+      //3개만 담길수있도록 초기화해줌
+
       for (var i = 0; i < this.llist[0].length; i++) {
         const list = res.data.list[i].title;
         const iid = res.data.list[i].id;
@@ -102,6 +106,43 @@ export default {
         this.id.push(iid);
         this.boardlists.push(list);
       }
+    },
+    goreport(index) {
+      const a = index; //리스트의 인덱스
+      console.log('a', a); // a = 0 this.in = 2
+      this.val = a + this.in * 10;
+
+      if (this.in != 0 && this.in != 1) {
+        for (var i = 0; i < 2; i++) {
+          const list = res.data.list[i].title;
+          const iid = res.data.list[i].id;
+
+          this.id.push(iid);
+          this.res = this.id[this.val]; // 이 부분이 지금 문제임
+          console.log('this.res', this.res);
+
+          //console.log('val type ', this.val, typeof this.val);
+          //console.log('res type ', this.res, typeof this.res);
+          this.$router.push({
+            name: 'boardcontent',
+            query: { id: this.res },
+          });
+        }
+      } else {
+        this.res = this.id[this.val]; // 이 부분이 지금 문제임
+        console.log('this.res', this.res);
+
+        //console.log('val type ', this.val, typeof this.val);
+        //console.log('res type ', this.res, typeof this.res);
+        this.$router.push({
+          name: 'boardcontent',
+          query: { id: this.res },
+        });
+      }
+
+      console.log('this.val', typeof this.val, this.val);
+
+      console.log('id.length', this.id.length, this.id);
     },
   },
 };
@@ -116,7 +157,10 @@ export default {
   color: black;
   margin: 0.5%;
 }
-.page-item {
-  display: block;
+
+.re {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }
 </style>
