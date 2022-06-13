@@ -2,17 +2,17 @@
   <div class="part">
     <div class="row">
       <font-awesome-icon
-        icon="fa-solid fa-angle-up"
+        icon="fa-solid fa-angle-down"
         v-if="state"
         @click="changeState"
       />
       <font-awesome-icon
-        icon="fa-solid fa-angle-down"
+        icon="fa-solid fa-angle-up"
         v-else
         @click="changeState"
       />
-      <div class="partTitle">{{ expense.summCodeName }}</div>
       <div class="partCount radiusBtn">{{ count }}</div>
+      <div class="partTitle">{{ expense.summCodeName }}</div>
       <button class="plusRow radiusBtn " @click="addRow">+</button>
       <button class="delRow radiusBtn" @click="deleteRow()">-</button>
     </div>
@@ -32,11 +32,11 @@
       </div>
 
       <div class="fluid-container" id="billimg">
-        <ImgUpload
+        <!-- <ImgUpload
           class="item"
           v-for="item in items"
           :key="item.id"
-        ></ImgUpload>
+        ></ImgUpload> -->
       </div>
     </div>
   </div>
@@ -52,7 +52,7 @@ export default {
       type: Object,
     },
   },
-  components: { NewTable, ImgUpload, TableHeader },
+  components: { NewTable, TableHeader },
   data() {
     return {
       items: [],
@@ -67,6 +67,7 @@ export default {
   methods: {
     addRow() {
       const obj = {
+        part: this.expense.summCode,
         id: this.id,
         date: '',
         content: '',
@@ -77,6 +78,7 @@ export default {
       };
       this.items.push(obj);
       this.count = this.items.length;
+      this.state = true;
       this.id = this.id + 1;
     },
     countSum() {
@@ -90,11 +92,15 @@ export default {
     },
     deleteRow() {
       this.items.pop();
+      this.state = true;
       this.count = this.items.length;
     },
     changeState() {
       if (this.state === true) this.state = false;
       else this.state = true;
+    },
+    pushData() {
+      this.$emit('receiveData', this.items);
     },
   },
   handleFileChange(e) {
@@ -122,7 +128,6 @@ export default {
   outline: 0;
   width: 30px;
   height: 30px;
-  background-color: #ffc107;
   color: black;
   margin: 0.5%;
   border-radius: 50%;
@@ -141,6 +146,10 @@ export default {
   color: black;
   margin: 0.5%;
   border-radius: 50%;
+}
+
+.partCount {
+  background-color: var(--color-yellow);
 }
 .form-group {
   padding: 0.2%;

@@ -8,4 +8,7 @@ function fetchUserAllList(userId) {
   return userFeeList.get(`/findAll?accountId=${userId}`);
 }
 
-export { fetchUserList, fetchUserAllList };
+function createList(data) {
+  return userFeeList.put(`/`, data);
+}
+export { fetchUserList, fetchUserAllList, createList };

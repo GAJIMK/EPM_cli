@@ -19,6 +19,7 @@
 import MenuTitle from '@/components/common/MenuTitleForm.vue';
 import UserLists from '@/components/management/users/UserLists.vue';
 import moment from 'moment';
+
 export default {
   components: {
     UserLists,
