@@ -45,8 +45,7 @@ export default {
       //boarddatelists: [],
       llist: [],
       Fllist: [],
-      id: [],
-      id_1: [],
+      idlist: [],
       num: '',
       pageNo: 0,
       pages: [1, 2, 3],
@@ -55,34 +54,44 @@ export default {
       no: '',
       val: '',
       res: '',
+      allId: [],
     };
   },
   created() {
-    this.PageCount();
     //this.initDataPage();
+    this.PageCount();
     this.FirstinitDataPage();
   },
   methods: {
     goBoardWirte() {
       this.$router.push({ name: 'noticeBoardUpload' });
     },
+
     async PageCount() {
       const res = await fetchBoardList();
 
       this.Fllist.push(res.data.list);
       const lengthAll = this.Fllist[0].length;
 
+      for (var i = 0; i < lengthAll; i++) {
+        let iid = res.data.list[i].id;
+
+        console.log(iid);
+        this.allId.push(iid);
+      }
+      console.log('this.allId', this.allId);
       this.PageNum = Math.ceil(lengthAll / 10);
     },
+
     async FirstinitDataPage() {
       const resp = await fetchBoardPage(this.pageNo);
-      this.id = [];
+      this.idlist = [];
       this.llist.push(resp.data.list);
       for (var i = 0; i < this.llist[0].length; i++) {
         const list = resp.data.list[i].title;
         const iid = resp.data.list[i].id;
 
-        this.id.push(iid);
+        this.idlist.push(iid);
         this.boardlists.push(list);
       }
     },
@@ -90,21 +99,25 @@ export default {
       this.boardlists = [];
       //this.id = [];
       this.in = index; //페이징의 인덱스 (ex 1,2,3)
+      console.log('this.in', this.in);
       const res = await fetchBoardPage(this.in);
 
       this.llist = [];
 
-      this.llist.push(res.data.list); //길이를 구하기 위해서
-
+      this.llist.push(res.data.list);
+      console.log('this.llist', this.llist); //길이를 구하기 위해서
       //this.id = [];
-      //3개만 담길수있도록 초기화해줌
-
       for (var i = 0; i < this.llist[0].length; i++) {
         const list = res.data.list[i].title;
+
         const iid = res.data.list[i].id;
 
-        this.id.push(iid);
+        this.idlist.push(iid);
+        console.log('이거임', this.idlist);
         this.boardlists.push(list);
+      }
+      if (this.in != 0 && this.in != 1) {
+        console.log('1페이지랑 2페이지가 아님');
       }
     },
     goreport(index) {
@@ -112,37 +125,15 @@ export default {
       console.log('a', a); // a = 0 this.in = 2
       this.val = a + this.in * 10;
 
-      if (this.in != 0 && this.in != 1) {
-        for (var i = 0; i < 2; i++) {
-          const list = res.data.list[i].title;
-          const iid = res.data.list[i].id;
+      //console.log('this.val', this.val);
+      //console.log('id.length', this.idlist.length);
 
-          this.id.push(iid);
-          this.res = this.id[this.val]; // 이 부분이 지금 문제임
-          console.log('this.res', this.res);
+      this.res = this.allId[this.val];
 
-          //console.log('val type ', this.val, typeof this.val);
-          //console.log('res type ', this.res, typeof this.res);
-          this.$router.push({
-            name: 'boardcontent',
-            query: { id: this.res },
-          });
-        }
-      } else {
-        this.res = this.id[this.val]; // 이 부분이 지금 문제임
-        console.log('this.res', this.res);
-
-        //console.log('val type ', this.val, typeof this.val);
-        //console.log('res type ', this.res, typeof this.res);
-        this.$router.push({
-          name: 'boardcontent',
-          query: { id: this.res },
-        });
-      }
-
-      console.log('this.val', typeof this.val, this.val);
-
-      console.log('id.length', this.id.length, this.id);
+      this.$router.push({
+        name: 'boardcontent',
+        query: { id: this.res },
+      });
     },
   },
 };
