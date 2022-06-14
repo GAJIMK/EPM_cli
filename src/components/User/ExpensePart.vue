@@ -60,7 +60,6 @@ export default {
       remain: 50000, //보류
       id: 0,
       state: false,
-
     };
   },
   methods: {
@@ -93,7 +92,6 @@ export default {
     changeState() {
       if (this.state === true) this.state = false;
       else this.state = true;
-
     },
   },
   handleFileChange(e) {

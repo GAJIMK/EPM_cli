@@ -18,131 +18,112 @@
 
     <hr />
     <div class="re">
-      <nav aria-label="Page navigation">
-        <ul class="pagination ">
-          <li class="page-item">
-            <a
-              class="page-link"
-              v-for="(page, index) in PageNum"
-              v-bind:key="index"
-              @click="initDataPage(index)"
-              >{{ index + 1 }}</a
-            >
-          </li>
-        </ul>
-      </nav>
+      <b-pagination
+        class="paging-search-form-pagination"
+        align="center"
+        :total-rows="lengthAll"
+        v-model="currentPage"
+        :per-page="10"
+        @change="initDataPage(currentPage)"
+        @page-click="pageClick"
+        pills
+      />
     </div>
   </div>
 </template>
 
 <script>
 import { fetchBoardList, fetchBoardPage } from '@/api/board/board.js';
+import { BPagination } from 'bootstrap-vue';
 
 export default {
+  components: {
+    'b-pagination': BPagination,
+  },
   data() {
     return {
       boardlists: [], //제목
-      //boarddatelists: [],
       llist: [],
       Fllist: [],
-      id: [],
-      id_1: [],
-      num: '',
+      idlist: [],
       pageNo: 0,
-      pages: [1, 2, 3],
+      currentPage: 1,
       PageNum: '',
       in: '',
       no: '',
       val: '',
       res: '',
+      allId: [],
+      lengthAll: '',
+      clickPage: '',
     };
   },
+
   created() {
     this.PageCount();
-    //this.initDataPage();
     this.FirstinitDataPage();
   },
   methods: {
     goBoardWirte() {
       this.$router.push({ name: 'noticeBoardUpload' });
     },
+
     async PageCount() {
       const res = await fetchBoardList();
 
       this.Fllist.push(res.data.list);
-      const lengthAll = this.Fllist[0].length;
+      this.lengthAll = this.Fllist[0].length;
 
-      this.PageNum = Math.ceil(lengthAll / 10);
+      for (var i = 0; i < this.lengthAll; i++) {
+        let iid = res.data.list[i].id;
+        this.allId.push(iid);
+      }
+
+      this.PageNum = Math.ceil(this.lengthAll / 10);
     },
+
+    pageClick(button, page) {
+      this.clickPage = page;
+    },
+
     async FirstinitDataPage() {
       const resp = await fetchBoardPage(this.pageNo);
-      this.id = [];
+      this.idlist = [];
       this.llist.push(resp.data.list);
       for (var i = 0; i < this.llist[0].length; i++) {
         const list = resp.data.list[i].title;
-        const iid = resp.data.list[i].id;
 
-        this.id.push(iid);
         this.boardlists.push(list);
       }
     },
-    async initDataPage(index) {
-      this.boardlists = [];
-      //this.id = [];
-      this.in = index; //페이징의 인덱스 (ex 1,2,3)
-      const res = await fetchBoardPage(this.in);
 
+    async initDataPage() {
+      this.boardlists = [];
+      this.in = '';
       this.llist = [];
 
-      this.llist.push(res.data.list); //길이를 구하기 위해서
+      this.in = this.clickPage - 1; //페이징의 인덱스 (ex 1,2,3)
 
-      //this.id = [];
-      //3개만 담길수있도록 초기화해줌
+      const res = await fetchBoardPage(this.in);
 
-      for (var i = 0; i < this.llist[0].length; i++) {
-        const list = res.data.list[i].title;
-        const iid = res.data.list[i].id;
+      for (var i = 0; i < 10; i++) {
+        let list = res.data.list[i].title;
 
-        this.id.push(iid);
         this.boardlists.push(list);
       }
     },
+
     goreport(index) {
       const a = index; //리스트의 인덱스
-      console.log('a', a); // a = 0 this.in = 2
+
       this.val = a + this.in * 10;
 
-      if (this.in != 0 && this.in != 1) {
-        for (var i = 0; i < 2; i++) {
-          const list = res.data.list[i].title;
-          const iid = res.data.list[i].id;
+      this.res = this.allId[this.val];
 
-          this.id.push(iid);
-          this.res = this.id[this.val]; // 이 부분이 지금 문제임
-          console.log('this.res', this.res);
-
-          //console.log('val type ', this.val, typeof this.val);
-          //console.log('res type ', this.res, typeof this.res);
-          this.$router.push({
-            name: 'boardcontent',
-            query: { id: this.res },
-          });
-        }
-      } else {
-        this.res = this.id[this.val]; // 이 부분이 지금 문제임
-        console.log('this.res', this.res);
-
-        //console.log('val type ', this.val, typeof this.val);
-        //console.log('res type ', this.res, typeof this.res);
-        this.$router.push({
-          name: 'boardcontent',
-          query: { id: this.res },
-        });
-      }
-
-      console.log('this.val', typeof this.val, this.val);
-
-      console.log('id.length', this.id.length, this.id);
+      this.$router.push({
+        name: 'boardcontent',
+        query: { id: this.res },
+      });
     },
   },
 };
