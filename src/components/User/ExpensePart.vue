@@ -31,7 +31,7 @@
         <div class="ShowMoney">합계 : {{ sum }}</div>
       </div>
 
-      <div class="fluid-container" id="billimg">
+      <div id="billimg">
         <!-- <ImgUpload
           class="item"
           v-for="item in items"
@@ -84,8 +84,10 @@ export default {
         content: '',
         price: '',
         companion: '',
-        method: '',
+        method: '개인카드',
         path: '',
+        place: '',
+        state: 0,
       };
       this.items.push(obj);
       this.countList();
@@ -94,7 +96,9 @@ export default {
     countSum() {
       let sum = 0;
       this.items.forEach(el => {
-        sum += parseInt(el['price']);
+        if (el.price == '') {
+          sum += 0;
+        } else sum += parseInt(el['price']);
       });
       this.sum = sum;
     },
@@ -109,8 +113,7 @@ export default {
       this.countSum();
     },
     changeState() {
-      if (this.state === true) this.state = false;
-      else this.state = true;
+      this.state = this.state ? false : true;
     },
     pushData() {
       this.$emit('receiveData', this.items);

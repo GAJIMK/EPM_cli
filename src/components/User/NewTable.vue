@@ -18,7 +18,7 @@
     </div>
     <div class="col"><input type="text" v-model="item.companion" /></div>
     <div class="col pay">
-      <select class="select_pass" @blur="update">
+      <select class="select_pass" v-model="item.method" @blur="update">
         <option>현금</option>
         <option>개인카드</option>
       </select>

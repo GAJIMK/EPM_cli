@@ -21,7 +21,12 @@
 <script>
 import ExpensePart from '@/components/user/ExpensePart.vue';
 import { fetchExpense } from '@/api/expense/expense';
-import { createList, fetchUserList } from '@/api/userFeeList/userFeeList';
+import {
+  createList,
+  updateList,
+  deleteList,
+  fetchUserList,
+} from '@/api/userFeeList/userFeeList';
 import moment from 'moment';
 
 export default {
@@ -34,6 +39,7 @@ export default {
       lists: [],
       accountId: 'gajung.kim',
       date: moment(new Date()).format('YYYY-MM'),
+      existId: [],
     };
   },
   mounted() {
@@ -50,6 +56,7 @@ export default {
     async fetchUserExpenseList() {
       const res = await fetchUserList(this.accountId, this.date);
       this.existLists = res.data.list;
+      this.existLists.forEach(list => this.existId.push(list.id));
     },
 
     title() {
@@ -67,17 +74,36 @@ export default {
     },
 
     receiveData(list) {
+      this.lists = [];
       list.forEach(li => {
         this.lists.push(li);
       });
       this.saveToDB();
     },
 
-    saveToDB() {
-      this.lists.forEach(async data => {
+    async saveToDB() {
+      for (const data of this.lists) {
         data.accountId = this.accountId;
-        await createList(data);
-      });
+        if (data.id == 0) {
+          console.log('생성', data);
+          await createList(data);
+        } else {
+          console.log('수정', data);
+          await updateList(data);
+          this.existId.forEach((id, idx) => {
+            if (data.id == id) {
+              console.log(this.existId);
+              this.existId[idx] = 0;
+            }
+          });
+        }
+      }
+      for (let id of this.existId) {
+        if (id != 0) {
+          console.log('삭제됨', id, this.existId);
+          await deleteList(id);
+        }
+      }
     },
 
     checkList() {

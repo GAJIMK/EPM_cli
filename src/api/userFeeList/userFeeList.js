@@ -11,4 +11,12 @@ function fetchUserAllList(userId) {
 function createList(data) {
   return userFeeList.put(`/`, data);
 }
-export { fetchUserList, fetchUserAllList, createList };
+
+function updateList(data) {
+  return userFeeList.post('/', data);
+}
+
+function deleteList(id) {
+  return userFeeList.delete(`/${id}`);
+}
+export { fetchUserList, fetchUserAllList, createList, updateList, deleteList };
