@@ -18,19 +18,14 @@
 
     <hr />
     <div class="re">
-      <nav aria-label="Page navigation">
-        <ul class="pagination ">
-          <li class="page-item">
-            <a
-              class="page-link"
-              v-for="(page, index) in PageNum"
-              v-bind:key="index"
-              @click="initDataPage(index)"
-              >{{ index + 1 }}</a
-            >
-          </li>
-        </ul>
-      </nav>
+      <b-pagination
+        class="paging-search-form-pagination"
+        align="center"
+        :total-rows="lengthAll"
+        v-model="currentPage"
+        :per-page="10"
+        @change="initDataPage(currentPage)"
+      />
     </div>
   </div>
 </template>
@@ -42,21 +37,21 @@ export default {
   data() {
     return {
       boardlists: [], //제목
-      //boarddatelists: [],
       llist: [],
       Fllist: [],
       idlist: [],
-      num: '',
       pageNo: 0,
-      pages: [1, 2, 3],
+      currentPage: 1,
       PageNum: '',
       in: '',
       no: '',
       val: '',
       res: '',
       allId: [],
+      lengthAll: '',
     };
   },
+
   created() {
     //this.initDataPage();
     this.PageCount();
@@ -66,23 +61,19 @@ export default {
     goBoardWirte() {
       this.$router.push({ name: 'noticeBoardUpload' });
     },
-
     async PageCount() {
       const res = await fetchBoardList();
 
       this.Fllist.push(res.data.list);
-      const lengthAll = this.Fllist[0].length;
+      this.lengthAll = this.Fllist[0].length;
 
-      for (var i = 0; i < lengthAll; i++) {
+      for (var i = 0; i < this.lengthAll; i++) {
         let iid = res.data.list[i].id;
-
-        console.log(iid);
         this.allId.push(iid);
       }
-      console.log('this.allId', this.allId);
-      this.PageNum = Math.ceil(lengthAll / 10);
-    },
 
+      this.PageNum = Math.ceil(this.lengthAll / 10);
+    },
     async FirstinitDataPage() {
       const resp = await fetchBoardPage(this.pageNo);
       this.idlist = [];
@@ -95,38 +86,33 @@ export default {
         this.boardlists.push(list);
       }
     },
-    async initDataPage(index) {
+
+    async initDataPage(currentPage) {
       this.boardlists = [];
-      //this.id = [];
-      this.in = index; //페이징의 인덱스 (ex 1,2,3)
+      this.in = '';
+      this.llist = [];
+
+      this.in = currentPage; //페이징의 인덱스 (ex 1,2,3)
       console.log('this.in', this.in);
       const res = await fetchBoardPage(this.in);
 
-      this.llist = [];
-
       this.llist.push(res.data.list);
-      console.log('this.llist', this.llist); //길이를 구하기 위해서
-      //this.id = [];
-      for (var i = 0; i < this.llist[0].length; i++) {
+      console.log('this.llist', this.llist);
+
+      for (var i = 0; i < 10; i++) {
         const list = res.data.list[i].title;
 
         const iid = res.data.list[i].id;
 
         this.idlist.push(iid);
-        console.log('이거임', this.idlist);
+
         this.boardlists.push(list);
-      }
-      if (this.in != 0 && this.in != 1) {
-        console.log('1페이지랑 2페이지가 아님');
       }
     },
     goreport(index) {
       const a = index; //리스트의 인덱스
-      console.log('a', a); // a = 0 this.in = 2
-      this.val = a + this.in * 10;
 
-      //console.log('this.val', this.val);
-      //console.log('id.length', this.idlist.length);
+      this.val = a + this.in * 10;
 
       this.res = this.allId[this.val];
 
