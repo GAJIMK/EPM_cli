@@ -51,6 +51,18 @@ export default {
     expense: {
       type: Object,
     },
+    existLists: {
+      type: Array,
+    },
+  },
+  watch: {
+    existLists() {
+      this.savePartList();
+    },
+    items() {
+      this.countList();
+      this.state = true;
+    },
   },
   components: { NewTable, TableHeader },
   data() {
@@ -59,7 +71,6 @@ export default {
       file_name: '영수증을 업로드하세요',
       sum: 0,
       remain: 50000, //보류
-      id: 0,
       state: false,
       count: 0,
     };
@@ -68,7 +79,7 @@ export default {
     addRow() {
       const obj = {
         part: this.expense.summCode,
-        id: this.id,
+        id: 0,
         date: '',
         content: '',
         price: '',
@@ -77,9 +88,8 @@ export default {
         path: '',
       };
       this.items.push(obj);
-      this.count = this.items.length;
+      this.countList();
       this.state = true;
-      this.id = this.id + 1;
     },
     countSum() {
       let sum = 0;
@@ -87,13 +97,16 @@ export default {
         sum += parseInt(el['price']);
       });
       this.sum = sum;
-      this.remain = 50000 - sum;
-      this.addRow();
     },
     deleteRow() {
       this.items.pop();
       this.state = true;
+      this.countList();
+    },
+
+    countList() {
       this.count = this.items.length;
+      this.countSum();
     },
     changeState() {
       if (this.state === true) this.state = false;
@@ -102,9 +115,14 @@ export default {
     pushData() {
       this.$emit('receiveData', this.items);
     },
-  },
-  handleFileChange(e) {
-    this.file_name = e.target.files[0].name;
+
+    savePartList() {
+      this.existLists.forEach(list => {
+        if (list.part === this.expense.summCode) {
+          this.items.push(list);
+        }
+      });
+    },
   },
 };
 </script>
@@ -175,9 +193,7 @@ export default {
   font-family: 'Jua', sans-serif;
   font-family: 'Jua', sans-serif;
   padding: 0.9%;
-  width: 300px;
+  width: 200px;
   float: right;
-}
-.partCount {
 }
 </style>

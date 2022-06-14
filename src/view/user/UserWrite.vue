@@ -12,6 +12,7 @@
       v-for="expense in expenseList"
       :key="expense.summCode"
       :expense="expense"
+      :existLists="existLists"
       @receiveData="receiveData"
       ref="requestData"
     />
@@ -21,25 +22,36 @@
 import ExpensePart from '@/components/user/ExpensePart.vue';
 import { fetchExpense } from '@/api/expense/expense';
 import { createList, fetchUserList } from '@/api/userFeeList/userFeeList';
+import moment from 'moment';
+
 export default {
   components: { ExpensePart },
 
   data() {
     return {
       expenseList: '',
+      existLists: [],
       lists: [],
       accountId: 'gajung.kim',
+      date: moment(new Date()).format('YYYY-MM'),
     };
   },
   mounted() {
     this.title();
-    this.fetchData();
+    this.fetchExpenseList();
+    this.fetchUserExpenseList();
   },
   methods: {
-    async fetchData() {
+    async fetchExpenseList() {
       const res = await fetchExpense();
       this.expenseList = res.data.list;
     },
+
+    async fetchUserExpenseList() {
+      const res = await fetchUserList(this.accountId, this.date);
+      this.existLists = res.data.list;
+    },
+
     title() {
       document.getElementById('Title').value = new Date()
         .toISOString()
