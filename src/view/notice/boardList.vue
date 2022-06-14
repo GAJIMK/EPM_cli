@@ -25,6 +25,8 @@
         v-model="currentPage"
         :per-page="10"
         @change="initDataPage(currentPage)"
+        @page-click="pageClick"
+        pills
       />
     </div>
   </div>
@@ -32,8 +34,12 @@
 
 <script>
 import { fetchBoardList, fetchBoardPage } from '@/api/board/board.js';
+import { BPagination } from 'bootstrap-vue';
 
 export default {
+  components: {
+    'b-pagination': BPagination,
+  },
   data() {
     return {
       boardlists: [], //제목
@@ -49,11 +55,11 @@ export default {
       res: '',
       allId: [],
       lengthAll: '',
+      clickPage: '',
     };
   },
 
   created() {
-    //this.initDataPage();
     this.PageCount();
     this.FirstinitDataPage();
   },
@@ -61,6 +67,7 @@ export default {
     goBoardWirte() {
       this.$router.push({ name: 'noticeBoardUpload' });
     },
+
     async PageCount() {
       const res = await fetchBoardList();
 
@@ -74,41 +81,38 @@ export default {
 
       this.PageNum = Math.ceil(this.lengthAll / 10);
     },
+
+    pageClick(button, page) {
+      this.clickPage = page;
+    },
+
     async FirstinitDataPage() {
       const resp = await fetchBoardPage(this.pageNo);
       this.idlist = [];
       this.llist.push(resp.data.list);
       for (var i = 0; i < this.llist[0].length; i++) {
         const list = resp.data.list[i].title;
-        const iid = resp.data.list[i].id;
 
-        this.idlist.push(iid);
         this.boardlists.push(list);
       }
     },
 
-    async initDataPage(currentPage) {
+    async initDataPage() {
       this.boardlists = [];
       this.in = '';
       this.llist = [];
 
-      this.in = currentPage; //페이징의 인덱스 (ex 1,2,3)
-      console.log('this.in', this.in);
+      this.in = this.clickPage - 1; //페이징의 인덱스 (ex 1,2,3)
+
       const res = await fetchBoardPage(this.in);
 
-      this.llist.push(res.data.list);
-      console.log('this.llist', this.llist);
-
       for (var i = 0; i < 10; i++) {
-        const list = res.data.list[i].title;
-
-        const iid = res.data.list[i].id;
-
-        this.idlist.push(iid);
+        let list = res.data.list[i].title;
 
         this.boardlists.push(list);
       }
     },
+
     goreport(index) {
       const a = index; //리스트의 인덱스
 
