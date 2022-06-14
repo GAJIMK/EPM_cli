@@ -2,7 +2,6 @@
   <div class="app">
     <div class="month">
       <input type="month" class="form" id="Title" max="2050-12" />
-      <b-button class="inline-btn btn-warning" @click="save">저장하기</b-button>
       <b-button class="inline-btn btn-warning" @click="submit"
         >제출하기</b-button
       >
@@ -13,8 +12,8 @@
       :key="expense.summCode"
       :expense="expense"
       :existLists="existLists"
+      :accountId="accountId"
       @receiveData="receiveData"
-      ref="requestData"
     />
   </div>
 </template>
@@ -64,11 +63,6 @@ export default {
         .toISOString()
         .slice(0, 7);
     },
-    save() {
-      this.$refs.requestData.forEach(el => {
-        if (el.$data.items.length != 0) el.pushData();
-      });
-    },
     submit() {
       //this.$refs.requestData.pushData();
     },
@@ -78,7 +72,7 @@ export default {
       list.forEach(li => {
         this.lists.push(li);
       });
-      this.saveToDB();
+      this.saveToDB().then(() => {});
     },
 
     async saveToDB() {
@@ -98,12 +92,12 @@ export default {
           });
         }
       }
-      for (let id of this.existId) {
-        if (id != 0) {
-          console.log('삭제됨', id, this.existId);
-          await deleteList(id);
-        }
-      }
+      // for (let id of this.existId) {
+      //   if (id != 0) {
+      //     console.log('삭제됨', id, this.existId);
+      //     await deleteList(id);
+      //   }
+      // }
     },
 
     checkList() {

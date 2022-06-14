@@ -31,7 +31,7 @@
         <div class="ShowMoney">합계 : {{ sum }}</div>
       </div>
 
-      <div id="billimg">
+      <div class="fluid-container" id="billimg">
         <!-- <ImgUpload
           class="item"
           v-for="item in items"
@@ -46,6 +46,8 @@
 import NewTable from '@/components/user/NewTable.vue';
 import ImgUpload from '@/components/user/ImgUpload.vue';
 import TableHeader from '@/components/user/TableHeader.vue';
+import { createList, deleteList } from '@/api/userFeeList/userFeeList';
+import moment from 'moment';
 export default {
   props: {
     expense: {
@@ -53,6 +55,9 @@ export default {
     },
     existLists: {
       type: Array,
+    },
+    accountId: {
+      type: String,
     },
   },
   watch: {
@@ -76,11 +81,12 @@ export default {
     };
   },
   methods: {
-    addRow() {
+    async addRow() {
       const obj = {
         part: this.expense.summCode,
         id: 0,
-        date: '',
+        accountId: this.accountId,
+        date: moment(new Date()).format('YYYY-MM-DD'),
         content: '',
         price: '',
         companion: '',
@@ -89,6 +95,7 @@ export default {
         place: '',
         state: 0,
       };
+      await createList(obj);
       this.items.push(obj);
       this.countList();
       this.state = true;
@@ -102,8 +109,9 @@ export default {
       });
       this.sum = sum;
     },
-    deleteRow() {
-      this.items.pop();
+    async deleteRow() {
+      const popItem = this.items.pop();
+      await deleteList(popItem.id);
       this.state = true;
       this.countList();
     },
@@ -114,9 +122,6 @@ export default {
     },
     changeState() {
       this.state = this.state ? false : true;
-    },
-    pushData() {
-      this.$emit('receiveData', this.items);
     },
 
     savePartList() {

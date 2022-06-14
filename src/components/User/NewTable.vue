@@ -11,12 +11,14 @@
       />
     </div>
     <div class="col">
-      <input type="text" v-model="item.content" />
+      <input type="text" v-model="item.content" @blur="update" />
     </div>
     <div class="col">
       <input type="text" v-model="item.place" @blur="update" />
     </div>
-    <div class="col"><input type="text" v-model="item.companion" /></div>
+    <div class="col">
+      <input type="text" v-model="item.companion" @blur="update" />
+    </div>
     <div class="col pay">
       <select class="select_pass" v-model="item.method" @blur="update">
         <option>현금</option>
@@ -36,6 +38,7 @@
 </template>
 
 <script>
+import { updateList } from '@/api/userFeeList/userFeeList';
 export default {
   props: {
     item: {
@@ -49,7 +52,9 @@ export default {
       this.$emit('printSum', this.item);
     },
 
-    async update() {},
+    async update() {
+      await updateList(this.item);
+    },
   },
 };
 </script>
