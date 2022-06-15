@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <MenuTitle menuTitle="경비리스트 관리" />
     <div class="contents">
       <ExpenseListItem />

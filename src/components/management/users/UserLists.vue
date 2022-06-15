@@ -103,6 +103,7 @@ export default {
   .list {
     border-bottom: solid #eee 0.5px;
     padding: 10px 0;
+    background-color: #fff;
     &:hover {
       cursor: pointer;
       background-color: var(--color-smoke);

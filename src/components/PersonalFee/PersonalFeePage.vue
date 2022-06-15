@@ -1,41 +1,42 @@
 <template>
   <div class="container">
-    <MenuTitle menuTitle="🖱️개인별 경비계산서" />
-    <div class="subTitle">{{ dating }} 경비계산서</div>
-    <div class="lists">
-      <TableHeader />
-      <NewTable :item="item" v-for="item in data" :key="item.id" />
-    </div>
+    <div class="subTitle">🖱️ {{ date }}, {{ name }}님 경비계산서</div>
+    <ExpensePartNoAdd
+      v-for="expense in expenseList"
+      :key="expense.summCode"
+      :expense="expense"
+      :id="id"
+      :date="date"
+    />
   </div>
 </template>
 
 <script>
-import MenuTitle from '@/components/common/MenuTitleForm.vue';
-import NewTable from '@/components/user/NewTable.vue';
-import TableHeader from '@/components/user/TableHeader.vue';
+import EditableTable from '@/components/common/table/EditableTable.vue';
+import TableHeader from '@/components/common/table/TableHeader.vue';
+import ExpensePartNoAdd from './ExpensePartNoAdd.vue';
 import { fetchUserList } from '@/api/userFeeList/userFeeList';
+import { fetchExpense } from '@/api/expense/expense';
 export default {
   components: {
-    MenuTitle,
-    NewTable,
-    TableHeader,
+    ExpensePartNoAdd,
   },
   mounted() {
-    this.show();
+    this.fetchExpenseList();
   },
   data() {
     return {
       data: '',
+      id: this.$route.query.id,
       name: this.$route.query.name,
-      dating: this.$route.query.date,
+      date: this.$route.query.date,
+      expenseList: '',
     };
   },
   methods: {
-    async show() {
-      const id = this.$route.query.id;
-      const date = this.$route.query.date;
-      const res = await fetchUserList(id, date);
-      this.data = res.data.list;
+    async fetchExpenseList() {
+      const res = await fetchExpense();
+      this.expenseList = res.data.list;
     },
   },
 };

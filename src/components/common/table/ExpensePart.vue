@@ -20,7 +20,7 @@
     <div class="imdiv" v-if="state">
       <TableHeader />
       <div id="lists">
-        <NewTable
+        <EditableTable
           v-for="item in items"
           :key="item.id"
           @printSum="countSum"
@@ -43,50 +43,65 @@
 </template>
 
 <script>
-import NewTable from '@/components/user/NewTable.vue';
-import ImgUpload from '@/components/user/ImgUpload.vue';
-import TableHeader from '@/components/user/TableHeader.vue';
-import { createList, deleteList } from '@/api/userFeeList/userFeeList';
+import EditableTable from '@/components/common/table/EditableTable.vue';
+import ImgUpload from '@/components/common/table/ImgUpload.vue';
+import TableHeader from '@/components/common/table/TableHeader.vue';
+import {
+  createList,
+  deleteList,
+  fetchPartList,
+} from '@/api/userFeeList/userFeeList';
 import moment from 'moment';
 export default {
   props: {
     expense: {
       type: Object,
     },
-    existLists: {
-      type: Array,
-    },
     accountId: {
+      type: String,
+    },
+    date: {
       type: String,
     },
   },
   watch: {
-    existLists() {
-      this.savePartList();
-    },
     items() {
       this.countList();
-      this.state = true;
+    },
+    date() {
+      this.state = false;
+      this.sum = 0;
+      this.fetchPartList();
     },
   },
-  components: { NewTable, TableHeader },
+  mounted() {
+    this.fetchPartList();
+  },
+  components: { EditableTable, TableHeader },
   data() {
     return {
       items: [],
       file_name: '영수증을 업로드하세요',
       sum: 0,
-      remain: 50000, //보류
       state: false,
       count: 0,
     };
   },
   methods: {
+    async fetchPartList() {
+      const res = await fetchPartList(
+        this.accountId,
+        this.date,
+        this.expense.summCode,
+      );
+      this.items = res.data.list;
+    },
     async addRow() {
       const obj = {
         part: this.expense.summCode,
         id: 0,
         accountId: this.accountId,
-        date: moment(new Date()).format('YYYY-MM-DD'),
+        date: this.$props.date + '-01',
         content: '',
         price: '',
         companion: '',
@@ -95,20 +110,22 @@ export default {
         place: '',
         state: 0,
       };
+      console.log(obj);
       const res = await createList(obj);
-      console.log(res.data);
       this.items.push(res.data.data);
       this.countList();
       this.state = true;
     },
     countSum() {
-      let sum = 0;
-      this.items.forEach(el => {
-        if (el.price == '') {
-          sum += 0;
-        } else sum += parseInt(el['price']);
-      });
-      this.sum = sum;
+      if (this.items) {
+        let sum = 0;
+        this.items.forEach(el => {
+          if (el.price == '') {
+            sum += 0;
+          } else sum += parseInt(el['price']);
+        });
+        this.sum = sum;
+      }
     },
     async deleteRow() {
       const popItem = this.items.pop();
@@ -118,19 +135,14 @@ export default {
     },
 
     countList() {
-      this.count = this.items.length;
-      this.countSum();
+      if (this.items) {
+        this.count = this.items.length;
+        this.state = true;
+        this.countSum();
+      } else this.count = 0;
     },
     changeState() {
       this.state = this.state ? false : true;
-    },
-
-    savePartList() {
-      this.existLists.forEach(list => {
-        if (list.part === this.expense.summCode) {
-          this.items.push(list);
-        }
-      });
     },
   },
 };
