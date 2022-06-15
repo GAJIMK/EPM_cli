@@ -13,7 +13,6 @@
       :expense="expense"
       :existLists="existLists"
       :accountId="accountId"
-      @receiveData="receiveData"
     />
   </div>
 </template>
@@ -43,8 +42,7 @@ export default {
   },
   mounted() {
     this.title();
-    this.fetchExpenseList();
-    this.fetchUserExpenseList();
+    this.fetchExpenseList().then(() => this.fetchUserExpenseList());
   },
   methods: {
     async fetchExpenseList() {
