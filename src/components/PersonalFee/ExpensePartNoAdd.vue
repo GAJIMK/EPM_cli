@@ -95,7 +95,6 @@ export default {
     },
     countList() {
       this.count = this.items ? this.items.length : 0;
-      this.count = this.items.length;
       this.countSum();
     },
     changeState() {
