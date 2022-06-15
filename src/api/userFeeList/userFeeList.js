@@ -3,6 +3,11 @@ import { userFeeList } from '@/api/index';
 function fetchUserList(userId, date) {
   return userFeeList.get(`/findByAccountId?accountId=${userId}&date=${date}`);
 }
+function fetchPartList(userId, date, part) {
+  return userFeeList.get(
+    `/findByPartId?accountId=${userId}&date=${date}&part=${part}`,
+  );
+}
 
 function fetchUserAllList(userId) {
   return userFeeList.get(`/findAll?accountId=${userId}`);
@@ -19,4 +24,11 @@ function updateList(data) {
 function deleteList(id) {
   return userFeeList.delete(`/${id}`);
 }
-export { fetchUserList, fetchUserAllList, createList, updateList, deleteList };
+export {
+  fetchUserList,
+  fetchPartList,
+  fetchUserAllList,
+  createList,
+  updateList,
+  deleteList,
+};
