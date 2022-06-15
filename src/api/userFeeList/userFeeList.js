@@ -8,4 +8,15 @@ function fetchUserAllList(userId) {
   return userFeeList.get(`/findAll?accountId=${userId}`);
 }
 
-export { fetchUserList, fetchUserAllList };
+function createList(data) {
+  return userFeeList.put(`/`, data);
+}
+
+function updateList(data) {
+  return userFeeList.post('/', data);
+}
+
+function deleteList(id) {
+  return userFeeList.delete(`/${id}`);
+}
+export { fetchUserList, fetchUserAllList, createList, updateList, deleteList };

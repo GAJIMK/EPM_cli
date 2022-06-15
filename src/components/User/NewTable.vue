@@ -8,18 +8,40 @@
         class="date"
         v-model="item.date"
         @blur="update"
+        @keyup.enter="update"
       />
     </div>
     <div class="col">
-      <input type="text" v-model="item.content" />
+      <input
+        type="text"
+        v-model="item.content"
+        @blur="update"
+        @keyup.enter="update"
+      />
     </div>
     <div class="col">
-      <input type="text" v-model="item.place" @blur="update" />
+      <input
+        type="text"
+        v-model="item.place"
+        @blur="update"
+        @keyup.enter="update"
+      />
     </div>
-    <div class="col"><input type="text" v-model="item.companion" /></div>
+    <div class="col">
+      <input
+        type="text"
+        v-model="item.companion"
+        @blur="update"
+        @keyup.enter="update"
+      />
+    </div>
     <div class="col pay">
-      <p v-if="item.method">{{ item.method }}</p>
-      <select v-else class="select_pass" @blur="update">
+      <select
+        class="select_pass"
+        v-model="item.method"
+        @blur="update"
+        @keyup.enter="update"
+      >
         <option>현금</option>
         <option>개인카드</option>
       </select>
@@ -29,41 +51,27 @@
         type="text"
         class="mm"
         v-model="item.price"
-        @keyup.enter="sendList"
         @blur="update"
+        @keyup.enter="update"
       />
     </div>
   </div>
 </template>
 
 <script>
+import { updateList } from '@/api/userFeeList/userFeeList';
 export default {
   props: {
     item: {
       type: Object,
     },
   },
-  data() {
-    return {
-      sum: 0,
-      nums: [],
-    };
-  },
-  mounted() {
-    this.fetchProps();
-  },
-  methods: {
-    sendList() {
-      this.$emit('printSum', this.list);
-    },
-    fetchProps() {
-      if (this.item !== undefined) {
-        const col = ['date', 'content', 'price', 'companion', 'method'];
 
-        col.forEach(e => (this.list[e] = this.item[e]));
-      }
+  mounted() {},
+  methods: {
+    async update() {
+      await updateList(this.item);
     },
-    async update() {},
   },
 };
 </script>

@@ -2,16 +2,17 @@
   <div class="part">
     <div class="row">
       <font-awesome-icon
-        icon="fa-solid fa-angle-up"
+        icon="fa-solid fa-angle-down"
         v-if="state"
         @click="changeState"
       />
       <font-awesome-icon
-        icon="fa-solid fa-angle-down"
+        icon="fa-solid fa-angle-up"
         v-else
         @click="changeState"
       />
-      <div class="mytitle">{{ expense.summCodeName }}</div>
+      <div class="partCount radiusBtn">{{ count }}</div>
+      <div class="partTitle">{{ expense.summCodeName }}</div>
       <button class="plusRow radiusBtn " @click="addRow">+</button>
       <button class="delRow radiusBtn" @click="deleteRow()">-</button>
     </div>
@@ -31,11 +32,11 @@
       </div>
 
       <div class="fluid-container" id="billimg">
-        <ImgUpload
+        <!-- <ImgUpload
           class="item"
           v-for="item in items"
           :key="item.id"
-        ></ImgUpload>
+        ></ImgUpload> -->
       </div>
     </div>
   </div>
@@ -45,57 +46,93 @@
 import NewTable from '@/components/user/NewTable.vue';
 import ImgUpload from '@/components/user/ImgUpload.vue';
 import TableHeader from '@/components/user/TableHeader.vue';
+import { createList, deleteList } from '@/api/userFeeList/userFeeList';
+import moment from 'moment';
 export default {
   props: {
     expense: {
       type: Object,
     },
+    existLists: {
+      type: Array,
+    },
+    accountId: {
+      type: String,
+    },
   },
-  components: { NewTable, ImgUpload, TableHeader },
+  watch: {
+    existLists() {
+      this.savePartList();
+    },
+    items() {
+      this.countList();
+      this.state = true;
+    },
+  },
+  components: { NewTable, TableHeader },
   data() {
     return {
       items: [],
       file_name: '영수증을 업로드하세요',
       sum: 0,
       remain: 50000, //보류
-      id: 0,
       state: false,
+      count: 0,
+
     };
   },
   methods: {
-    addRow() {
+    async addRow() {
       const obj = {
-        id: this.id,
-        date: '',
+        part: this.expense.summCode,
+        id: 0,
+        accountId: this.accountId,
+        date: moment(new Date()).format('YYYY-MM-DD'),
         content: '',
         price: '',
         companion: '',
-        method: '',
+        method: '개인카드',
         path: '',
+        place: '',
+        state: 0,
       };
-      this.items.push(obj);
-      this.imgs.push(obj);
-      this.id = this.id + 1;
+      const res = await createList(obj);
+      console.log(res.data);
+      this.items.push(res.data.data);
+      this.countList();
+      this.state = true;
     },
     countSum() {
       let sum = 0;
       this.items.forEach(el => {
-        sum += parseInt(el['price']);
+        if (el.price == '') {
+          sum += 0;
+        } else sum += parseInt(el['price']);
       });
       this.sum = sum;
-      this.remain = 50000 - sum;
-      this.addRow();
     },
-    deleteRow() {
-      this.items.pop();
+    async deleteRow() {
+      const popItem = this.items.pop();
+      await deleteList(popItem.id);
+      this.state = true;
+      this.countList();
+    },
+
+    countList() {
+      this.count = this.items.length;
+      this.countSum();
     },
     changeState() {
-      if (this.state === true) this.state = false;
-      else this.state = true;
+      this.state = this.state ? false : true;
     },
-  },
-  handleFileChange(e) {
-    this.file_name = e.target.files[0].name;
+
+    savePartList() {
+      this.existLists.forEach(list => {
+        if (list.part === this.expense.summCode) {
+          this.items.push(list);
+        }
+      });
+    },
   },
 };
 </script>
@@ -107,7 +144,7 @@ export default {
 .part {
   padding: 20px 0;
 }
-.mytitle {
+.partTitle {
   font-family: 'Dongle', sans-serif;
   font-family: 'Jua', sans-serif;
   font-size: 25px;
@@ -119,12 +156,14 @@ export default {
   outline: 0;
   width: 30px;
   height: 30px;
-  background-color: #ffc107;
   color: black;
   margin: 0.5%;
   border-radius: 50%;
   display: inline;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .radiusBtn:active {
   border: 0;
@@ -135,6 +174,10 @@ export default {
   color: black;
   margin: 0.5%;
   border-radius: 50%;
+}
+
+.partCount {
+  background-color: var(--color-yellow);
 }
 .form-group {
   padding: 0.2%;
@@ -160,7 +203,7 @@ export default {
   font-family: 'Jua', sans-serif;
   font-family: 'Jua', sans-serif;
   padding: 0.9%;
-  width: 300px;
+  width: 200px;
   float: right;
 }
 </style>
