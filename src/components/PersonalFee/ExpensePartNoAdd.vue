@@ -65,12 +65,8 @@ export default {
     this.fetchPartList();
   },
   watch: {
-    existLists() {
-      this.savePartList();
-    },
     items() {
       this.countList();
-      this.state = true;
     },
   },
   components: { FixedTable, TableHeader },
@@ -85,17 +81,22 @@ export default {
   },
   methods: {
     countSum() {
-      let sum = 0;
-      this.items.forEach(el => {
-        if (el.price == '') {
-          sum += 0;
-        } else sum += parseInt(el['price']);
-      });
-      this.sum = sum;
+      if (this.items) {
+        let sum = 0;
+        this.items.forEach(el => {
+          if (el.price == '') {
+            sum += 0;
+          } else sum += parseInt(el['price']);
+        });
+        this.sum = sum;
+      }
     },
     countList() {
-      this.count = this.items ? this.items.length : 0;
-      this.countSum();
+      if (this.items) {
+        this.count = this.items.length;
+        this.state = true;
+        this.countSum();
+      } else this.count = 0;
     },
     changeState() {
       this.state = this.state ? false : true;
