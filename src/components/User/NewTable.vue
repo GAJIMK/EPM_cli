@@ -8,19 +8,40 @@
         class="date"
         v-model="item.date"
         @blur="update"
+        @keyup.enter="update"
       />
     </div>
     <div class="col">
-      <input type="text" v-model="item.content" @blur="update" />
+      <input
+        type="text"
+        v-model="item.content"
+        @blur="update"
+        @keyup.enter="update"
+      />
     </div>
     <div class="col">
-      <input type="text" v-model="item.place" @blur="update" />
+      <input
+        type="text"
+        v-model="item.place"
+        @blur="update"
+        @keyup.enter="update"
+      />
     </div>
     <div class="col">
-      <input type="text" v-model="item.companion" @blur="update" />
+      <input
+        type="text"
+        v-model="item.companion"
+        @blur="update"
+        @keyup.enter="update"
+      />
     </div>
     <div class="col pay">
-      <select class="select_pass" v-model="item.method" @blur="update">
+      <select
+        class="select_pass"
+        v-model="item.method"
+        @blur="update"
+        @keyup.enter="update"
+      >
         <option>현금</option>
         <option>개인카드</option>
       </select>
@@ -30,8 +51,8 @@
         type="text"
         class="mm"
         v-model="item.price"
-        @keyup.enter="sendList"
         @blur="update"
+        @keyup.enter="update"
       />
     </div>
   </div>
@@ -48,10 +69,6 @@ export default {
 
   mounted() {},
   methods: {
-    sendList() {
-      this.$emit('printSum', this.item);
-    },
-
     async update() {
       await updateList(this.item);
     },

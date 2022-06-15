@@ -95,8 +95,9 @@ export default {
         place: '',
         state: 0,
       };
-      await createList(obj);
-      this.items.push(obj);
+      const res = await createList(obj);
+      console.log(res.data);
+      this.items.push(res.data.data);
       this.countList();
       this.state = true;
     },
