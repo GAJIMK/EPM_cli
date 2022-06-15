@@ -78,6 +78,7 @@ export default {
       remain: 50000, //보류
       state: false,
       count: 0,
+
     };
   },
   methods: {
