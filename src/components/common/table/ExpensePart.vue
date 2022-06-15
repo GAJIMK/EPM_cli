@@ -20,7 +20,7 @@
     <div class="imdiv" v-if="state">
       <TableHeader />
       <div id="lists">
-        <NewTable
+        <EditableTable
           v-for="item in items"
           :key="item.id"
           @printSum="countSum"
@@ -43,9 +43,9 @@
 </template>
 
 <script>
-import NewTable from '@/components/user/NewTable.vue';
-import ImgUpload from '@/components/user/ImgUpload.vue';
-import TableHeader from '@/components/user/TableHeader.vue';
+import EditableTable from '@/components/common/table/EditableTable.vue';
+import ImgUpload from '@/components/common/table/ImgUpload.vue';
+import TableHeader from '@/components/common/table/TableHeader.vue';
 import { createList, deleteList } from '@/api/userFeeList/userFeeList';
 import moment from 'moment';
 export default {
@@ -69,7 +69,7 @@ export default {
       this.state = true;
     },
   },
-  components: { NewTable, TableHeader },
+  components: { EditableTable, TableHeader },
   data() {
     return {
       items: [],

@@ -4,20 +4,20 @@
     <div class="subTitle">{{ dating }} 경비계산서</div>
     <div class="lists">
       <TableHeader />
-      <NewTable :item="item" v-for="item in data" :key="item.id" />
+      <EditableTable :item="item" v-for="item in data" :key="item.id" />
     </div>
   </div>
 </template>
 
 <script>
 import MenuTitle from '@/components/common/MenuTitleForm.vue';
-import NewTable from '@/components/user/NewTable.vue';
-import TableHeader from '@/components/user/TableHeader.vue';
+import EditableTable from '@/components/common/table/EditableTable.vue';
+import TableHeader from '@/components/common/table/TableHeader.vue';
 import { fetchUserList } from '@/api/userFeeList/userFeeList';
 export default {
   components: {
     MenuTitle,
-    NewTable,
+    EditableTable,
     TableHeader,
   },
   mounted() {

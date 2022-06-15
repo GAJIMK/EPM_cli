@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-import ExpensePart from '@/components/user/ExpensePart.vue';
+import ExpensePart from '@/components/common/table/ExpensePart.vue';
 import { fetchExpense } from '@/api/expense/expense';
 import {
   createList,
