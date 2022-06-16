@@ -18,7 +18,7 @@
       v-model="boardcontent.content"
     ></b-textarea>
     <b-button class="BtnStyle" @click="putData()">확인</b-button>
-    <b-button class="BtnStyle">취소</b-button>
+    <b-button class="BtnStyle" @click="goback()">취소</b-button>
   </div>
 </template>
 
@@ -36,16 +36,8 @@ export default {
       },
     };
   },
-  // created() {
-  //   this.init();
-  // },
-  methods: {
-    // init() {
-    //   //this.boardcontent.id += this.boardcontent.id + 1;
-    //   this.boardcontent.date = moment('YYYY-MM-DD HH:mm:ss');
-    //   console.log(this.boardcontent.date);
-    // },
 
+  methods: {
     async putData() {
       try {
         await putBoardList(this.boardcontent).then(() => {
@@ -56,6 +48,9 @@ export default {
         this.errorMsg = getErrorResponseData(error);
         console.log('에러');
       }
+    },
+    goback() {
+      window.history.go(-1);
     },
   },
 };
