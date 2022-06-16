@@ -22,8 +22,11 @@
       v-model="this.content"
     ></b-textarea>
     <div class="footer">
-      <b-button class="BtnStyle" @click="goback()">목록</b-button>
-      <font-awesome-icon icon="fa-solid fa-thumbs-up" />
+      <div>{{ thumbs }}</div>
+      <div class="icon-container yellowBtn">
+        <font-awesome-icon icon="fa-solid fa-thumbs-up" class="icon" />
+      </div>
+      <b-button class="yellowBtn" @click="goback()">목록</b-button>
     </div>
   </div>
 </template>
@@ -39,6 +42,7 @@ export default {
       title: '',
       content: '',
       date: '',
+      thumbs: 2,
     };
   },
   mounted() {
@@ -58,7 +62,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '@/scss/main.scss';
+
 .container {
   display: flex;
   flex-direction: column;
@@ -67,6 +73,35 @@ export default {
 .content:disabled {
   background-color: aliceblue;
 }
+.icon-container {
+  width: 3.5em;
+  height: 3.5em;
+  border-radius: 50%;
+  background-color: var(--color-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    -webkit-box-shadow: 0px 0px 14px 2px rgba(255, 200, 87, 0.26);
+    box-shadow: 0px 0px 14px 2px rgba(255, 200, 87, 0.26);
+    transform: scale(1.02);
+    border: 3px solid var(--color-yellow);
+    .icon {
+      color: #fdc000;
+    }
+  }
+  .icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #fff;
+    font-size: 10px;
+  }
+}
 .footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5%;
 }
 </style>

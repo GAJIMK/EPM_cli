@@ -26,6 +26,30 @@ $theme-colors: (
   'light': $light,
 );
 
+.page-link {
+  position: relative;
+  display: block;
+  padding: .5rem .75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: white !important;
+  background-color: #fdc000 !important;
+  border: 1px solid white !important;
+}
+.page-link:hover {
+      z-index: 2;
+      color: #fff !important;
+      text-decoration: none;
+      background-color: #fdc000 !important;
+      border-color: #dee2e6;
+}
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #ffe9a2 !important;
+  border-color: #fdc000;
+}
+
 body {
   -ms-overflow-style: none;
 }
