@@ -26,10 +26,12 @@ $theme-colors: (
   'light': $light,
 );
 
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
 .page-link {
   position: relative;
   display: block;
-  padding: .5rem .75rem;
+  padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
   color: white !important;
@@ -37,11 +39,11 @@ $theme-colors: (
   border: 1px solid white !important;
 }
 .page-link:hover {
-      z-index: 2;
-      color: #fff !important;
-      text-decoration: none;
-      background-color: #fdc000 !important;
-      border-color: #dee2e6;
+  z-index: 2;
+  color: #fff !important;
+  text-decoration: none;
+  background-color: #fdc000 !important;
+  border-color: #dee2e6;
 }
 .page-item.active .page-link {
   z-index: 3;
@@ -70,14 +72,23 @@ body {
   color: rgb(115, 159, 224);
 }
 
-input[type='text'],
 input[type='date'] {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 600;
   border: 0px;
   background: transparent;
   padding: 0 0;
   &:focus {
     outline: none;
   }
+}
+
+input[type='text'] {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+* {
+  font-family: 'Nanum Gothic', sans-serif;
 }
 .inline-btn {
   display: inline-block;

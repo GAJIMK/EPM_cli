@@ -1,64 +1,111 @@
 <template>
   <div class="container">
-    <div class="box">
-      <div class="headercolor"></div>
-      <h2 class="name" @click="goHome()">💸Expense System💸</h2>
-
-      <b-row
-        ><b-input type="email" class="email" placeholder="인트라넷 아이디"
-      /></b-row>
-      <b-row
-        ><b-input type="password" class="password" placeholder="비밀번호"
-      /></b-row>
-
-      <b-button class="loginBtn">로그인</b-button>
+    <h3 class="logo" @click="goHome()">로그인하기</h3>
+    <div class="inputForm">
+      <label>아이디</label>
+      <input
+        type="text"
+        class="loginInput"
+        placeholder="인트라넷 아이디를 입력하세요"
+        v-model="id"
+      />
     </div>
+    <div class="inputForm">
+      <label>비밀번호</label>
+      <input
+        type="password"
+        class="loginInput"
+        placeholder="비밀번호를 입력하세요"
+        v-model="pw"
+      />
+    </div>
+
+    <button class="loginBtn disabled loginInput">로그인</button>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      id: '',
+      pw: '',
+    };
+  },
+  watch: {
+    id() {
+      this.checkInput();
+    },
+    pw() {
+      this.checkInput();
+    },
+  },
   methods: {
     goHome() {
       this.$router.push({ name: 'home' });
+    },
+    checkInput() {
+      const btn = document.querySelector('.loginBtn');
+      if (this.id != '' && this.pw != '') {
+        btn.classList.remove('disabled');
+      } else {
+        btn.classList.add('disabled');
+      }
     },
   },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '@/scss/main.scss';
 @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
-.box {
+.container {
+  width: 20em;
+  height: 60vh;
   display: flex;
+  align-items: center;
   flex-direction: column;
-  justify-content: space-evenly;
+  margin-top: 3em;
 }
 
-.email,
-.password {
-  font-size: 20px;
-  border-radius: 0.3rem;
-  opacity: 0.5;
-  width: 400px;
-  margin: 2% auto;
+.logo {
+  font-family: 'Dongle', sans-serif;
+  font-family: 'Dongle', sans-serif;
+  font-size: 2.5em;
 }
-.password {
-  margin-top: -1px;
+
+label {
+  display: block;
+  font-size: 0.7em;
+  margin-left: 10px;
+  margin-bottom: 0px;
 }
-.email:focus,
-.password:focus {
-  outline: 2px solid var(--color-yellow);
-  border: var(--color-yellow);
+
+.loginInput {
+  border-radius: 30px;
+  width: 330px;
+  height: 44px;
+  padding: 0px 20px;
+  border: 1px solid #ddd;
+  -webkit-box-shadow: 0px 0px 2px 5px rgba(221, 221, 221, 0.18);
+  box-shadow: 0px 0px 2px 5px rgba(221, 221, 221, 0.18);
+  font-size: 13px;
+  &:focus {
+    outline: 0;
+    box-shadow: 0px 0px 2px 5px rgba(255, 199, 95, 0.12);
+  }
+}
+
+.inputForm {
+  margin-bottom: 0.5em;
 }
 .loginBtn {
-  border: 0;
-  outline: 0;
-  border-radius: 10%;
-  background-color: #fff7b8;
-  width: 100px;
-  margin: auto;
+  background-color: #ffc75f;
+  font-weight: 600;
+  margin-top: 10px;
 }
-.loginBtn:hover {
-  background-color: rgb(255, 204, 161);
+.loginBtn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 </style>

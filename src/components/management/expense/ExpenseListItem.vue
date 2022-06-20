@@ -71,4 +71,8 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/scss/main.scss';
+input[type='text'] {
+  border: 0px;
+  background: transparent;
+}
 </style>
