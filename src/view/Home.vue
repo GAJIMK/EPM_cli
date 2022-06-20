@@ -2,8 +2,12 @@
   <div class="container">
     <Menu />
     <div class="adds">
-      <Memo />
-      <Lunch />
+      <div class="menu1">
+        <Memo />
+      </div>
+      <div class="menu2">
+        <Lunch />
+      </div>
     </div>
   </div>
 </template>
@@ -26,12 +30,14 @@ export default {
   margin-top: 1rem;
 
   :nth-child(1) {
-    margin-right: 1rem;
     flex-grow: 1;
   }
   :nth-child(2) {
     flex-grow: 0.8;
   }
+}
+.menu1 {
+  margin-right: 10px;
 }
 
 @media screen and(max-width: 768px) {

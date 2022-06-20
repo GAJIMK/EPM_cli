@@ -100,6 +100,7 @@ export default {
   border-radius: 1rem;
   margin-top: 10px;
   padding-top: 20px;
+  font-size: 0.9em;
 }
 .allUsersMenu {
   display: flex;

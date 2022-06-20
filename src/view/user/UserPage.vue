@@ -1,82 +1,59 @@
 <template>
   <div class="container">
+    {{ userId }}님, 달별 경비 내역서
     <ul class="list-group">
+      <div v-if="err">조회할 내용이 없습니다!</div>
       <li
         class="list-group-item"
-        v-for="(mylist, index) in mylists"
+        v-for="(list, index) in data"
         v-bind:key="index"
-        @click="goreport(index)"
+        @click="handlePersonal(list)"
       >
-        {{ mylist }} 경비 내역서
+        <div>{{ list.date }}</div>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import {
-  fetchUserList,
-  fetchUserAllList,
-} from '@/api/userFeeList/userFeeList.js';
+import { fetchUserMonthState } from '@/api/userFeeState/userFeeState.js';
 import moment from 'moment';
 
 export default {
   data() {
     return {
-      mylists: [],
+      data: [],
       userId: 'jihye.son',
       date: moment(new Date()).format('YYYY-MM'),
       newdate: [],
       llist: [],
       len: '',
+      err: false,
     };
   },
 
   mounted() {
-    this.fetchAllData();
+    this.initData();
   },
   methods: {
-    async fetchAllData() {
-      const res = await fetchUserAllList(this.userId);
-
-      if (res.data.code === -50) {
-        // 조회할 내역이 없을 떄
-        console.log('내용이 없습니다. ');
-      } else {
-        this.len = res.data.list.length;
-        this.initData();
-      }
-    },
-
     async initData() {
-      const res = await fetchUserList(this.userId, this.date);
+      const res = await fetchUserMonthState(this.userId);
 
       if (res.data.code === -50) {
-        // 조회할 내역이 없을 떄
+        this.err = true;
       } else {
-      }
-
-      for (var i = 0; i < this.len; i++) {
-        this.newdate = moment(this.date)
-          .subtract(i, 'M')
-          .format('YYYY-MM');
-        const res = await fetchUserList(this.userId, this.newdate);
-
-        if (res.data.code === -50) {
-          // 조회할 내역이 없을 떄
-        } else {
-          this.mylists.push(this.newdate);
-        }
+        this.data = res.data.list;
       }
     },
-    goreport(index) {
-      const a = this.userId;
-      const b = this.mylists[index];
 
-      this.$router.push({
-        name: 'userPersonal',
-        query: { userId: a, date: b },
-      });
+    handlePersonal(data) {
+      const date = data.date.substring(0, 7);
+      this.$router
+        .push({
+          name: 'userPersonal',
+          query: { id: data.accountId, name: name, date: date },
+        })
+        .catch(() => {});
     },
   },
 };
