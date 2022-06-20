@@ -24,10 +24,6 @@ export default {
     return {
       data: [],
       userId: 'jihye.son',
-      date: moment(new Date()).format('YYYY-MM'),
-      newdate: [],
-      llist: [],
-      len: '',
       err: false,
     };
   },

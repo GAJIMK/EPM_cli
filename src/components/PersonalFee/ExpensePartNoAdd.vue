@@ -45,7 +45,6 @@ import FixedTable from '@/components/common/table/FixedTable.vue';
 import ImgUpload from '@/components/common/table/ImgUpload.vue';
 import TableHeader from '@/components/common/table/TableHeader.vue';
 import { fetchPartList } from '@/api/userFeeList/userFeeList';
-import moment from 'moment';
 export default {
   props: {
     expense: {
@@ -102,7 +101,6 @@ export default {
       this.state = this.state ? false : true;
     },
     async fetchPartList() {
-      console.log(this.date);
       const res = await fetchPartList(
         this.id,
         this.date,
