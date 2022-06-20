@@ -80,6 +80,12 @@ export default {
 input[type='text'],
 input[type='date'] {
   text-align: center;
+  border: 0px;
+  background: transparent;
+  padding: 0 0;
+  &:focus {
+    outline: none;
+  }
 }
 p {
   margin: 0 0;
