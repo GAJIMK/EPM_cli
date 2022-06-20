@@ -1,6 +1,6 @@
 <template>
   <div class="menu-container">
-    <div class="title">오늘 점심 뭐먹지 🤔?</div>
+    <div class="menu-title">오늘 점심 뭐먹지 🤔?</div>
     <div class="contents">
       <div class="display">
         <div
@@ -52,27 +52,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title {
-  width: 100%;
-  margin-top: 20px;
-  font-size: 1.3em;
-  font-weight: 600;
-  color: #444;
-  margin-right: 0;
-}
-
-.contents {
-  margin-top: 20px;
+.menu-container {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
   align-items: center;
-  padding-bottom: 1em;
-  .display {
-    height: 3em;
-    .picked {
-      font-size: 1.1em;
-      margin: 0 0;
+  .title {
+    margin-top: 20px;
+    font-weight: 600;
+    color: #444;
+  }
+
+  .contents {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 1em;
+    .display {
+      height: 3em;
+      .picked {
+        font-size: 1.1em;
+        margin: 0 0;
+      }
     }
   }
 }

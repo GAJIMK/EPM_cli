@@ -1,14 +1,6 @@
 <template>
   <div class="menu-container" @click="goBoard()">
-    <div class="alarm">
-      <ul>
-        <li class="board-name">📰다트 익명 게시판✏️</li>
-
-        <li>가정님은 넘 귀염둥이입니다</li>
-        <li>지혜 생축</li>
-        <li>차차 꾸며나가보자,,!</li>
-      </ul>
-    </div>
+    <div class="menu-title">📰다트 익명 게시판✏️</div>
   </div>
 </template>
 
@@ -22,15 +14,16 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Ubuntu:ital,wght@1,300&display=swap');
 .menu-container {
   cursor: pointer;
+  height: 184px;
 }
-.board-name {
+.menu-title {
   font-family: 'Dongle', sans-serif;
   font-family: 'Dongle', sans-serif;
-  font-size: 30px;
-  padding: 1%;
+  font-size: 1.5em;
+  padding: 8px 0px;
 }
 </style>
