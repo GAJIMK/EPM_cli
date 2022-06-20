@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import EditableTable from '@/components/common/table/EditableTable.vue';
-import TableHeader from '@/components/common/table/TableHeader.vue';
 import ExpensePartNoAdd from './ExpensePartNoAdd.vue';
 import { fetchUserList } from '@/api/userFeeList/userFeeList';
 import { fetchExpense } from '@/api/expense/expense';

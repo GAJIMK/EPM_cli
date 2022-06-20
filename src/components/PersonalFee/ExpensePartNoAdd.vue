@@ -102,6 +102,7 @@ export default {
       this.state = this.state ? false : true;
     },
     async fetchPartList() {
+      console.log(this.date);
       const res = await fetchPartList(
         this.id,
         this.date,

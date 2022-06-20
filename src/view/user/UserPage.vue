@@ -7,7 +7,7 @@
         class="list-group-item"
         v-for="(list, index) in data"
         v-bind:key="index"
-        @click="handlePersonal(user.accountId, user.accountNm)"
+        @click="handlePersonal(list)"
       >
         <div>{{ list.date }}</div>
       </li>
@@ -46,14 +46,14 @@ export default {
       }
     },
 
-    handlePersonal(e) {
-      console.log(e);
-      // this.$router
-      //   .push({
-      //     name: 'userPersonal',
-      //     query: { id: a, name: name, date: this.propDate },
-      //   })
-      //   .catch(() => {});
+    handlePersonal(data) {
+      const date = data.date.substring(0, 7);
+      this.$router
+        .push({
+          name: 'userPersonal',
+          query: { id: data.accountId, name: name, date: date },
+        })
+        .catch(() => {});
     },
   },
 };
