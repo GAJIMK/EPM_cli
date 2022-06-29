@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
   methods: {
     handleWrite() {
@@ -87,7 +88,10 @@ export default {
       this.$router.push({ name: 'expenseList' });
     },
     handleUsersList() {
-      this.$router.push({ name: 'usersExpense' });
+      this.$router.push({
+        name: 'usersExpense',
+        params: { date: moment(new Date()).format('YYYY-MM') },
+      });
     },
   },
 };

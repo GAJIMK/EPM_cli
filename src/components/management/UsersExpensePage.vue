@@ -46,6 +46,10 @@ export default {
         this.month = moment(String(minus)).format('MM');
       }
       this.date = this.year + '-' + this.month;
+      this.$router.push({
+        name: 'usersExpense',
+        params: { date: this.date },
+      });
     },
     increase() {
       if (
@@ -61,11 +65,15 @@ export default {
         this.month = moment(String(plus)).format('MM');
       }
       this.date = this.year + '-' + this.month;
+      this.$router.push({
+        name: 'usersExpense',
+        params: { date: this.date },
+      });
     },
     getDate() {
-      this.year = moment().format('YYYY');
-      this.month = moment().format('MM');
-      this.date = this.year + '-' + this.month;
+      this.date = this.$route.params.date;
+      this.year = this.date.slice(0, 4);
+      this.month = this.date.slice((0, 5));
     },
   },
 };

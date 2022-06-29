@@ -70,7 +70,7 @@ export default {
   mounted() {},
   methods: {
     async update() {
-      await updateList(this.item);
+      await updateList(this.item).then(() => this.$emit('printSum'));
     },
   },
 };

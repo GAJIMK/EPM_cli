@@ -84,7 +84,7 @@ export default new Router({
     // },
 
     {
-      path: '/users-expense',
+      path: '/users-expense/:date',
       name: 'usersExpense',
       component: () => import('@/components/management/UsersExpensePage'),
     },

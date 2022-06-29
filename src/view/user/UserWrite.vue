@@ -21,6 +21,7 @@
 import MenuTitle from '@/components/common/MenuTitleForm.vue';
 import ExpensePart from '@/components/common/table/ExpensePart.vue';
 import { fetchExpense } from '@/api/expense/expense';
+import { createUserFeeState } from '@/api/userFeeState/userFeeState';
 
 import moment from 'moment';
 
@@ -30,7 +31,7 @@ export default {
   data() {
     return {
       expenseList: '',
-      accountId: 'gajung.kim',
+      accountId: 'chaehyun.kim',
       date: moment(new Date()).format('YYYY-MM'),
     };
   },
@@ -49,8 +50,12 @@ export default {
       this.expenseList = res.data.list;
     },
 
-    submit() {
-      //this.$refs.requestData.pushData();
+    async submit() {
+      const data = {
+        accountId: this.accountId,
+        date: this.date + '-01',
+      };
+      await createUserFeeState(data);
     },
 
     //영수증 파일 업로드 하는 메소드

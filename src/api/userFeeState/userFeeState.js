@@ -10,4 +10,7 @@ function fetchUserMonthState(accountId) {
   return userFeeState.get(`/findAllByUser?accountId=${accountId}`);
 }
 
-export { fetchUsersByMonth, fetchUserMonthState };
+function createUserFeeState(data) {
+  return userFeeState.put('/', data);
+}
+export { fetchUsersByMonth, fetchUserMonthState, createUserFeeState };
