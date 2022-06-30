@@ -64,5 +64,17 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "description": "## Project setup ``` npm install ```",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GAJIMK/GAJI-client.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GAJIMK/GAJI-client/issues"
+  },
+  "homepage": "https://github.com/GAJIMK/GAJI-client#readme"
 }
