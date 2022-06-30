@@ -26,6 +26,8 @@ export const userFeeState = createInstanceWithAuth('userFeeState');
 
 export const board = createInstanceWithAuth('board'); //게시판 api
 
+export const thumbs = createInstanceWithAuth('thumbs'); //게시판 api
+
 //export const [API_Name] = createInstanceWithAuth([API]);
 
 // CREATE - project

@@ -24,7 +24,11 @@
     <div class="footer">
       <div>{{ thumbs }}</div>
       <div class="icon-container yellowBtn">
-        <font-awesome-icon icon="fa-solid fa-thumbs-up" class="icon" />
+        <font-awesome-icon
+          icon="fa-solid fa-thumbs-up"
+          class="icon"
+          @click="putData()"
+        />
       </div>
       <b-button class="yellowBtn" @click="goback()">목록</b-button>
     </div>
@@ -33,20 +37,27 @@
 
 <script>
 import { fetchBoard } from '@/api/board/board';
-//import internal from 'stream';
+import { putThumbs, fetchThumbsCnt } from '@/api/Thumbs/thumbs.js';
 
 export default {
+  components: {},
   data() {
     return {
-      id: '',
+      thumbsContent: {
+        id: this.$route.query.id,
+        accountId: 'jihye.son',
+        //로그인 기능 되면 로그인 아이디가 들어갈 예정
+      },
+
       title: '',
       content: '',
       date: '',
-      thumbs: 2,
+      thumbs: '',
     };
   },
   mounted() {
     this.loadData();
+    this.loadThumbs();
   },
   methods: {
     async loadData() {
@@ -57,6 +68,20 @@ export default {
     },
     goback() {
       window.history.go(-1);
+    },
+    async putData() {
+      try {
+        await putThumbs(this.thumbsContent).then(() => {
+          console.log('+1 됨');
+        });
+      } catch (error) {
+        this.errorMsg = getErrorResponseData(error);
+        console.log('에러');
+      }
+    },
+    async loadThumbs() {
+      const res = await fetchThumbsCnt(this.thumbsContent.id);
+      this.thumbs = res.data.list[0].cnt;
     },
   },
 };
