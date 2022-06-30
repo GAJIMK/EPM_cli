@@ -102,7 +102,7 @@ export default {
 }
 .rightBtn {
   position: relative;
-  top: 70px;
+  right: 2.5em;
   float: right;
   font-size: 1em;
   font-weight: 600;

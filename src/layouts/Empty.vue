@@ -8,4 +8,9 @@
 export default {};
 </script>
 
-<style></style>
+<style>
+.container,
+.container-fluid {
+  padding: 0px 0px;
+}
+</style>
