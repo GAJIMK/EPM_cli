@@ -55,6 +55,9 @@ $theme-colors: (
 body {
   -ms-overflow-style: none;
 }
+* {
+  box-sizing: border-box;
+}
 ::-webkit-scrollbar {
   display: none;
 }

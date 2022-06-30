@@ -31,7 +31,7 @@
         <div class="ShowMoney">합계 : {{ sum }}</div>
       </div>
 
-      <div class="fluid-container" id="billimg">
+      <div id="billimg">
         <!-- <ImgUpload
           class="item"
           v-for="item in items"

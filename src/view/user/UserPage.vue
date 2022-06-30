@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    {{ userId }}님, 달별 경비 내역서
+    <div id="title">
+      <span id="name">{{ userId }}</span
+      >님, 달별 경비 내역서
+    </div>
+
     <ul class="list-group">
       <div v-if="err">조회할 내용이 없습니다!</div>
       <li
@@ -55,7 +59,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 
 .container {
@@ -66,5 +70,13 @@ export default {
 }
 .list-group {
   cursor: pointer;
+}
+
+#title {
+  font-size: 16px;
+  #name {
+    font-weight: 600;
+  }
+  padding-bottom: 20px;
 }
 </style>
