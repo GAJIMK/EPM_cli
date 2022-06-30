@@ -41,6 +41,7 @@ export default {
   font-family: 'Dongle', sans-serif;
   padding: 5px 50px;
   font-size: var(--font-size-xl);
+  height: 50px;
   :hover {
     cursor: pointer;
   }
