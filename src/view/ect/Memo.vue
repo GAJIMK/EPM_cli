@@ -3,13 +3,14 @@
     <div class="menu-title" @click="goBoard()">📒다트 익명 게시판✏️</div>
     <div class="menu-title">🔥HOT 5 게시글🔥</div>
     <ul>
-      <li v-for="item in allId" :key="item.id">id {{ item }}번 게시글</li>
+      <li v-for="item in allId" :key="item.id">{{ item }}</li>
     </ul>
   </div>
 </template>
 
 <script>
 import { fetchThumbstop5 } from '@/api/Thumbs/thumbs';
+
 export default {
   data() {
     return {
@@ -31,8 +32,9 @@ export default {
       this.lengthAll = this.Fllist[0].length;
 
       for (var i = 0; i < this.lengthAll; i++) {
+        let title = res.data.list[i].title;
         let iid = res.data.list[i].id;
-        this.allId.push(iid);
+        this.allId.push(title);
       }
     },
   },
@@ -43,7 +45,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Ubuntu:ital,wght@1,300&display=swap');
 .menu-container {
   cursor: pointer;
-  height: 250px;
+  height: 200px;
 }
 .menu-title {
   font-family: 'Dongle', sans-serif;
