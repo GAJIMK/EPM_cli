@@ -110,9 +110,11 @@ export default {
         place: '',
         state: 0,
       };
-      console.log(obj);
-      const res = await createList(obj);
-      this.items.push(res.data.data);
+      await createList(obj).then(res => {
+        const item = res.data.data;
+        this.items = this.items || [];
+        this.items.push(item);
+      });
       this.countList();
       this.state = true;
     },
@@ -128,10 +130,12 @@ export default {
       }
     },
     async deleteRow() {
-      const popItem = this.items.pop();
-      await deleteList(popItem.id);
-      this.state = true;
-      this.countList();
+      if (this.items) {
+        const popItem = this.items.pop();
+        await deleteList(popItem.id);
+        this.state = true;
+        this.countList();
+      }
     },
 
     countList() {
