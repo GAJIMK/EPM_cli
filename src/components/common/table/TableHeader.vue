@@ -33,6 +33,7 @@ export default {};
   font-family: 'Jua', sans-serif;
   display: flex;
   align-items: center;
+  width: 100%;
 
   height: 2em;
   border: 0px;

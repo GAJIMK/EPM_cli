@@ -1,6 +1,6 @@
 <template>
   <div class="table-cell">
-    <div class="col" contenteditable="true">
+    <div class="col">
       <input
         type="date"
         tabindex="0"
