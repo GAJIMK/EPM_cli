@@ -12,4 +12,8 @@ function fetchThumbsCnt(id) {
   return thumbs.get(`/countById?id=${id}`);
 }
 
-export { putThumbs, fetchThumbsCnt };
+function fetchThumbstop5() {
+  return thumbs.get(`/selectTop5`);
+}
+
+export { putThumbs, fetchThumbsCnt, fetchThumbstop5 };

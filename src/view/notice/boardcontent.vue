@@ -72,7 +72,7 @@ export default {
     async putData() {
       try {
         await putThumbs(this.thumbsContent).then(() => {
-          console.log('+1 됨');
+          this.loadThumbs();
         });
       } catch (error) {
         this.errorMsg = getErrorResponseData(error);
