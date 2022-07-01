@@ -1,14 +1,39 @@
 <template>
   <div class="menu-container" @click="goBoard()">
-    <div class="menu-title">📰다트 익명 게시판✏️</div>
+    <div class="menu-title">🔥게시판 HOT 5🔥</div>
+    <ul>
+      <li v-for="item in allId" :key="item.id">{{ item }} 번 게시글</li>
+    </ul>
   </div>
 </template>
 
 <script>
+import { fetchThumbstop5 } from '@/api/Thumbs/thumbs';
 export default {
+  data() {
+    return {
+      Fllist: [],
+      allId: [],
+    };
+  },
+  created() {
+    this.loadtop();
+  },
   methods: {
     goBoard() {
       this.$router.push({ name: 'noticeBoard' });
+    },
+    async loadtop() {
+      const res = await fetchThumbstop5();
+      console.log(res);
+
+      this.Fllist.push(res.data.list);
+      this.lengthAll = this.Fllist[0].length;
+
+      for (var i = 0; i < this.lengthAll; i++) {
+        let iid = res.data.list[i].id;
+        this.allId.push(iid);
+      }
     },
   },
 };
