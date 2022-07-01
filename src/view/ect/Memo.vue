@@ -3,7 +3,7 @@
     <div class="menu-title" @click="goBoard()">📒다트 익명 게시판✏️</div>
     <div class="menu-title">🔥HOT 5 게시글🔥</div>
     <ul>
-      <li v-for="item in allId" :key="item.id">{{ item }} 번 게시글</li>
+      <li v-for="item in allId" :key="item.id">id {{ item }}번 게시글</li>
     </ul>
   </div>
 </template>
