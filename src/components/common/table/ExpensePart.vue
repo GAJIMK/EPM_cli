@@ -1,6 +1,6 @@
 <template>
   <div class="part">
-    <div class="row">
+    <div class="row container">
       <font-awesome-icon
         icon="fa-solid fa-angle-down"
         v-if="state"
@@ -110,9 +110,11 @@ export default {
         place: '',
         state: 0,
       };
-      console.log(obj);
-      const res = await createList(obj);
-      this.items.push(res.data.data);
+      await createList(obj).then(res => {
+        const item = res.data.data;
+        this.items = this.items || [];
+        this.items.push(item);
+      });
       this.countList();
       this.state = true;
     },
@@ -128,10 +130,12 @@ export default {
       }
     },
     async deleteRow() {
-      const popItem = this.items.pop();
-      await deleteList(popItem.id);
-      this.state = true;
-      this.countList();
+      if (this.items) {
+        const popItem = this.items.pop();
+        await deleteList(popItem.id);
+        this.state = true;
+        this.countList();
+      }
     },
 
     countList() {
@@ -151,6 +155,7 @@ export default {
 <style>
 .row {
   align-items: center;
+  width: 100%;
 }
 .part {
   padding: 20px 0;

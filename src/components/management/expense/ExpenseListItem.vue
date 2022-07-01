@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <div class="title">
+    <div class="menu-title">
       경비항목
       <b-button variant="warning" @click="addItem">항목추가</b-button>
     </div>

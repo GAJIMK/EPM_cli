@@ -38,10 +38,9 @@ export default {
 .content {
   width: 15em;
 }
-.title {
+.menu-title {
   width: 100%;
   font-size: 1.1em;
-  margin-bottom: 1em;
   button {
     float: right;
   }
