@@ -74,4 +74,10 @@ export default {
   color: black;
   margin: 0.5%;
 }
+.name {
+  font-family: 'Dongle', sans-serif;
+  font-family: 'Dongle', sans-serif;
+  font-size: 30px;
+  padding: 1%;
+}
 </style>

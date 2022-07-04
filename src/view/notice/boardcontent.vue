@@ -1,15 +1,12 @@
 <template>
   <div id="container">
     <h2 class="name">📰 다트 익명 게시판 ✏️</h2>
-    <label for="name" class="title_2">제목 🙌</label
-    ><b-input
-      class="title"
-      type="text"
-      placeholder="제목을 입력하세요"
-      disabled
-      v-model="this.title"
-    />
-    <small>{{ date }}</small>
+    <div class="cont">
+      <label for="name" class="title_2">제목</label
+      ><b-input class="title" type="text" disabled v-model="this.title" />
+    </div>
+
+    <small class="date">{{ date }}</small>
     <label for="content"></label>
     <b-textarea
       class="content"
@@ -17,7 +14,6 @@
       id="content"
       cols="30"
       rows="10"
-      placeholder="내용을 입력하세요"
       disabled
       v-model="this.content"
     ></b-textarea>
@@ -45,7 +41,7 @@ export default {
     return {
       thumbsContent: {
         id: this.$route.query.id,
-        accountId: 'jihye.son',
+        accountId: 'gajung.kim',
         //로그인 기능 되면 로그인 아이디가 들어갈 예정
       },
 
@@ -71,8 +67,12 @@ export default {
     },
     async putData() {
       try {
-        await putThumbs(this.thumbsContent).then(() => {
+        await putThumbs(this.thumbsContent).then(res => {
           this.loadThumbs();
+          // if (res.config.url === '/') {
+          //   alert('이미 좋아요를 누르셨습니다. ');
+          // }
+          console.log(res);
         });
       } catch (error) {
         this.errorMsg = getErrorResponseData(error);
@@ -81,6 +81,7 @@ export default {
     },
     async loadThumbs() {
       const res = await fetchThumbsCnt(this.thumbsContent.id);
+
       this.thumbs = res.data.list[0].cnt;
     },
   },
@@ -106,6 +107,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 3%;
   &:hover {
     -webkit-box-shadow: 0px 0px 14px 2px rgba(255, 200, 87, 0.26);
     box-shadow: 0px 0px 14px 2px rgba(255, 200, 87, 0.26);
@@ -128,5 +130,21 @@ export default {
   align-items: center;
   justify-content: space-around;
   padding: 5%;
+}
+.name {
+  font-family: 'Dongle', sans-serif;
+  font-family: 'Dongle', sans-serif;
+  font-size: 30px;
+  padding: 1%;
+}
+.date {
+  float: right;
+}
+.cont {
+  display: flex;
+}
+.title_2 {
+  width: 50px;
+  margin: auto;
 }
 </style>
