@@ -10,11 +10,21 @@
     <div class="container">
       <span>
         <div class="subTitle">시작날짜</div>
-        <b-calendar @context="onContext"></b-calendar>
+        <b-calendar
+          @context="onContext"
+          selected-variant="secondary"
+          today-variant="secondary"
+          nav-button-variant="secondary"
+        ></b-calendar>
       </span>
       <span>
         <div class="subTitle">종료날짜</div>
-        <b-calendar @context="onContext_2"></b-calendar
+        <b-calendar
+          @context="onContext_2"
+          selected-variant="secondary"
+          today-variant="secondary"
+          nav-button-variant="secondary"
+        ></b-calendar
       ></span>
     </div>
   </div>
