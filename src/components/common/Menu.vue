@@ -60,7 +60,7 @@
           </div>
           <div class="menu-content">사용자 경비조회</div>
         </li>
-        <li class="list-item">
+        <li class="list-item" @click="goSubDay()">
           <div class="icon-container yellowBtn">
             <font-awesome-icon icon="fa-solid fa-calendar-days" class="icon" />
           </div>
@@ -86,6 +86,9 @@ export default {
     },
     handleExpenseList() {
       this.$router.push({ name: 'expenseList' });
+    },
+    goSubDay() {
+      this.$router.push({ name: 'submitDay' });
     },
     handleUsersList() {
       this.$router.push({
