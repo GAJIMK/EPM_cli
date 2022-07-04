@@ -77,11 +77,12 @@ export default new Router({
       component: () => import('@/view/notice/boardcontent.vue'),
     },
 
-    // {
-    //   path: "/manage",
-    //   name: "Management",
-    //   component: () => import("@/components/Management.vue"),
-    // },
+    {
+      path: '/grade-manage',
+      name: 'grade',
+      meta: { layout: 'default' },
+      component: () => import('@/view/grade/GradePage.vue'),
+    },
 
     {
       path: '/users-expense/:date',
