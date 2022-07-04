@@ -93,5 +93,10 @@ export default new Router({
       name: 'userPersonal',
       component: () => import('@/components/PersonalFee/PersonalFeePage.vue'),
     },
+    {
+      path: '/submit-day',
+      name: 'submitDay',
+      component: () => import('@/view/SubmitDay.vue'),
+    },
   ],
 });
