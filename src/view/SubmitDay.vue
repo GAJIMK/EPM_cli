@@ -51,10 +51,10 @@ export default {
   components: { MenuTitle },
   methods: {
     submitDay() {
-        if( )
-      alert(
-        '등록하신 날짜가' + this.startDay + '~' + this.endDay + '맞습니까?',
-      );
+      if (true)
+        alert(
+          '등록하신 날짜가' + this.startDay + '~' + this.endDay + '맞습니까?',
+        );
     },
     onContext(ctx) {
       this.startDay = ctx.selectedYMD;
