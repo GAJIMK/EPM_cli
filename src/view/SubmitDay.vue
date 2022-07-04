@@ -1,37 +1,22 @@
 <template>
   <div class="app">
     <MenuTitle menuTitle="경비 마감일 설정⏰" />
-    <p>해당 날짜</p>
-    <input type="month" class="form" max="2050-12" v-model="date" />
+    <!-- <p>해당 날짜</p>
+    <input type="month" class="form" max="2050-12" v-model="date" /> -->
     <b-button class="rightBtn" variant="warning" @click="submitDay()"
       >등록하기</b-button
     >
 
     <div class="container">
       <span>
-        <div>시작날짜</div>
-        <b-calendar
-          :locale="locale"
-          :start-weekday="weekday"
-          :hide-header="hideHeader"
-          :show-decade-nav="showDecadeNav"
-          @context="onContext"
-          v-model="value"
-        ></b-calendar>
+        <div class="subTitle">시작날짜</div>
+        <b-calendar @context="onContext"></b-calendar>
       </span>
       <span>
-        <div>종료날짜</div>
-        <b-calendar
-          :locale="locale"
-          :start-weekday="weekday"
-          :hide-header="hideHeader"
-          :show-decade-nav="showDecadeNav"
-          @context="onContext_2"
-        ></b-calendar
+        <div class="subTitle">종료날짜</div>
+        <b-calendar @context="onContext_2"></b-calendar
       ></span>
     </div>
-    <div>값:{{ startDay }}</div>
-    <div>값:{{ endDay }}</div>
   </div>
 </template>
 
@@ -46,21 +31,34 @@ export default {
         .format('YYYY-MM'),
       startDay: '',
       endDay: '',
+      printSday: '',
+      printEday: '',
     };
   },
   components: { MenuTitle },
   methods: {
     submitDay() {
-      if (true)
+      if (this.endDay.isAfter(this.startDay) == true) {
         alert(
-          '등록하신 날짜가' + this.startDay + '~' + this.endDay + '맞습니까?',
+          '등록하신 날짜가  ' +
+            this.printSday +
+            '  ~  ' +
+            this.printEday +
+            '  이 맞습니까?',
         );
+      } else {
+        alert(
+          '종료 날짜가 시작 날짜보다 이전이거나 같습니다. 다시 설정해주세요.',
+        );
+      }
     },
     onContext(ctx) {
-      this.startDay = ctx.selectedYMD;
+      this.startDay = moment(ctx.selectedYMD);
+      this.printSday = this.startDay.format('YYYY-MM-DD');
     },
     onContext_2(ctx) {
-      this.endDay = ctx.selectedYMD;
+      this.endDay = moment(ctx.selectedYMD);
+      this.printEday = this.endDay.format('YYYY-MM-DD');
     },
   },
 };
@@ -79,5 +77,11 @@ export default {
   font-size: 1em;
   font-weight: 600;
   width: 100px;
+}
+.subTitle {
+  font-family: 'Dongle', sans-serif;
+  font-family: 'Dongle', sans-serif;
+  font-size: 30px;
+  padding: 1%;
 }
 </style>
