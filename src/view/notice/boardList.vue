@@ -144,4 +144,10 @@ export default {
   justify-content: center;
   flex-direction: row;
 }
+.name {
+  font-family: 'Dongle', sans-serif;
+  font-family: 'Dongle', sans-serif;
+  font-size: 30px;
+  padding: 1%;
+}
 </style>

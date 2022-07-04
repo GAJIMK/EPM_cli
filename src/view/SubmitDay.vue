@@ -49,13 +49,20 @@ export default {
   methods: {
     submitDay() {
       if (this.endDay.isAfter(this.startDay) == true) {
-        alert(
-          '등록하신 날짜가  ' +
-            this.printSday +
-            '  ~  ' +
-            this.printEday +
-            '  이 맞습니까?',
-        );
+        if (
+          confirm(
+            '등록하신 날짜가  ' +
+              this.printSday +
+              '  ~  ' +
+              this.printEday +
+              '  이 맞습니까?',
+          )
+        ) {
+          alert('동작을 시작합니다.');
+        } else {
+          alert('동작을 취소했습니다.');
+        }
+        alert();
       } else {
         alert(
           '종료 날짜가 시작 날짜보다 이전이거나 같습니다. 다시 설정해주세요.',
