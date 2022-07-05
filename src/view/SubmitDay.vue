@@ -33,21 +33,28 @@
 <script>
 import MenuTitle from '@/components/common/MenuTitleForm.vue';
 import moment from 'moment';
+import { putDay } from '@/api/submit/submit';
 export default {
   data() {
     return {
       date: moment(new Date())
         .subtract(1, 'M')
         .format('YYYY-MM'),
+
       startDay: '',
       endDay: '',
-      printSday: '',
-      printEday: '',
+
+      submitContent: {
+        printSday: '',
+        printEday: '',
+        totalDay: '',
+      },
     };
   },
   components: { MenuTitle },
   methods: {
     submitDay() {
+      this.totalDay = this.endDay.diff(this.startDay, 'days');
       if (this.endDay.isAfter(this.startDay) == true) {
         if (
           confirm(
@@ -56,16 +63,29 @@ export default {
               '  ~  ' +
               this.printEday +
               '  총 ' +
-              this.endDay.diff(this.startDay, 'days') +
+              this.totalDay +
               '일이 맞습니까?',
           )
         ) {
           alert('동작을 시작합니다.');
+          this.putData();
+        } else {
+          alert('동작을 취소했습니다.');
         }
       } else {
         alert(
           '종료 날짜가 시작 날짜보다 이전이거나 같습니다. 다시 설정해주세요.',
         );
+      }
+    },
+    async putData() {
+      try {
+        await putDay(this.submitContent).then(() => {
+          console.log('성공');
+        });
+      } catch (error) {
+        this.errorMsg = getErrorResponseData(error);
+        console.log('에러');
       }
     },
     onContext(ctx) {
