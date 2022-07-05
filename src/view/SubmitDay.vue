@@ -61,8 +61,6 @@ export default {
           )
         ) {
           alert('동작을 시작합니다.');
-        } else {
-          alert('동작을 취소했습니다.');
         }
       } else {
         alert(
