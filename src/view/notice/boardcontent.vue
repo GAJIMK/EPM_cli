@@ -41,7 +41,7 @@ export default {
     return {
       thumbsContent: {
         id: this.$route.query.id,
-        accountId: 'gajung.kim',
+        accountId: 'namin.ki',
         //로그인 기능 되면 로그인 아이디가 들어갈 예정
       },
 

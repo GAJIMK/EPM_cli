@@ -26,7 +26,9 @@ export const userFeeState = createInstanceWithAuth('userFeeState');
 
 export const board = createInstanceWithAuth('board'); //게시판 api
 
-export const thumbs = createInstanceWithAuth('thumbs'); //게시판 api
+export const thumbs = createInstanceWithAuth('thumbs'); //게시판 좋아요 api
+
+export const submitDay = createInstanceWithAuth('submitDay'); // 경비 제출 기간 api
 
 //export const [API_Name] = createInstanceWithAuth([API]);
 
