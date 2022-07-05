@@ -58,7 +58,7 @@ export default {
       if (this.endDay.isAfter(this.startDay) == true) {
         if (
           confirm(
-            '등록하신 날짜가  ' +
+            '등록하신 날짜가 ' +
               this.printSday +
               '  ~  ' +
               this.printEday +
