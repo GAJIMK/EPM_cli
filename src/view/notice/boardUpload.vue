@@ -17,8 +17,10 @@
       placeholder="내용을 입력하세요"
       v-model="boardcontent.content"
     ></b-textarea>
-    <b-button class="BtnStyle" @click="putData()">확인</b-button>
-    <b-button class="BtnStyle" @click="goback()">취소</b-button>
+    <div class="btnGroup">
+      <b-button class="BtnStyle" @click="putData()">확인</b-button>
+      <b-button class="BtnStyle" @click="goback()">취소</b-button>
+    </div>
   </div>
 </template>
 
@@ -79,5 +81,10 @@ export default {
   font-family: 'Dongle', sans-serif;
   font-size: 30px;
   padding: 1%;
+}
+.btnGroup {
+  float: right;
+  width: 150px;
+  margin-top: 3%;
 }
 </style>
