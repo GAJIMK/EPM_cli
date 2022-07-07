@@ -1,10 +1,20 @@
 <template>
   <div class="menu-container">
-    <div class="menu-title" @click="goBoard()">📒다트 익명 게시판✏️</div>
     <div class="menu-title">🔥HOT 3 게시글🔥</div>
-    <ul>
-      <li v-for="item in allId" :key="item.id">{{ item }}</li>
-    </ul>
+    <div class="menu-scon">
+      <span class="first">
+        <ul class="first">
+          <li v-for="item in awards" :key="item.id">{{ item }}</li>
+        </ul>
+      </span>
+      <span class="second">
+        <ul class="second">
+          <li v-for="item in allId" :key="item.id">
+            {{ item }}
+          </li>
+        </ul>
+      </span>
+    </div>
   </div>
 </template>
 
@@ -16,6 +26,7 @@ export default {
     return {
       Fllist: [],
       allId: [],
+      awards: { one: '🥇', two: '🥈', three: '🥉' },
     };
   },
   created() {
@@ -52,5 +63,24 @@ export default {
   font-family: 'Dongle', sans-serif;
   font-size: 1.5em;
   padding: 8px 0px;
+}
+.first {
+  float: left;
+  width: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 15px;
+}
+.second {
+  float: left;
+  width: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.menu-scon {
+  display: flex;
+  flex-direction: row;
 }
 </style>
