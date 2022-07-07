@@ -3,6 +3,9 @@
     <MenuTitle menuTitle="경비 마감일 설정⏰" />
     <!-- <p>해당 날짜</p>
     <input type="month" class="form" max="2050-12" v-model="date" /> -->
+    <b-button class="rightBtn" variant="warning" @click="goList()"
+      >과거내역</b-button
+    >
     <b-button class="rightBtn" variant="warning" @click="submitDay()"
       >등록하기</b-button
     >
@@ -33,7 +36,7 @@
 <script>
 import MenuTitle from '@/components/common/MenuTitleForm.vue';
 import moment from 'moment';
-import { putDay } from '@/api/submit/submit';
+import { putDay } from '@/api/submit/submit.js';
 export default {
   data() {
     return {
@@ -41,12 +44,11 @@ export default {
         .subtract(1, 'M')
         .format('YYYY-MM'),
 
-      startDay: '',
-      endDay: '',
-
+      printSday: '',
+      printEday: '',
       submitContent: {
-        printSday: '',
-        printEday: '',
+        startDay: '',
+        endDay: '',
         totalDay: '',
       },
     };
@@ -67,10 +69,9 @@ export default {
               '일이 맞습니까?',
           )
         ) {
-          alert('동작을 시작합니다.');
           this.putData();
         } else {
-          alert('동작을 취소했습니다.');
+          alert('취소했습니다.');
         }
       } else {
         alert(
@@ -79,14 +80,12 @@ export default {
       }
     },
     async putData() {
-      try {
-        await putDay(this.submitContent).then(() => {
-          console.log('성공');
-        });
-      } catch (error) {
-        this.errorMsg = getErrorResponseData(error);
-        console.log('에러');
-      }
+      const data = {
+        startDay: this.startDay,
+        endDay: this.endDay,
+        totalDay: this.totalDay,
+      };
+      await putDay(data);
     },
     onContext(ctx) {
       this.startDay = moment(ctx.selectedYMD);
@@ -113,6 +112,7 @@ export default {
   font-size: 1em;
   font-weight: 600;
   width: 100px;
+  margin: 10px;
 }
 .subTitle {
   font-family: 'Dongle', sans-serif;
