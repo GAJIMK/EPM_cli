@@ -10,7 +10,6 @@ function createList(data) {
 }
 
 function updateList(data) {
-  console.log('넘어옴');
   return positionFee.post('/', data);
 }
 export { fetchAllList, updateList };

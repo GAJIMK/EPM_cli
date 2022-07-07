@@ -82,7 +82,7 @@ input[type='date'] {
   text-align: center;
   border: 0px;
   background: transparent;
-  padding: 0 0;
+  padding: 5px 8px;
   &:focus {
     outline: none;
   }
@@ -94,14 +94,11 @@ input[type='date'] {
   padding-bottom: 4px;
   border-bottom: solid #eee 0.5px;
   text-align: center;
+  width: 100%;
   .index {
     border-right: solid #eee 0.5px;
-    font-weight: 700;
     text-align: left;
     width: 120px;
   }
-}
-.col {
-  padding: 5px 8px;
 }
 </style>
