@@ -1,12 +1,11 @@
 import { submitDay } from '@/api/index';
 
-function putDay(submitContent) {
-  let data = {
-    startDay: submitContent.printSday,
-    endDay: submitContent.printEday,
-    totalDay: submitContent.totalDay,
-  };
+function putDay(data) {
   return submitDay.put('/', data);
 }
 
-export { putDay };
+function fetchBoardDay() {
+  return submitDay.get(`/findAll`);
+}
+
+export { putDay, fetchBoardDay };
