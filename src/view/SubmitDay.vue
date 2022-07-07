@@ -1,9 +1,8 @@
 <template>
   <div class="app">
     <MenuTitle menuTitle="경비 마감일 설정⏰" />
-    <!-- <p>해당 날짜</p>
-    <input type="month" class="form" max="2050-12" v-model="date" /> -->
-    <b-button class="rightBtn" variant="warning" @click="goList()"
+
+    <b-button class="rightBtn" variant="warning" v-b-toggle.my-collapse
       >과거내역</b-button
     >
     <b-button class="rightBtn" variant="warning" @click="submitDay()"
@@ -30,20 +29,59 @@
         ></b-calendar
       ></span>
     </div>
+    <div>
+      <b-collapse id="my-collapse" class="collapse">
+        <b-card title="과거 경비 기간 내역" class="b-title">
+          <table class="table-box">
+            <thead>
+              <tr class="listtable">
+                <td>
+                  <input
+                    class="thead"
+                    type="text"
+                    disabled="true"
+                    value="시작날짜"
+                  />
+                </td>
+                <td>
+                  <input
+                    class="thead"
+                    type="text"
+                    disabled="true"
+                    value="종료날짜"
+                  />
+                </td>
+                <td>
+                  <input
+                    class="thead"
+                    type="text"
+                    disabled="true"
+                    value="총 날짜"
+                  />
+                </td>
+              </tr>
+            </thead>
+            <TableBody v-for="item in items" :key="item.id" :item="item" />
+          </table>
+        </b-card>
+      </b-collapse>
+    </div>
   </div>
 </template>
 
 <script>
 import MenuTitle from '@/components/common/MenuTitleForm.vue';
 import moment from 'moment';
-import { putDay } from '@/api/submit/submit.js';
+import { putDay, fetchBoardDay } from '@/api/submit/submit.js';
+import TableBody from '../components/common/table/TableBody';
 export default {
   data() {
     return {
       date: moment(new Date())
         .subtract(1, 'M')
         .format('YYYY-MM'),
-
+      items: [],
+      Fllist: [],
       printSday: '',
       printEday: '',
       submitContent: {
@@ -53,7 +91,10 @@ export default {
       },
     };
   },
-  components: { MenuTitle },
+  components: { MenuTitle, TableBody },
+  created() {
+    this.loadData();
+  },
   methods: {
     submitDay() {
       this.totalDay = this.endDay.diff(this.startDay, 'days');
@@ -87,6 +128,16 @@ export default {
       };
       await putDay(data);
     },
+    async loadData() {
+      const res = await fetchBoardDay();
+
+      this.Fllist.push(res.data.list);
+      this.lengthAll = this.Fllist[0].length;
+
+      for (var i = 0; i < this.lengthAll; i++) {
+        this.items.push(res.data.list[i]);
+      }
+    },
     onContext(ctx) {
       this.startDay = moment(ctx.selectedYMD);
       this.printSday = this.startDay.format('YYYY-MM-DD');
@@ -119,5 +170,21 @@ export default {
   font-family: 'Dongle', sans-serif;
   font-size: 30px;
   padding: 1%;
+}
+.listtable {
+  display: table;
+}
+.collapse {
+  padding: 4%;
+}
+.table-box {
+  margin: auto;
+  margin-top: 50px;
+}
+
+input[type='text'] {
+  text-align: center;
+  background-color: #fdc000;
+  border: transparent;
 }
 </style>
