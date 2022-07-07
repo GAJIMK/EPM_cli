@@ -11,7 +11,7 @@
     <ExpensePart
       v-for="expense in expenseList"
       :date="date"
-      :key="expense.summCode"
+      :key="expense.feeCode"
       :expense="expense"
       :accountId="accountId"
     />
@@ -20,8 +20,9 @@
 <script>
 import MenuTitle from '@/components/common/MenuTitleForm.vue';
 import ExpensePart from '@/components/common/table/ExpensePart.vue';
-import { fetchExpense } from '@/api/expense/expense';
+import { fetchPositionList } from '@/api/positionFeeMapper/positionFeeMapper';
 import { createUserFeeState } from '@/api/userFeeState/userFeeState';
+import { accountInfo } from '@/api/account/account';
 
 import moment from 'moment';
 
@@ -31,23 +32,33 @@ export default {
   data() {
     return {
       expenseList: '',
-      accountId: 'chaehyun.kim',
+      accountId: 'gajung.kim',
+      accountPosition: 0,
       date: moment(new Date()).format('YYYY-MM'),
     };
   },
   mounted() {
-    this.fetchExpenseList();
+    this.fetchData();
   },
   watch: {
     date() {
-      this.existLists = [];
       this.fetchUserExpenseList();
     },
   },
   methods: {
-    async fetchExpenseList() {
-      const res = await fetchExpense();
-      this.expenseList = res.data.list;
+    async fetchData() {
+      const res = await accountInfo(this.accountId)
+        .then(res => {
+          this.accountPosition = res.data.data.tpPosition;
+          return this.accountPosition;
+        })
+        .then(code => {
+          this.fetchExpenseList(code);
+        });
+    },
+    async fetchExpenseList(code) {
+      const fee = await fetchPositionList(code);
+      this.expenseList = fee.data.list;
     },
 
     async submit() {

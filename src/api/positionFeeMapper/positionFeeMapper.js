@@ -12,4 +12,8 @@ function createList(data) {
 function updateList(data) {
   return positionFee.post('/', data);
 }
-export { fetchAllList, updateList };
+
+function fetchPositionList(data) {
+  return positionFee.get(`findByPosition?positionCode=${data}`);
+}
+export { fetchAllList, updateList, createList, fetchPositionList };

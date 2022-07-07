@@ -12,7 +12,7 @@
         @click="changeState"
       />
       <div class="partCount radiusBtn">{{ count }}</div>
-      <div class="partTitle">{{ expense.summCodeName }}</div>
+      <div class="partTitle">{{ expense.feeNm }}</div>
       <button class="plusRow radiusBtn " @click="addRow">+</button>
       <button class="delRow radiusBtn" @click="deleteRow()">-</button>
     </div>
@@ -28,7 +28,13 @@
         />
       </div>
       <div class="money-container">
-        <div class="ShowMoney">합계 : {{ sum }}</div>
+        <div class="index"><span>지원 금액 :</span> {{ expense.fee }}</div>
+        <div class="index">
+          합계 : <span class="green">{{ sum }}</span>
+        </div>
+        <div class="index">
+          잔여금액:<span class="red"> {{ expense.fee - sum }}</span>
+        </div>
       </div>
 
       <div id="billimg">
@@ -92,13 +98,14 @@ export default {
       const res = await fetchPartList(
         this.accountId,
         this.date,
-        this.expense.summCode,
+        this.expense.feeCode,
       );
       this.items = res.data.list;
+      console.log(this.items);
     },
     async addRow() {
       const obj = {
-        part: this.expense.summCode,
+        part: this.expense.feeCode,
         id: 0,
         accountId: this.accountId,
         date: this.$props.date + '-01',
@@ -212,6 +219,8 @@ export default {
   width: 100%;
 }
 .money-container {
+  display: flex;
+  justify-content: space-between;
   margin-top: 30px;
   margin-bottom: 80px;
   border: 1px double #ffc107;
@@ -219,7 +228,7 @@ export default {
   font-family: 'Jua', sans-serif;
   font-family: 'Jua', sans-serif;
   padding: 0.9%;
-  width: 200px;
+  width: 400px;
   float: right;
 }
 </style>
