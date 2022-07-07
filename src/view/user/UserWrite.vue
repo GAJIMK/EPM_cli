@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="container">
     <MenuTitle menuTitle="✍🏻작성하기" />
     <div class="month">
       <input type="month" class="form" max="2050-12" v-model="date" />

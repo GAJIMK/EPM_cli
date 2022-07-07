@@ -45,7 +45,7 @@
           </div>
           <div class="menu-content">경비항목 관리</div>
         </li>
-        <li class="list-item">
+        <li class="list-item" @click="handelGrade">
           <div class="icon-container yellowBtn">
             <font-awesome-icon
               icon="fa-solid fa-users-between-lines"
@@ -77,6 +77,9 @@ export default {
   methods: {
     handleWrite() {
       this.$router.push({ name: 'userWrite' });
+    },
+    handelGrade() {
+      this.$router.push({ name: 'grade' });
     },
     goMypage() {
       this.$router.push({ name: 'myPage' });
