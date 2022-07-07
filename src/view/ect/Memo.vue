@@ -9,7 +9,11 @@
       </span>
       <span class="second">
         <ul class="second">
-          <li v-for="item in allId" :key="item.id">
+          <li
+            v-for="(item, index) in alltitle"
+            :key="item.id"
+            @click="goreport(index)"
+          >
             {{ item }}
           </li>
         </ul>
@@ -25,6 +29,7 @@ export default {
   data() {
     return {
       Fllist: [],
+      alltitle: [],
       allId: [],
       awards: { one: '🥇', two: '🥈', three: '🥉' },
     };
@@ -45,8 +50,17 @@ export default {
       for (var i = 0; i < this.lengthAll; i++) {
         let title = res.data.list[i].title;
         let iid = res.data.list[i].id;
-        this.allId.push(title);
+        this.alltitle.push(title);
+        this.allId.push(iid);
       }
+    },
+    goreport(index) {
+      const a = index;
+      this.res = this.allId[a];
+      this.$router.push({
+        name: 'boardcontent',
+        query: { id: this.res },
+      });
     },
   },
 };
@@ -62,7 +76,7 @@ export default {
   font-family: 'Dongle', sans-serif;
   font-family: 'Dongle', sans-serif;
   font-size: 1.5em;
-  padding: 8px 0px;
+  padding: 8px 0px 0px;
 }
 .first {
   float: left;
@@ -82,5 +96,6 @@ export default {
 .menu-scon {
   display: flex;
   flex-direction: row;
+  margin-bottom: 20px;
 }
 </style>
