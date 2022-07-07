@@ -1,10 +1,24 @@
 <template>
   <div class="menu-container">
-    <div class="menu-title" @click="goBoard()">📒다트 익명 게시판✏️</div>
     <div class="menu-title">🔥HOT 3 게시글🔥</div>
-    <ul>
-      <li v-for="item in allId" :key="item.id">{{ item }}</li>
-    </ul>
+    <div class="menu-scon">
+      <span class="first">
+        <ul class="first">
+          <li v-for="item in awards" :key="item.id">{{ item }}</li>
+        </ul>
+      </span>
+      <span class="second">
+        <ul class="second">
+          <li
+            v-for="(item, index) in alltitle"
+            :key="item.id"
+            @click="goreport(index)"
+          >
+            {{ item }}
+          </li>
+        </ul>
+      </span>
+    </div>
   </div>
 </template>
 
@@ -15,7 +29,9 @@ export default {
   data() {
     return {
       Fllist: [],
+      alltitle: [],
       allId: [],
+      awards: { one: '🥇', two: '🥈', three: '🥉' },
     };
   },
   created() {
@@ -34,8 +50,17 @@ export default {
       for (var i = 0; i < this.lengthAll; i++) {
         let title = res.data.list[i].title;
         let iid = res.data.list[i].id;
-        this.allId.push(title);
+        this.alltitle.push(title);
+        this.allId.push(iid);
       }
+    },
+    goreport(index) {
+      const a = index;
+      this.res = this.allId[a];
+      this.$router.push({
+        name: 'boardcontent',
+        query: { id: this.res },
+      });
     },
   },
 };
@@ -51,6 +76,26 @@ export default {
   font-family: 'Dongle', sans-serif;
   font-family: 'Dongle', sans-serif;
   font-size: 1.5em;
-  padding: 8px 0px;
+  padding: 8px 0px 0px;
+}
+.first {
+  float: left;
+  width: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 15px;
+}
+.second {
+  float: left;
+  width: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.menu-scon {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
 }
 </style>
