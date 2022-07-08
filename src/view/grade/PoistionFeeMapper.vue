@@ -62,7 +62,7 @@ export default {
       const data = {
         feeCode: fee.feeCode,
         positionCode: pos.positionCode,
-        fee: fee.fee,
+        fee: parseInt(fee.fee),
         feeNm: '',
         positionNm: '',
       };
