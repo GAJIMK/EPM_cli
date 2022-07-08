@@ -12,7 +12,7 @@
         @click="changeState"
       />
       <div class="partCount radiusBtn">{{ count }}</div>
-      <div class="partTitle">{{ expense.summCodeName }}</div>
+      <div class="partTitle">{{ expense.feeNm }}</div>
     </div>
 
     <div class="imdiv" v-if="state">
@@ -26,7 +26,13 @@
         />
       </div>
       <div class="money-container">
-        <div class="ShowMoney">합계 : {{ sum }}</div>
+        <div class="index"><span>지원 금액 :</span> {{ expense.fee }}</div>
+        <div class="index">
+          합계 : <span class="green">{{ sum }}</span>
+        </div>
+        <div class="index">
+          잔여금액:<span class="red"> {{ expense.fee - sum }}</span>
+        </div>
       </div>
 
       <div id="billimg">
@@ -53,7 +59,7 @@ export default {
     existLists: {
       type: Array,
     },
-    id: {
+    accountId: {
       type: String,
     },
     date: {
@@ -102,15 +108,15 @@ export default {
     },
     async fetchPartList() {
       const res = await fetchPartList(
-        this.id,
+        this.accountId,
         this.date,
-        this.expense.summCode,
+        this.expense.feeCode,
       );
       this.items = res.data.list;
     },
     savePartList() {
       this.existLists.forEach(list => {
-        if (list.part === this.expense.summCode) {
+        if (list.part === this.expense.feeCode) {
           this.items.push(list);
         }
       });
@@ -122,6 +128,7 @@ export default {
 <style>
 .row {
   align-items: center;
+  width: 100%;
 }
 .part {
   padding: 20px 0;
@@ -178,6 +185,8 @@ export default {
   width: 100%;
 }
 .money-container {
+  display: flex;
+  justify-content: space-between;
   margin-top: 30px;
   margin-bottom: 80px;
   border: 1px double #ffc107;
@@ -185,7 +194,7 @@ export default {
   font-family: 'Jua', sans-serif;
   font-family: 'Jua', sans-serif;
   padding: 0.9%;
-  width: 200px;
+  width: 400px;
   float: right;
 }
 </style>
