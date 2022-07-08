@@ -63,7 +63,7 @@ export default {
       this.date = res.data.list[0].date;
     },
     goback() {
-      window.history.go(-1);
+      this.$router.push({ name: 'noticeBoard' });
     },
     async putData() {
       try {
