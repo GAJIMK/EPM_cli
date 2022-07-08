@@ -13,6 +13,7 @@
             v-for="(item, index) in alltitle"
             :key="item.id"
             @click="goreport(index)"
+            class="list-name"
           >
             {{ item }}
           </li>
@@ -97,5 +98,9 @@ export default {
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
+}
+.list-name {
+  width: 200px;
+  text-align: left;
 }
 </style>
