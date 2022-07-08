@@ -1,14 +1,14 @@
 <template>
   <div class="container">
     <div class="subTitle">
-      📂<span class="bold">{{ date }},{{ id }}</span
+      📂<span class="bold">{{ date }},{{ accountId }}</span
       >님 경비계산서
     </div>
     <ExpensePartNoAdd
       v-for="expense in expenseList"
-      :key="expense.summCode"
+      :key="expense.feeCode"
       :expense="expense"
-      :id="id"
+      :accountId="accountId"
       :date="date"
     />
   </div>
@@ -16,28 +16,39 @@
 
 <script>
 import ExpensePartNoAdd from './ExpensePartNoAdd.vue';
-import { fetchUserList } from '@/api/userFeeList/userFeeList';
-import { fetchExpense } from '@/api/expense/expense';
+import { fetchPositionList } from '@/api/positionFeeMapper/positionFeeMapper';
+import { accountInfo } from '@/api/account/account';
 export default {
   components: {
     ExpensePartNoAdd,
   },
   mounted() {
-    this.fetchExpenseList();
+    this.fetchData();
   },
   data() {
     return {
       data: '',
-      id: this.$route.query.id,
+      accountId: this.$route.query.id,
       name: this.$route.query.name,
       date: this.$route.query.date,
+      accountPosition: 0,
       expenseList: '',
     };
   },
   methods: {
-    async fetchExpenseList() {
-      const res = await fetchExpense();
-      this.expenseList = res.data.list;
+    async fetchData() {
+      const res = await accountInfo(this.accountId)
+        .then(res => {
+          this.accountPosition = res.data.data.tpPosition;
+          return this.accountPosition;
+        })
+        .then(code => {
+          this.fetchExpenseList(code);
+        });
+    },
+    async fetchExpenseList(code) {
+      const fee = await fetchPositionList(code);
+      this.expenseList = fee.data.list;
     },
   },
 };
