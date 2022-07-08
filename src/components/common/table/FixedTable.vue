@@ -1,5 +1,5 @@
 <template>
-  <div class="table-cell">
+  <div class="table-cell" @click.capture="changeState">
     <div class="col" contenteditable="true">
       <input disabled type="date" class="date" v-model="item.date" />
     </div>
@@ -28,6 +28,16 @@ export default {
       type: Object,
     },
   },
+  methods: {
+    changeState(e) {
+      let list = e.currentTarget;
+      if (list.classList.contains('active')) {
+        list.classList.remove('active');
+      } else {
+        list.classList.add('active');
+      }
+    },
+  },
 };
 </script>
 <style lang="scss">
@@ -46,6 +56,9 @@ p {
   margin: 0 0;
 }
 
+.active {
+  background-color: rgba(245, 117, 117, 0.3);
+}
 .select_pass {
   color: rgb(107, 155, 67);
   border: 0 solid black;
@@ -56,5 +69,6 @@ p {
 
 .col {
   flex-shrink: 0;
+  background-color: transparent;
 }
 </style>
