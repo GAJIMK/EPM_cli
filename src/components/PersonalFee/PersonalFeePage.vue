@@ -12,10 +12,10 @@
       :date="date"
     />
     <div class="btnGroup">
-      <button class="rejectBtn loginBtn">
+      <button class="rejectBtn loginBtn" @click="reject">
         반려
       </button>
-      <button class="approveBtn loginBtn">승인</button>
+      <button class="approveBtn loginBtn" @click="accept">승인</button>
     </div>
   </div>
 </template>
@@ -24,6 +24,7 @@
 import ExpensePartNoAdd from './ExpensePartNoAdd.vue';
 import { fetchPositionList } from '@/api/positionFeeMapper/positionFeeMapper';
 import { accountInfo } from '@/api/account/account';
+import { approveState, rejectState } from '@/api/userFeeState/userFeeState';
 export default {
   components: {
     ExpensePartNoAdd,
@@ -55,6 +56,24 @@ export default {
     async fetchExpenseList(code) {
       const fee = await fetchPositionList(code);
       this.expenseList = fee.data.list;
+    },
+    async accept() {
+      try {
+        await approveState(this.accountId, this.date + '-01');
+        this.$router.push({
+          name: 'usersExpense',
+          params: { date: this.date },
+        });
+      } catch (e) {
+        alert(e);
+      }
+    },
+    async reject() {
+      try {
+        await rejectState(this.accountId, this.date + '-01');
+      } catch (e) {
+        alert(e);
+      }
     },
   },
 };
