@@ -43,6 +43,10 @@ export default {
 </script>
 
 <style lang="scss">
+.contents {
+  display: flex;
+  flex-direction: column;
+}
 .expenses {
   display: flex;
   color: #000;
@@ -59,12 +63,15 @@ export default {
     color: #555;
   }
 }
-.col {
-  padding: 5px 8px;
-}
+
 .index {
   border-right: solid #eee 0.5px;
   text-align: left;
   color: #000;
+}
+.col {
+  display: table;
+  margin: auto 0;
+  padding: 5px 8px;
 }
 </style>
