@@ -90,6 +90,9 @@ input[type='date'] {
 p {
   margin: 0 0;
 }
+.table-cell {
+  border-bottom: 2px solid red;
+}
 
 .select_pass {
   color: rgb(107, 155, 67);

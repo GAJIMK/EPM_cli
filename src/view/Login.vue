@@ -57,7 +57,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/scss/main.scss';
 @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 .container {
   width: 20em;

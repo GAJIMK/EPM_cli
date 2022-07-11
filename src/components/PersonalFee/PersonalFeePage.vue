@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <div class="subTitle">
       📂<span class="bold">{{ date }},{{ accountId }}</span
       >님 경비계산서
@@ -11,6 +11,12 @@
       :accountId="accountId"
       :date="date"
     />
+    <div class="btnGroup">
+      <button class="rejectBtn loginBtn">
+        반려
+      </button>
+      <button class="approveBtn loginBtn">승인</button>
+    </div>
   </div>
 </template>
 
@@ -54,12 +60,40 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import '@/scss/main.scss';
 .subTitle {
   font-size: 18px;
   padding: 10px 10px;
   .bold {
     font-weight: 600;
+  }
+}
+.btnGroup {
+  display: flex;
+  width: fit-content;
+  float: right;
+  padding: 0 20px;
+}
+
+.rejectBtn {
+  color: #fff;
+  background-color: #c1564c;
+  &:hover {
+    background-color: #fff;
+    color: #c1564c;
+    border: 3px solid #c1564c;
+  }
+  margin-right: 10px;
+}
+.approveBtn {
+  color: #fff;
+  background-color: #95ba2f;
+
+  &:hover {
+    background-color: #fff;
+    color: #95ba2f;
+    border: 3px solid #95ba2f;
   }
 }
 </style>

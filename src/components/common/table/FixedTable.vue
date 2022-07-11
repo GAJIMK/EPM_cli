@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { updateUnstable, updateStable } from '@/api/userFeeList/userFeeList';
 export default {
   props: {
     item: {
@@ -29,12 +30,19 @@ export default {
     },
   },
   methods: {
-    changeState(e) {
-      let list = e.currentTarget;
-      if (list.classList.contains('active')) {
-        list.classList.remove('active');
+    async changeState(e) {
+      const list = e.currentTarget;
+      const item = this.item;
+      if (item.state === 40) {
+        await updateStable(item.id).then(() => {
+          this.item.state = 50;
+          list.classList.add('active');
+        });
       } else {
-        list.classList.add('active');
+        await updateUnstable(item.id).then(() => {
+          this.item.state = 40;
+          list.classList.remove('active');
+        });
       }
     },
   },
