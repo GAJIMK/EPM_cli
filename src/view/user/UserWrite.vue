@@ -66,7 +66,10 @@ export default {
         accountId: this.accountId,
         date: this.date + '-01',
       };
-      await createUserFeeState(data);
+      await createUserFeeState(data).then(() => {
+        alert('제출이 완료되었습니다');
+        this.$router.push({ name: 'home' });
+      });
     },
 
     //영수증 파일 업로드 하는 메소드

@@ -24,6 +24,13 @@ function updateList(data) {
 function deleteList(id) {
   return userFeeList.delete(`/${id}`);
 }
+
+function updateUnstable(id) {
+  return userFeeList.post(`/unstable/${id}`);
+}
+function updateStable(id) {
+  return userFeeList.post(`/unstable/${id}`);
+}
 export {
   fetchUserList,
   fetchPartList,
@@ -31,4 +38,6 @@ export {
   createList,
   updateList,
   deleteList,
+  updateUnstable,
+  updateStable,
 };

@@ -1,5 +1,5 @@
 <template>
-  <component :is="layout">
+  <component :is="layout" id="common">
     <router-view></router-view>
   </component>
 </template>
@@ -41,5 +41,9 @@ export default {
 
 .font-small {
   font-size: 0.6em;
+}
+
+#common {
+  background-image: require('~/public/image/back.png');
 }
 </style>
