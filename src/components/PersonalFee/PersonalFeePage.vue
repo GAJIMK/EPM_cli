@@ -3,6 +3,12 @@
     <div class="subTitle">
       📂<span class="bold">{{ date }},{{ accountId }}</span
       >님 경비계산서
+      <div class="btnGroup">
+        <button class="rejectBtn loginBtn" @click="reject">
+          반려
+        </button>
+        <button class="approveBtn loginBtn" @click="accept">승인</button>
+      </div>
     </div>
     <ExpensePartNoAdd
       v-for="expense in expenseList"
@@ -11,12 +17,6 @@
       :accountId="accountId"
       :date="date"
     />
-    <div class="btnGroup">
-      <button class="rejectBtn loginBtn" @click="reject">
-        반려
-      </button>
-      <button class="approveBtn loginBtn" @click="accept">승인</button>
-    </div>
   </div>
 </template>
 
@@ -71,6 +71,10 @@ export default {
     async reject() {
       try {
         await rejectState(this.accountId, this.date + '-01');
+        this.$router.push({
+          name: 'usersExpense',
+          params: { date: this.date },
+        });
       } catch (e) {
         alert(e);
       }

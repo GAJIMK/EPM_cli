@@ -1,5 +1,5 @@
 <template>
-  <div class="table-cell">
+  <div class="table-cell" v-bind:class="{ active: item.state === 40 }">
     <div class="col">
       <input
         type="date"
@@ -97,9 +97,13 @@ p {
   width: 100%;
   font-weight: bold;
   text-align: center;
+  background-color: transparent;
 }
 
 .col {
   flex-shrink: 0;
+}
+.active {
+  background-color: rgba(245, 117, 117, 0.3);
 }
 </style>
