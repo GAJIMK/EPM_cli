@@ -1,13 +1,31 @@
 <template>
   <div id="header">
     <div class="title" @click="goHome()">💸다트의 손쉬운 경비관리💸</div>
+    <div>경비 마감 기한 D - {{ this.diffDay }} 일</div>
     <button @click="goLogin()" class="loginBtn yellowBtn">Login</button>
   </div>
 </template>
 
 <script>
+import { fetchBoardDay } from '@/api/submit/submit.js';
+import moment from 'moment';
 export default {
+  data() {
+    return {
+      diffDay,
+    };
+  },
+  mounted() {
+    this.loadPast();
+  },
   methods: {
+    async loadPast() {
+      const res = await fetchBoardDay();
+      const currentDay = moment(new Date());
+      const setDay = moment(res.data.list[0].endDay);
+      this.diffDay = setDay.diff(currentDay, 'days');
+      console.log('diff', this.diffDay);
+    },
     goLogin() {
       this.$router.push({ name: 'login' });
     },
