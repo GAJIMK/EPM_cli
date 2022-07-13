@@ -1,7 +1,7 @@
 <template>
   <div id="header">
     <div class="title" @click="goHome()">💸다트의 손쉬운 경비관리💸</div>
-    <div>경비 마감 기한 D - {{ this.diffDay }} 일</div>
+    <div>경비 마감 D - {{ this.diffDay }} 일</div>
     <button @click="goLogin()" class="loginBtn yellowBtn">Login</button>
   </div>
 </template>
