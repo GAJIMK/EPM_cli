@@ -6,14 +6,26 @@ const store = new Vuex.Store({
   state: {
     accountId: '',
     accountNm: '',
+    role: '',
   },
   getters: {},
   mutations: {
-    async login() {
-      await login(data);
+    async setUser(state, data) {
+      state.accountId = data.accountId;
+      state.accountNm = data.accountNm;
+      state.role = data.role;
+    },
+    logout(state) {
+      state.accountId = '';
+      state.accountNm = '';
+      state.role = '';
     },
   },
-  actions: {},
+  actions: {
+    show(mutations) {
+      console.log(mutations);
+    },
+  },
 });
 
 export default store;

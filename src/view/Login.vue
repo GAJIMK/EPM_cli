@@ -20,11 +20,12 @@
       />
     </div>
 
-    <button class="loginBtn disabled loginInput">로그인</button>
+    <button class="loginBtn disabled loginInput" @click="login">로그인</button>
   </div>
 </template>
 
 <script>
+import { login } from '@/api/auth/auth';
 export default {
   data() {
     return {
@@ -51,6 +52,18 @@ export default {
       } else {
         btn.classList.add('disabled');
       }
+    },
+    async login() {
+      const form = {
+        accountId: this.id,
+        password: this.pw,
+      };
+      await login(form).then(res => {
+        if (res.data.code === 0) {
+          this.$store.commit('setUser', res.data.data);
+          this.$router.push({ name: 'home' });
+        } else alert('에러');
+      });
     },
   },
 };
