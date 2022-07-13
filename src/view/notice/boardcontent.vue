@@ -19,14 +19,14 @@
     ></b-textarea>
     <div class="footer">
       <div>{{ thumbs }}</div>
-      <div class="icon-container yellowBtn">
+      <div class="icon-container basicBtn">
         <font-awesome-icon
           icon="fa-solid fa-thumbs-up"
           class="icon"
           @click="putData()"
         />
       </div>
-      <b-button class="yellowBtn" @click="goback()">목록</b-button>
+      <b-button class="basicBtn" @click="goback()">목록</b-button>
     </div>
   </div>
 </template>

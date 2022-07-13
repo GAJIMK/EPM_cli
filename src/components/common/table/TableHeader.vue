@@ -30,7 +30,6 @@ export default {};
 .table-head,
 .table-cell {
   text-align: center;
-  font-family: 'Jua', sans-serif;
   display: flex;
   align-items: center;
   width: 100%;

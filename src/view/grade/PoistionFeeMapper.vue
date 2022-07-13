@@ -76,13 +76,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-input[type='text'],
-input[type='date'] {
+<style lang="scss">
+input[type='text'] {
   text-align: center;
   border: 0px;
   background: transparent;
-  padding: 5px 8px;
   &:focus {
     outline: none;
   }

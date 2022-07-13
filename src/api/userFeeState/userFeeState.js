@@ -13,4 +13,17 @@ function fetchUserMonthState(accountId) {
 function createUserFeeState(data) {
   return userFeeState.put('/', data);
 }
-export { fetchUsersByMonth, fetchUserMonthState, createUserFeeState };
+
+function approveState(accountId, date) {
+  return userFeeState.post(`/approve/${accountId}/date/${date}`);
+}
+function rejectState(accountId, date) {
+  return userFeeState.post(`/reject/${accountId}/date/${date}`);
+}
+export {
+  fetchUsersByMonth,
+  fetchUserMonthState,
+  createUserFeeState,
+  approveState,
+  rejectState,
+};

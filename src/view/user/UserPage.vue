@@ -5,16 +5,16 @@
       >님, 달별 경비 내역서
     </div>
 
-    <ul class="list-group">
+    <ul class="user-lists">
       <div v-if="err">조회할 내용이 없습니다!</div>
-      <li
-        class="list-group-item"
+      <div
+        class="list"
         v-for="(list, index) in data"
         v-bind:key="index"
         @click="handlePersonal(list)"
       >
-        <div>{{ list.date }}</div>
-      </li>
+        <div>📂 {{ list.date.slice(0, 7) }} 경비 내역</div>
+      </div>
     </ul>
   </div>
 </template>
@@ -78,5 +78,22 @@ export default {
     font-weight: 600;
   }
   padding-bottom: 20px;
+}
+.user-lists {
+  height: 60vh;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0 !important;
+  }
+  .list {
+    border-bottom: solid #eee 0.5px;
+    padding: 10px 10px;
+    background-color: #fff;
+    &:hover {
+      cursor: pointer;
+      background-color: var(--color-smoke);
+    }
+  }
 }
 </style>

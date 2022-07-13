@@ -1,8 +1,10 @@
 <template>
   <div id="header">
     <div class="title" @click="goHome()">💸다트의 손쉬운 경비관리💸</div>
+
     <div>경비 마감 D - {{ this.diffDay }} 일</div>
     <button @click="goLogin()" class="loginBtn yellowBtn">Login</button>
+
   </div>
 </template>
 
@@ -57,7 +59,7 @@ export default {
   align-items: center;
   font-family: 'Dongle', sans-serif;
   font-family: 'Dongle', sans-serif;
-  padding: 5px 50px;
+  padding: 5px 20px;
   font-size: var(--font-size-xl);
   height: 50px;
   :hover {
@@ -70,7 +72,7 @@ export default {
   border: 3px solid #fff;
   outline: 0;
 
-  border-radius: 25px;
+  border-radius: 6px;
   padding: 0px 16px;
   font-size: var(--font-size-l);
 }
