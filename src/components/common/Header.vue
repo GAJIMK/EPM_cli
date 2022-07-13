@@ -12,10 +12,10 @@ import moment from 'moment';
 export default {
   data() {
     return {
-      diffDay,
+      diffDay: '',
     };
   },
-  mounted() {
+  created() {
     this.loadPast();
   },
   methods: {
