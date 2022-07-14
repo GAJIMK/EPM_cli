@@ -1,18 +1,15 @@
 <template>
   <div id="header">
-
     <div class="title" @click="goHome()">
       <div id="logo">EPM <span>easy pay management</span></div>
     </div>
     <div v-if="accountId" class="right">{{ accountNm }}님, 안녕하세요:)</div>
-     <div>경비 마감 D - {{ this.diffDay }} 일</div>
     <button v-if="accountId" @click="logout" class="loginBtn basicBtn">
       Logout
     </button>
     <button v-else @click="goLogin" class="loginBtn basicBtn">
       Login
     </button>
-
   </div>
 </template>
 
@@ -28,20 +25,18 @@ export default {
     };
   },
   methods: {
-
     async loadPast() {
       const res = await fetchBoardDay();
       const currentDay = moment(new Date());
       const setDay = moment(res.data.list[0].endDay);
       this.diffDay = setDay.diff(currentDay, 'days');
-      },
+    },
 
     checkState() {
       this.accountId = this.$store.state.accountId;
       this.accountNm = this.$store.state.accountNm;
       if (this.accountId === '') return false;
       else return true;
-
     },
 
     goLogin() {
