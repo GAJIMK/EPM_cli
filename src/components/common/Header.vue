@@ -1,10 +1,8 @@
 <template>
   <div id="header">
-
     <div class="title" @click="goHome()">
-      EPM <span>easy pay management</span>
+      <div id="logo">EPM <span>easy pay management</span></div>
     </div>
-    <div>경비 마감 D - {{ this.diffDay }} 일</div>
     <div v-if="accountId" class="right">{{ accountNm }}님, 안녕하세요:)</div>
     <button v-if="accountId" @click="logout" class="loginBtn basicBtn">
       Logout
@@ -16,10 +14,7 @@
 </template>
 
 <script>
-import { fetchBoardDay } from '@/api/submit/submit.js';
-import moment from 'moment';
 export default {
-
   created() {
     this.checkState();
   },
@@ -35,23 +30,8 @@ export default {
       this.accountNm = this.$store.state.accountNm;
       if (this.accountId === '') return false;
       else return true;
-
-  data() {
-    return {
-      diffDay: '',
-    };
-  },
-  created() {
-    this.loadPast();
-  },
-  methods: {
-    async loadPast() {
-      const res = await fetchBoardDay();
-      const currentDay = moment(new Date());
-      const setDay = moment(res.data.list[0].endDay);
-      this.diffDay = setDay.diff(currentDay, 'days');
-      console.log('diff', this.diffDay);
     },
+
     goLogin() {
       this.$router.push({ name: 'login' });
     },
@@ -86,7 +66,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
-  font-size: var(--font-size-l);
+  font-size: var(--font-size-s);
   font-weight: 700;
   height: 60px;
   :hover {
@@ -95,14 +75,20 @@ export default {
 }
 .title {
   font-family: 'GongGothicMedium', sans-serif;
+  display: flex;
+  align-items: center;
+  #logo {
+    font-size: var(--font-size-l);
+  }
   span {
     font-size: var(--font-size-xs);
+    margin-right: 10px;
   }
 }
 .right {
   position: absolute;
-  top: 12px;
-  right: 120px;
+  top: 20px;
+  right: 125px;
 }
 .loginBtn {
   display: block;

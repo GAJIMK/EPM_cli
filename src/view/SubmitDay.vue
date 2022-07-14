@@ -184,7 +184,7 @@ export default {
 
 input[type='text'] {
   text-align: center;
-  background-color: #fcd000;
+  background-color: #fdc000;
   border: transparent;
 }
 </style>

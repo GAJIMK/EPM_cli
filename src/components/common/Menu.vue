@@ -123,7 +123,6 @@ export default {
 .menu {
   border: 4px solid var(--color-yellow);
   border-radius: 1rem;
-  margin-top: 3em;
   padding-top: 20px;
   font-size: 0.9em;
   background: rgba(255, 255, 255, 0.3);
