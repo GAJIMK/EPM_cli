@@ -4,7 +4,6 @@
 
     <div>경비 마감 D - {{ this.diffDay }} 일</div>
     <button @click="goLogin()" class="loginBtn yellowBtn">Login</button>
-
   </div>
 </template>
 
@@ -26,7 +25,6 @@ export default {
       const currentDay = moment(new Date());
       const setDay = moment(res.data.list[0].endDay);
       this.diffDay = setDay.diff(currentDay, 'days');
-      console.log('diff', this.diffDay);
     },
     goLogin() {
       this.$router.push({ name: 'login' });
