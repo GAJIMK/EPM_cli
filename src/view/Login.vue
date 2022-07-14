@@ -27,6 +27,7 @@
 
 <script>
 import { login } from '@/api/auth/auth';
+
 export default {
   data() {
     return {
@@ -71,7 +72,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+@import '@/scss/font.scss';
+@import '@/scss/main.scss';
 .container {
   width: 20em;
   height: 60vh;
@@ -82,9 +84,9 @@ export default {
 }
 
 .logo {
-  font-family: 'Dongle', sans-serif;
-  font-family: 'Dongle', sans-serif;
-  font-size: 2.5em;
+  font-family: 'GongGothicMedium', sans-serif;
+  font-family: 'GongGothicMedium', sans-serif;
+  font-size: var(--font-size-l);
 }
 
 label {

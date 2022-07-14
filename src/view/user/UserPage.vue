@@ -51,7 +51,7 @@ export default {
       this.$router
         .push({
           name: 'userPersonal',
-          query: { date: date },
+          query: { accountId: this.$store.state.accountId, date: date },
         })
         .catch(() => {});
     },

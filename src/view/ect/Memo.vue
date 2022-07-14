@@ -1,21 +1,17 @@
 <template>
   <div class="menu-container">
     <div class="menu-title">🔥HOT 3 게시글🔥</div>
+    <button class="boardBtn" @click="handleBoard">게시글 구경가기</button>
     <div class="menu-scon">
-      <ul class="first">
-        <li v-for="item in awards" :key="item.id">{{ item }}</li>
-      </ul>
-
-      <ul class="second">
-        <li
-          v-for="(item, index) in alltitle"
-          :key="item.id"
-          @click="goreport(index)"
-          class="list-name"
-        >
-          {{ item }}
-        </li>
-      </ul>
+      <li
+        v-for="(item, index) in alltitle"
+        :key="index"
+        @click="goreport(index)"
+        class="list-name"
+      >
+        {{ awards[index] }}
+        {{ item }}
+      </li>
     </div>
   </div>
 </template>
@@ -29,14 +25,14 @@ export default {
       Fllist: [],
       alltitle: [],
       allId: [],
-      awards: { one: '🥇', two: '🥈', three: '🥉' },
+      awards: ['🥇', '🥈', '🥉'],
     };
   },
   created() {
     this.loadtop();
   },
   methods: {
-    goBoard() {
+    handleBoard() {
       this.$router.push({ name: 'noticeBoard' });
     },
     async loadtop() {
@@ -65,49 +61,58 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Ubuntu:ital,wght@1,300&display=swap');
+@import '@/scss/font.scss';
+@import '@/scss/main.scss';
 .menu-container {
-  cursor: pointer;
+  position: relative;
+  font-family: 'Nanum Gothic', sans-serif;
   height: 200px;
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0px 2px 32px -5px rgba(167, 167, 167, 0.54);
+  background: rgba(231, 218, 157, 0.3);
+  box-shadow: 0px 2px 32px -5px rgba(209, 200, 171, 0.54);
   backdrop-filter: blur(50%);
   -webkit-backdrop-filter: blur(50%);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .menu-title {
-  font-family: 'Dongle', sans-serif;
-  font-family: 'Dongle', sans-serif;
-  font-size: 1.5em;
-  padding: 8px 0px 0px;
+  font-family: 'GongGothicMedium', sans-serif;
+  font-size: var(--font-size-m);
+  padding: 10px 0px;
 }
-.first {
-  float: left;
-  width: 50px;
-  display: flex;
-  flex-direction: column;
-
-  margin-right: 15px;
-  li {
-    transform: scale(1.2);
-  }
-}
-.second {
-  float: left;
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+li {
+  list-style: none;
+  padding: 8px 8px;
 }
 .menu-scon {
-  display: flex;
-  flex-direction: row;
   margin-bottom: 20px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .list-name {
-  width: 200px;
+  width: 90%;
   text-align: left;
+  border-bottom: 2px solid #fff;
+  &:hover {
+    background-color: rgba(231, 214, 135, 0.3);
+    cursor: pointer;
+  }
+}
+.boardBtn {
+  display: block;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: 2px solid #fff;
+  background: transparent;
+  outline: 0;
+  border-radius: 6px;
+  padding: 0px 16px;
+  font-family: 'GongGothicMedium', sans-serif;
+  font-size: var(--font-size-xs);
+  &:hover {
+    background: #fcd000;
+  }
 }
 </style>
