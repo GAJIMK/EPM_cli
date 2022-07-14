@@ -1,8 +1,7 @@
 <template>
   <div id="container">
-    <h2 class="name">📰 다트 익명 게시판 ✏️</h2>
-    <label for="name" class="title_2">제목 🙌</label
-    ><b-input
+    <h3 class="name" @click="goback()">📢 익명 게시판</h3>
+    <b-input
       class="title"
       type="text"
       placeholder="제목을 입력하세요"
@@ -18,8 +17,8 @@
       v-model="boardcontent.content"
     ></b-textarea>
     <div class="btnGroup">
-      <b-button class="BtnStyle" @click="putData()">확인</b-button>
       <b-button class="BtnStyle" @click="goback()">취소</b-button>
+      <b-button class="BtnStyle" @click="putData()">확인</b-button>
     </div>
   </div>
 </template>
@@ -41,14 +40,17 @@ export default {
 
   methods: {
     async putData() {
-      try {
-        await putBoardList(this.boardcontent).then(() => {
-          console.log('성공');
-          window.history.go(-1);
-        });
-      } catch (error) {
-        this.errorMsg = getErrorResponseData(error);
-        console.log('에러');
+      if (this.boardcontent.content != '' && this.boardcontent.title != '') {
+        try {
+          await putBoardList(this.boardcontent).then(() => {
+            window.history.go(-1);
+          });
+        } catch (error) {
+          this.errorMsg = getErrorResponseData(error);
+          console.log('에러');
+        }
+      } else {
+        alert('빈칸을 채워주세요.');
       }
     },
     goback() {

@@ -1,22 +1,28 @@
 <template>
-  <div>
-    <h3 class="name">📰 다트 익명 게시판 ✏️</h3>
-    <button class="BtnStyle" @click="goBoardWirte()">작성하기</button>
-    <hr />
-    <div class="container">
-      <ul class="list-group">
-        <li
-          class="list list-group-item "
+  <div class="container">
+    <div class="top-con">
+      <h3 class="name">📢 익명 게시판</h3>
+      <button class="BtnStyle right-side" @click="goBoardWirte()">
+        작성하기✏️
+      </button>
+    </div>
+
+    <div class="list-con">
+      <ul class="user-lists">
+        <div v-if="err">조회할 내용이 없습니다!</div>
+        <div
+          class="list"
           v-for="(board, index) in boardlists"
           v-bind:key="index"
           @click="goreport(index)"
         >
-          {{ board }}
-        </li>
+          <div>
+            {{ board }}
+          </div>
+        </div>
       </ul>
     </div>
 
-    <hr />
     <div class="re">
       <b-pagination
         class="paging-search-form-pagination"
@@ -46,6 +52,7 @@ export default {
       llist: [],
       Fllist: [],
       idlist: [],
+      timelists: [],
       pageNo: 0,
       currentPage: 1,
       PageNum: '',
@@ -129,7 +136,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '@/scss/main.scss';
 .BtnStyle {
   border: 0;
   outline: 0;
@@ -138,16 +146,50 @@ export default {
   color: black;
   margin: 0.5%;
 }
-
+.top-con {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
 .re {
   display: flex;
   justify-content: center;
   flex-direction: row;
 }
+
 .name {
-  font-family: 'Dongle', sans-serif;
-  font-family: 'Dongle', sans-serif;
-  font-size: 30px;
+  // font-family: 'Dongle', sans-serif;
+  // font-family: 'Dongle', sans-serif;
+  font-size: 40px;
   padding: 1%;
+}
+.right-side {
+  width: 150px;
+  height: 50px;
+  margin-right: 15%;
+  margin-top: 100px;
+
+  &:hover {
+    background-color: rgb(255, 228, 139);
+  }
+}
+
+.user-lists {
+  height: 70vh;
+  width: 70%;
+  margin: auto;
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0 !important;
+  }
+  .list {
+    border-bottom: solid #eee 0.5px;
+    padding: 10px 10px;
+    background-color: #fff;
+    &:hover {
+      cursor: pointer;
+      background-color: var(--color-smoke);
+    }
+  }
 }
 </style>
