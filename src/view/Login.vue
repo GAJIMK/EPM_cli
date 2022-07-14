@@ -17,14 +17,17 @@
         class="loginInput"
         placeholder="비밀번호를 입력하세요"
         v-model="pw"
+        @keyup.enter="login"
       />
     </div>
 
-    <button class="loginBtn disabled loginInput">로그인</button>
+    <button class="loginBtn disabled loginInput" @click="login">로그인</button>
   </div>
 </template>
 
 <script>
+import { login } from '@/api/auth/auth';
+
 export default {
   data() {
     return {
@@ -52,25 +55,38 @@ export default {
         btn.classList.add('disabled');
       }
     },
+    async login() {
+      const form = {
+        accountId: this.id,
+        password: this.pw,
+      };
+      await login(form).then(res => {
+        if (res.data.code === 0) {
+          this.$store.commit('setUser', res.data.data);
+          this.$router.push({ name: 'home' });
+        } else alert('에러');
+      });
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+@import '@/scss/font.scss';
+@import '@/scss/main.scss';
 .container {
   width: 20em;
   height: 60vh;
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 3em;
 }
 
 .logo {
-  font-family: 'Dongle', sans-serif;
-  font-family: 'Dongle', sans-serif;
-  font-size: 2.5em;
+  font-family: 'GongGothicMedium', sans-serif;
+  font-family: 'GongGothicMedium', sans-serif;
+  font-size: var(--font-size-l);
 }
 
 label {

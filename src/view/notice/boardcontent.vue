@@ -138,7 +138,7 @@ export default {
     transform: scale(1.02);
     border: 3px solid var(--color-yellow);
     .icon {
-      color: #fdc000;
+      color: #fcd000;
     }
   }
   .icon {

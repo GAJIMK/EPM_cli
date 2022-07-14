@@ -1,9 +1,9 @@
 <template>
   <div class="container-fluid">
     <div class="subTitle">
-      📂<span class="bold">{{ date }},{{ accountId }}</span
+      📂<span class="bold">{{ date }},{{ name }}</span
       >님 경비계산서
-      <div class="btnGroup">
+      <div class="btnGroup" v-if="auth">
         <button class="rejectBtn loginBtn" @click="reject">
           반려
         </button>
@@ -24,22 +24,28 @@
 import ExpensePartNoAdd from './ExpensePartNoAdd.vue';
 import { fetchPositionList } from '@/api/positionFeeMapper/positionFeeMapper';
 import { accountInfo } from '@/api/account/account';
-import { approveState, rejectState } from '@/api/userFeeState/userFeeState';
+import {
+  approveState,
+  rejectState,
+  ingState,
+} from '@/api/userFeeState/userFeeState';
 export default {
   components: {
     ExpensePartNoAdd,
   },
   mounted() {
     this.fetchData();
+    this.changeState();
   },
   data() {
     return {
       data: '',
-      accountId: this.$route.query.id,
-      name: this.$route.query.name,
+      accountId: this.$route.query.accountId,
+      name: this.$route.query.accountNm,
       date: this.$route.query.date,
       accountPosition: 0,
       expenseList: '',
+      auth: this.$store.state.auth === 'ADMIN' ? true : false,
     };
   },
   methods: {
@@ -52,6 +58,9 @@ export default {
         .then(code => {
           this.fetchExpenseList(code);
         });
+    },
+    async changeState() {
+      if (state) await ingState(this.accountId, this.date);
     },
     async fetchExpenseList(code) {
       const fee = await fetchPositionList(code);

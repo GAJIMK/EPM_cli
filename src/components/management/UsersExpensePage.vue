@@ -2,7 +2,7 @@
   <div class="container">
     <b-button class="rightBtn" variant="warning">기안하기</b-button>
     <MenuTitle menuTitle="😶사용자별 경비 리스트" />
-    <div class="contents">
+    <div class="dateBtns">
       <div class="left-button btn" @click="decrease">
         <font-awesome-icon icon="fa-solid fa-caret-left" />
       </div>
@@ -84,7 +84,7 @@ export default {
   font-size: 20px;
   font-weight: 600;
 }
-.contents {
+.dateBtns {
   width: 400px;
   display: flex;
   margin: auto auto;

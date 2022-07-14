@@ -1,6 +1,6 @@
 <template>
   <div class="part">
-    <div class="row container">
+    <div class="row">
       <font-awesome-icon
         icon="fa-solid fa-angle-down"
         v-if="state"
@@ -163,6 +163,7 @@ export default {
 .row {
   align-items: center;
   width: 100%;
+  padding: 0 20px;
 }
 .part {
   padding: 20px 0;

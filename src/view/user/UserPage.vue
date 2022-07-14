@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div id="title">
-      <span id="name">{{ userId }}</span
+      <span id="name">{{ accountNm }}</span
       >님, 달별 경비 내역서
     </div>
 
@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       data: [],
-      userId: 'jihye.son',
+      accountNm: this.$store.state.accountNm,
       err: false,
     };
   },
@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     async initData() {
-      const res = await fetchUserMonthState(this.userId);
+      const res = await fetchUserMonthState(this.$store.state.accountId);
 
       if (res.data.code === -50) {
         this.err = true;
@@ -51,7 +51,7 @@ export default {
       this.$router
         .push({
           name: 'userPersonal',
-          query: { id: data.accountId, name: name, date: date },
+          query: { accountId: this.$store.state.accountId, date: date },
         })
         .catch(() => {});
     },

@@ -1,10 +1,17 @@
 <template>
   <div id="header">
-    <div class="title" @click="goHome()">💸다트의 손쉬운 경비관리💸</div>
 
+    <div class="title" @click="goHome()">
+      EPM <span>easy pay management</span>
+    </div>
     <div>경비 마감 D - {{ this.diffDay }} 일</div>
-    <button @click="goLogin()" class="loginBtn yellowBtn">Login</button>
-
+    <div v-if="accountId" class="right">{{ accountNm }}님, 안녕하세요:)</div>
+    <button v-if="accountId" @click="logout" class="loginBtn basicBtn">
+      Logout
+    </button>
+    <button v-else @click="goLogin" class="loginBtn basicBtn">
+      Login
+    </button>
   </div>
 </template>
 
@@ -12,6 +19,23 @@
 import { fetchBoardDay } from '@/api/submit/submit.js';
 import moment from 'moment';
 export default {
+
+  created() {
+    this.checkState();
+  },
+  data() {
+    return {
+      accountId: this.$store.state.accountId,
+      accountNm: this.$store.state.accountNm,
+    };
+  },
+  methods: {
+    checkState() {
+      this.accountId = this.$store.state.accountId;
+      this.accountNm = this.$store.state.accountNm;
+      if (this.accountId === '') return false;
+      else return true;
+
   data() {
     return {
       diffDay: '',
@@ -38,14 +62,18 @@ export default {
     goSignUp: function() {
       this.$router.push({ name: 'SignUp' }).catch(() => {});
     },
+    logout() {
+      this.$store.commit('logout');
+      this.checkState();
+    },
   },
 };
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Ubuntu:ital,wght@1,300&display=swap');
 @import '@/styles/variables.scss';
 @import '@/scss/main.scss';
+@import '@/scss/font.scss';
 .name {
   cursor: pointer;
 }
@@ -57,23 +85,32 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Dongle', sans-serif;
-  font-family: 'Dongle', sans-serif;
   padding: 5px 20px;
-  font-size: var(--font-size-xl);
-  height: 50px;
+  font-size: var(--font-size-l);
+  font-weight: 700;
+  height: 60px;
   :hover {
     cursor: pointer;
   }
 }
-
+.title {
+  font-family: 'GongGothicMedium', sans-serif;
+  span {
+    font-size: var(--font-size-xs);
+  }
+}
+.right {
+  position: absolute;
+  top: 12px;
+  right: 120px;
+}
 .loginBtn {
   display: block;
   border: 3px solid #fff;
   outline: 0;
-
   border-radius: 6px;
   padding: 0px 16px;
-  font-size: var(--font-size-l);
+  font-family: 'GongGothicMedium', sans-serif;
+  font-size: var(--font-size-m);
 }
 </style>

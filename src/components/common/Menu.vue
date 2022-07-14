@@ -37,7 +37,7 @@
         </li>
       </ul>
     </div>
-    <div class="management-menu">
+    <div class="management-menu" v-if="state">
       <ul class="menu-items">
         <li class="list-item" @click="handleExpenseList">
           <div class="icon-container basicBtn">
@@ -60,7 +60,7 @@
           </div>
           <div class="menu-content">사용자 경비조회</div>
         </li>
-        <li class="list-item" @click="goSubDay()">
+        <li class="list-item" @click="handleSubDay()">
           <div class="icon-container basicBtn">
             <font-awesome-icon icon="fa-solid fa-calendar-days" class="icon" />
           </div>
@@ -74,30 +74,45 @@
 <script>
 import moment from 'moment';
 export default {
+  data() {
+    return {
+      accountId: this.$store.state.accountId,
+      state: this.$store.state.auth === 'ADMIN' ? true : false,
+    };
+  },
   methods: {
+    checkSession() {
+      const state = this.accountId ? true : false;
+      if (state) return state;
+      else alert('로그인된 사용자만 사용가능');
+    },
     handleWrite() {
-      this.$router.push({ name: 'userWrite' });
+      if (this.checkSession()) this.$router.push({ name: 'userWrite' });
     },
-    handelGrade() {
-      this.$router.push({ name: 'grade' });
-    },
+
     goMypage() {
-      this.$router.push({ name: 'myPage' });
+      if (this.checkSession()) this.$router.push({ name: 'myPage' });
     },
     writtenList() {
-      this.$router.push({ name: 'user' });
+      if (this.checkSession()) this.$router.push({ name: 'user' });
     },
+    //경비항목관리
     handleExpenseList() {
-      this.$router.push({ name: 'expenseList' });
+      if (this.checkSession()) this.$router.push({ name: 'expenseList' });
     },
-    goSubDay() {
-      this.$router.push({ name: 'submitDay' });
+    //등급관리
+    handelGrade() {
+      if (this.checkSession()) this.$router.push({ name: 'grade' });
     },
     handleUsersList() {
-      this.$router.push({
-        name: 'usersExpense',
-        params: { date: moment(new Date()).format('YYYY-MM') },
-      });
+      if (this.checkSession())
+        this.$router.push({
+          name: 'usersExpense',
+          params: { date: moment(new Date()).format('YYYY-MM') },
+        });
+    },
+    handleSubDay() {
+      if (this.checkSession()) this.$router.push({ name: 'submitDay' });
     },
   },
 };
@@ -108,9 +123,15 @@ export default {
 .menu {
   border: 4px solid var(--color-yellow);
   border-radius: 1rem;
-  margin-top: 10px;
+  margin-top: 3em;
   padding-top: 20px;
   font-size: 0.9em;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 2px 32px -5px rgba(167, 167, 167, 0.54);
+  backdrop-filter: blur(50%);
+  -webkit-backdrop-filter: blur(50%);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .allUsersMenu {
   display: flex;
