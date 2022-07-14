@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="subTitle">
-      📂<span class="bold">{{ date }},{{ accountId }}</span
+      📂<span class="bold">{{ date }},{{ name }}</span
       >님 경비계산서
       <div class="btnGroup">
         <button class="rejectBtn loginBtn" @click="reject">
@@ -35,8 +35,8 @@ export default {
   data() {
     return {
       data: '',
-      accountId: this.$route.query.id,
-      name: this.$route.query.name,
+      accountId: this.$store.state.accountId,
+      name: this.$store.state.accountNm,
       date: this.$route.query.date,
       accountPosition: 0,
       expenseList: '',
