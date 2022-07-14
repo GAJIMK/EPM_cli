@@ -74,30 +74,41 @@
 <script>
 import moment from 'moment';
 export default {
+  data() {
+    return {
+      accountId: this.$store.state.accountId,
+    };
+  },
   methods: {
+    checkSession() {
+      const state = this.accountId ? true : false;
+      if (state) return state;
+      else alert('로그인된 사용자만 사용가능');
+    },
     handleWrite() {
-      this.$router.push({ name: 'userWrite' });
+      if (this.checkSession()) this.$router.push({ name: 'userWrite' });
     },
     handelGrade() {
-      this.$router.push({ name: 'grade' });
+      if (this.checkSession()) this.$router.push({ name: 'grade' });
     },
     goMypage() {
-      this.$router.push({ name: 'myPage' });
+      if (this.checkSession()) this.$router.push({ name: 'myPage' });
     },
     writtenList() {
-      this.$router.push({ name: 'user' });
+      if (this.checkSession()) this.$router.push({ name: 'user' });
     },
     handleExpenseList() {
-      this.$router.push({ name: 'expenseList' });
+      if (this.checkSession()) this.$router.push({ name: 'expenseList' });
     },
     goSubDay() {
-      this.$router.push({ name: 'submitDay' });
+      if (this.checkSession()) this.$router.push({ name: 'submitDay' });
     },
     handleUsersList() {
-      this.$router.push({
-        name: 'usersExpense',
-        params: { date: moment(new Date()).format('YYYY-MM') },
-      });
+      if (this.checkSession())
+        this.$router.push({
+          name: 'usersExpense',
+          params: { date: moment(new Date()).format('YYYY-MM') },
+        });
     },
   },
 };
@@ -108,9 +119,15 @@ export default {
 .menu {
   border: 4px solid var(--color-yellow);
   border-radius: 1rem;
-  margin-top: 10px;
+  margin-top: 3em;
   padding-top: 20px;
   font-size: 0.9em;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 2px 32px -5px rgba(167, 167, 167, 0.54);
+  backdrop-filter: blur(50%);
+  -webkit-backdrop-filter: blur(50%);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .allUsersMenu {
   display: flex;

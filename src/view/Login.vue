@@ -75,9 +75,9 @@ export default {
   width: 20em;
   height: 60vh;
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 3em;
 }
 
 .logo {

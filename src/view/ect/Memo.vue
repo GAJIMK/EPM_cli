@@ -2,23 +2,20 @@
   <div class="menu-container">
     <div class="menu-title">🔥HOT 3 게시글🔥</div>
     <div class="menu-scon">
-      <span class="first">
-        <ul class="first">
-          <li v-for="item in awards" :key="item.id">{{ item }}</li>
-        </ul>
-      </span>
-      <span class="second">
-        <ul class="second">
-          <li
-            v-for="(item, index) in alltitle"
-            :key="item.id"
-            @click="goreport(index)"
-            class="list-name"
-          >
-            {{ item }}
-          </li>
-        </ul>
-      </span>
+      <ul class="first">
+        <li v-for="item in awards" :key="item.id">{{ item }}</li>
+      </ul>
+
+      <ul class="second">
+        <li
+          v-for="(item, index) in alltitle"
+          :key="item.id"
+          @click="goreport(index)"
+          class="list-name"
+        >
+          {{ item }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -72,6 +69,12 @@ export default {
 .menu-container {
   cursor: pointer;
   height: 200px;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 2px 32px -5px rgba(167, 167, 167, 0.54);
+  backdrop-filter: blur(50%);
+  -webkit-backdrop-filter: blur(50%);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .menu-title {
   font-family: 'Dongle', sans-serif;
@@ -81,15 +84,18 @@ export default {
 }
 .first {
   float: left;
-  width: 100;
+  width: 50px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+
   margin-right: 15px;
+  li {
+    transform: scale(1.2);
+  }
 }
 .second {
   float: left;
-  width: 100;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -98,6 +104,7 @@ export default {
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
+  width: 100%;
 }
 .list-name {
   width: 200px;

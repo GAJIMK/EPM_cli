@@ -55,6 +55,12 @@ export default {
 .menu-container {
   display: flex;
   align-items: center;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 2px 32px -5px rgba(167, 167, 167, 0.54);
+  backdrop-filter: blur(50%);
+  -webkit-backdrop-filter: blur(50%);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   .title {
     margin-top: 20px;
     font-weight: 600;

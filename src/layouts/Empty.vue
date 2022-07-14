@@ -9,7 +9,6 @@ export default {};
 </script>
 
 <style>
-.container,
 .container-fluid {
   padding: 0px 0px;
 }

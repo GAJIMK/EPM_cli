@@ -1,6 +1,7 @@
 <template>
   <div id="header">
     <div class="title" @click="goHome()">💸다트의 손쉬운 경비관리💸</div>
+    <span v-if="accountId">{{ accountNm }}님, 안녕하세요:)</span>
     <button v-if="accountId" @click="logout" class="loginBtn basicBtn">
       Logout
     </button>
@@ -24,7 +25,7 @@ export default {
   methods: {
     checkState() {
       this.accountId = this.$store.state.accountId;
-      console.log(this.$store.state.accountId);
+      this.accountNm = this.$store.state.accountNm;
       if (this.accountId === '') return false;
       else return true;
     },
@@ -65,7 +66,7 @@ export default {
   font-family: 'Dongle', sans-serif;
   padding: 5px 20px;
   font-size: var(--font-size-xl);
-  height: 50px;
+  height: 60px;
   :hover {
     cursor: pointer;
   }

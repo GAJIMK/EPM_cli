@@ -1,5 +1,5 @@
 //Default variable overrides
-$primary: #fdc000;
+$primary: #fcd000;
 $container-max-widths: (
   sm: 540px,
   md: 704px,
@@ -16,7 +16,7 @@ $container-max-widths: (
 //bootstrap 의 색상을 재사용 하는 경우
 // 정의되어있는 변수를 사용하는 경우 varivales밑에 두어야 에러를 방지할 수 있다.
 $theme-colors: (
-  'primary': #fdc000,
+  'primary': #fcd000,
   'secondary': $secondary,
   'success': $success,
   'info': $info,
@@ -35,21 +35,21 @@ $theme-colors: (
   margin-left: -1px;
   line-height: 1.25;
   color: white !important;
-  background-color: #fdc000 !important;
+  background-color: #fcd000 !important;
   border: 1px solid white !important;
 }
 .page-link:hover {
   z-index: 2;
   color: #fff !important;
   text-decoration: none;
-  background-color: #fdc000 !important;
+  background-color: #fcd000 !important;
   border-color: #dee2e6;
 }
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
   background-color: #ffe9a2 !important;
-  border-color: #fdc000;
+  border-color: #fcd000;
 }
 
 body {
@@ -108,7 +108,7 @@ input[type='text'] {
 }
 
 .menu-container {
-  border: 4px solid #fdc000;
+  border: 4px solid #fcd000;
   border-radius: 10px;
   text-align: center;
   justify-content: center;
