@@ -1,11 +1,12 @@
 <template>
   <div id="container">
-    <h2 class="name">📰 다트 익명 게시판 ✏️</h2>
+    <h3 class="name" @click="goback()">📢 익명 게시판</h3>
     <div class="cont">
-      <label for="name" class="title_2">제목</label
-      ><b-input class="title" type="text" disabled v-model="this.title" />
+      <!-- <label for="name" class="title_2">제목</label
+      > -->
+      <hr />
+      <b-input class="title-2" type="text" disabled v-model="this.title" />
     </div>
-
     <small class="date">{{ date }}</small>
     <label for="content"></label>
     <b-textarea
@@ -17,6 +18,7 @@
       disabled
       v-model="this.content"
     ></b-textarea>
+
     <div class="footer">
       <div>{{ thumbs }}</div>
       <div class="icon-container basicBtn">
@@ -26,7 +28,7 @@
           @click="putData()"
         />
       </div>
-      <b-button class="basicBtn" @click="goback()">목록</b-button>
+      <b-button class="basicBtn" @click="goback()">목록으로</b-button>
     </div>
   </div>
 </template>
@@ -114,14 +116,25 @@ export default {
 
 <style lang="scss">
 @import '@/scss/main.scss';
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Jua&family=Ubuntu:ital,wght@1,300&display=swap');
 
 .container {
   display: flex;
   flex-direction: column;
 }
-.title:disabled,
+
 .content:disabled {
-  background-color: aliceblue;
+  background-color: rgb(255, 253, 237);
+  font-size: 18px;
+  border-color: transparent;
+  padding: 2%;
+  height: 350px;
+  resize: none;
+}
+.title-2:disabled {
+  background-color: transparent;
+  border: transparent;
+  font-size: 25px;
 }
 .icon-container {
   width: 3.5em;
@@ -159,10 +172,11 @@ export default {
   font-family: 'Dongle', sans-serif;
   font-family: 'Dongle', sans-serif;
   font-size: 30px;
-  padding: 1%;
+  margin: 3% 0px 3% 0px;
 }
 .date {
   float: right;
+  height: fit-content;
 }
 .cont {
   display: flex;
@@ -170,5 +184,21 @@ export default {
 .title_2 {
   width: 50px;
   margin: auto;
+}
+.basicBtn {
+  color: #fff;
+  background-color: var(--color-yellow);
+  border-color: transparent;
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(255, 238, 162);
+    color: var(--color-yellow);
+    border-color: transparent;
+  }
+  &:focus {
+    background-color: rgb(255, 238, 162);
+    color: var(--color-yellow);
+    border-color: transparent;
+  }
 }
 </style>
