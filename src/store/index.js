@@ -6,19 +6,19 @@ const store = new Vuex.Store({
   state: {
     accountId: '',
     accountNm: '',
-    role: '',
+    auth: '',
   },
   getters: {},
   mutations: {
     async setUser(state, data) {
       state.accountId = data.accountId;
       state.accountNm = data.accountNm;
-      state.role = data.role;
+      state.auth = data.role;
     },
     logout(state) {
       state.accountId = '';
       state.accountNm = '';
-      state.role = '';
+      state.auth = '';
     },
   },
   actions: {

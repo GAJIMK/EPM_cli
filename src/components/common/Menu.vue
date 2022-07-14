@@ -37,7 +37,7 @@
         </li>
       </ul>
     </div>
-    <div class="management-menu">
+    <div class="management-menu" v-if="state">
       <ul class="menu-items">
         <li class="list-item" @click="handleExpenseList">
           <div class="icon-container basicBtn">
@@ -60,7 +60,7 @@
           </div>
           <div class="menu-content">사용자 경비조회</div>
         </li>
-        <li class="list-item" @click="goSubDay()">
+        <li class="list-item" @click="handleSubDay()">
           <div class="icon-container basicBtn">
             <font-awesome-icon icon="fa-solid fa-calendar-days" class="icon" />
           </div>
@@ -77,6 +77,7 @@ export default {
   data() {
     return {
       accountId: this.$store.state.accountId,
+      state: this.$store.state.auth === 'ADMIN' ? true : false,
     };
   },
   methods: {
@@ -88,20 +89,20 @@ export default {
     handleWrite() {
       if (this.checkSession()) this.$router.push({ name: 'userWrite' });
     },
-    handelGrade() {
-      if (this.checkSession()) this.$router.push({ name: 'grade' });
-    },
+
     goMypage() {
       if (this.checkSession()) this.$router.push({ name: 'myPage' });
     },
     writtenList() {
       if (this.checkSession()) this.$router.push({ name: 'user' });
     },
+    //경비항목관리
     handleExpenseList() {
       if (this.checkSession()) this.$router.push({ name: 'expenseList' });
     },
-    goSubDay() {
-      if (this.checkSession()) this.$router.push({ name: 'submitDay' });
+    //등급관리
+    handelGrade() {
+      if (this.checkSession()) this.$router.push({ name: 'grade' });
     },
     handleUsersList() {
       if (this.checkSession())
@@ -109,6 +110,9 @@ export default {
           name: 'usersExpense',
           params: { date: moment(new Date()).format('YYYY-MM') },
         });
+    },
+    handleSubDay() {
+      if (this.checkSession()) this.$router.push({ name: 'submitDay' });
     },
   },
 };
