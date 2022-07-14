@@ -1,7 +1,7 @@
 <template>
   <div>
     <MenuTitle menuTitle="경비리스트 관리" />
-    <div class="contents">
+    <div class="inner">
       <ExpenseListItem />
     </div>
   </div>
@@ -29,7 +29,7 @@ export default {
   font-weight: 600;
   float: right;
 }
-.contents {
+.inner {
   z-index: 2;
   display: flex;
   justify-content: space-around;

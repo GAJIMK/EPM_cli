@@ -52,7 +52,7 @@ export default {
       this.$router
         .push({
           name: 'userPersonal',
-          query: { id: id, name: name, date: this.propDate },
+          query: { accountId: id, accountNm: name, date: this.propDate },
         })
         .catch(() => {});
     },
