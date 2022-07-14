@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div v-if="state" id="due">경비 마감 D - {{ diffDay }} 일</div>
     <Menu />
     <div class="adds">
       <div class="menu1">
@@ -16,14 +17,35 @@
 import Lunch from './ect/Lunch.vue';
 import Memo from './ect/Memo.vue';
 import Menu from '@/components/common/Menu.vue';
+import { fetchBoardDay } from '@/api/submit/submit.js';
+import moment from 'moment';
 export default {
+  mounted() {
+    this.loadPast();
+  },
+  data() {
+    return {
+      state: this.$store.state.accountId,
+      diffDay: '',
+    };
+  },
   components: { Lunch, Memo, Menu },
+  methods: {
+    async loadPast() {
+      const res = await fetchBoardDay();
+      console.log(res);
+      const currentDay = moment(new Date());
+      const setDay = moment(res.data.list[0].endDay);
+      this.diffDay = setDay.diff(currentDay, 'days');
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .container {
   max-width: 880px;
+  padding: 50px 0px;
 }
 .adds {
   display: flex;
@@ -38,6 +60,10 @@ export default {
 }
 .menu1 {
   margin-right: 10px;
+}
+#due {
+  padding: 0px 4px;
+  font-family: 'GongGothicMedium', sans-serif;
 }
 
 @media screen and(max-width: 768px) {

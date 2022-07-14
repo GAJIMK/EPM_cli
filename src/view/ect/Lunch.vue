@@ -13,16 +13,17 @@
           <span v-else>뭐먹지? 뭐먹어?</span>
         </div>
       </div>
-      <b-button
+      <button
         class="btn"
         variant="warning"
         @click="random"
         v-if="picked === -1"
-        >날 클릭해봐 👆🏻</b-button
       >
-      <b-button class="btn" variant="warning" @click="random" v-else
-        >다시 선택할래 🥲</b-button
-      >
+        Click 👆🏻
+      </button>
+      <button class="btn" variant="warning" @click="random" v-else>
+        Try Again 🥲
+      </button>
     </div>
   </div>
 </template>
@@ -54,7 +55,14 @@ export default {
 <style lang="scss" scoped>
 .menu-container {
   display: flex;
+  font-family: 'Nanum Gothic', sans-serif;
   align-items: center;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 2px 32px -5px rgba(167, 167, 167, 0.54);
+  backdrop-filter: blur(50%);
+  -webkit-backdrop-filter: blur(50%);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   .title {
     margin-top: 20px;
     font-weight: 600;
@@ -75,6 +83,25 @@ export default {
         margin: 0 0;
       }
     }
+  }
+}
+.btn {
+  border-radius: 6px;
+  border: 3px solid #fcd000;
+  background: transparent;
+  font-family: 'GongGothicMedium', sans-serif;
+  font-size: var(--font-size-s);
+  &:hover {
+    background: #fcd000;
+    color: #fff;
+  }
+  &:active {
+    background: #fcd000;
+    color: #fff;
+  }
+  &:focus {
+    background: #fcd000;
+    color: #fff;
   }
 }
 </style>

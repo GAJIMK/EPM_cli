@@ -20,10 +20,14 @@ function approveState(accountId, date) {
 function rejectState(accountId, date) {
   return userFeeState.post(`/reject/${accountId}/date/${date}`);
 }
+function ingState(accountId, date) {
+  return userFeeState.post(`/ing/${accountId}/date/${date}`);
+}
 export {
   fetchUsersByMonth,
   fetchUserMonthState,
   createUserFeeState,
   approveState,
   rejectState,
+  ingState,
 };

@@ -19,7 +19,7 @@
         <div class="state green" v-if="user.state === 10">승인</div>
         <div class="state blue" v-if="user.state === 30">승인요청</div>
         <div class="state blue" v-if="user.state === 50">진행중</div>
-        <div class="state red" v-if="user.state === 40">거부</div>
+        <div class="state red" v-if="user.state === 40">반려</div>
         <div class="state gray" v-if="user.state === 90">미확인</div>
       </div>
     </div>
@@ -52,7 +52,7 @@ export default {
       this.$router
         .push({
           name: 'userPersonal',
-          query: { id: id, name: name, date: this.propDate },
+          query: { accountId: id, accountNm: name, date: this.propDate },
         })
         .catch(() => {});
     },

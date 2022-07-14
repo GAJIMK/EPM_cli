@@ -43,7 +43,7 @@ export default {
     return {
       thumbsContent: {
         id: this.$route.query.id,
-        accountId: 'hojun.lee',
+        accountId: 'namin.ki',
         //로그인 기능 되면 로그인 아이디가 들어갈 예정
       },
 
@@ -71,10 +71,10 @@ export default {
       try {
         await putThumbs(this.thumbsContent).then(res => {
           this.loadThumbs();
-
-          if (res.data.code == 20) {
-            this.showToast();
-          }
+          // if (res.config.url === '/') {
+          //   alert('이미 좋아요를 누르셨습니다. ');
+          // }
+          console.log(res);
         });
       } catch (error) {
         this.errorMsg = getErrorResponseData(error);
@@ -85,30 +85,6 @@ export default {
       const res = await fetchThumbsCnt(this.thumbsContent.id);
 
       this.thumbs = res.data.list[0].cnt;
-    },
-    showToast() {
-      // Use a shorter name for this.$createElement
-      const h = this.$createElement;
-      // Increment the toast count
-      this.count++;
-      // Create the message
-      const vNodesMsg = h('p', { class: ['text-center', 'mb-0'] }, [
-        h('b-spinner', { props: { type: 'grow', small: true } }),
-        ' 이미 ',
-        h('strong', '좋아요를'),
-        ` 누르셨습니다. `,
-        h('b-spinner', { props: { type: 'grow', small: true } }),
-      ]);
-      // Create the title
-      const vNodesTitle = h([
-        h('small', { class: 'ml-auto text-italics' }, '3 minutes ago'),
-      ]);
-      // Pass the VNodes as an array for message and title
-      this.$bvToast.toast([vNodesMsg], {
-        title: [vNodesTitle],
-        solid: false,
-        variant: 'warning',
-      });
     },
   },
 };

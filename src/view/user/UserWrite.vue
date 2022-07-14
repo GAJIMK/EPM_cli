@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       expenseList: '',
-      accountId: 'gajung.kim',
+      accountId: this.$store.state.accountId,
       accountPosition: 0,
       date: moment(new Date()).format('YYYY-MM'),
     };

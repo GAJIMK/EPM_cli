@@ -1,58 +1,31 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {
-  getUserFromCookie,
-  saveUserToCookie,
-  deleteCookie,
-} from '@/utils/cookies';
 
-export default new Vuex.Store({
+Vue.use(Vuex);
+const store = new Vuex.Store({
   state: {
-    username: getUserFromCookie() || '',
-    mainTitle: '',
-    subTitle: '',
-    menus: [],
-    userAuth: '',
+    accountId: '',
+    accountNm: '',
+    auth: '',
   },
-  getters: {
-    isLogin(state) {
-      return state.username !== '';
-    },
-  },
+  getters: {},
   mutations: {
-    setUserName(state, username) {
-      state.username = username;
+    async setUser(state, data) {
+      state.accountId = data.accountId;
+      state.accountNm = data.accountNm;
+      state.auth = data.role;
     },
-    clearUserName(state) {
-      state.username = '';
-    },
-    setMainTitle(state, title) {
-      state.mainTitle = title;
-    },
-    clearMainTitle(state) {
-      state.mainTitle = '';
-    },
-    setSubTitle(state, title) {
-      state.subTitle = title;
-    },
-    clearSubTitle(state) {
-      state.subTitle = '';
+    logout(state) {
+      state.accountId = '';
+      state.accountNm = '';
+      state.auth = '';
     },
   },
   actions: {
-    async LOGIN({ commit }, userData) {
-      const { data } = await loginUser(userData);
-      commit('setUserName', data.username);
-      saveUserToCookie(data.username);
-
-      return data;
-    },
-    async LOGOUT({ commit }) {
-      let data = await logout();
-      commit('clearUserName');
-      deleteCookie('dims_user');
-      deleteCookie('DIMSSESSION');
-      return data;
+    show(mutations) {
+      console.log(mutations);
     },
   },
 });
+
+export default store;
