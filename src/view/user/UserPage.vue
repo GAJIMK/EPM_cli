@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <div id="title">
       <span id="name">{{ accountNm }}</span
       >님, 달별 경비 내역서
@@ -62,7 +62,7 @@ export default {
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 
-.container {
+.container-fluid {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
