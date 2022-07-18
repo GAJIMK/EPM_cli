@@ -44,7 +44,6 @@ export default {
       thumbsContent: {
         id: this.$route.query.id,
         accountId: this.$store.state.accountId,
-        //로그인 기능 되면 로그인 아이디가 들어갈 예정
       },
 
       title: '',
@@ -124,7 +123,7 @@ export default {
 }
 
 .content:disabled {
-  background-color: rgb(255, 253, 237);
+  background-color: rgb(250, 250, 250);
   font-size: 18px;
   border-color: transparent;
   padding: 2%;
@@ -134,6 +133,7 @@ export default {
 .title-2:disabled {
   background-color: transparent;
   border: transparent;
+  font-family: 'GongGothicMedium', sans-serif;
   font-size: 25px;
 }
 .icon-container {
@@ -169,8 +169,7 @@ export default {
   padding: 5%;
 }
 .name {
-  font-family: 'Dongle', sans-serif;
-  font-family: 'Dongle', sans-serif;
+  font-family: 'GongGothicMedium', sans-serif;
   font-size: 30px;
   margin: 3% 0px 3% 0px;
 }
@@ -189,6 +188,7 @@ export default {
   color: #fff;
   background-color: var(--color-yellow);
   border-color: transparent;
+  font-family: 'GongGothicMedium', sans-serif;
   cursor: pointer;
   &:hover {
     background-color: rgb(255, 238, 162);

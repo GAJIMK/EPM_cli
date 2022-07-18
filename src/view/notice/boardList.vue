@@ -158,9 +158,8 @@ export default {
 }
 
 .name {
-  // font-family: 'Dongle', sans-serif;
-  // font-family: 'Dongle', sans-serif;
-  font-size: 40px;
+  font-family: 'GongGothicMedium', sans-serif;
+  font-size: 30px;
   padding: 1%;
 }
 .right-side {
@@ -168,6 +167,7 @@ export default {
   height: 50px;
   margin-right: 15%;
   margin-top: 100px;
+  font-family: 'GongGothicMedium', sans-serif;
 
   &:hover {
     background-color: rgb(255, 228, 139);
