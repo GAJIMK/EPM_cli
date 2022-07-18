@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="items">
     <div class="row">
       <font-awesome-icon
         icon="fa-solid fa-angle-down"
