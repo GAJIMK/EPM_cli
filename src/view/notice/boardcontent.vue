@@ -100,13 +100,15 @@ export default {
       ]);
       // Create the title
       const vNodesTitle = h([
-        h('small', { class: 'ml-auto text-italics' }, '3 minutes ago'),
+        h('small', { class: 'ml-auto text-italics' }, '1 minutes ago'),
       ]);
       // Pass the VNodes as an array for message and title
       this.$bvToast.toast([vNodesMsg], {
         title: [vNodesTitle],
         solid: false,
         variant: 'warning',
+        autoHideDelay: 2000,
+        toaster: 'b-toaster-bottom-center',
       });
     },
   },
@@ -200,5 +202,8 @@ export default {
     color: var(--color-yellow);
     border-color: transparent;
   }
+}
+#b-toaster-bottom-center {
+  margin-bottom: 250px;
 }
 </style>
