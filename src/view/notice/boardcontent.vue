@@ -67,17 +67,21 @@ export default {
       this.$router.push({ name: 'noticeBoard' });
     },
     async putData() {
-      try {
-        await putThumbs(this.thumbsContent).then(res => {
-          this.loadThumbs();
-          if (res.data.code == 20) {
-            this.showToast();
-          }
-          console.log(res);
-        });
-      } catch (error) {
-        this.errorMsg = getErrorResponseData(error);
-        console.log('에러');
+      if (this.accountId == null) {
+        alert('로그인 된 사용자만 가능합니다.');
+      } else {
+        try {
+          await putThumbs(this.thumbsContent).then(res => {
+            this.loadThumbs();
+            if (res.data.code == 20) {
+              this.showToast();
+            }
+            console.log(res);
+          });
+        } catch (error) {
+          this.errorMsg = getErrorResponseData(error);
+          console.log('에러');
+        }
       }
     },
     async loadThumbs() {
