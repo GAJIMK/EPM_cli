@@ -20,6 +20,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/scss/font.scss';
 .box {
   width: 7em;
   display: flex;
@@ -35,7 +36,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
+  font-family: 'SEBANG_Gothic_Bold';
+  margin-bottom: 0.5em;
 }
 
 .line {
