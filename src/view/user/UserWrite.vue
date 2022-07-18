@@ -23,7 +23,6 @@ import ExpensePart from '@/components/common/table/ExpensePart.vue';
 import { fetchPositionList } from '@/api/positionFeeMapper/positionFeeMapper';
 import { createUserFeeState } from '@/api/userFeeState/userFeeState';
 import { accountInfo } from '@/api/account/account';
-
 import moment from 'moment';
 
 export default {

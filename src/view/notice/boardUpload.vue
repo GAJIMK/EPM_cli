@@ -60,32 +60,34 @@ export default {
 };
 </script>
 
-<style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Ubuntu:ital,wght@1,300&display=swap');
+<style lang="scss">
+@import '@/scss/main.scss';
 .container {
   display: flex;
   flex-direction: column;
 }
-.name {
-  font-family: 'Dongle', sans-serif;
-  font-family: 'Dongle', sans-serif;
-}
+
 .BtnStyle {
+  width: 150px;
+  height: 50px;
+  font-family: 'GongGothicMedium', sans-serif;
   border: 0;
   outline: 0;
-  border-radius: 10%;
-  background-color: #fffad1;
-  color: black;
-  margin: 0.5%;
+  background-color: #fdc000;
+  margin-right: 5%;
+  &:hover {
+    background-color: rgb(255, 234, 164);
+  }
 }
 .name {
-  font-family: 'Dongle', sans-serif;
-  font-family: 'Dongle', sans-serif;
-  font-size: 30px;
+  font-family: 'GongGothicMedium', sans-serif;
+  font-size: 35px;
   padding: 1%;
+  margin: 3% 0 3% 0;
 }
 .btnGroup {
   float: right;
+  display: flex;
   width: 150px;
   margin-top: 3%;
 }

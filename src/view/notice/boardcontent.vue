@@ -43,8 +43,7 @@ export default {
     return {
       thumbsContent: {
         id: this.$route.query.id,
-        accountId: 'namin.ki',
-        //로그인 기능 되면 로그인 아이디가 들어갈 예정
+        accountId: this.$store.state.accountId,
       },
 
       title: '',
@@ -71,9 +70,9 @@ export default {
       try {
         await putThumbs(this.thumbsContent).then(res => {
           this.loadThumbs();
-          // if (res.config.url === '/') {
-          //   alert('이미 좋아요를 누르셨습니다. ');
-          // }
+          if (res.data.code == 20) {
+            this.showToast();
+          }
           console.log(res);
         });
       } catch (error) {
@@ -85,6 +84,30 @@ export default {
       const res = await fetchThumbsCnt(this.thumbsContent.id);
 
       this.thumbs = res.data.list[0].cnt;
+    },
+    showToast() {
+      // Use a shorter name for this.$createElement
+      const h = this.$createElement;
+      // Increment the toast count
+      this.count++;
+      // Create the message
+      const vNodesMsg = h('p', { class: ['text-center', 'mb-0'] }, [
+        h('b-spinner', { props: { type: 'grow', small: true } }),
+        ' 이미 ',
+        h('strong', '좋아요를'),
+        ` 누르셨습니다. `,
+        h('b-spinner', { props: { type: 'grow', small: true } }),
+      ]);
+      // Create the title
+      const vNodesTitle = h([
+        h('small', { class: 'ml-auto text-italics' }, '3 minutes ago'),
+      ]);
+      // Pass the VNodes as an array for message and title
+      this.$bvToast.toast([vNodesMsg], {
+        title: [vNodesTitle],
+        solid: false,
+        variant: 'warning',
+      });
     },
   },
 };
@@ -100,7 +123,7 @@ export default {
 }
 
 .content:disabled {
-  background-color: rgb(255, 253, 237);
+  background-color: rgb(250, 250, 250);
   font-size: 18px;
   border-color: transparent;
   padding: 2%;
@@ -110,6 +133,7 @@ export default {
 .title-2:disabled {
   background-color: transparent;
   border: transparent;
+  font-family: 'GongGothicMedium', sans-serif;
   font-size: 25px;
 }
 .icon-container {
@@ -145,8 +169,7 @@ export default {
   padding: 5%;
 }
 .name {
-  font-family: 'Dongle', sans-serif;
-  font-family: 'Dongle', sans-serif;
+  font-family: 'GongGothicMedium', sans-serif;
   font-size: 30px;
   margin: 3% 0px 3% 0px;
 }
@@ -165,6 +188,7 @@ export default {
   color: #fff;
   background-color: var(--color-yellow);
   border-color: transparent;
+  font-family: 'GongGothicMedium', sans-serif;
   cursor: pointer;
   &:hover {
     background-color: rgb(255, 238, 162);
