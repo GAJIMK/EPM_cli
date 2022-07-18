@@ -1,6 +1,6 @@
 <template>
   <div class="table-cell" @click.capture="changeState">
-    <div class="col" contenteditable="true">
+    <div class="col">
       {{ item.date }}
     </div>
     <div class="col">
