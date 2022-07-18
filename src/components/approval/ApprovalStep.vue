@@ -5,7 +5,7 @@
       <div class="stamp green" v-if="state === 10">승인</div>
       <div class="stamp red" v-if="state === 40">반려</div>
     </div>
-    <div>검토 : 김진호</div>
+    <div id="admin">검토 : 김진호</div>
   </div>
 </template>
 
@@ -45,5 +45,6 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 0.5em;
 }
 </style>
