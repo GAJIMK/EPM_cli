@@ -67,8 +67,8 @@ export default {
       this.$router.push({ name: 'noticeBoard' });
     },
     async putData() {
-      if (this.accountId == null) {
-        alert('로그인 된 사용자만 가능합니다.');
+      if (this.$store.state.accountId == '') {
+        alert('로그인된 사용자만 이용 가능합니다');
       } else {
         try {
           await putThumbs(this.thumbsContent).then(res => {
@@ -76,7 +76,6 @@ export default {
             if (res.data.code == 20) {
               this.showToast();
             }
-            console.log(res);
           });
         } catch (error) {
           this.errorMsg = getErrorResponseData(error);
