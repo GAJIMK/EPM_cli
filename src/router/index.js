@@ -47,6 +47,12 @@ export default new Router({
       component: () => import('@/view/user/UserWrite.vue'),
     },
     {
+      path: '/approval',
+      name: 'approval',
+      meta: { layout: 'default' },
+      component: () => import('@/view/user/ApprovalPage.vue'),
+    },
+    {
       path: '/notice-board',
       name: 'noticeBoard',
       meta: { layout: 'default' },

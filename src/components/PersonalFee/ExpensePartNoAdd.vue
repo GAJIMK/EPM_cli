@@ -1,5 +1,5 @@
 <template>
-  <div class="part">
+  <div class="container">
     <div class="row">
       <font-awesome-icon
         icon="fa-solid fa-angle-down"
@@ -33,14 +33,6 @@
         <div class="index">
           잔여금액:<span class="red"> {{ expense.fee - sum }}</span>
         </div>
-      </div>
-
-      <div id="billimg">
-        <!-- <ImgUpload
-          class="item"
-          v-for="item in items"
-          :key="item.id"
-        ></ImgUpload> -->
       </div>
     </div>
   </div>
@@ -191,8 +183,8 @@ export default {
   margin-bottom: 80px;
   border: 1px double #ffc107;
   border-radius: 0.75em;
-  font-family: 'Jua', sans-serif;
-  font-family: 'Jua', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 600;
   padding: 0.9%;
   width: 400px;
   float: right;

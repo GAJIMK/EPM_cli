@@ -1,7 +1,5 @@
 <template>
   <div class="menu">
-    <!-- 서버에서 반복 통해  -->
-
     <div class="all-users-menu">
       <ul class="menu-items">
         <li class="list-item" @click="handleWrite">
@@ -10,7 +8,7 @@
           </div>
           <div class="menu-content">작성하기</div>
         </li>
-        <li class="list-item" @click="writtenList()">
+        <li class="list-item" @click="writtenList">
           <div class="icon-container basicBtn">
             <font-awesome-icon
               icon="fa-solid fa-clock-rotate-left"
@@ -19,7 +17,7 @@
           </div>
           <div class="menu-content" @click="writtenList">과거내역 조회</div>
         </li>
-        <li class="list-item">
+        <li class="list-item" @click="handleApproval">
           <div class="icon-container basicBtn">
             <font-awesome-icon icon="fa-solid fa-check" class="icon" />
           </div>
@@ -113,6 +111,10 @@ export default {
     },
     handleSubDay() {
       if (this.checkSession()) this.$router.push({ name: 'submitDay' });
+    },
+    handleApproval() {
+      // if (this.checkSession())
+      this.$router.push({ name: 'approval' });
     },
   },
 };
