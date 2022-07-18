@@ -25,13 +25,15 @@
           :item="item"
         />
       </div>
-      <div class="money-container">
-        <div class="index"><span>지원 금액 :</span> {{ expense.fee }}</div>
-        <div class="index">
-          합계 : <span class="green">{{ sum }}</span>
-        </div>
-        <div class="index">
-          잔여금액:<span class="red"> {{ expense.fee - sum }}</span>
+      <div class="moneydiv">
+        <div class="money-container">
+          <div class="index"><span>지원 금액 :</span> {{ expense.fee }}</div>
+          <div class="index">
+            합계 : <span class="green">{{ sum }}</span>
+          </div>
+          <div class="index">
+            잔여금액:<span class="red"> {{ expense.fee - sum }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -118,6 +120,10 @@ export default {
 </script>
 
 <style>
+.imdiv {
+  box-sizing: border-box;
+  height: fit-content;
+}
 .row {
   align-items: center;
   width: 100%;
@@ -176,17 +182,20 @@ export default {
   justify-content: space-around;
   width: 100%;
 }
+.moneydiv {
+  display: flex;
+  justify-content: flex-end;
+}
 .money-container {
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
-  margin-bottom: 80px;
+  margin-bottom: 50px;
   border: 1px double #ffc107;
   border-radius: 0.75em;
   font-family: 'Nanum Gothic', sans-serif;
   font-weight: 600;
   padding: 0.9%;
   width: 400px;
-  float: right;
 }
 </style>

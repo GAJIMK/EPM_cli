@@ -3,18 +3,10 @@
     <MenuTitle menuTitle="👀 승인내역 조회" />
     <input type="month" class="form" max="2050-12" v-model="date" />
     <div class="find-list">
-      <div class="list-title">
+      <div class="list-title" @click="changeShow">
         제출한 {{ date }} 경비내역서 조회
-        <font-awesome-icon
-          icon="fa-solid fa-angle-down"
-          v-if="show"
-          @click="changeShow"
-        />
-        <font-awesome-icon
-          icon="fa-solid fa-angle-up"
-          v-else
-          @click="changeShow"
-        />
+        <font-awesome-icon icon="fa-solid fa-angle-down" v-if="show" />
+        <font-awesome-icon icon="fa-solid fa-angle-up" v-else />
       </div>
 
       <div class="lists" v-if="show">
