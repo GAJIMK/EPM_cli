@@ -29,8 +29,7 @@
         />
       </div>
       <b-button class="basicBtn" @click="goback()">목록으로</b-button>
-
-      <ToastMsgg :ToastCon="ToastCon" @showT="showTT" class="toast" />
+      <ToastMsgg ref="toastMsgg" :ToastCon="ToastCon" class="toast" />
     </div>
   </div>
 </template>
@@ -54,6 +53,7 @@ export default {
       date: '',
       thumbs: '',
       ToastCon: '이미 좋아요를 누르셨습니다.',
+      metho: '',
     };
   },
   mounted() {
@@ -78,6 +78,7 @@ export default {
           await putThumbs(this.thumbsContent).then(res => {
             this.loadThumbs();
             if (res.data.code == 20) {
+              this.$refs.toastMsgg.createToast();
             }
           });
         } catch (error) {
@@ -86,14 +87,13 @@ export default {
         }
       }
     },
-
+    goChild() {
+      this.$refs.mint.hiParent();
+    },
     async loadThumbs() {
       const res = await fetchThumbsCnt(this.thumbsContent.id);
 
       this.thumbs = res.data.list[0].cnt;
-    },
-    showTT(e) {
-      e;
     },
   },
 };

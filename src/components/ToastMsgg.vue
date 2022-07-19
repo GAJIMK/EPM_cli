@@ -1,4 +1,6 @@
-<template><div></div></template>
+<template
+  ><div><ToastMsgg ref="toastMsgg" /></div
+></template>
 
 <script>
 export default {
@@ -7,10 +9,10 @@ export default {
       type: String,
     },
   },
-  created() {
-    this.showToast();
-  },
   methods: {
+    createToast() {
+      this.showToast();
+    },
     showToast() {
       // Use a shorter name for this.$createElement
       const h = this.$createElement;
@@ -28,10 +30,9 @@ export default {
         title: [vNodesTitle],
         solid: false,
         variant: 'warning',
-        autoHideDelay: 2000,
+        autoHideDelay: 1500,
         toaster: 'b-toaster-bottom-center',
       });
-      this.$emit('showT', showToast());
     },
   },
 };
