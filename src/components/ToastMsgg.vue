@@ -2,10 +2,10 @@
 
 <script>
 export default {
-  data() {
-    return {
-      ToastContent: '이미 좋아요를 누르셨',
-    };
+  props: {
+    ToastCon: {
+      type: String,
+    },
   },
   created() {
     this.showToast();
@@ -16,7 +16,7 @@ export default {
       const h = this.$createElement;
       // Create the message
       const vNodesMsg = h('p', { class: ['text-center', 'mb-0'] }, [
-        h('span', this.ToastContent),
+        h('span', this.ToastCon),
         ,
       ]);
       // Create the title

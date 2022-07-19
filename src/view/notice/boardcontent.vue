@@ -30,7 +30,7 @@
       </div>
       <b-button class="basicBtn" @click="goback()">목록으로</b-button>
 
-      <ToastMsgg @showT="showTT" class="toast" />
+      <ToastMsgg :ToastCon="ToastCon" @showT="showTT" class="toast" />
     </div>
   </div>
 </template>
@@ -48,11 +48,12 @@ export default {
         id: this.$route.query.id,
         accountId: this.$store.state.accountId,
       },
-      TId: '',
+
       title: '',
       content: '',
       date: '',
       thumbs: '',
+      ToastCon: '이미 좋아요를 누르셨습니다.',
     };
   },
   mounted() {
@@ -77,7 +78,6 @@ export default {
           await putThumbs(this.thumbsContent).then(res => {
             this.loadThumbs();
             if (res.data.code == 20) {
-              this.showToast();
             }
           });
         } catch (error) {
