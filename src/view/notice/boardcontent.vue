@@ -29,6 +29,7 @@
         />
       </div>
       <b-button class="basicBtn" @click="goback()">목록으로</b-button>
+      <ToastMsgg ref="toastMsgg" :ToastCon="ToastCon" class="toast" />
     </div>
   </div>
 </template>
@@ -36,9 +37,10 @@
 <script>
 import { fetchBoard } from '@/api/board/board';
 import { putThumbs, fetchThumbsCnt } from '@/api/Thumbs/thumbs.js';
+import ToastMsgg from '@/components/ToastMsgg.vue';
 
 export default {
-  components: {},
+  components: { ToastMsgg },
   data() {
     return {
       thumbsContent: {
@@ -50,6 +52,8 @@ export default {
       content: '',
       date: '',
       thumbs: '',
+      ToastCon: '이미 좋아요를 누르셨습니다.',
+      metho: '',
     };
   },
   mounted() {
@@ -74,7 +78,7 @@ export default {
           await putThumbs(this.thumbsContent).then(res => {
             this.loadThumbs();
             if (res.data.code == 20) {
-              this.showToast();
+              this.$refs.toastMsgg.createToast();
             }
           });
         } catch (error) {
@@ -83,36 +87,13 @@ export default {
         }
       }
     },
+    goChild() {
+      this.$refs.mint.hiParent();
+    },
     async loadThumbs() {
       const res = await fetchThumbsCnt(this.thumbsContent.id);
 
       this.thumbs = res.data.list[0].cnt;
-    },
-    showToast() {
-      // Use a shorter name for this.$createElement
-      const h = this.$createElement;
-      // Increment the toast count
-      this.count++;
-      // Create the message
-      const vNodesMsg = h('p', { class: ['text-center', 'mb-0'] }, [
-        h('b-spinner', { props: { type: 'grow', small: true } }),
-        ' 이미 ',
-        h('strong', '좋아요를'),
-        ` 누르셨습니다. `,
-        h('b-spinner', { props: { type: 'grow', small: true } }),
-      ]);
-      // Create the title
-      const vNodesTitle = h([
-        h('small', { class: 'ml-auto text-italics' }, '1 minutes ago'),
-      ]);
-      // Pass the VNodes as an array for message and title
-      this.$bvToast.toast([vNodesMsg], {
-        title: [vNodesTitle],
-        solid: false,
-        variant: 'warning',
-        autoHideDelay: 2000,
-        toaster: 'b-toaster-bottom-center',
-      });
     },
   },
 };
@@ -206,7 +187,7 @@ export default {
     border-color: transparent;
   }
 }
-#b-toaster-bottom-center {
+.toast {
   margin-bottom: 250px;
 }
 </style>
