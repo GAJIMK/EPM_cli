@@ -79,6 +79,7 @@ export default {
             this.loadThumbs();
             if (res.data.code == 20) {
               this.$refs.toastMsgg.createToast();
+              //this.$refs.toastMsgg.show();
             }
           });
         } catch (error) {
@@ -87,9 +88,7 @@ export default {
         }
       }
     },
-    goChild() {
-      this.$refs.mint.hiParent();
-    },
+
     async loadThumbs() {
       const res = await fetchThumbsCnt(this.thumbsContent.id);
 
