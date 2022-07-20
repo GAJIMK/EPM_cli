@@ -1,9 +1,7 @@
 <template>
   <div>
     <ToastMsgg ref="toastMsgg" />
-    <b-button class="mb-2" variant="primary" @click="show()">
-      Show toast
-    </b-button>
+
     <b-toast
       id="b-toaster-bottom-center"
       variant="warning"
