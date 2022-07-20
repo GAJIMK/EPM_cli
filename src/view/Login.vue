@@ -20,19 +20,22 @@
         @keyup.enter="login"
       />
     </div>
-
     <button class="loginBtn disabled loginInput" @click="login">로그인</button>
+    <ToastMsgg ref="toastMsg" :ToastCon="ToastCon" class="toast" />
   </div>
 </template>
 
 <script>
 import { login } from '@/api/auth/auth';
+import ToastMsgg from '@/components/ToastMsgg.vue';
 
 export default {
+  //components: { ToastMsgg },
   data() {
     return {
       id: '',
       pw: '',
+      ToastCon: '아이디 혹은 비밀번호를 확인하세요',
     };
   },
   watch: {
@@ -64,7 +67,7 @@ export default {
         if (res.data.code === 0) {
           this.$store.commit('setUser', res.data.data);
           this.$router.push({ name: 'home' });
-        } else alert('에러');
+        } else this.$refs.toastMsg.createToast();
       });
     },
   },
