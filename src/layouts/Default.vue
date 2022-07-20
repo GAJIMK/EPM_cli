@@ -3,7 +3,6 @@
     <Header />
 
     <div class="container">
-      <!-- 헤더 위치 -->
       <slot />
     </div>
   </div>
@@ -22,5 +21,6 @@ export default {
 .container,
 .container-fluid {
   padding: 0px 0px;
+  position: relative;
 }
 </style>

@@ -1,7 +1,11 @@
-import { account } from '@/api/index';
+import { account, appoint } from '@/api/index';
 
 function accountInfo(accountId) {
   return account.get(`/findAll/${accountId}`);
 }
 
-export { accountInfo };
+function accountTeamNo(accountId) {
+  return appoint.get(`/findTeamNo?accountId=${accountId}`);
+}
+
+export { accountInfo, accountTeamNo };

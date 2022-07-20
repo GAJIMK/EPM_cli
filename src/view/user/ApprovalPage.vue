@@ -18,7 +18,9 @@
           :date="date"
         />
       </div>
-      <ApprovalStep />
+      <div class="step-container">
+        <ApprovalStep v-for="info in step" :key="info.accountId" :info="info" />
+      </div>
     </div>
   </div>
 </template>
@@ -28,12 +30,14 @@ import MenuTitle from '@/components/common/MenuTitleForm.vue';
 import ExpensePartNoAdd from '@/components/PersonalFee/ExpensePartNoAdd.vue';
 import ApprovalStep from '@/components/approval/ApprovalStep.vue';
 import { fetchPositionList } from '@/api/positionFeeMapper/positionFeeMapper';
-import { accountInfo } from '@/api/account/account';
+import { accountInfo, accountTeamNo } from '@/api/account/account';
+import { fetchStep } from '@/api/approval/approval';
 import moment from 'moment';
 export default {
   components: { MenuTitle, ExpensePartNoAdd, ApprovalStep },
   mounted() {
     this.fetchData();
+    this.fetchTeamNo();
   },
   data() {
     return {
@@ -41,7 +45,9 @@ export default {
       expenseList: '',
       accountId: 'gajung.kim',
       accountPosition: 0,
+      teamNo: 0,
       show: false,
+      step: '',
     };
   },
   methods: {
@@ -53,7 +59,21 @@ export default {
         })
         .then(code => {
           this.fetchExpenseList(code);
+        })
+        .then(() => {
+          this.fetchTeamNo();
         });
+    },
+    async fetchTeamNo() {
+      await accountTeamNo(this.$store.state.accountId)
+        .then(res => (this.teamNo = res.data.data.teamNo))
+        .then(res => this.fetchStep(res));
+    },
+
+    async fetchStep(res) {
+      await fetchStep(res).then(rs => {
+        this.step = rs.data.list;
+      });
     },
     async fetchExpenseList(code) {
       const fee = await fetchPositionList(code);
@@ -80,5 +100,8 @@ export default {
     font-size: var(--font-size-l);
     font-family: 'Nanum Gothic';
   }
+}
+.step-container {
+  display: flex;
 }
 </style>

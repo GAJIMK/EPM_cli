@@ -21,14 +21,15 @@ function createInstanceWithAuth(url) {
 export const instance = createInstanceWithAuth('');
 export const auth = createInstanceWithAuth('auth');
 export const account = createInstanceWithAuth('account');
+export const appoint = createInstanceWithAuth('appoint');
 export const common = createInstanceWithAuth('common');
 export const login = createInstanceWithAuth('login');
 export const expenseList = createInstanceWithAuth('expenseList');
 export const userFeeList = createInstanceWithAuth('userFeeList');
 export const userFeeState = createInstanceWithAuth('userFeeState');
 export const positionFee = createInstanceWithAuth('positionFee');
+export const approve = createInstanceWithAuth('approval');
 export const board = createInstanceWithAuth('board'); //게시판 api
-
 export const thumbs = createInstanceWithAuth('thumbs'); //게시판 좋아요 api
 
 export const submitDay = createInstanceWithAuth('submitDay'); // 경비 제출 기간 api
