@@ -1,6 +1,8 @@
-<template
-  ><div><ToastMsgg ref="toastMsgg" /></div
-></template>
+<template>
+  <div>
+    <ToastMsgg ref="toastMsgg" />
+  </div>
+</template>
 
 <script>
 export default {
@@ -38,4 +40,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+</style>

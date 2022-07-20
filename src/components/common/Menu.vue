@@ -66,23 +66,27 @@
         </li>
       </ul>
     </div>
+    <ToastMsgg ref="toastMsgg" :ToastCon="ToastCon" class="toast" />
   </div>
 </template>
 
 <script>
 import moment from 'moment';
+import ToastMsgg from '@/components/ToastMsgg.vue';
 export default {
+  components: { ToastMsgg },
   data() {
     return {
       accountId: this.$store.state.accountId,
       state: this.$store.state.auth === 'ADMIN' ? true : false,
+      ToastCon: '로그인 후 사용 가능합니다❗',
     };
   },
   methods: {
     checkSession() {
       const state = this.accountId ? true : false;
       if (state) return state;
-      else alert('로그인된 사용자만 사용가능');
+      else this.$refs.toastMsgg.createToast();
     },
     handleWrite() {
       if (this.checkSession()) this.$router.push({ name: 'userWrite' });

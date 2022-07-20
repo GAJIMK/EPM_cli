@@ -187,7 +187,4 @@ export default {
     border-color: transparent;
   }
 }
-.toast {
-  margin-bottom: 250px;
-}
 </style>
