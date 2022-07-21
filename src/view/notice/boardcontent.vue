@@ -2,8 +2,6 @@
   <div id="container">
     <h3 class="name" @click="goback()">📢 익명 게시판</h3>
     <div class="cont">
-      <!-- <label for="name" class="title_2">제목</label
-      > -->
       <hr />
       <b-input class="title-2" type="text" disabled v-model="this.title" />
     </div>
@@ -79,7 +77,6 @@ export default {
             this.loadThumbs();
             if (res.data.code == 20) {
               this.$refs.toastMsgg.createToast();
-              //this.$refs.toastMsgg.show();
             }
           });
         } catch (error) {

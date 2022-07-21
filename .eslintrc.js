@@ -19,7 +19,6 @@ module.exports = {
         proseWrap: 'preserve',
         endOfLine: 'auto',
         arrowParens: 'avoid', //함수 파라미터 1개일때 괄호 안해도 되도록
-
         vueIndentScriptAndStyle: true, // Vue 파일의 script와 style 태그의 들여쓰기 여부 (v1.19.0)
         parser: '', // 사용할 parser를 지정, 자동으로 지정됨
         filepath: '', // parser를 유추할 수 있는 파일을 지정
