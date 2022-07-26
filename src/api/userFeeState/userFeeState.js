@@ -1,4 +1,4 @@
-import { userFeeState } from '@/api/index';
+import {userFeeState} from '@/api/index';
 
 //경지본부 기준, 사용자들 리스트 달별로 가져오기
 function fetchUsersByMonth(date) {

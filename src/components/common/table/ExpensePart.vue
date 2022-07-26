@@ -83,7 +83,7 @@ export default {
   mounted() {
     this.fetchPartList();
   },
-  components: { EditableTable, TableHeader },
+  components: {EditableTable, TableHeader},
   data() {
     return {
       items: [],

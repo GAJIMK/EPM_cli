@@ -1,5 +1,5 @@
 // import store from '@/store/index';
-import { router } from '@/router/index';
+import {router} from '@/router/index';
 
 export function setInterceptors(instance) {
   // Add a request interceptor
@@ -25,7 +25,7 @@ export function setInterceptors(instance) {
     function(error) {
       // Any status codes that falls outside the range of 2xx cause this function to trigger
       // Do something with response error
-      let { data } = error.response;
+      let {data} = error.response;
       if (data.code === 101) {
         // 세션이 종료된 경우 로그아웃 처리후 로그인 화면으로 이동한다.
         store.dispatch('LOGOUT').then(function(data) {

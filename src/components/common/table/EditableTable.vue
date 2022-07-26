@@ -1,5 +1,5 @@
 <template>
-  <div class="table-cell" v-bind:class="{ active: item.state === 40 }">
+  <div class="table-cell" v-bind:class="{active: item.state === 40}">
     <div class="col">
       <input
         type="date"
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { updateList } from '@/api/userFeeList/userFeeList';
+import {updateList} from '@/api/userFeeList/userFeeList';
 export default {
   props: {
     item: {
