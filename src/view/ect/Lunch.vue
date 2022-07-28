@@ -57,8 +57,8 @@ export default {
   display: flex;
   font-family: 'Nanum Gothic', sans-serif;
   align-items: center;
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0px 2px 32px -5px rgba(167, 167, 167, 0.54);
+  background: #fff;
+  box-shadow: 0px 2px 32px -5px rgba(209, 200, 171, 0.54);
   backdrop-filter: blur(50%);
   -webkit-backdrop-filter: blur(50%);
   border-radius: 10px;
