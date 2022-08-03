@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {setInterceptors} from '@/api/common/interceptors';
+import { setInterceptors } from '@/api/common/interceptors';
 
 axios.defaults.withCredentials = true;
 
@@ -12,6 +12,10 @@ function createInstance() {
 
 // request를 보내면서 항상 같이 보내야할 정보가 있는 경우에 사용 - userid
 function createInstanceWithAuth(url) {
+  // 리소스 접근 허용
+  axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
+  // 서로 다른 도메인간 쿠키 전달 허용
+  axios.defaults.withCredentials = false;
   const instance = axios.create({
     baseURL: `${process.env.VUE_APP_API_URL}${url}`,
   });

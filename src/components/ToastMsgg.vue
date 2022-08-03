@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <ToastMsgg ref="toastMsgg" />
+  <div class="toastContainer">
 
     <b-toast id="b-toaster-bottom-center" variant="warning" solid v-model="showBottom"
       toaster="b-toaster-bottom-center">
@@ -34,3 +33,8 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.toastContainer {
+  position: absolute;
+}
+</style>

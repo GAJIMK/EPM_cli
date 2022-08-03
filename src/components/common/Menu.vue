@@ -107,8 +107,8 @@ export default {
       if (this.checkSession()) this.$router.push({ name: 'submitDay' });
     },
     handleApproval() {
-      // if (this.checkSession())
-      this.$router.push({ name: 'approval' });
+      if (this.checkSession())
+        this.$router.push({ name: 'approval' });
     },
   },
 };
