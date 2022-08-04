@@ -69,8 +69,10 @@ export default {
 };
 </script>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Jua&family=Ubuntu:ital,wght@1,300&display=swap');
+<style lang="scss" scoped>
+.inline-btn {
+  font-family: "GongGothicMedium";
+}
 
 .month {
   display: flex;

@@ -122,19 +122,20 @@ export default {
   border-radius: 1rem;
   padding-top: 20px;
   font-size: 0.9em;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(238, 238, 238, 0.3);
   box-shadow: 0px 2px 32px -5px rgba(167, 167, 167, 0.54);
   backdrop-filter: blur(50%);
   -webkit-backdrop-filter: blur(50%);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+
 }
 
 .allUsersMenu {
   display: flex;
   justify-content: center;
-
   flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .list-item {
@@ -142,6 +143,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-width: 120px;
 }
 
 .menu-items {
@@ -156,8 +158,8 @@ export default {
 .icon-container {
   width: 3.5em;
   height: 3.5em;
-  border-radius: 50%;
-  background-color: var(--color-yellow);
+  border-radius: 10px;
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,17 +168,17 @@ export default {
     -webkit-box-shadow: 0px 0px 14px 2px rgba(255, 200, 87, 0.26);
     box-shadow: 0px 0px 14px 2px rgba(255, 200, 87, 0.26);
     transform: scale(1.02);
-    border: 3px solid var(--color-yellow);
+    background: var(--color-yellow);
 
     .icon {
-      color: #fdc000;
+      color: #fff;
     }
   }
 
   .icon {
     width: 1.5rem;
     height: 1.5rem;
-    color: #fff;
+    color: var(--color-yellow);
     font-size: 10px;
   }
 }

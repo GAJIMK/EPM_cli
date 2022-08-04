@@ -5,7 +5,7 @@
     </div>
     <figure class="snip1283">
       <div id="banner1">
-        <div class="context1">직원 복지의 경비정산</div>
+        <div class="context1">직원의 경비정산</div>
         <div class="context2">쉽고 빠르게 관리하세요</div>
       </div>
       <figcaption>

@@ -3,7 +3,7 @@
     <h3 class="logo" @click="goHome()">로그인하기</h3>
     <div class="inputForm">
       <label>아이디</label>
-      <input type="text" class="loginInput" placeholder="인트라넷 아이디를 입력하세요" v-model="id" />
+      <input type="text" class="loginInput" placeholder="아이디를 입력하세요" v-model="id" />
     </div>
     <div class="inputForm">
       <label>비밀번호</label>
@@ -90,7 +90,7 @@ label {
 }
 
 .loginInput {
-  border-radius: 30px;
+  border-radius: 10px;
   width: 330px;
   height: 44px;
   padding: 0px 20px;

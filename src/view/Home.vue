@@ -81,6 +81,7 @@ export default {
   position: absolute;
   top: 20px;
   transform: rotateY(150deg);
+  opacity: 0.6;
 }
 
 @media screen and(max-width: 768px) {
