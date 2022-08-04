@@ -103,8 +103,8 @@
 <script>
 export default {
   methods: {
-    gologin: function () {
-      this.$router.push({ name: "Login" }).catch(() => {});
+    gologin: function() {
+      this.$router.push({ name: 'Login' }).catch(() => {});
     },
   },
 };

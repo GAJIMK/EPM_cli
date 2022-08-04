@@ -1,1 +1,119 @@
-@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+//Default variable overrides
+$primary: #fdc000;
+$container-max-widths: (
+  sm: 540px,
+  md: 704px,
+  lg: 924px,
+  xl: 1140px,
+  xxl: 1364px,
+);
+//primary의 변수는 아래의 variables에 영향을 줘서 primary가 사용자 지어 색으로 적용되도록 한다.
+//그러므로 variables위에 정의해줘야함
+@import '../../node_modules/bootstrap/scss/functions';
+@import '../../node_modules/bootstrap/scss/variables';
+@import '../../node_modules/bootstrap/scss/mixins';
+@import '@/styles/variables.scss';
+//bootstrap 의 색상을 재사용 하는 경우
+// 정의되어있는 변수를 사용하는 경우 varivales밑에 두어야 에러를 방지할 수 있다.
+$theme-colors: (
+  'primary': #fdc000,
+  'secondary': $secondary,
+  'success': $success,
+  'info': $info,
+  'warning': $warning,
+  'danger': $danger,
+  'dark': $dark,
+  'light': $light,
+);
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: white !important;
+  background-color: #fdc000 !important;
+  border: 1px solid white !important;
+}
+.page-link:hover {
+  z-index: 2;
+  color: #fff !important;
+  text-decoration: none;
+  background-color: #fdc000 !important;
+  border-color: #dee2e6;
+}
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #ffe9a2 !important;
+  border-color: #fdc000;
+}
+
+body {
+  -ms-overflow-style: none;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+.green {
+  color: #007564;
+}
+.red {
+  color: #c1564c;
+}
+.gray {
+  color: #999;
+}
+.blue {
+  color: rgb(115, 159, 224);
+}
+
+input[type='date'] {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 600;
+  border: 0px;
+  background: transparent;
+  padding: 0 0;
+  &:focus {
+    outline: none;
+  }
+}
+
+input[type='text'] {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+* {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+.inline-btn {
+  display: inline-block;
+}
+
+.basicBtn {
+  color: #fff;
+  background-color: var(--color-yellow);
+  cursor: pointer;
+  &:hover {
+    background-color: #fff;
+    color: var(--color-yellow);
+  }
+}
+
+.menu-container {
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}
+
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
