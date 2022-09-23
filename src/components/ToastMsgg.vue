@@ -6,7 +6,7 @@
       id="b-toaster-bottom-center"
       variant="warning"
       solid
-      v-model="showBottom"
+      v-model="show"
       toaster="b-toaster-bottom-center"
     >
       <template #toast-title>
@@ -30,7 +30,7 @@
 export default {
   data() {
     return {
-      showBottom: false,
+      show: false,
     };
   },
   props: {
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     createToast() {
-      this.showBottom = true;
+      this.show = true;
     },
   },
 };
