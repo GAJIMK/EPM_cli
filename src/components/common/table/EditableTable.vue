@@ -1,5 +1,5 @@
 <template>
-  <div class="table-cell" v-bind:class="{active: item.state === 40}">
+  <div class="table-cell" v-bind:class="{ active: item.state === 40 }">
     <div class="col">
       <input
         type="date"
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import {updateList} from '@/api/userFeeList/userFeeList';
+import { updateList } from '@/api/userFeeList/userFeeList'
 export default {
   props: {
     item: {
@@ -70,10 +70,10 @@ export default {
   mounted() {},
   methods: {
     async update() {
-      await updateList(this.item).then(() => this.$emit('printSum'));
+      await updateList(this.item).then(() => this.$emit('printSum'))
     },
   },
-};
+}
 </script>
 <style lang="scss">
 @import '@/scss/main.scss';
@@ -83,6 +83,7 @@ input[type='date'] {
   border: 0px;
   background: transparent;
   padding: 0 0;
+  flex-shrink: 1;
   &:focus {
     outline: none;
   }
@@ -100,9 +101,6 @@ p {
   background-color: transparent;
 }
 
-.col {
-  flex-shrink: 0;
-}
 .active {
   background-color: rgba(245, 117, 117, 0.3);
 }

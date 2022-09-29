@@ -16,33 +16,32 @@
 </template>
 
 <script>
-import Lunch from './ect/Lunch.vue';
-import Memo from './ect/Memo.vue';
-import Banner from './ect/Banner.vue';
-import Menu from '@/components/common/Menu.vue';
-import { fetchBoardDay } from '@/api/submit/submit.js';
-import moment from 'moment';
+import Lunch from './ect/Lunch.vue'
+import Memo from './ect/Memo.vue'
+import Banner from './ect/Banner.vue'
+import Menu from '@/components/common/Menu.vue'
+import { fetchBoardDay } from '@/api/submit/submit.js'
+import moment from 'moment'
 export default {
   mounted() {
-    this.loadPast();
+    this.loadPast()
   },
   data() {
     return {
       state: this.$store.state.accountId,
       diffDay: '',
-    };
+    }
   },
   components: { Lunch, Memo, Menu, Banner },
   methods: {
     async loadPast() {
-      const res = await fetchBoardDay();
-      console.log(res);
-      const currentDay = moment(new Date());
-      const setDay = moment(res.data.list[0].endDay);
-      this.diffDay = setDay.diff(currentDay, 'days');
+      const res = await fetchBoardDay()
+      const currentDay = moment(new Date())
+      const setDay = moment(res.data.list[0].endDay)
+      this.diffDay = setDay.diff(currentDay, 'days')
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
