@@ -3,22 +3,11 @@
     <h3 class="logo" @click="goHome()">로그인하기</h3>
     <div class="inputForm">
       <label>아이디</label>
-      <input
-        type="text"
-        class="loginInput"
-        placeholder="인트라넷 아이디를 입력하세요"
-        v-model="id"
-      />
+      <input type="text" class="loginInput" placeholder="아이디를 입력하세요" v-model="id" />
     </div>
     <div class="inputForm">
       <label>비밀번호</label>
-      <input
-        type="password"
-        class="loginInput"
-        placeholder="비밀번호를 입력하세요"
-        v-model="pw"
-        @keyup.enter="login"
-      />
+      <input type="password" class="loginInput" placeholder="비밀번호를 입력하세요" v-model="pw" @keyup.enter="login" />
     </div>
     <button class="loginBtn disabled loginInput" @click="login">로그인</button>
     <ToastMsgg ref="toastMsg" :ToastCon="ToastCon" class="toast" />
@@ -30,7 +19,7 @@ import { login } from '@/api/auth/auth';
 import ToastMsgg from '@/components/ToastMsgg.vue';
 
 export default {
-  //components: { ToastMsgg },
+  components: { ToastMsgg },
   data() {
     return {
       id: '',
@@ -77,6 +66,7 @@ export default {
 <style lang="scss" scoped>
 @import '@/scss/font.scss';
 @import '@/scss/main.scss';
+
 .container {
   width: 20em;
   height: 60vh;
@@ -100,7 +90,7 @@ label {
 }
 
 .loginInput {
-  border-radius: 30px;
+  border-radius: 10px;
   width: 330px;
   height: 44px;
   padding: 0px 20px;
@@ -108,6 +98,7 @@ label {
   -webkit-box-shadow: 0px 0px 2px 5px rgba(221, 221, 221, 0.18);
   box-shadow: 0px 0px 2px 5px rgba(221, 221, 221, 0.18);
   font-size: 13px;
+
   &:focus {
     outline: 0;
     box-shadow: 0px 0px 2px 5px rgba(255, 199, 95, 0.12);
@@ -117,11 +108,13 @@ label {
 .inputForm {
   margin-bottom: 0.5em;
 }
+
 .loginBtn {
   background-color: #ffc75f;
   font-weight: 600;
   margin-top: 10px;
 }
+
 .loginBtn.disabled {
   opacity: 0.5;
   cursor: not-allowed;

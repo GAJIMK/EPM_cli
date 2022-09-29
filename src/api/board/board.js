@@ -1,4 +1,4 @@
-import { board } from '@/api/index';
+import {board} from '@/api/index';
 
 function fetchBoardList() {
   return board.get(`/findAll`);
@@ -22,4 +22,4 @@ function putBoardList(boardContent) {
   return board.put('/', data);
 }
 
-export { fetchBoardList, putBoardList, fetchBoard, fetchBoardPage };
+export {fetchBoardList, putBoardList, fetchBoard, fetchBoardPage};

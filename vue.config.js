@@ -1,6 +1,9 @@
 const path = require('path');
 
 module.exports = {
+  devServer: {
+    overlay: false
+  },
   publicPath:
     process.env.NODE_ENV === 'production' ? '/metronic/vue/demo2/' : '/',
   configureWebpack: {
@@ -33,6 +36,6 @@ module.exports = {
         },
       },
       scss: {},
-    },
+    },    
   },
 };

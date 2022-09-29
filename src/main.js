@@ -2,7 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import vueMoment from 'vue-moment';
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import {BootstrapVue, IconsPlugin} from 'bootstrap-vue';
 import store from './store';
 
 // Import Bootstrap and BootstrapVue CSS files (order is important)
@@ -11,13 +11,14 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 import Default from '@/layouts/Default.vue';
 import EmptySpace from '@/layouts/Empty.vue';
+import MenuSpace from '@/layouts/Menu.vue';
 
 /* import font awesome icon component */
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
+import {library} from '@fortawesome/fontawesome-svg-core';
 
 /* import specific icons */
-import { fas } from '@fortawesome/free-solid-svg-icons';
+import {fas} from '@fortawesome/free-solid-svg-icons';
 
 /* add icons to the library */
 library.add(fas);
@@ -33,6 +34,7 @@ Vue.use(vueMoment);
 
 Vue.component('default-layout', Default);
 Vue.component('empty-layout', EmptySpace);
+Vue.component('menu-layout', MenuSpace);
 
 router.beforeEach((to, from, next) => {
   // Ensure we checked auth before each page load.

@@ -7,24 +7,13 @@
     </div>
     <small class="date">{{ date }}</small>
     <label for="content"></label>
-    <b-textarea
-      class="content"
-      name="content"
-      id="content"
-      cols="30"
-      rows="10"
-      disabled
-      v-model="this.content"
-    ></b-textarea>
+    <b-textarea class="content" name="content" id="content" cols="30" rows="10" disabled v-model="this.content">
+    </b-textarea>
 
     <div class="footer">
       <div>{{ thumbs }}</div>
       <div class="icon-container basicBtn">
-        <font-awesome-icon
-          icon="fa-solid fa-thumbs-up"
-          class="icon"
-          @click="putData()"
-        />
+        <font-awesome-icon icon="fa-solid fa-thumbs-up" class="icon" @click="putData()" />
       </div>
       <b-button class="basicBtn" @click="goback()">목록으로</b-button>
       <ToastMsgg ref="toastMsgg" :ToastCon="ToastCon" class="toast" />
@@ -112,12 +101,14 @@ export default {
   height: 350px;
   resize: none;
 }
+
 .title-2:disabled {
   background-color: transparent;
   border: transparent;
   font-family: 'GongGothicMedium', sans-serif;
   font-size: 25px;
 }
+
 .icon-container {
   width: 3.5em;
   height: 3.5em;
@@ -127,15 +118,18 @@ export default {
   align-items: center;
   justify-content: center;
   margin-bottom: 3%;
+
   &:hover {
     -webkit-box-shadow: 0px 0px 14px 2px rgba(255, 200, 87, 0.26);
     box-shadow: 0px 0px 14px 2px rgba(255, 200, 87, 0.26);
     transform: scale(1.02);
     border: 3px solid var(--color-yellow);
+
     .icon {
       color: #fdc000;
     }
   }
+
   .icon {
     width: 1.5rem;
     height: 1.5rem;
@@ -143,6 +137,7 @@ export default {
     font-size: 10px;
   }
 }
+
 .footer {
   display: flex;
   flex-direction: column;
@@ -150,33 +145,40 @@ export default {
   justify-content: space-around;
   padding: 5%;
 }
+
 .name {
   font-family: 'GongGothicMedium', sans-serif;
   font-size: 30px;
   margin: 3% 0px 3% 0px;
 }
+
 .date {
   float: right;
   height: fit-content;
 }
+
 .cont {
   display: flex;
 }
+
 .title_2 {
   width: 50px;
   margin: auto;
 }
+
 .basicBtn {
   color: #fff;
   background-color: var(--color-yellow);
   border-color: transparent;
   font-family: 'GongGothicMedium', sans-serif;
   cursor: pointer;
+
   &:hover {
     background-color: rgb(255, 238, 162);
     color: var(--color-yellow);
     border-color: transparent;
   }
+
   &:focus {
     background-color: rgb(255, 238, 162);
     color: var(--color-yellow);

@@ -1,16 +1,8 @@
 <template>
   <div class="part">
     <div class="row">
-      <font-awesome-icon
-        icon="fa-solid fa-angle-down"
-        v-if="state"
-        @click="changeState"
-      />
-      <font-awesome-icon
-        icon="fa-solid fa-angle-up"
-        v-else
-        @click="changeState"
-      />
+      <font-awesome-icon icon="fa-solid fa-angle-down" v-if="state" @click="changeState" />
+      <font-awesome-icon icon="fa-solid fa-angle-up" v-else @click="changeState" />
       <div class="partCount radiusBtn">{{ count }}</div>
       <div class="partTitle">{{ expense.feeNm }}</div>
       <button class="plusRow radiusBtn " @click="addRow">+</button>
@@ -20,12 +12,7 @@
     <div class="imdiv" v-if="state">
       <TableHeader />
       <div id="lists">
-        <EditableTable
-          v-for="item in items"
-          :key="item.id"
-          @printSum="countSum"
-          :item="item"
-        />
+        <EditableTable v-for="item in items" :key="item.id" @printSum="countSum" :item="item" />
       </div>
       <div class="money-container">
         <div class="index"><span>지원 금액 :</span> {{ expense.fee }}</div>
@@ -159,19 +146,22 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import '@/scss/font.scss';
+
 .row {
   align-items: center;
   width: 100%;
   padding: 0 20px;
 }
+
 .part {
   padding: 20px 0;
 }
+
 .partTitle {
-  font-family: 'Dongle', sans-serif;
-  font-family: 'Jua', sans-serif;
-  font-size: 25px;
+  font-family: 'GongGothicMedium';
+  font-size: 22px;
   padding: 1%;
 }
 
@@ -189,6 +179,7 @@ export default {
   align-items: center;
   justify-content: center;
 }
+
 .radiusBtn:active {
   border: 0;
   outline: 0;
@@ -203,6 +194,7 @@ export default {
 .partCount {
   background-color: var(--color-yellow);
 }
+
 .form-group {
   padding: 0.2%;
   margin-top: 2%;
@@ -219,6 +211,7 @@ export default {
   justify-content: space-around;
   width: 100%;
 }
+
 .money-container {
   display: flex;
   justify-content: space-between;

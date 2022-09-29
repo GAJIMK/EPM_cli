@@ -8,7 +8,17 @@ const store = new Vuex.Store({
     accountNm: '',
     auth: '',
   },
-  getters: {},
+  getters: {
+    fetchedId(state){
+     return state.accountId
+    },
+    fetchedNm(state){
+      return state.accountNm
+     },
+     fetchedAuth(state){
+      return state.auth
+     }
+  },
   mutations: {
     async setUser(state, data) {
       state.accountId = data.accountId;

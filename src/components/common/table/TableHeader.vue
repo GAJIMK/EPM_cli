@@ -26,20 +26,18 @@ export default {};
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Jua&family=Ubuntu:ital,wght@1,300&display=swap');
 .table-head,
 .table-cell {
   text-align: center;
   display: flex;
   align-items: center;
   width: 100%;
-
   height: 2em;
   border: 0px;
 }
 
 .table-head {
-  background-color: rgb(255, 254, 174);
+  background-color: #FFE4DB;
 }
 
 .col {
