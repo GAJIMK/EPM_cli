@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Header from './components/common/Header.vue';
+import Header from './components/common/Header.vue'
 
 export default {
   name: 'App',
@@ -15,10 +15,10 @@ export default {
 
   computed: {
     layout() {
-      return `${this.$route.meta.layout || 'default'}-layout`;
+      return `${this.$route.meta.layout || 'default'}-layout`
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

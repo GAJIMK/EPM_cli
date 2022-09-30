@@ -77,6 +77,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  padding: 0 1rem;
+}
 .inline-btn {
   font-family: 'GongGothicMedium';
 }

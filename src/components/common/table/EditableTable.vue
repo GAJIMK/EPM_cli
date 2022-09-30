@@ -35,7 +35,7 @@
         @keyup.enter="update"
       />
     </div>
-    <div class="col pay">
+    <div class="col">
       <select
         class="select_pass"
         v-model="item.method"
@@ -79,11 +79,12 @@ export default {
 @import '@/scss/main.scss';
 input[type='text'],
 input[type='date'] {
+  display: block;
+  flex-shrink: 1;
   text-align: center;
   border: 0px;
   background: transparent;
   padding: 0 0;
-  flex-shrink: 1;
   &:focus {
     outline: none;
   }
@@ -91,7 +92,9 @@ input[type='date'] {
 p {
   margin: 0 0;
 }
-
+select {
+  min-width: 147px;
+}
 .select_pass {
   color: rgb(107, 155, 67);
   border: 0 solid black;
