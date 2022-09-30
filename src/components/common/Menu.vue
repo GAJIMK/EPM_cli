@@ -10,7 +10,10 @@
         </li>
         <li class="list-item" @click="writtenList">
           <div class="icon-container basicBtn">
-            <font-awesome-icon icon="fa-solid fa-clock-rotate-left" class="icon" />
+            <font-awesome-icon
+              icon="fa-solid fa-clock-rotate-left"
+              class="icon"
+            />
           </div>
           <div class="menu-content" @click="writtenList">과거내역 조회</div>
         </li>
@@ -22,7 +25,11 @@
         </li>
         <li class="list-item">
           <div class="icon-container basicBtn">
-            <font-awesome-icon icon="fa-solid fa-user" class="icon" @click="goMypage()" />
+            <font-awesome-icon
+              icon="fa-solid fa-user"
+              class="icon"
+              @click="goMypage()"
+            />
           </div>
           <div class="menu-content">마이페이지</div>
         </li>
@@ -38,7 +45,10 @@
         </li>
         <li class="list-item" @click="handelGrade">
           <div class="icon-container basicBtn">
-            <font-awesome-icon icon="fa-solid fa-users-between-lines" class="icon" />
+            <font-awesome-icon
+              icon="fa-solid fa-users-between-lines"
+              class="icon"
+            />
           </div>
           <div class="menu-content">등급별 관리</div>
         </li>
@@ -61,8 +71,8 @@
 </template>
 
 <script>
-import moment from 'moment';
-import ToastMsgg from '@/components/ToastMsgg.vue';
+import moment from 'moment'
+import ToastMsgg from '@/components/ToastMsgg.vue'
 export default {
   components: { ToastMsgg },
   data() {
@@ -70,48 +80,47 @@ export default {
       accountId: this.$store.state.accountId,
       state: this.$store.state.auth === 'ADMIN' ? true : false,
       ToastCon: '로그인 후 사용 가능합니다❗',
-    };
+    }
   },
   methods: {
     checkSession() {
-      const state = this.accountId ? true : false;
-      if (state) return state;
-      else this.$refs.toastMsgg.createToast();
+      const state = this.accountId ? true : false
+      if (state) return state
+      else this.$refs.toastMsgg.createToast()
     },
     handleWrite() {
-      if (this.checkSession()) this.$router.push({ name: 'userWrite' });
+      if (this.checkSession()) this.$router.push({ name: 'userWrite' })
     },
 
     goMypage() {
-      if (this.checkSession()) this.$router.push({ name: 'myPage' });
+      if (this.checkSession()) this.$router.push({ name: 'myPage' })
     },
     writtenList() {
-      if (this.checkSession()) this.$router.push({ name: 'user' });
+      if (this.checkSession()) this.$router.push({ name: 'user' })
     },
     //경비항목관리
     handleExpenseList() {
-      if (this.checkSession()) this.$router.push({ name: 'expenseList' });
+      if (this.checkSession()) this.$router.push({ name: 'expenseList' })
     },
     //등급관리
     handelGrade() {
-      if (this.checkSession()) this.$router.push({ name: 'grade' });
+      if (this.checkSession()) this.$router.push({ name: 'grade' })
     },
     handleUsersList() {
       if (this.checkSession())
         this.$router.push({
           name: 'usersExpense',
           params: { date: moment(new Date()).format('YYYY-MM') },
-        });
+        })
     },
     handleSubDay() {
-      if (this.checkSession()) this.$router.push({ name: 'submitDay' });
+      if (this.checkSession()) this.$router.push({ name: 'submitDay' })
     },
     handleApproval() {
-      if (this.checkSession())
-        this.$router.push({ name: 'approval' });
+      if (this.checkSession()) this.$router.push({ name: 'approval' })
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -128,7 +137,6 @@ export default {
   -webkit-backdrop-filter: blur(50%);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-
 }
 
 .allUsersMenu {

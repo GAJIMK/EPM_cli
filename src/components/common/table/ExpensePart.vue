@@ -173,8 +173,9 @@ export default {
 }
 
 .partTitle {
-  font-family: 'GongGothicMedium';
-  font-size: 22px;
+  font-family: 'Happiness-Sans-Bold';
+  font-weight: bold;
+  font-size: 20px;
   padding: 3px 6px;
 }
 
@@ -232,8 +233,9 @@ export default {
   margin-bottom: 80px;
   border: 1px double #ffc107;
   border-radius: 0.75em;
-  font-family: 'Jua', sans-serif;
-  font-family: 'Jua', sans-serif;
+  font-family: 'Happiness-Sans-Bold';
+  font-weight: 600;
+  font-size: 14px;
   padding: 0.9%;
   width: 400px;
   float: right;

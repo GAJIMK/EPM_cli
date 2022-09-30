@@ -105,6 +105,6 @@ select {
 }
 
 .active {
-  background-color: rgba(245, 117, 117, 0.3);
+  background-color: rgba(245, 117, 117, 0.2);
 }
 </style>

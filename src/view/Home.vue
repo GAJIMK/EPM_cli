@@ -47,7 +47,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   max-width: 880px;
-  padding: 50px 0px;
+  padding: 50px 10px;
   position: relative;
 }
 

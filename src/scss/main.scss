@@ -58,6 +58,9 @@ body {
 }
 * {
   box-sizing: border-box;
+  &:hover {
+    transition: 0.3s;
+  }
 }
 ::-webkit-scrollbar {
   display: none;
@@ -77,8 +80,7 @@ body {
 }
 
 input[type='date'] {
-  font-family: 'Nanum Gothic', sans-serif;
-  font-weight: 600;
+  font-family: 'Happiness-Sans-Bold';
   border: 0px;
   background: transparent;
   padding: 0 0;
@@ -88,11 +90,11 @@ input[type='date'] {
 }
 
 input[type='text'] {
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Happiness-Sans-Bold';
 }
 
 * {
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Happiness-Sans-Bold';
   box-sizing: border-box;
 }
 .inline-btn {
