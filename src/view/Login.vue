@@ -65,10 +65,8 @@ export default {
       }
       await login(form).then((res) => {
         if (res.data.code === 0) {
-          console.log(res.data.data)
           for (let [key, value] of Object.entries(res.data.data)) {
             localStorage.setItem(key, value)
-            console.log(localStorage.getItem(key))
           }
           this.$store.commit('setUser', res.data.data)
           this.$router.push({ name: 'home' })

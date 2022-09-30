@@ -19,7 +19,7 @@
 import {
   fetchAllList,
   updateList,
-} from '@/api/positionFeeMapper/positionFeeMapper';
+} from '@/api/positionFeeMapper/positionFeeMapper'
 export default {
   props: {
     feeLength: {
@@ -27,34 +27,34 @@ export default {
     },
   },
   created() {
-    this.fetchAllList();
+    this.fetchAllList()
   },
   data() {
     return {
       data: [],
-    };
+    }
   },
   methods: {
     async fetchAllList() {
-      const res = await fetchAllList();
-      const datas = res.data.list;
-      let feeData = [];
+      const res = await fetchAllList()
+      const datas = res.data.list
+      let feeData = []
       for (let i = 0; i < datas.length; i++) {
-        let el = datas[i];
+        let el = datas[i]
         const feeobj = {
           feeCode: el.feeCode,
           feeNm: el.feeNm,
           fee: el.fee,
-        };
-        feeData.push(feeobj);
+        }
+        feeData.push(feeobj)
         if (i % this.feeLength == this.feeLength - 1) {
           const obj = {
             positionCode: el.positionCode,
             positionNm: el.positionNm,
             feeData: feeData,
-          };
-          this.data.push(obj);
-          feeData = [];
+          }
+          this.data.push(obj)
+          feeData = []
         }
       }
     },
@@ -65,15 +65,15 @@ export default {
         fee: parseInt(fee.fee),
         feeNm: '',
         positionNm: '',
-      };
+      }
       try {
-        await updateList(data);
+        await updateList(data)
       } catch (e) {
-        console.log(e);
+        console.log(e)
       }
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
@@ -86,10 +86,10 @@ input[type='text'] {
   }
 }
 .pos {
+  box-sizing: border-box;
   display: flex;
   color: #999;
   font-size: 14px;
-  padding-bottom: 4px;
   border-bottom: solid #eee 0.5px;
   text-align: center;
   width: 100%;
