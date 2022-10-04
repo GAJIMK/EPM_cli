@@ -2,7 +2,9 @@
   <div class="container">
     <div class="top-con">
       <h3 class="name">📢 익명 게시판</h3>
+
       <b-button class="btn-warning right-side" @click="goBoardWirte()" v-if="writeAuth">
+
         작성하기✏️
       </b-button>
     </div>

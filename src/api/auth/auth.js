@@ -10,3 +10,4 @@ function getInfo(accountId) {
 
 
 export {login , getInfo};
+

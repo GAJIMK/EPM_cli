@@ -36,15 +36,15 @@
 </template>
 
 <script>
-import EditableTable from '@/components/common/table/EditableTable.vue';
-import ImgUpload from '@/components/common/table/ImgUpload.vue';
-import TableHeader from '@/components/common/table/TableHeader.vue';
+import EditableTable from '@/components/common/table/EditableTable.vue'
+import ImgUpload from '@/components/common/table/ImgUpload.vue'
+import TableHeader from '@/components/common/table/TableHeader.vue'
 import {
   createList,
   deleteList,
   fetchPartList,
-} from '@/api/userFeeList/userFeeList';
-import moment from 'moment';
+} from '@/api/userFeeList/userFeeList'
+import moment from 'moment'
 export default {
   props: {
     expense: {
@@ -59,16 +59,16 @@ export default {
   },
   watch: {
     items() {
-      this.countList();
+      this.countList()
     },
     date() {
-      this.state = false;
-      this.sum = 0;
-      this.fetchPartList();
+      this.state = false
+      this.sum = 0
+      this.fetchPartList()
     },
   },
   mounted() {
-    this.fetchPartList();
+    this.fetchPartList()
   },
   components: { EditableTable, TableHeader },
   data() {
@@ -78,17 +78,17 @@ export default {
       sum: 0,
       state: false,
       count: 0,
-    };
+    }
   },
   methods: {
     async fetchPartList() {
       const res = await fetchPartList(
         this.accountId,
         this.date,
-        this.expense.feeCode,
-      );
-      this.items = res.data.list;
-      console.log(this.items);
+        this.expense.feeCode
+      )
+      this.items = res.data.list
+      console.log(this.items)
     },
     async addRow() {
       const obj = {
@@ -103,47 +103,47 @@ export default {
         path: '',
         place: '',
         state: 0,
-      };
-      await createList(obj).then(res => {
-        const item = res.data.data;
-        this.items = this.items || [];
-        this.items.push(item);
-      });
-      this.countList();
-      this.state = true;
+      }
+      await createList(obj).then((res) => {
+        const item = res.data.data
+        this.items = this.items || []
+        this.items.push(item)
+      })
+      this.countList()
+      this.state = true
     },
     countSum() {
       if (this.items) {
-        let sum = 0;
-        this.items.forEach(el => {
+        let sum = 0
+        this.items.forEach((el) => {
           if (el.price == '') {
-            sum += 0;
-          } else sum += parseInt(el['price']);
-        });
-        this.sum = sum;
+            sum += 0
+          } else sum += parseInt(el['price'])
+        })
+        this.sum = sum
       }
     },
     async deleteRow() {
       if (this.items) {
-        const popItem = this.items.pop();
-        await deleteList(popItem.id);
-        this.state = true;
-        this.countList();
+        const popItem = this.items.pop()
+        await deleteList(popItem.id)
+        this.state = true
+        this.countList()
       }
     },
 
     countList() {
       if (this.items) {
-        this.count = this.items.length;
-        this.state = true;
-        this.countSum();
-      } else this.count = 0;
+        this.count = this.items.length
+        this.state = true
+        this.countSum()
+      } else this.count = 0
     },
     changeState() {
-      this.state = this.state ? false : true;
+      this.state = this.state ? false : true
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -160,19 +160,21 @@ export default {
 }
 
 .partTitle {
+
   font-family: 'GongGothicMedium';
   font-size: 22px;
   padding: 1%;
+
 }
 
 .radiusBtn {
   border: 0;
   outline: 0;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   color: black;
-  margin: 0.5%;
-  border-radius: 50%;
+  margin: 5px;
+  border-radius: 8px;
   display: inline;
   font-weight: bold;
   display: flex;
@@ -188,7 +190,7 @@ export default {
   background-color: #d8c0a4;
   color: black;
   margin: 0.5%;
-  border-radius: 50%;
+  border-radius: 8px;
 }
 
 .partCount {
@@ -219,8 +221,9 @@ export default {
   margin-bottom: 80px;
   border: 1px double #ffc107;
   border-radius: 0.75em;
-  font-family: 'Jua', sans-serif;
-  font-family: 'Jua', sans-serif;
+  font-family: 'Happiness-Sans-Bold';
+  font-weight: 600;
+  font-size: 15px;
   padding: 0.9%;
   width: 400px;
   float: right;

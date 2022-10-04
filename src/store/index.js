@@ -1,3 +1,4 @@
+
 import Vue from 'vue';
 import Vuex from 'vuex';
 import moment from 'moment';
@@ -5,7 +6,8 @@ import moment from 'moment';
 import {getInfo} from '@/api/auth/auth'
 
 
-Vue.use(Vuex);
+
+Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     accountId: '',
@@ -34,17 +36,27 @@ const store = new Vuex.Store({
      fetchedPno(state){
       return state.phoneNo
      }
+
   },
   mutations: {
     async setUser(state, data) {
-      state.accountId = data.accountId;
-      state.accountNm = data.accountNm;
-      state.auth = data.role;
+      state.accountId = data.accountId
+      state.accountNm = data.accountNm
+      state.auth = data.role
+      state.acceptLv = data.acceptLv
     },
     logout(state) {
-      state.accountId = '';
-      state.accountNm = '';
-      state.auth = '';
+      state.accountId = ''
+      state.accountNm = ''
+      state.auth = ''
+    },
+    checkUser(state) {
+      if (localStorage.getItem('accountId')) {
+        state.accountId = localStorage.getItem('accountId')
+        state.accountNm = localStorage.getItem('accountNm')
+        state.auth = localStorage.getItem('role')
+        state.acceptLv = localStorage.getItem('acceptLv')
+      }
     },
     async set_getinfo(state ,data){
       state.email = data.list[0].email
@@ -54,7 +66,7 @@ const store = new Vuex.Store({
   },
   actions: {
     show(mutations) {
-      console.log(mutations);
+      console.log(mutations)
     },
     fetchInfo({commit}, accountId){
         return new Promise((resolve,reject)=>{
@@ -71,6 +83,6 @@ const store = new Vuex.Store({
         })
     }
   },
-});
+})
 
-export default store;
+export default store

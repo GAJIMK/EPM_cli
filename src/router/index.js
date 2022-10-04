@@ -38,31 +38,41 @@ export default new Router({
     {
       path: '/user',
       name: 'user',
+
       meta: {layout: 'menu'},
+
       component: () => import('@/view/user/UserPage.vue'),
     },
     {
       path: '/user-write',
       name: 'userWrite',
+
       meta: {layout: 'menu'},
+
       component: () => import('@/view/user/UserWrite.vue'),
     },
     {
       path: '/approval',
       name: 'approval',
+
       meta: {layout: 'menu'},
+
       component: () => import('@/view/user/ApprovalPage.vue'),
     },
     {
       path: '/notice-board',
       name: 'noticeBoard',
+
       meta: {layout: 'menu'},
+
       component: () => import('~/src/view/notice/boardList.vue'),
     },
     {
       path: '/notice-board-upload',
       name: 'noticeBoardUpload',
+
       meta: {layout: 'menu'},
+
       component: () => import('~/src/view/notice/boardUpload.vue'),
     },
     {
@@ -74,13 +84,17 @@ export default new Router({
     {
       path: '/myPage',
       name: 'myPage',
+
       meta: {layout: 'menu'},
+
       component: () => import('@/view/myPage.vue'),
     },
     {
       path: '/board-content',
       name: 'boardcontent',
+
       meta: {layout: 'menu'},
+
       component: () => import('@/view/notice/boardcontent.vue'),
     },
 

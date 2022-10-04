@@ -22,7 +22,7 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style lang="scss">
@@ -31,6 +31,7 @@ export default {};
   text-align: center;
   display: flex;
   align-items: center;
+
   width: 100%;
   height: 2em;
   border: 0px;
@@ -38,14 +39,17 @@ export default {};
 
 .table-head {
   background-color: #FFE4DB;
+
 }
 
 .col {
   border-left: 1px solid #eee;
   border-right: 1px solid #eee;
-  padding: 0 0;
-  width: 2rem;
-  flex-basis: 120px;
-  font-weight: 500;
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 147px;
 }
 </style>

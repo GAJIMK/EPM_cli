@@ -5,20 +5,22 @@
 </template>
 
 <script>
-import Header from './components/common/Header.vue';
+import Header from './components/common/Header.vue'
+import Footer from './components/common/Footer.vue'
 
 export default {
   name: 'App',
   components: {
     Header,
+    Footer,
   },
 
   computed: {
     layout() {
-      return `${this.$route.meta.layout || 'default'}-layout`;
+      return `${this.$route.meta.layout || 'default'}-layout`
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

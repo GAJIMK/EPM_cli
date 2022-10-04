@@ -1,6 +1,5 @@
 <template>
   <div class="toastContainer">
-
     <b-toast
       id="b-toaster-bottom-center"
       variant="warning"
@@ -8,7 +7,6 @@
       v-model="show"
       toaster="b-toaster-bottom-center"
     >
-
       <template #toast-title>
         <div class="d-flex flex-grow-1 align-items-baseline">
           <b-img blank blank-color="#ff5555" class="mr-2" width="12" height="12"></b-img>

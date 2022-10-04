@@ -1,6 +1,8 @@
 <template>
   <div class="container">
+
     <div v-if="state" id="due">경비 마감 D {{ diffDay }} 일</div>
+
     <Menu v-if="state" />
     <Banner v-if="!state" />
     <div class="adds">
@@ -24,25 +26,24 @@ import { fetchBoardDay } from '@/api/submit/submit.js';
 import moment from 'moment';
 export default {
   mounted() {
-    this.loadPast();
+    this.loadPast()
   },
   data() {
     return {
       state: this.$store.state.accountId,
       diffDay: '',
-    };
+    }
   },
   components: { Lunch, Memo, Menu, Banner },
   methods: {
     async loadPast() {
-      const res = await fetchBoardDay();
-      console.log(res);
-      const currentDay = moment(new Date());
-      const setDay = moment(res.data.list[0].endDay);
-      this.diffDay = setDay.diff(currentDay, 'days');
+      const res = await fetchBoardDay()
+      const currentDay = moment(new Date())
+      const setDay = moment(res.data.list[0].endDay)
+      this.diffDay = setDay.diff(currentDay, 'days')
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

@@ -28,7 +28,7 @@
         </li>
       </ul>
     </div>
-    <div class="management-menu" v-if="state">
+    <div class="management-menu" v-if="state === 'ADMIN'">
       <ul class="menu-items">
         <li class="list-item" @click="handleExpenseList">
           <div class="icon-container basicBtn">
@@ -56,62 +56,74 @@
         </li>
       </ul>
     </div>
+    <div class="management-menu" v-if="state === 'MANAGER'">
+      <ul class="menu-items">
+        <li class="list-item" @click="handleUsersList">
+          <div class="icon-container basicBtn">
+            <font-awesome-icon icon="fa-solid fa-user-check" class="icon" />
+          </div>
+          <div class="menu-content">조직원 경비승인</div>
+        </li>
+      </ul>
+    </div>
     <ToastMsgg ref="toastMsgg" :ToastCon="ToastCon" class="toast" />
   </div>
 </template>
 
 <script>
-import moment from 'moment';
-import ToastMsgg from '@/components/ToastMsgg.vue';
+import moment from 'moment'
+import ToastMsgg from '@/components/ToastMsgg.vue'
 export default {
   components: { ToastMsgg },
   data() {
     return {
       accountId: this.$store.state.accountId,
-      state: this.$store.state.auth === 'ADMIN' ? true : false,
+      state: this.$store.state.auth,
       ToastCon: '로그인 후 사용 가능합니다❗',
-    };
+    }
   },
   methods: {
     checkSession() {
-      const state = this.accountId ? true : false;
-      if (state) return state;
-      else this.$refs.toastMsgg.createToast();
+      const state = this.accountId ? true : false
+      if (state) return state
+      else this.$refs.toastMsgg.createToast()
     },
     handleWrite() {
-      if (this.checkSession()) this.$router.push({ name: 'userWrite' });
+      if (this.checkSession()) this.$router.push({ name: 'userWrite' })
     },
 
     goMypage() {
-      if (this.checkSession()) this.$router.push({ name: 'myPage' });
+      if (this.checkSession()) this.$router.push({ name: 'myPage' })
     },
     writtenList() {
-      if (this.checkSession()) this.$router.push({ name: 'user' });
+      if (this.checkSession()) this.$router.push({ name: 'user' })
     },
     //경비항목관리
     handleExpenseList() {
-      if (this.checkSession()) this.$router.push({ name: 'expenseList' });
+      if (this.checkSession()) this.$router.push({ name: 'expenseList' })
     },
     //등급관리
     handelGrade() {
-      if (this.checkSession()) this.$router.push({ name: 'grade' });
+      if (this.checkSession()) this.$router.push({ name: 'grade' })
     },
     handleUsersList() {
       if (this.checkSession())
         this.$router.push({
           name: 'usersExpense',
           params: { date: moment(new Date()).format('YYYY-MM') },
-        });
+        })
     },
     handleSubDay() {
-      if (this.checkSession()) this.$router.push({ name: 'submitDay' });
+      if (this.checkSession()) this.$router.push({ name: 'submitDay' })
     },
     handleApproval() {
+
       if (this.checkSession())
         this.$router.push({ name: 'approval' });
+
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

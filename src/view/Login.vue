@@ -3,7 +3,8 @@
     <h3 class="logo" @click="goHome()">로그인하기</h3>
     <div class="inputForm">
       <label>아이디</label>
-      <input type="text" class="loginInput" placeholder="아이디를 입력하세요" v-model="id" />
+   <input type="text" class="loginInput" placeholder="아이디를 입력하세요" v-model="id" />
+
     </div>
     <div class="inputForm">
       <label>비밀번호</label>
@@ -15,8 +16,8 @@
 </template>
 
 <script>
-import { login } from '@/api/auth/auth';
-import ToastMsgg from '@/components/ToastMsgg.vue';
+import { login } from '@/api/auth/auth'
+import ToastMsgg from '@/components/ToastMsgg.vue'
 
 export default {
   components: { ToastMsgg },
@@ -25,42 +26,45 @@ export default {
       id: '',
       pw: '',
       ToastCon: '아이디 혹은 비밀번호를 확인하세요',
-    };
+    }
   },
   watch: {
     id() {
-      this.checkInput();
+      this.checkInput()
     },
     pw() {
-      this.checkInput();
+      this.checkInput()
     },
   },
   methods: {
     goHome() {
-      this.$router.push({ name: 'home' });
+      this.$router.push({ name: 'home' })
     },
     checkInput() {
-      const btn = document.querySelector('.loginBtn');
+      const btn = document.querySelector('.loginBtn')
       if (this.id != '' && this.pw != '') {
-        btn.classList.remove('disabled');
+        btn.classList.remove('disabled')
       } else {
-        btn.classList.add('disabled');
+        btn.classList.add('disabled')
       }
     },
     async login() {
       const form = {
         accountId: this.id,
         password: this.pw,
-      };
-      await login(form).then(res => {
+      }
+      await login(form).then((res) => {
         if (res.data.code === 0) {
-          this.$store.commit('setUser', res.data.data);
-          this.$router.push({ name: 'home' });
-        } else this.$refs.toastMsg.createToast();
-      });
+          for (let [key, value] of Object.entries(res.data.data)) {
+            localStorage.setItem(key, value)
+          }
+          this.$store.commit('setUser', res.data.data)
+          this.$router.push({ name: 'home' })
+        } else this.$refs.toastMsg.createToast()
+      })
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
