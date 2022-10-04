@@ -16,46 +16,43 @@
 <script>
 export default {
   created() {
-    this.checkState();
+    this.$store.commit('checkUser')
   },
-  data() {
-    return {
-      accountId: this.$store.state.accountId,
-      accountNm: this.$store.state.accountNm,
-    };
+
+  computed: {
+    accountId: function() {
+      return this.$store.state.accountId
+    },
+    accountNm: function() {
+      return this.$store.state.accountNm
+    },
   },
+
   methods: {
     async loadPast() {
-      const res = await fetchBoardDay();
-      const currentDay = moment(new Date());
-      const setDay = moment(res.data.list[0].endDay);
-      this.diffDay = setDay.diff(currentDay, 'days');
-    },
-
-    checkState() {
-      this.accountId = this.$store.state.accountId;
-      this.accountNm = this.$store.state.accountNm;
-      if (this.accountId === '') return false;
-      else return true;
+      const res = await fetchBoardDay()
+      const currentDay = moment(new Date())
+      const setDay = moment(res.data.list[0].endDay)
+      this.diffDay = setDay.diff(currentDay, 'days')
     },
 
     goLogin() {
-      this.$router.push({ name: 'login' });
+      this.$router.push({ name: 'login' })
     },
     goHome() {
-      this.$router.push({ name: 'home' });
+      this.$router.push({ name: 'home' })
     },
 
     goSignUp: function() {
-      this.$router.push({ name: 'SignUp' }).catch(() => {});
+      this.$router.push({ name: 'SignUp' }).catch(() => {})
     },
     logout() {
-      this.$store.commit('logout');
-      this.checkState();
-      this.goHome();
+      this.$store.commit('logout')
+      this.goHome()
+      localStorage.clear()
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
@@ -87,6 +84,9 @@ export default {
   align-items: center;
   #logo {
     font-size: var(--font-size-l);
+    &:hover {
+      scale: 1.02;
+    }
   }
   span {
     font-size: var(--font-size-xs);

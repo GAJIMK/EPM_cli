@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MenuTitle menuTitle="경비리스트 관리" />
+    <MenuTitle menuTitle="📋경비리스트 관리" />
     <div class="inner">
       <ExpenseListItem />
     </div>
@@ -8,15 +8,15 @@
 </template>
 
 <script>
-import MenuTitle from '@/components/common/MenuTitleForm.vue';
-import ExpenseListItem from './ExpenseListItem.vue';
+import MenuTitle from '@/components/common/MenuTitleForm.vue'
+import ExpenseListItem from './ExpenseListItem.vue'
 
 export default {
   components: {
     MenuTitle,
     ExpenseListItem,
   },
-};
+}
 </script>
 
 <style lang="scss">

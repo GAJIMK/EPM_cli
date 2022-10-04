@@ -19,9 +19,9 @@ export default {
   data() {
     return {
       state: 90,
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

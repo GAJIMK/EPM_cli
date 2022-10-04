@@ -41,10 +41,10 @@
 </template>
 
 <script>
-import FixedTable from '@/components/common/table/FixedTable.vue';
-import ImgUpload from '@/components/common/table/ImgUpload.vue';
-import TableHeader from '@/components/common/table/TableHeader.vue';
-import { fetchPartList } from '@/api/userFeeList/userFeeList';
+import FixedTable from '@/components/common/table/FixedTable.vue'
+import ImgUpload from '@/components/common/table/ImgUpload.vue'
+import TableHeader from '@/components/common/table/TableHeader.vue'
+import { fetchPartList } from '@/api/userFeeList/userFeeList'
 export default {
   props: {
     expense: {
@@ -61,11 +61,11 @@ export default {
     },
   },
   mounted() {
-    this.fetchPartList();
+    this.fetchPartList()
   },
   watch: {
     items() {
-      this.countList();
+      this.countList()
     },
   },
   components: { FixedTable, TableHeader },
@@ -76,50 +76,51 @@ export default {
       remain: 50000, //보류
       state: false,
       count: 0,
-    };
+    }
   },
   methods: {
     countSum() {
       if (this.items) {
-        let sum = 0;
-        this.items.forEach(el => {
+        let sum = 0
+        this.items.forEach((el) => {
           if (el.price == '') {
-            sum += 0;
-          } else sum += parseInt(el['price']);
-        });
-        this.sum = sum;
+            sum += 0
+          } else sum += parseInt(el['price'])
+        })
+        this.sum = sum
       }
     },
     countList() {
       if (this.items) {
-        this.count = this.items.length;
-        this.state = true;
-        this.countSum();
-      } else this.count = 0;
+        this.count = this.items.length
+        this.state = true
+        this.countSum()
+      } else this.count = 0
     },
     changeState() {
-      this.state = this.state ? false : true;
+      this.state = this.state ? false : true
     },
     async fetchPartList() {
       const res = await fetchPartList(
         this.accountId,
         this.date,
-        this.expense.feeCode,
-      );
-      this.items = res.data.list;
+        this.expense.feeCode
+      )
+      this.items = res.data.list
     },
     savePartList() {
-      this.existLists.forEach(list => {
+      this.existLists.forEach((list) => {
         if (list.part === this.expense.feeCode) {
-          this.items.push(list);
+          this.items.push(list)
         }
-      });
+      })
     },
   },
-};
+}
 </script>
 
-<style>
+<style lang="scss">
+@import '@/scss/font.scss';
 .imdiv {
   box-sizing: border-box;
   height: fit-content;
@@ -127,25 +128,26 @@ export default {
 .row {
   align-items: center;
   width: 100%;
+  padding: 0 20px;
 }
 .part {
   padding: 20px 0;
 }
 .partTitle {
-  font-family: 'Dongle', sans-serif;
-  font-family: 'Jua', sans-serif;
-  font-size: 25px;
-  padding: 1%;
+  font-family: 'Happiness-Sans-Bold';
+  font-weight: bold;
+  font-size: 20px;
+  padding: 3px 6px;
 }
 
 .radiusBtn {
   border: 0;
   outline: 0;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   color: black;
-  margin: 0.5%;
-  border-radius: 50%;
+  margin: 6px;
+  border-radius: 8px;
   display: inline;
   font-weight: bold;
   display: flex;
@@ -190,12 +192,14 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 80px;
   border: 1px double #ffc107;
   border-radius: 0.75em;
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'Happiness-Sans-Bold';
   font-weight: 600;
+  font-size: 15px;
   padding: 0.9%;
   width: 400px;
+  float: right;
 }
 </style>
