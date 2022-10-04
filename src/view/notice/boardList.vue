@@ -2,7 +2,9 @@
   <div class="container">
     <div class="top-con">
       <h3 class="name">📢 익명 게시판</h3>
-      <b-button class="btn-warning right-side" @click="goBoardWirte()">
+
+      <b-button class="btn-warning right-side" @click="goBoardWirte()" v-if="writeAuth">
+
         작성하기✏️
       </b-button>
     </div>
@@ -28,6 +30,7 @@
 <script>
 import { fetchBoardList, fetchBoardPage } from '@/api/board/board.js';
 import { BPagination } from 'bootstrap-vue';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -50,12 +53,20 @@ export default {
       allId: [],
       lengthAll: '',
       clickPage: '',
+      writeAuth:false
     };
   },
-
+  computed:{
+    ...mapGetters({
+      auth:'fetchedAuth'
+    })
+  },
   created() {
     this.PageCount();
     this.FirstinitDataPage();
+    if(this.auth !== ''){
+      this.writeAuth = true
+    }
   },
   methods: {
     goBoardWirte() {
@@ -106,7 +117,7 @@ export default {
         this.boardlists.push(list);
       }
     },
-
+    
     goreport(index) {
       const a = index; //리스트의 인덱스
 

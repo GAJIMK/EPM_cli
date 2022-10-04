@@ -3,18 +3,11 @@
     <MenuTitle menuTitle="✍🏻작성하기" />
     <div class="month">
       <input type="month" class="form" max="2050-12" v-model="date" />
-      <b-button class="inline-btn btn-warning" @click="submit"
-        >제출하기</b-button
-      >
+      <b-button class="inline-btn btn-warning" @click="submit">제출하기</b-button>
     </div>
 
-    <ExpensePart
-      v-for="expense in expenseList"
-      :date="date"
-      :key="expense.feeCode"
-      :expense="expense"
-      :accountId="accountId"
-    />
+    <ExpensePart v-for="expense in expenseList" :date="date" :key="expense.feeCode" :expense="expense"
+      :accountId="accountId" />
   </div>
 </template>
 <script>
@@ -77,11 +70,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  padding: 0 1rem;
-}
+
 .inline-btn {
-  font-family: 'GongGothicMedium';
+  font-family: "GongGothicMedium";
+
 }
 
 .month {

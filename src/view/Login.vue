@@ -3,22 +3,12 @@
     <h3 class="logo" @click="goHome()">로그인하기</h3>
     <div class="inputForm">
       <label>아이디</label>
-      <input
-        type="text"
-        class="loginInput"
-        placeholder="아이디를 입력하세요"
-        v-model="id"
-      />
+   <input type="text" class="loginInput" placeholder="아이디를 입력하세요" v-model="id" />
+
     </div>
     <div class="inputForm">
       <label>비밀번호</label>
-      <input
-        type="password"
-        class="loginInput"
-        placeholder="비밀번호를 입력하세요"
-        v-model="pw"
-        @keyup.enter="login"
-      />
+      <input type="password" class="loginInput" placeholder="비밀번호를 입력하세요" v-model="pw" @keyup.enter="login" />
     </div>
     <button class="loginBtn disabled loginInput" @click="login">로그인</button>
     <ToastMsgg ref="toastMsg" :ToastCon="ToastCon" class="toast" />
