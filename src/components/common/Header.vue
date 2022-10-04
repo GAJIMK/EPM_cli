@@ -31,7 +31,6 @@ export default {
       const setDay = moment(res.data.list[0].endDay);
       this.diffDay = setDay.diff(currentDay, 'days');
     },
-
     checkState() {
       this.accountId = this.$store.state.accountId;
       this.accountNm = this.$store.state.accountNm;

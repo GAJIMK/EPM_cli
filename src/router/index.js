@@ -99,6 +99,7 @@ export default new Router({
     {
       path: '/read-expense',
       name: 'userPersonal',
+      meta: {layout: 'menu'},
       component: () => import('@/components/PersonalFee/PersonalFeePage.vue'),
     },
     {
