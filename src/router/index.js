@@ -31,37 +31,48 @@ export default new Router({
     {
       path: '/expense-list',
       name: 'expenseList',
+      meta: {layout: 'menu'},
       component: () =>
         import('@/components/management/expense/ExpenseListPage.vue'),
     },
     {
       path: '/user',
       name: 'user',
-      meta: {layout: 'default'},
+
+      meta: {layout: 'menu'},
+
       component: () => import('@/view/user/UserPage.vue'),
     },
     {
       path: '/user-write',
       name: 'userWrite',
-      meta: {layout: 'default'},
+
+      meta: {layout: 'menu'},
+
       component: () => import('@/view/user/UserWrite.vue'),
     },
     {
       path: '/approval',
       name: 'approval',
-      meta: {layout: 'default'},
+
+      meta: {layout: 'menu'},
+
       component: () => import('@/view/user/ApprovalPage.vue'),
     },
     {
       path: '/notice-board',
       name: 'noticeBoard',
-      meta: {layout: 'default'},
+
+      meta: {layout: 'menu'},
+
       component: () => import('~/src/view/notice/boardList.vue'),
     },
     {
       path: '/notice-board-upload',
       name: 'noticeBoardUpload',
-      meta: {layout: 'default'},
+
+      meta: {layout: 'menu'},
+
       component: () => import('~/src/view/notice/boardUpload.vue'),
     },
     {
@@ -73,13 +84,17 @@ export default new Router({
     {
       path: '/myPage',
       name: 'myPage',
-      meta: {layout: 'default'},
+
+      meta: {layout: 'menu'},
+
       component: () => import('@/view/myPage.vue'),
     },
     {
       path: '/board-content',
       name: 'boardcontent',
-      meta: {layout: 'default'},
+
+      meta: {layout: 'menu'},
+
       component: () => import('@/view/notice/boardcontent.vue'),
     },
 
@@ -98,11 +113,13 @@ export default new Router({
     {
       path: '/read-expense',
       name: 'userPersonal',
+      meta: {layout: 'menu'},
       component: () => import('@/components/PersonalFee/PersonalFeePage.vue'),
     },
     {
       path: '/submit-day',
       name: 'submitDay',
+      
       component: () => import('@/view/SubmitDay.vue'),
     },
   ],

@@ -1,8 +1,12 @@
 <template>
   <div class="toastContainer">
-
-    <b-toast id="b-toaster-bottom-center" variant="warning" solid v-model="showBottom"
-      toaster="b-toaster-bottom-center">
+    <b-toast
+      id="b-toaster-bottom-center"
+      variant="warning"
+      solid
+      v-model="show"
+      toaster="b-toaster-bottom-center"
+    >
       <template #toast-title>
         <div class="d-flex flex-grow-1 align-items-baseline">
           <b-img blank blank-color="#ff5555" class="mr-2" width="12" height="12"></b-img>
@@ -18,7 +22,7 @@
 export default {
   data() {
     return {
-      showBottom: false,
+      show: false,
     };
   },
   props: {
@@ -28,7 +32,7 @@ export default {
   },
   methods: {
     createToast() {
-      this.showBottom = true;
+      this.show = true;
     },
   },
 };

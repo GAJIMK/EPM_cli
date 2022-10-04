@@ -4,4 +4,10 @@ function login(data) {
   return auth.post('/login', data);
 }
 
-export {login};
+function getInfo(accountId) {
+  return auth.get(`/findById?accountId=${accountId}`);
+}
+
+
+export {login , getInfo};
+

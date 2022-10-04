@@ -31,18 +31,15 @@ export default {}
   text-align: center;
   display: flex;
   align-items: center;
-  padding: 0 0;
-  height: 38px;
-  min-width: 882px;
+
+  width: 100%;
+  height: 2em;
+  border: 0px;
 }
 
 .table-head {
-  background: #e7da9d4d;
-  font-weight: 600;
-  color: #666;
-}
-.table-cell {
-  border-bottom: 1px solid #eee;
+  background-color: #FFE4DB;
+
 }
 
 .col {

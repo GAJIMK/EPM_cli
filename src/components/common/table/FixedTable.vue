@@ -24,7 +24,8 @@
 </template>
 
 <script>
-import { updateUnstable, updateStable } from '@/api/userFeeList/userFeeList'
+
+import {updateUnstable, updateStable} from '@/api/userFeeList/userFeeList';
 export default {
   props: {
     item: {

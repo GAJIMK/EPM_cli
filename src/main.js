@@ -11,6 +11,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 import Default from '@/layouts/Default.vue';
 import EmptySpace from '@/layouts/Empty.vue';
+import MenuSpace from '@/layouts/Menu.vue';
 
 /* import font awesome icon component */
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
@@ -33,6 +34,7 @@ Vue.use(vueMoment);
 
 Vue.component('default-layout', Default);
 Vue.component('empty-layout', EmptySpace);
+Vue.component('menu-layout', MenuSpace);
 
 router.beforeEach((to, from, next) => {
   // Ensure we checked auth before each page load.
