@@ -1,20 +1,73 @@
 <template>
   <div>
-    <h2 class="mytitle">마이페이지🧑‍💻</h2>
+    <MenuTitle menuTitle="마이페이지🧑‍💻" />
+    
+        <b-img src="https://hr.office.hiworks.com/dartmedia.co.kr/common/profile/image/40052/80/main" rounded="circle" class="bill-img" 
+        v-if="this.ji"/>
+        <b-img src="https://ifh.cc/g/qvtozK.png"  rounded="circle" class="bill-img" v-if="this.ga"/>
+     <hr>
+    <div class="partTitle name">{{accountNm}}</div>
+    <div class="partTitle"> 이메일 :  {{email}}</div>
+    <div class="partTitle"> 생년월일 :  {{birthDay}}</div>
+    <div class="partTitle"> 연락처 :  {{phoneNumber}} </div>
+
+    <div class="partTitle">내가 작성한 게시글</div>
+    
   </div>
 </template>
 
-<script>
-export default {};
+<script >
+import { mapGetters } from 'vuex';
+import MenuTitle from '@/components/common/MenuTitleForm.vue';
+export default {
+  computed:{
+    ...mapGetters({
+      accountNm:'fetchedNm',
+      accountId:'fetchedId',
+      email:'fetchedEmail',
+      birthDay:'fetchedBday',
+      phoneNumber:'fetchedPno'
+    })
+  },
+  data(){
+    return{
+      setDay :'',
+      ga:false, 
+      ji:false}
+  },
+  components:{
+    MenuTitle
+  },
+  mounted(){
+    this.$store.dispatch('fetchInfo', this.accountId)
+    if( this.accountId == 'gajung.kim'){
+      this.ga =true
+    }
+    else if( this.accountId == 'jihye.son'){
+      this.ji = true
+    }
+  }
+  
+};
 </script>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Ubuntu:ital,wght@1,300&display=swap');
-
-.mytitle {
-  font-family: 'Dongle', sans-serif;
-  font-family: 'Dongle', sans-serif;
+<style lang="scss" scoped>
+@import '@/scss/font.scss';
+.title {
+  font-family: 'GongGothicMedium';
   font-size: 30px;
   padding: 1%;
 }
+
+.partTitle {
+  font-family: 'GongGothicMedium';
+  font-size: 16px;
+  padding: 0.7% 0% 0.7% 0%;
+} 
+.name{
+  font-size: 22px;
+  padding: 2% 0% 2% 0%;
+}
+
+
 </style>

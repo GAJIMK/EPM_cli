@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-if="state" id="due">경비 마감 D - {{ diffDay }} 일</div>
+    <div v-if="state" id="due">경비 마감 D {{ diffDay }} 일</div>
     <Menu v-if="state" />
     <Banner v-if="!state" />
     <div class="adds">
