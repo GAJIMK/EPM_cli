@@ -1,4 +1,4 @@
-import { thumbs } from '@/api/index';
+import {thumbs} from '@/api/index';
 
 function putThumbs(thumbsContent) {
   let data = {
@@ -16,4 +16,4 @@ function fetchThumbstop5() {
   return thumbs.get(`/selectTop5`);
 }
 
-export { putThumbs, fetchThumbsCnt, fetchThumbstop5 };
+export {putThumbs, fetchThumbsCnt, fetchThumbstop5};

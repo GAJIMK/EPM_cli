@@ -18,12 +18,12 @@
   </div>
 </template>
 <script>
-import MenuTitle from '@/components/common/MenuTitleForm.vue';
-import ExpensePart from '@/components/common/table/ExpensePart.vue';
-import { fetchPositionList } from '@/api/positionFeeMapper/positionFeeMapper';
-import { createUserFeeState } from '@/api/userFeeState/userFeeState';
-import { accountInfo } from '@/api/account/account';
-import moment from 'moment';
+import MenuTitle from '@/components/common/MenuTitleForm.vue'
+import ExpensePart from '@/components/common/table/ExpensePart.vue'
+import { fetchPositionList } from '@/api/positionFeeMapper/positionFeeMapper'
+import { createUserFeeState } from '@/api/userFeeState/userFeeState'
+import { accountInfo } from '@/api/account/account'
+import moment from 'moment'
 
 export default {
   components: { MenuTitle, ExpensePart },
@@ -34,55 +34,62 @@ export default {
       accountId: this.$store.state.accountId,
       accountPosition: 0,
       date: moment(new Date()).format('YYYY-MM'),
-    };
+    }
   },
   mounted() {
-    this.fetchData();
+    this.fetchData()
   },
   watch: {
     date() {
-      this.fetchUserExpenseList();
+      this.fetchUserExpenseList()
     },
   },
   methods: {
     async fetchData() {
-      const res = await accountInfo(this.accountId)
-        .then(res => {
-          this.accountPosition = res.data.data.tpPosition;
-          return this.accountPosition;
+      await accountInfo(this.accountId)
+        .then((res) => {
+          this.accountPosition = res.data.data.tpPosition
+          return this.accountPosition
         })
-        .then(code => {
-          this.fetchExpenseList(code);
-        });
+        .then((code) => {
+          this.fetchExpenseList(code)
+        })
     },
     async fetchExpenseList(code) {
-      const fee = await fetchPositionList(code);
-      this.expenseList = fee.data.list;
+      const fee = await fetchPositionList(code)
+      this.expenseList = fee.data.list
     },
 
     async submit() {
       const data = {
         accountId: this.accountId,
         date: this.date + '-01',
-      };
+      }
       await createUserFeeState(data).then(() => {
-        alert('제출이 완료되었습니다');
-        this.$router.push({ name: 'home' });
-      });
+        alert('제출이 완료되었습니다')
+        this.$router.push({ name: 'home' })
+      })
     },
 
     //영수증 파일 업로드 하는 메소드
   },
-};
+}
 </script>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Jua&family=Ubuntu:ital,wght@1,300&display=swap');
+<style lang="scss" scoped>
+.container {
+  padding: 0 1rem;
+}
+.inline-btn {
+  font-family: 'GongGothicMedium';
+}
+
 .month {
   display: flex;
   margin: 1.5em 0;
   justify-content: space-between;
 }
+
 .form {
   width: 300px;
 }

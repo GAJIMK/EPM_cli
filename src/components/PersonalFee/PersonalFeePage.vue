@@ -1,8 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="subTitle">
-      📂<span class="bold">{{ date }},{{ name }}</span
-      >님 경비계산서
+      📂<span class="bold">{{ date }}월</span> 경비계산서
       <div class="btnGroup" v-if="auth">
         <button class="rejectBtn loginBtn" @click="reject">
           반려
@@ -21,21 +20,21 @@
 </template>
 
 <script>
-import ExpensePartNoAdd from './ExpensePartNoAdd.vue';
-import { fetchPositionList } from '@/api/positionFeeMapper/positionFeeMapper';
-import { accountInfo } from '@/api/account/account';
+import ExpensePartNoAdd from './ExpensePartNoAdd.vue'
+import { fetchPositionList } from '@/api/positionFeeMapper/positionFeeMapper'
+import { accountInfo } from '@/api/account/account'
 import {
   approveState,
   rejectState,
   ingState,
-} from '@/api/userFeeState/userFeeState';
+} from '@/api/userFeeState/userFeeState'
 export default {
   components: {
     ExpensePartNoAdd,
   },
   mounted() {
-    this.fetchData();
-    this.changeState();
+    this.fetchData()
+    this.changeState()
   },
   data() {
     return {
@@ -46,50 +45,50 @@ export default {
       accountPosition: 0,
       expenseList: '',
       auth: this.$store.state.auth === 'ADMIN' ? true : false,
-    };
+    }
   },
   methods: {
     async fetchData() {
       const res = await accountInfo(this.accountId)
-        .then(res => {
-          this.accountPosition = res.data.data.tpPosition;
-          return this.accountPosition;
+        .then((res) => {
+          this.accountPosition = res.data.data.tpPosition
+          return this.accountPosition
         })
-        .then(code => {
-          this.fetchExpenseList(code);
-        });
+        .then((code) => {
+          this.fetchExpenseList(code)
+        })
     },
     async changeState() {
-      if (state) await ingState(this.accountId, this.date);
+      if (state) await ingState(this.accountId, this.date)
     },
     async fetchExpenseList(code) {
-      const fee = await fetchPositionList(code);
-      this.expenseList = fee.data.list;
+      const fee = await fetchPositionList(code)
+      this.expenseList = fee.data.list
     },
     async accept() {
       try {
-        await approveState(this.accountId, this.date + '-01');
+        await approveState(this.accountId, this.date + '-01')
         this.$router.push({
           name: 'usersExpense',
           params: { date: this.date },
-        });
+        })
       } catch (e) {
-        alert(e);
+        alert(e)
       }
     },
     async reject() {
       try {
-        await rejectState(this.accountId, this.date + '-01');
+        await rejectState(this.accountId, this.date + '-01')
         this.$router.push({
           name: 'usersExpense',
           params: { date: this.date },
-        });
+        })
       } catch (e) {
-        alert(e);
+        alert(e)
       }
     },
   },
-};
+}
 </script>
 
 <style lang="scss">

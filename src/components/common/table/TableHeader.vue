@@ -22,32 +22,37 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@700&family=Jua&family=Ubuntu:ital,wght@1,300&display=swap');
 .table-head,
 .table-cell {
   text-align: center;
   display: flex;
   align-items: center;
-  width: 100%;
-
-  height: 2em;
-  border: 0px;
+  padding: 0 0;
+  height: 38px;
+  min-width: 882px;
 }
 
 .table-head {
-  background-color: rgb(255, 254, 174);
+  background: #e7da9d4d;
+  font-weight: 600;
+  color: #666;
+}
+.table-cell {
+  border-bottom: 1px solid #eee;
 }
 
 .col {
   border-left: 1px solid #eee;
   border-right: 1px solid #eee;
-  padding: 0 0;
-  width: 2rem;
-  flex-basis: 120px;
-  font-weight: 500;
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 147px;
 }
 </style>

@@ -1,5 +1,5 @@
-import { positionFee } from '@/api/index';
-import { DxCommonSeriesSettingsHoverStyle } from 'devextreme-vue/range-selector';
+import {positionFee} from '@/api/index';
+import {DxCommonSeriesSettingsHoverStyle} from 'devextreme-vue/range-selector';
 
 function fetchAllList() {
   return positionFee.get('/findAll');
@@ -16,4 +16,4 @@ function updateList(data) {
 function fetchPositionList(data) {
   return positionFee.get(`findByPosition?positionCode=${data}`);
 }
-export { fetchAllList, updateList, createList, fetchPositionList };
+export {fetchAllList, updateList, createList, fetchPositionList};

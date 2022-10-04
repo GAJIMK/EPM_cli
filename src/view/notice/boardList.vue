@@ -2,20 +2,15 @@
   <div class="container">
     <div class="top-con">
       <h3 class="name">📢 익명 게시판</h3>
-      <button class="BtnStyle right-side" @click="goBoardWirte()">
+      <b-button class="btn-warning right-side" @click="goBoardWirte()">
         작성하기✏️
-      </button>
+      </b-button>
     </div>
 
     <div class="list-con">
       <ul class="user-lists">
         <div v-if="err">조회할 내용이 없습니다!</div>
-        <div
-          class="list"
-          v-for="(board, index) in boardlists"
-          v-bind:key="index"
-          @click="goreport(index)"
-        >
+        <div class="list" v-for="(board, index) in boardlists" v-bind:key="index" @click="goreport(index)">
           <div>
             {{ board }}
           </div>
@@ -24,16 +19,8 @@
     </div>
 
     <div class="re">
-      <b-pagination
-        class="paging-search-form-pagination"
-        align="center"
-        :total-rows="lengthAll"
-        v-model="currentPage"
-        :per-page="10"
-        @change="initDataPage(currentPage)"
-        @page-click="pageClick"
-        pills
-      />
+      <b-pagination class="paging-search-form-pagination" align="center" :total-rows="lengthAll" v-model="currentPage"
+        :per-page="10" @change="initDataPage(currentPage)" @page-click="pageClick" pills />
     </div>
   </div>
 </template>
@@ -138,19 +125,13 @@ export default {
 
 <style lang="scss">
 @import '@/scss/main.scss';
-.BtnStyle {
-  border: 0;
-  outline: 0;
-  border-radius: 10%;
-  background-color: #fffad1;
-  color: black;
-  margin: 0.5%;
-}
+
 .top-con {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
 }
+
 .re {
   display: flex;
   justify-content: center;
@@ -162,30 +143,28 @@ export default {
   font-size: 30px;
   padding: 1%;
 }
-.right-side {
-  width: 150px;
-  height: 50px;
-  margin-right: 15%;
-  margin-top: 100px;
-  font-family: 'GongGothicMedium', sans-serif;
 
-  &:hover {
-    background-color: rgb(255, 228, 139);
-  }
+.right-side {
+  margin-right: 15%;
+  margin-top: 60px;
+  font-family: 'GongGothicMedium', sans-serif;
 }
 
 .user-lists {
   height: 70vh;
   width: 70%;
   margin: auto;
+
   &::-webkit-scrollbar {
     display: none;
     width: 0 !important;
   }
+
   .list {
     border-bottom: solid #eee 0.5px;
     padding: 10px 10px;
     background-color: #fff;
+
     &:hover {
       cursor: pointer;
       background-color: var(--color-smoke);

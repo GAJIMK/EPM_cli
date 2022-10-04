@@ -7,7 +7,7 @@ module.exports = {
   rules: {
     'linebreak-style': 0,
     'prettier/prettier': [
-      'error',
+      'off',
       {
         singleQuote: true,
         semi: true,
@@ -15,9 +15,10 @@ module.exports = {
         tabWidth: 2,
         trailingComma: 'all',
         printWidth: 80,
-        bracketSpacing: true,
+        bracketSpacing: false,
         endOfLine: 'auto',
         arrowParens: 'avoid', //함수 파라미터 1개일때 괄호 안해도 되도록
+
       },
     ],
   },
