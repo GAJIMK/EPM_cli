@@ -37,7 +37,10 @@
 </template>
 
 <script>
-import { fetchUsersByMonth } from '@/api/userFeeState/userFeeState'
+import {
+  fetchUsersByMonth,
+  fetchUserMonthAndLv,
+} from '@/api/userFeeState/userFeeState'
 export default {
   props: {
     date: {
@@ -56,6 +59,8 @@ export default {
       propDate: this.date,
       list: [],
       keyword: '',
+      role: this.$store.state.auth,
+      acceptLv: this.$store.state.acceptLv,
     }
   },
 
@@ -69,7 +74,12 @@ export default {
         .catch(() => {})
     },
     async initData() {
-      const res = await fetchUsersByMonth(this.propDate)
+      let res = []
+      if (this.role === 'ADMIN') {
+        res = await fetchUsersByMonth(this.propDate)
+      } else {
+        res = await fetchUserMonthAndLv(this.acceptLv, this.propDate)
+      }
       this.users = res.data.list
       this.list = this.users
     },
@@ -161,6 +171,7 @@ export default {
 
 .searchForm {
   width: 25%;
+  min-width: 200px;
   position: absolute;
   display: flex;
   right: 2rem;

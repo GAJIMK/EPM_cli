@@ -7,6 +7,7 @@ const store = new Vuex.Store({
     accountId: '',
     accountNm: '',
     auth: '',
+    acceptLv: '',
   },
   getters: {},
   mutations: {
@@ -14,6 +15,7 @@ const store = new Vuex.Store({
       state.accountId = data.accountId
       state.accountNm = data.accountNm
       state.auth = data.role
+      state.acceptLv = data.acceptLv
     },
     logout(state) {
       state.accountId = ''
@@ -25,6 +27,7 @@ const store = new Vuex.Store({
         state.accountId = localStorage.getItem('accountId')
         state.accountNm = localStorage.getItem('accountNm')
         state.auth = localStorage.getItem('role')
+        state.acceptLv = localStorage.getItem('acceptLv')
       }
     },
   },

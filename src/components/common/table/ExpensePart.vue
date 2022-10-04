@@ -235,7 +235,7 @@ export default {
   border-radius: 0.75em;
   font-family: 'Happiness-Sans-Bold';
   font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
   padding: 0.9%;
   width: 400px;
   float: right;

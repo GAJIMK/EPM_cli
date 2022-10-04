@@ -35,7 +35,7 @@
         </li>
       </ul>
     </div>
-    <div class="management-menu" v-if="state">
+    <div class="management-menu" v-if="state === 'ADMIN'">
       <ul class="menu-items">
         <li class="list-item" @click="handleExpenseList">
           <div class="icon-container basicBtn">
@@ -66,6 +66,16 @@
         </li>
       </ul>
     </div>
+    <div class="management-menu" v-if="state === 'MANAGER'">
+      <ul class="menu-items">
+        <li class="list-item" @click="handleUsersList">
+          <div class="icon-container basicBtn">
+            <font-awesome-icon icon="fa-solid fa-user-check" class="icon" />
+          </div>
+          <div class="menu-content">조직원 경비승인</div>
+        </li>
+      </ul>
+    </div>
     <ToastMsgg ref="toastMsgg" :ToastCon="ToastCon" class="toast" />
   </div>
 </template>
@@ -78,7 +88,7 @@ export default {
   data() {
     return {
       accountId: this.$store.state.accountId,
-      state: this.$store.state.auth === 'ADMIN' ? true : false,
+      state: this.$store.state.auth,
       ToastCon: '로그인 후 사용 가능합니다❗',
     }
   },
