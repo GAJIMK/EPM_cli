@@ -22,4 +22,9 @@ function putBoardList(boardContent) {
   return board.put('/', data);
 }
 
-export {fetchBoardList, putBoardList, fetchBoard, fetchBoardPage};
+function deleteBoard(id){
+  return board.delete(`/${id}`);
+}
+
+
+export {fetchBoardList, putBoardList, fetchBoard, fetchBoardPage , deleteBoard};

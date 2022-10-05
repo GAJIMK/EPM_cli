@@ -10,6 +10,8 @@
     <b-textarea class="content" name="content" id="content" cols="30" rows="10" disabled v-model="this.content">
     </b-textarea>
 
+    <b-button v-if="deleteBtn" variant="danger" 
+      class="del-btn" @click="deleteBoardContent">삭제</b-button>
     <div class="footer">
       <div>{{ thumbs }}</div>
       <div class="icon-container basicBtn">
@@ -22,9 +24,10 @@
 </template>
 
 <script>
-import { fetchBoard } from '@/api/board/board';
+import { fetchBoard, deleteBoard } from '@/api/board/board';
 import { putThumbs, fetchThumbsCnt } from '@/api/Thumbs/thumbs.js';
 import ToastMsgg from '@/components/ToastMsgg.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   components: { ToastMsgg },
@@ -41,11 +44,20 @@ export default {
       thumbs: '',
       ToastCon: '이미 좋아요를 누르셨습니다.',
       metho: '',
+      deleteBtn:false
     };
+  },
+  computed:{
+    ...mapGetters({
+      auth:'fetchedAuth'
+    })
   },
   mounted() {
     this.loadData();
     this.loadThumbs();
+    if( this.auth === 'ADMIN'){
+        this.deleteBtn = true
+      }
   },
   methods: {
     async loadData() {
@@ -80,6 +92,11 @@ export default {
 
       this.thumbs = res.data.list[0].cnt;
     },
+    async deleteBoardContent(){
+      await deleteBoard(this.thumbsContent.id)
+      alert('해당 게시글이 정상적으로 삭제되었습니다.')
+      this.$router.push({ name: 'noticeBoard' });
+    }
   },
 };
 </script>
@@ -184,5 +201,10 @@ export default {
     color: var(--color-yellow);
     border-color: transparent;
   }
+  
 }
+.del-btn{
+    float: right;
+    margin-top:1%
+  }
 </style>
