@@ -8,4 +8,8 @@ function accountTeamNo(accountId) {
   return appoint.get(`/findTeamNo?accountId=${accountId}`);
 }
 
-export {accountInfo, accountTeamNo};
+function accountTeamNm(accountId) {
+  return appoint.get(`/findTeamNm?accountId=${accountId}`);
+}
+
+export {accountInfo, accountTeamNo , accountTeamNm};
