@@ -1,8 +1,16 @@
 <template>
   <div class="part">
     <div class="row">
-      <font-awesome-icon icon="fa-solid fa-angle-down" v-if="state" @click="changeState" />
-      <font-awesome-icon icon="fa-solid fa-angle-up" v-else @click="changeState" />
+      <font-awesome-icon
+        icon="fa-solid fa-angle-down"
+        v-if="state"
+        @click="changeState"
+      />
+      <font-awesome-icon
+        icon="fa-solid fa-angle-up"
+        v-else
+        @click="changeState"
+      />
       <div class="partCount radiusBtn">{{ count }}</div>
       <div class="partTitle">{{ expense.feeNm }}</div>
       <button class="plusRow radiusBtn " @click="addRow">+</button>
@@ -12,15 +20,24 @@
     <div class="imdiv" v-if="state">
       <TableHeader />
       <div id="lists">
-        <EditableTable v-for="item in items" :key="item.id" @printSum="countSum" :item="item" />
+        <EditableTable
+          v-for="item in items"
+          :key="item.id"
+          @printSum="countSum"
+          :item="item"
+        />
       </div>
       <div class="money-container">
-        <div class="index"><span>지원 금액 :</span> {{ expense.fee }}</div>
         <div class="index">
-          합계 : <span class="green">{{ sum }}</span>
+          <span>지원 금액 :</span> {{ expense.fee.toLocaleString('en') }}
         </div>
         <div class="index">
-          잔여금액:<span class="red"> {{ expense.fee - sum }}</span>
+          합계 : <span class="green">{{ sum.toLocaleString('en') }}</span>
+        </div>
+        <div class="index">
+          잔여금액:<span class="red">
+            {{ (expense.fee - sum).toLocaleString('en') }}</span
+          >
         </div>
       </div>
 
@@ -160,11 +177,9 @@ export default {
 }
 
 .partTitle {
-
   font-family: 'GongGothicMedium';
   font-size: 22px;
   padding: 1%;
-
 }
 
 .radiusBtn {

@@ -1,8 +1,6 @@
 <template>
   <div class="container">
-
-    <div v-if="state" id="due">경비 마감 D {{ diffDay }} 일</div>
-
+    <div v-if="state" id="due">경비 마감 D - {{ diffDay }} 일</div>
     <Menu v-if="state" />
     <Banner v-if="!state" />
     <div class="adds">
@@ -18,12 +16,12 @@
 </template>
 
 <script>
-import Lunch from './ect/Lunch.vue';
-import Memo from './ect/Memo.vue';
-import Banner from './ect/Banner.vue';
-import Menu from '@/components/common/Menu.vue';
-import { fetchBoardDay } from '@/api/submit/submit.js';
-import moment from 'moment';
+import Lunch from './ect/Lunch.vue'
+import Memo from './ect/Memo.vue'
+import Banner from './ect/Banner.vue'
+import Menu from '@/components/common/Menu.vue'
+import { fetchBoardDay } from '@/api/submit/submit.js'
+import moment from 'moment'
 export default {
   mounted() {
     this.loadPast()
@@ -49,7 +47,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   max-width: 880px;
-  padding: 50px 0px;
+  padding: 50px 10px;
   position: relative;
 }
 
