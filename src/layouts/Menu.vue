@@ -1,12 +1,19 @@
 <template>
     <div class="container-fluid">
       <Header />
-      <b-row class="nav">
-      <b-col class="left"><side-bar class="sidebar"></side-bar></b-col>
-      <b-col class="twiceCol" cols="10"> <div class="container">
-        <slot />
-      </div></b-col>
-     </b-row>
+     <div class="con" >
+      <b-col class="left" cols="2">
+        <side-bar class="sidebar"/>
+      </b-col>
+   
+      <b-col class="twiceCol" cols="10"> 
+        <div class="container">
+      <slot />
+      </div>
+      </b-col>
+     </div>
+      
+   
       
      
     </div>
@@ -28,15 +35,25 @@
   .container-fluid {
     padding: 0px 0px;
     position: relative;
+    
   }
   .left{
-    width: 200px;
+    height:100%;
+    padding: 0% 0% 0% 0%;
   }
     .twiceCol{
-        padding:0 3% 0 3%;
+        padding:0 3% 0 2%;
     }
     .nav{
-        height: 100%;
+        height: 100vh;
+    }
+    .sidebar{
+      width: 100%;
+      height: 100vh;
+    }
+    .con{
+      display: flex;
+      height: 100vh;
     }
   </style>
   

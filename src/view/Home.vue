@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div v-if="state" id="due">경비 마감 D - {{ diffDay }} 일</div>
+
     <Menu v-if="state" />
     <Banner v-if="!state" />
     <div class="adds">
@@ -39,6 +40,10 @@ export default {
       const currentDay = moment(new Date())
       const setDay = moment(res.data.list[0].endDay)
       this.diffDay = setDay.diff(currentDay, 'days')
+
+      if (this.diffDay <= 3) {
+        document.getElementById('due').style.color = 'red'
+      }
     },
   },
 }

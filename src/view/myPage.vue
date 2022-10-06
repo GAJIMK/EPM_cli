@@ -10,8 +10,9 @@
     <div class="partTitle"> 이메일 :  {{email}}</div>
     <div class="partTitle"> 생년월일 :  {{birthDay}}</div>
     <div class="partTitle"> 연락처 :  {{phoneNumber}} </div>
+    <div class="partTitle"> 소속 팀 : {{teamNm}}</div>
 
-    <div class="partTitle">내가 작성한 게시글</div>
+
     
   </div>
 </template>
@@ -26,7 +27,8 @@ export default {
       accountId:'fetchedId',
       email:'fetchedEmail',
       birthDay:'fetchedBday',
-      phoneNumber:'fetchedPno'
+      phoneNumber:'fetchedPno',
+      teamNm : 'fetchdeTeamNm'
     })
   },
   data(){
@@ -40,6 +42,7 @@ export default {
   },
   mounted(){
     this.$store.dispatch('fetchInfo', this.accountId)
+    this.$store.dispatch('fetchTeamNm', this.accountId)
     if( this.accountId == 'gajung.kim'){
       this.ga =true
     }

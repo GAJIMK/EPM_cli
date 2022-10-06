@@ -13,7 +13,7 @@
       <ul class="user-lists">
         <div v-if="err">조회할 내용이 없습니다!</div>
         <div class="list" v-for="(board, index) in boardlists" v-bind:key="index" @click="goreport(index)">
-          <div>
+          <div> 
             {{ board }}
           </div>
         </div>
@@ -31,6 +31,7 @@
 import { fetchBoardList, fetchBoardPage } from '@/api/board/board.js';
 import { BPagination } from 'bootstrap-vue';
 import { mapGetters } from 'vuex';
+
 
 export default {
   components: {
@@ -53,7 +54,8 @@ export default {
       allId: [],
       lengthAll: '',
       clickPage: '',
-      writeAuth:false
+      writeAuth:false,
+      
     };
   },
   computed:{
@@ -72,8 +74,7 @@ export default {
     goBoardWirte() {
       this.$router.push({ name: 'noticeBoardUpload' });
     },
-
-    async PageCount() {
+  async PageCount() {
       const res = await fetchBoardList();
 
       this.Fllist.push(res.data.list);
@@ -100,6 +101,7 @@ export default {
 
         this.boardlists.push(list);
       }
+
     },
 
     async initDataPage() {
