@@ -74,7 +74,7 @@ export default {
     goBoardWirte() {
       this.$router.push({ name: 'noticeBoardUpload' });
     },
-    async PageCount() {
+  async PageCount() {
       const res = await fetchBoardList();
 
       this.Fllist.push(res.data.list);

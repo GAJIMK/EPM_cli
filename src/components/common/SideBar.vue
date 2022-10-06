@@ -49,15 +49,13 @@ export default {
 
 <style>
 #icon-bar {    
-    height: 1400px;
-    width: 200px;    
+   
     background-color: rgb(255, 223, 158);      
     overflow-x: hidden; 
     display: flex;
     flex-direction: column;
     top: 0;
       }  
-
 #icon-bar a {    
     font-family: 'GongGothicMedium', sans-serif;
     display: block;    

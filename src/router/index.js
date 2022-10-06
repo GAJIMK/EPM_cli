@@ -119,7 +119,7 @@ export default new Router({
     {
       path: '/submit-day',
       name: 'submitDay',
-      
+      meta: {layout: 'menu'},
       component: () => import('@/view/SubmitDay.vue'),
     },
   ],
