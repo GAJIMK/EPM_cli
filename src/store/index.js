@@ -43,12 +43,12 @@ const store = new Vuex.Store({
   },
   mutations: {
     setUser(state, data) {
-      console.log(data)
+      console.log(data.teamNo)
       state.accountId = data.accountId
       state.accountNm = data.accountNm
       state.auth = data.role
-      state.manager = data.managerYn
       state.team = data.teamNo
+      state.manager = data.managerYn
     },
     logout(state) {
       state.accountId = ''
@@ -64,7 +64,7 @@ const store = new Vuex.Store({
         state.accountNm = localStorage.getItem('accountNm')
         state.auth = localStorage.getItem('role')
         state.manager = localStorage.getItem('managerYn')
-        state.team = localStorage.getItem('acceptLv')
+        state.team = localStorage.getItem('teamNo')
       }
     },
     async set_getinfo(state, data) {

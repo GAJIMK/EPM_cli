@@ -65,7 +65,7 @@ export default {
       list: [],
       keyword: '',
       role: this.$store.state.auth,
-      acceptLv: this.$store.state.acceptLv,
+      acceptLv: this.$store.state.team,
     }
   },
 

@@ -3,13 +3,22 @@
     <div class="menu-title">오늘 점심 뭐먹지 🤔?</div>
     <div class="contents">
       <div class="display">
-        <div class="spinner-grow text-warning picked" role="status" v-if="loading"></div>
+        <div
+          class="spinner-grow text-warning picked"
+          role="status"
+          v-if="loading"
+        ></div>
         <div class="picked" v-else>
           <span class="food" v-if="picked !== -1">{{ menus[picked] }}</span>
           <span v-else>뭐먹지? 뭐먹어?</span>
         </div>
       </div>
-      <button class="btn" variant="warning" @click="random" v-if="picked === -1">
+      <button
+        class="btn"
+        variant="warning"
+        @click="random"
+        v-if="picked === -1"
+      >
         Click 👆🏻
       </button>
       <button class="btn" variant="warning" @click="random" v-else>
@@ -20,27 +29,27 @@
 </template>
 
 <script>
-import menus from '@/assets/menu';
+import menus from '@/assets/menu'
 export default {
   data() {
     return {
       menus: menus,
       picked: -1,
       loading: false,
-    };
+    }
   },
   methods: {
     random() {
-      const n = menus.length;
-      const rand = Math.floor(Math.random() * (n + 1));
-      this.loading = true;
+      const n = menus.length
+      const rand = Math.floor(Math.random() * (n + 1))
+      this.loading = true
       setTimeout(() => {
-        this.loading = false;
-        this.picked = rand;
-      }, 1500);
+        this.loading = false
+        this.picked = rand
+      }, 1500)
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -48,7 +57,7 @@ export default {
 
 .menu-container {
   display: flex;
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'MonoplexKR-Regular', sans-serif;
   align-items: center;
   background: rgba(231, 218, 157, 0.3);
   box-shadow: 0px 2px 32px -5px rgba(167, 167, 167, 0.54);
@@ -86,7 +95,7 @@ export default {
   border-radius: 6px;
   border: 3px solid #fcd000;
   background: transparent;
-  font-family: 'GongGothicMedium', sans-serif;
+  font-family: 'LeferiPoint-BlackA', sans-serif;
   font-size: var(--font-size-s);
 
   &:hover {

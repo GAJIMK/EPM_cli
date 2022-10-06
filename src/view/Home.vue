@@ -75,7 +75,7 @@ export default {
 
 #due {
   padding: 0px 4px;
-  font-family: 'GongGothicMedium', sans-serif;
+  font-family: 'LeferiPoint-BlackA', sans-serif;
 }
 
 .walletImg {

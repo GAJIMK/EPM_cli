@@ -177,7 +177,7 @@ export default {
 }
 
 .partTitle {
-  font-family: 'GongGothicMedium';
+  font-family: 'LeferiPoint-BlackA';
   font-size: 22px;
   padding: 1%;
 }

@@ -88,14 +88,14 @@ figure.snip1283.hover figcaption {
   font-size: 50px;
   z-index: 99999;
   text-align: center;
-  font-family: 'GongGothicMedium', sans-serif;
+  font-family: 'LeferiPoint-BlackA', sans-serif;
 }
 
 .context2 {
   font-size: 28px;
   text-align: center;
   color: #777;
-  font-family: 'GongGothicMedium', sans-serif;
+  font-family: 'LeferiPoint-BlackA', sans-serif;
   z-index: 99999;
 }
 </style>
