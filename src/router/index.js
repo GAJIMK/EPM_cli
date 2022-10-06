@@ -101,7 +101,7 @@ export default new Router({
     {
       path: '/grade-manage',
       name: 'grade',
-      meta: {layout: 'default'},
+      meta: {layout: 'menu'},
       component: () => import('@/view/grade/GradePage.vue'),
     },
 
