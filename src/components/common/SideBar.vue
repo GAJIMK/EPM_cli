@@ -1,5 +1,5 @@
 <template>
-  <span id="icon-bar">
+  <div id="side-nav">
     <router-link to="/" class="home-btn"
       ><i class="fa fa-home ">Home</i>
     </router-link>
@@ -30,7 +30,7 @@
     <router-link to="/submit-day" v-if="admin" class="else-btn"
       >경비등록 기한</router-link
     >
-  </span>
+  </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
@@ -63,22 +63,25 @@ export default {
 }
 </script>
 
-<style>
-#icon-bar {
+<style lang="scss" scoped>
+#side-nav {
   background-color: rgb(255, 223, 158);
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  top: 0;
-  height: 100%;
+  border-radius: 10px;
+  position: fixed;
+  top: 10vh;
+  left: 10px;
 }
-#icon-bar a {
+#side-nav a {
   font-family: 'LeferiPoint-BlackA', sans-serif;
   display: block;
   text-align: center;
   transition: all 0.3s ease;
   color: white;
-  margin-top: 11%;
+  padding: 10px;
+  border-bottom: 1px solid #fff;
+  &:hover {
+    cursor: pointer;
+  }
 }
 .home-btn {
   font-family: 'LeferiPoint-BlackA', sans-serif;
