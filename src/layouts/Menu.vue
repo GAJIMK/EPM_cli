@@ -31,21 +31,21 @@ export default {
 .container-fluid {
   padding: 0px 0px;
   position: relative;
-  height: 100%;
+  height: 100vh;
 }
 .left {
-  height: 100%;
+  height: 100vh;
   padding: 0% 0% 0% 0%;
 }
 .twiceCol {
   padding: 0 3% 0 2%;
 }
 .nav {
-  height: 100%;
+  height: 100vh;
 }
 
 .con {
   display: flex;
-  height: 100%;
+  height: 100vh;
 }
 </style>
