@@ -103,7 +103,7 @@ export default new Router({
       name: 'grade',
       meta: {layout: 'menu'},
       component: () => import('@/view/grade/GradePage.vue'),
-    },
+    }, 
 
     {
       path: '/users-expense/:date',

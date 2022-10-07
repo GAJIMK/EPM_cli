@@ -12,4 +12,8 @@ function accountTeamNm(accountId) {
   return appoint.get(`/findTeamNm?accountId=${accountId}`);
 }
 
-export {accountInfo, accountTeamNo , accountTeamNm};
+function changePw(data) {
+  return account.post('/', data);
+}
+
+export {accountInfo, accountTeamNo , accountTeamNm, changePw};

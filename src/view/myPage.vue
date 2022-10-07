@@ -11,15 +11,37 @@
     <div class="partTitle"> 생년월일 :  {{birthDay}}</div>
     <div class="partTitle"> 연락처 :  {{phoneNumber}} </div>
     <div class="partTitle"> 소속 팀 : {{teamNm}}</div>
+    <b-button v-b-modal="'modal-prevent-closing'" class="chPw-btn" @click="showModal()">비밀번호 변경하기</b-button>
 
+    <b-modal  id="modal-prevent-closing"
+    @hidden="resetModal"
+    @show="resetModal">
+      <template #modal-title>
+      인트라넷 비밀번호 변경
+     </template>
+     <div class="line"><label for="firstIp">새 비밀번호 :</label>
+      <b-input class="firstIp" v-model="newPw" type="password"></b-input></div>
+      
+      <div class="line">  <label  for="firstIp">비밀번호 확인 : </label>
+      <b-input class="firstIp" v-model="rePw" type="password"></b-input></div>
 
-    
+      <template #modal-footer="{ cancel }">
+
+      <b-button size="sm" variant="danger"  @click="okay()">
+        수정
+      </b-button>
+      <b-button size="sm" @click="[cancel()]">
+        취소
+      </b-button>
+    </template>
+    </b-modal>
   </div>
 </template>
 
 <script >
 import { mapGetters } from 'vuex';
 import MenuTitle from '@/components/common/MenuTitleForm.vue';
+import { changePw } from '@/api/account/account'
 export default {
   computed:{
     ...mapGetters({
@@ -33,12 +55,16 @@ export default {
   },
   data(){
     return{
-      setDay :'',
       ga:false, 
-      ji:false}
+      ji:false,
+      pwch:false,
+      newPw:'',
+      rePw:'',
+    }
   },
   components:{
-    MenuTitle
+    MenuTitle,
+    
   },
   mounted(){
     this.$store.dispatch('fetchInfo', this.accountId)
@@ -49,6 +75,47 @@ export default {
     else if( this.accountId == 'jihye.son'){
       this.ji = true
     }
+    console.log(this.newPw)
+  },
+  methods:{
+    showModal(){
+    this.pwch = true
+  },
+    resetModal() {
+    this.newPw = ''
+    this.rePw = ''
+      },
+   async okay(){
+    if(this.newPw == ''  || this.rePw == ''){
+      alert('비밀번호를 입력해주세요.')
+    }
+    else if(this.newPw !== this.rePw){
+      alert('비밀번호가 일치하지 않습니다.')
+    }
+    else if(this.newPw === this.rePw ){
+      const data = {
+        accountId: this.accountId,
+        password: this.newPw,
+        accountNm: '',
+        addr1: '',
+        birthDay: '',
+        email: '',
+        exchangeNo:'',
+        mobileNo: '',
+        phoneNo: '',
+        postNo:'',
+        tpAccount:'',
+        tpPosition: '',
+        tpPublish: ''
+      }
+      await changePw(data);
+      alert('성공적으로 변경되었습니다.')
+      this.$bvModal.hide('modal-prevent-closing')     
+    }
+    
+  },
+
+    
   }
   
 };
@@ -71,6 +138,22 @@ export default {
   font-size: 22px;
   padding: 2% 0% 2% 0%;
 }
-
+.chPw-btn{
+  float: right;
+}
+.firstIp{
+  display: block;
+  width: 330px;
+ 
+}
+.line{
+  display: flex;
+  margin-top: 15px;
+  justify-content: space-between;
+  align-items: flex-end
+}
+b-input{
+  width: 80px;
+}
 
 </style>

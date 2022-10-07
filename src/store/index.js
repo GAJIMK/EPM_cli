@@ -91,7 +91,6 @@ const store = new Vuex.Store({
     fetchTeamNm({commit},accountId){
       return new Promise((resolve,reject)=>{
         accountTeamNm(accountId).then(({data})=>{
-          console.log(data)
           commit('set_getTeamNm', data);
           resolve(true)
         })
