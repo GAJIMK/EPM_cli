@@ -1,10 +1,9 @@
+import Vue from 'vue'
+import Vuex from 'vuex'
+import moment from 'moment'
 
-import Vue from 'vue';
-import Vuex from 'vuex';
-import moment from 'moment';
-
-import {getInfo} from '@/api/auth/auth'
-import {accountTeamNm} from '@/api/account/account'
+import { getInfo } from '@/api/auth/auth'
+import { accountTeamNm } from '@/api/account/account'
 
 Vue.use(Vuex)
 const store = new Vuex.Store({
@@ -12,82 +11,90 @@ const store = new Vuex.Store({
     accountId: '',
     accountNm: '',
     auth: '',
-    email:'',
-    birthDay:'',
-    phoneNo:'',
-    teamNm:'',
+    email: '',
+    manager: '',
+    birthDay: '',
+    phoneNo: '',
+    team: '',
+    teamNm: '',
   },
   getters: {
-    fetchedId(state){
-     return state.accountId
+    fetchedId(state) {
+      return state.accountId
     },
-    fetchedNm(state){
+    fetchedNm(state) {
       return state.accountNm
-     },
-     fetchedAuth(state){
+    },
+    fetchedAuth(state) {
       return state.auth
-     },
-     fetchedEmail(state){
+    },
+    fetchedEmail(state) {
       return state.email
-     },
-     fetchedBday(state){
+    },
+    fetchedBday(state) {
       return state.birthDay
-     },
-     fetchedPno(state){
+    },
+    fetchedPno(state) {
       return state.phoneNo
-     },
-     fetchdeTeamNm(state){
+    },
+    fetchdeTeamNm(state) {
       return state.teamNm
-     }
-
+    },
   },
   mutations: {
-    async setUser(state, data) {
+    setUser(state, data) {
+      console.log(data.teamNo)
       state.accountId = data.accountId
       state.accountNm = data.accountNm
       state.auth = data.role
-      state.acceptLv = data.acceptLv
+      state.team = data.teamNo
+      state.manager = data.managerYn
     },
     logout(state) {
       state.accountId = ''
       state.accountNm = ''
       state.auth = ''
+      state.manager = ''
+      state.team = ''
+      localStorage.clear()
     },
     checkUser(state) {
       if (localStorage.getItem('accountId')) {
         state.accountId = localStorage.getItem('accountId')
         state.accountNm = localStorage.getItem('accountNm')
         state.auth = localStorage.getItem('role')
-        state.acceptLv = localStorage.getItem('acceptLv')
+        state.manager = localStorage.getItem('managerYn')
+        state.team = localStorage.getItem('teamNo')
       }
     },
-    async set_getinfo(state ,data){
+    async set_getinfo(state, data) {
       state.email = data.list[0].email
       state.birthDay = moment(data.list[0].birthDay).format('YYYY-MM-DD')
       state.phoneNo = data.list[0].phoneNo
     },
-    async set_getTeamNm(state ,data){
+    async set_getTeamNm(state, data) {
       state.teamNm = data.data.teamNm
-    }
-
+    },
   },
   actions: {
     show(mutations) {
       console.log(mutations)
     },
-    fetchInfo({commit}, accountId){
-        return new Promise((resolve,reject)=>{
-          getInfo(accountId).then(({data})=>{            
-            commit('set_getinfo', data);
+
+    fetchInfo({ commit }, accountId) {
+      return new Promise((resolve, reject) => {
+        getInfo(accountId)
+          .then(({ data }) => {
+            commit('set_getinfo', data)
             resolve(true)
           })
-          .catch(error=>{
+          .catch((error) => {
             console.log(error)
             reject('데이터 로드에 실패하였습니다.')
           })
-         
-        })
+      })
     },
+
     fetchTeamNm({commit},accountId){
       return new Promise((resolve,reject)=>{
         accountTeamNm(accountId).then(({data})=>{
@@ -98,8 +105,9 @@ const store = new Vuex.Store({
           console.log(error)
           reject('데이터 로드에 실패하였습니다.')
         })
+
       })
-    }
+    },
   },
 })
 

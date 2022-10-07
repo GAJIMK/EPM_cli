@@ -1,7 +1,6 @@
 <template>
   <div>
-    <MenuTitle menuTitle="마이페이지🧑‍💻" />
-    
+    <MenuTitle menuTitle="마이페이지🧑‍💻" /> 
         <b-img src="https://hr.office.hiworks.com/dartmedia.co.kr/common/profile/image/40052/80/main" rounded="circle" class="bill-img" 
         v-if="this.ji"/>
         <b-img src="https://ifh.cc/g/qvtozK.png"  rounded="circle" class="bill-img" v-if="this.ga"/>
@@ -44,15 +43,15 @@ import { mapGetters } from 'vuex';
 import MenuTitle from '@/components/common/MenuTitleForm.vue';
 import { changePw } from '@/api/account/account'
 export default {
-  computed:{
+  computed: {
     ...mapGetters({
-      accountNm:'fetchedNm',
-      accountId:'fetchedId',
-      email:'fetchedEmail',
-      birthDay:'fetchedBday',
-      phoneNumber:'fetchedPno',
-      teamNm : 'fetchdeTeamNm'
-    })
+      accountNm: 'fetchedNm',
+      accountId: 'fetchedId',
+      email: 'fetchedEmail',
+      birthDay: 'fetchedBday',
+      phoneNumber: 'fetchedPno',
+      teamNm: 'fetchdeTeamNm',
+    }),
   },
   data(){
     return{
@@ -66,15 +65,14 @@ export default {
   },
   components:{
     MenuTitle,
-    
+  
   },
-  mounted(){
+  mounted() {
     this.$store.dispatch('fetchInfo', this.accountId)
     this.$store.dispatch('fetchTeamNm', this.accountId)
-    if( this.accountId == 'gajung.kim'){
-      this.ga =true
-    }
-    else if( this.accountId == 'jihye.son'){
+    if (this.accountId == 'gajung.kim') {
+      this.ga = true
+    } else if (this.accountId == 'jihye.son') {
       this.ji = true
     }
     else if( this.accountId == 'yongseok.jang'){
@@ -124,41 +122,24 @@ export default {
   }
   
 };
+
 </script>
 
 <style lang="scss" scoped>
 @import '@/scss/font.scss';
 .title {
-  font-family: 'GongGothicMedium';
+  font-family: 'LeferiPoint-BlackA';
   font-size: 30px;
   padding: 1%;
 }
 
 .partTitle {
-  font-family: 'GongGothicMedium';
+  font-family: 'LeferiPoint-BlackA';
   font-size: 16px;
   padding: 0.7% 0% 0.7% 0%;
-} 
-.name{
+}
+.name {
   font-size: 22px;
   padding: 2% 0% 2% 0%;
 }
-.chPw-btn{
-  float: right;
-}
-.firstIp{
-  display: block;
-  width: 330px;
- 
-}
-.line{
-  display: flex;
-  margin-top: 15px;
-  justify-content: space-between;
-  align-items: flex-end
-}
-b-input{
-  width: 80px;
-}
-
 </style>

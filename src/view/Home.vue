@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-
     <div v-if="state" id="due">경비 마감 D - {{ diffDay }} 일</div>
 
     <Menu v-if="state" />
@@ -18,12 +17,12 @@
 </template>
 
 <script>
-import Lunch from './ect/Lunch.vue';
-import Memo from './ect/Memo.vue';
-import Banner from './ect/Banner.vue';
-import Menu from '@/components/common/Menu.vue';
-import { fetchBoardDay } from '@/api/submit/submit.js';
-import moment from 'moment';
+import Lunch from './ect/Lunch.vue'
+import Memo from './ect/Memo.vue'
+import Banner from './ect/Banner.vue'
+import Menu from '@/components/common/Menu.vue'
+import { fetchBoardDay } from '@/api/submit/submit.js'
+import moment from 'moment'
 export default {
   mounted() {
     this.loadPast()
@@ -42,8 +41,8 @@ export default {
       const setDay = moment(res.data.list[0].endDay)
       this.diffDay = setDay.diff(currentDay, 'days')
 
-      if( this.diffDay <= 3){
-        document.getElementById('due').style.color='red'
+      if (this.diffDay <= 3) {
+        document.getElementById('due').style.color = 'red'
       }
     },
   },
@@ -53,7 +52,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   max-width: 880px;
-  padding: 50px 0px;
+  padding: 50px 10px;
   position: relative;
 }
 
@@ -76,7 +75,7 @@ export default {
 
 #due {
   padding: 0px 4px;
-  font-family: 'GongGothicMedium', sans-serif;
+  font-family: 'LeferiPoint-BlackA', sans-serif;
 }
 
 .walletImg {

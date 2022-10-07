@@ -18,14 +18,13 @@
       {{ item.method }}
     </div>
     <div class="col">
-      {{ item.price }}
+      {{ item.price.toLocaleString('en') }}
     </div>
   </div>
 </template>
 
 <script>
-
-import {updateUnstable, updateStable} from '@/api/userFeeList/userFeeList';
+import { updateUnstable, updateStable } from '@/api/userFeeList/userFeeList'
 export default {
   props: {
     item: {

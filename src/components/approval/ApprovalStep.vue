@@ -45,7 +45,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'SEBANG_Gothic_Bold';
+  font-family: 'LeferiPoint-BlackA';
   margin-bottom: 0.5em;
 }
 

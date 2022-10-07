@@ -108,7 +108,7 @@ export default {
 .find-list {
   .list-title {
     font-size: var(--font-size-m);
-    font-family: 'Nanum Gothic';
+    font-family: 'MonoplexKR-Regular';
     cursor: pointer;
     font-size: 18px;
     color: #666;

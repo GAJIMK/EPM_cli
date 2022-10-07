@@ -7,15 +7,32 @@
     </div>
     <small class="date">{{ date }}</small>
     <label for="content"></label>
-    <b-textarea class="content" name="content" id="content" cols="30" rows="10" disabled v-model="this.content">
+    <b-textarea
+      class="content"
+      name="content"
+      id="content"
+      cols="30"
+      rows="10"
+      disabled
+      v-model="this.content"
+    >
     </b-textarea>
 
-    <b-button v-if="deleteBtn" variant="danger" 
-      class="del-btn" @click="deleteBoardContent">삭제</b-button>
+    <b-button
+      v-if="deleteBtn"
+      variant="danger"
+      class="del-btn"
+      @click="deleteBoardContent"
+      >삭제</b-button
+    >
     <div class="footer">
       <div>{{ thumbs }}</div>
       <div class="icon-container basicBtn">
-        <font-awesome-icon icon="fa-solid fa-thumbs-up" class="icon" @click="putData()" />
+        <font-awesome-icon
+          icon="fa-solid fa-thumbs-up"
+          class="icon"
+          @click="putData()"
+        />
       </div>
       <b-button class="basicBtn" @click="goback()">목록으로</b-button>
       <ToastMsgg ref="toastMsgg" :ToastCon="ToastCon" class="toast" />
@@ -24,10 +41,10 @@
 </template>
 
 <script>
-import { fetchBoard, deleteBoard } from '@/api/board/board';
-import { putThumbs, fetchThumbsCnt } from '@/api/Thumbs/thumbs.js';
-import ToastMsgg from '@/components/ToastMsgg.vue';
-import { mapGetters } from 'vuex';
+import { fetchBoard, deleteBoard } from '@/api/board/board'
+import { putThumbs, fetchThumbsCnt } from '@/api/Thumbs/thumbs.js'
+import ToastMsgg from '@/components/ToastMsgg.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   components: { ToastMsgg },
@@ -44,61 +61,61 @@ export default {
       thumbs: '',
       ToastCon: '이미 좋아요를 누르셨습니다.',
       metho: '',
-      deleteBtn:false
-    };
+      deleteBtn: false,
+    }
   },
-  computed:{
+  computed: {
     ...mapGetters({
-      auth:'fetchedAuth'
-    })
+      auth: 'fetchedAuth',
+    }),
   },
   mounted() {
-    this.loadData();
-    this.loadThumbs();
-    if( this.auth === 'ADMIN'){
-        this.deleteBtn = true
-      }
+    this.loadData()
+    this.loadThumbs()
+    if (this.auth === 'ADMIN') {
+      this.deleteBtn = true
+    }
   },
   methods: {
     async loadData() {
-      const res = await fetchBoard(this.$route.query.id);
-      this.title = res.data.list[0].title;
-      this.content = res.data.list[0].content;
-      this.date = res.data.list[0].date;
+      const res = await fetchBoard(this.$route.query.id)
+      this.title = res.data.list[0].title
+      this.content = res.data.list[0].content
+      this.date = res.data.list[0].date
     },
     goback() {
-      this.$router.push({ name: 'noticeBoard' });
+      this.$router.push({ name: 'noticeBoard' })
     },
     async putData() {
       if (this.$store.state.accountId == '') {
-        alert('로그인된 사용자만 이용 가능합니다');
+        alert('로그인된 사용자만 이용 가능합니다')
       } else {
         try {
-          await putThumbs(this.thumbsContent).then(res => {
-            this.loadThumbs();
+          await putThumbs(this.thumbsContent).then((res) => {
+            this.loadThumbs()
             if (res.data.code == 20) {
-              this.$refs.toastMsgg.createToast();
+              this.$refs.toastMsgg.createToast()
             }
-          });
+          })
         } catch (error) {
-          this.errorMsg = getErrorResponseData(error);
-          console.log('에러');
+          this.errorMsg = getErrorResponseData(error)
+          console.log('에러')
         }
       }
     },
 
     async loadThumbs() {
-      const res = await fetchThumbsCnt(this.thumbsContent.id);
+      const res = await fetchThumbsCnt(this.thumbsContent.id)
 
-      this.thumbs = res.data.list[0].cnt;
+      this.thumbs = res.data.list[0].cnt
     },
-    async deleteBoardContent(){
+    async deleteBoardContent() {
       await deleteBoard(this.thumbsContent.id)
       alert('해당 게시글이 정상적으로 삭제되었습니다.')
-      this.$router.push({ name: 'noticeBoard' });
-    }
+      this.$router.push({ name: 'noticeBoard' })
+    },
   },
-};
+}
 </script>
 
 <style lang="scss">
@@ -122,7 +139,7 @@ export default {
 .title-2:disabled {
   background-color: transparent;
   border: transparent;
-  font-family: 'GongGothicMedium', sans-serif;
+  font-family: 'LeferiPoint-BlackA', sans-serif;
   font-size: 25px;
 }
 
@@ -164,7 +181,7 @@ export default {
 }
 
 .name {
-  font-family: 'GongGothicMedium', sans-serif;
+  font-family: 'LeferiPoint-BlackA', sans-serif;
   font-size: 30px;
   margin: 3% 0px 3% 0px;
 }
@@ -187,7 +204,7 @@ export default {
   color: #fff;
   background-color: var(--color-yellow);
   border-color: transparent;
-  font-family: 'GongGothicMedium', sans-serif;
+  font-family: 'LeferiPoint-BlackA', sans-serif;
   cursor: pointer;
 
   &:hover {
@@ -201,10 +218,9 @@ export default {
     color: var(--color-yellow);
     border-color: transparent;
   }
-  
 }
-.del-btn{
-    float: right;
-    margin-top:1%
-  }
+.del-btn {
+  float: right;
+  margin-top: 1%;
+}
 </style>

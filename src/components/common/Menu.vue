@@ -10,7 +10,10 @@
         </li>
         <li class="list-item" @click="writtenList">
           <div class="icon-container basicBtn">
-            <font-awesome-icon icon="fa-solid fa-clock-rotate-left" class="icon" />
+            <font-awesome-icon
+              icon="fa-solid fa-clock-rotate-left"
+              class="icon"
+            />
           </div>
           <div class="menu-content" @click="writtenList">과거내역 조회</div>
         </li>
@@ -22,7 +25,11 @@
         </li>
         <li class="list-item">
           <div class="icon-container basicBtn">
-            <font-awesome-icon icon="fa-solid fa-user" class="icon" @click="goMypage()" />
+            <font-awesome-icon
+              icon="fa-solid fa-user"
+              class="icon"
+              @click="goMypage()"
+            />
           </div>
           <div class="menu-content">마이페이지</div>
         </li>
@@ -56,7 +63,7 @@
         </li>
       </ul>
     </div>
-    <div class="management-menu" v-if="state === 'MANAGER'">
+    <div class="management-menu" v-if="manage === 'Y'">
       <ul class="menu-items">
         <li class="list-item" @click="handleUsersList">
           <div class="icon-container basicBtn">
@@ -79,6 +86,7 @@ export default {
     return {
       accountId: this.$store.state.accountId,
       state: this.$store.state.auth,
+      manage: this.$store.state.manager,
       ToastCon: '로그인 후 사용 가능합니다❗',
     }
   },
@@ -117,10 +125,7 @@ export default {
       if (this.checkSession()) this.$router.push({ name: 'submitDay' })
     },
     handleApproval() {
-
-      if (this.checkSession())
-        this.$router.push({ name: 'approval' });
-
+      if (this.checkSession()) this.$router.push({ name: 'approval' })
     },
   },
 }
@@ -140,7 +145,6 @@ export default {
   -webkit-backdrop-filter: blur(50%);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-
 }
 
 .allUsersMenu {

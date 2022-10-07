@@ -3,7 +3,7 @@
     <MenuTitle menuTitle="👨‍👦‍👦 등급별 경비 관리" />
     <div class="contents">
       <section class="expenses">
-        <div class="col index">직급</div>
+        <div class="col">직급</div>
         <div class="col fee" v-for="exp in expenses" :key="exp.summCode">
           {{ exp.summCodeName }}
         </div>

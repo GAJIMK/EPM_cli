@@ -30,18 +30,16 @@ export default {
 
   methods: {
     async loadPast() {
-
-      const res = await fetchBoardDay();
-      const currentDay = moment(new Date());
-      const setDay = moment(res.data.list[0].endDay);
-      this.diffDay = setDay.diff(currentDay, 'days');
+      const res = await fetchBoardDay()
+      const currentDay = moment(new Date())
+      const setDay = moment(res.data.list[0].endDay)
+      this.diffDay = setDay.diff(currentDay, 'days')
     },
     checkState() {
-      this.accountId = this.$store.state.accountId;
-      this.accountNm = this.$store.state.accountNm;
-      if (this.accountId === '') return false;
-      else return true;
-
+      this.accountId = this.$store.state.accountId
+      this.accountNm = this.$store.state.accountNm
+      if (this.accountId === '') return false
+      else return true
     },
 
     goLogin() {
@@ -87,7 +85,7 @@ export default {
   }
 }
 .title {
-  font-family: 'GongGothicMedium', sans-serif;
+  font-family: 'LeferiPoint-BlackA', sans-serif;
   display: flex;
   align-items: center;
   #logo {
@@ -112,7 +110,7 @@ export default {
   outline: 0;
   border-radius: 6px;
   padding: 0px 16px;
-  font-family: 'GongGothicMedium', sans-serif;
+  font-family: 'LeferiPoint-BlackA', sans-serif;
   font-size: var(--font-size-m);
 }
 </style>

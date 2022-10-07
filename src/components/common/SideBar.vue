@@ -16,8 +16,9 @@
     <ToastMsgg ref="toastMsgg" :ToastCon="ToastCon" class="toast" />
 </span>
 </template>
+
 <script>
-    import moment from 'moment'
+import moment from 'moment'
 import ToastMsgg from '@/components/ToastMsgg.vue'
 import { mapGetters } from 'vuex';
 export default {
@@ -27,7 +28,26 @@ export default {
         admin:false,
         ToastCon: '로그인 후 사용 가능합니다❗',
     }
+  },
+  computed: {
+    ...mapGetters({
+      accountId: 'fetchedId',
+      accountNm: 'fetchedNm',
+      auth: 'fetchedAuth',
+    }),
+  },
+  mounted() {
+    this.authCheck()
+  },
+  methods: {
+    authCheck() {
+      if (this.auth === 'USER') {
+        this.user = true
+      } else if (this.auth === 'ADMIN') {
+        ;(this.user = true), (this.admin = true)
+      }
     },
+
     computed:{
         ...mapGetters({
             accountId:'fetchedId',
@@ -61,34 +81,36 @@ export default {
       if (state) return state
       else this.$refs.toastMsgg.createToast()
     },
-    },    
-};
+    }, 
+  },}  
 </script>
 
-
-<style>
-#icon-bar {    
-    background-color: rgb(255, 223, 158);      
-    overflow-x: hidden; 
-    display: flex;
-    flex-direction: column;
-    top: 0;
-      }  
-#icon-bar a {    
-    font-family: 'GongGothicMedium', sans-serif;
-    display: block;    
-    text-align: center;     
-    transition: all 0.3s ease;    
-    color: white;    
-    margin-top: 11%;
-} 
-.home-btn{
-    font-family: 'GongGothicMedium', sans-serif;
-    font-size: var(--font-size-l) ;
+<style lang="scss" scoped>
+#side-nav {
+  background-color: rgb(255, 223, 158);
+  border-radius: 10px;
+  position: fixed;
+  top: 10vh;
 }
-.else-btn{
-    font-family: 'GongGothicMedium', sans-serif;
-    font-size: var(--font-size);
+#side-nav a {
+  font-family: 'LeferiPoint-BlackA', sans-serif;
+  display: block;
+  text-align: center;
+  transition: all 0.3s ease;
+  color: white;
+  padding: 10px;
+  border-bottom: 1px solid #fff;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.home-btn {
+  font-family: 'LeferiPoint-BlackA', sans-serif;
+  font-size: var(--font-size-l);
+}
+.else-btn {
+  font-family: 'LeferiPoint-BlackA', sans-serif;
+  font-size: var(--font-size);
 }
 .btnd{
     color: white;
@@ -98,4 +120,3 @@ export default {
     cursor: pointer;
 }
 </style>
-

@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { putBoardList } from '@/api/board/board';
+import { putBoardList } from '@/api/board/board'
 
 export default {
   data() {
@@ -35,7 +35,7 @@ export default {
         date: '',
         id: '',
       },
-    };
+    }
   },
 
   methods: {
@@ -43,21 +43,21 @@ export default {
       if (this.boardcontent.content != '' && this.boardcontent.title != '') {
         try {
           await putBoardList(this.boardcontent).then(() => {
-            window.history.go(-1);
-          });
+            window.history.go(-1)
+          })
         } catch (error) {
-          this.errorMsg = getErrorResponseData(error);
-          console.log('에러');
+          this.errorMsg = getErrorResponseData(error)
+          console.log('에러')
         }
       } else {
-        alert('빈칸을 채워주세요.');
+        alert('빈칸을 채워주세요.')
       }
     },
     goback() {
-      window.history.go(-1);
+      window.history.go(-1)
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
@@ -70,7 +70,7 @@ export default {
 .BtnStyle {
   width: 150px;
   height: 50px;
-  font-family: 'GongGothicMedium', sans-serif;
+  font-family: 'LeferiPoint-BlackA', sans-serif;
   border: 0;
   outline: 0;
   background-color: #fdc000;
@@ -80,7 +80,7 @@ export default {
   }
 }
 .name {
-  font-family: 'GongGothicMedium', sans-serif;
+  font-family: 'LeferiPoint-BlackA', sans-serif;
   font-size: 35px;
   padding: 1%;
   margin: 3% 0 3% 0;

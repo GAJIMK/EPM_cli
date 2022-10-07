@@ -54,7 +54,7 @@ $theme-colors: (
 
 body {
   -ms-overflow-style: none;
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: 'MonoplexKR-Regular', sans-serif;
 }
 * {
   box-sizing: border-box;
@@ -80,7 +80,7 @@ body {
 }
 
 input[type='date'] {
-  font-family: 'Happiness-Sans-Bold';
+  font-family: 'MonoplexKR-Regular';
   border: 0px;
   background: transparent;
   padding: 0 0;
@@ -90,11 +90,11 @@ input[type='date'] {
 }
 
 input[type='text'] {
-  font-family: 'Happiness-Sans-Bold';
+  font-family: 'MonoplexKR-Regular';
 }
 
 * {
-  font-family: 'Happiness-Sans-Bold';
+  font-family: 'MonoplexKR-Regular';
   box-sizing: border-box;
 }
 .inline-btn {

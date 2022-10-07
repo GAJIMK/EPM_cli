@@ -25,11 +25,16 @@
           <div class="name">{{ user.accountNm }}</div>
           <div class="id" name="id">{{ user.accountId }}</div>
           <div class="position">{{ user.commonName }}</div>
-          <div class="state green" v-if="user.state === 10">승인</div>
-          <div class="state blue" v-if="user.state === 30">승인요청</div>
-          <div class="state blue" v-if="user.state === 50">진행중</div>
-          <div class="state red" v-if="user.state === 40">반려</div>
-          <div class="state gray" v-if="user.state === 90">미확인</div>
+          <div class="state gray" v-if="user.state === 10">조직장 승인요청</div>
+          <div class="state green" v-if="user.state === 20">조직장 확인중</div>
+          <div class="state blue" v-if="user.state === 30">조직장 승인</div>
+          <div class="state red" v-if="user.state === 40">조직장 반려</div>
+          <div class="state gray" v-if="user.state === 100">
+            담당자 승인요청
+          </div>
+          <div class="state green" v-if="user.state === 200">담당자 확인중</div>
+          <div class="state blue" v-if="user.state === 300">담당자 확인</div>
+          <div class="state red" v-if="user.state === 400">담당자 반려</div>
         </div>
       </div>
     </div>
@@ -60,7 +65,7 @@ export default {
       list: [],
       keyword: '',
       role: this.$store.state.auth,
-      acceptLv: this.$store.state.acceptLv,
+      acceptLv: this.$store.state.team,
     }
   },
 

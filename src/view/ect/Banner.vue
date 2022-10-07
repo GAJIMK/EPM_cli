@@ -1,8 +1,6 @@
 <template>
   <section class="container">
-
-    <div id="banner2">
-    </div>
+    <div id="banner2"></div>
     <figure class="snip1283">
       <div id="banner1">
         <div class="context1">직원의 경비정산</div>
@@ -17,9 +15,7 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
 <style lang="scss" scoped>
@@ -90,14 +86,16 @@ figure.snip1283.hover figcaption {
 
 .context1 {
   font-size: 50px;
+  z-index: 99999;
   text-align: center;
-  font-family: 'GongGothicMedium', sans-serif;
+  font-family: 'LeferiPoint-BlackA', sans-serif;
 }
 
 .context2 {
   font-size: 28px;
   text-align: center;
   color: #777;
-  font-family: 'GongGothicMedium', sans-serif;
+  font-family: 'LeferiPoint-BlackA', sans-serif;
+  z-index: 99999;
 }
 </style>
