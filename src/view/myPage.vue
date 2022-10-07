@@ -5,6 +5,7 @@
         <b-img src="https://hr.office.hiworks.com/dartmedia.co.kr/common/profile/image/40052/80/main" rounded="circle" class="bill-img" 
         v-if="this.ji"/>
         <b-img src="https://ifh.cc/g/qvtozK.png"  rounded="circle" class="bill-img" v-if="this.ga"/>
+        <b-img src="https://office.hiworks.com/dartmedia.co.kr/common/profile/image/18054/80/main"  rounded="circle" class="bill-img" v-if="this.yo"/>
      <hr>
     <div class="partTitle name">{{accountNm}}</div>
     <div class="partTitle"> 이메일 :  {{email}}</div>
@@ -57,6 +58,7 @@ export default {
     return{
       ga:false, 
       ji:false,
+      yo:false,
       pwch:false,
       newPw:'',
       rePw:'',
@@ -74,6 +76,9 @@ export default {
     }
     else if( this.accountId == 'jihye.son'){
       this.ji = true
+    }
+    else if( this.accountId == 'yongseok.jang'){
+      this.yo = true
     }
     console.log(this.newPw)
   },
