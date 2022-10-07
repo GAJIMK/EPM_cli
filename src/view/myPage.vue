@@ -129,13 +129,13 @@ export default {
 <style lang="scss" scoped>
 @import '@/scss/font.scss';
 .title {
-  font-family: 'GongGothicMedium';
+  font-family: 'LeferiPoint-BlackA', sans-serif;
   font-size: 30px;
   padding: 1%;
 }
 
 .partTitle {
-  font-family: 'GongGothicMedium';
+  font-family: 'LeferiPoint-BlackA', sans-serif;
   font-size: 16px;
   padding: 0.7% 0% 0.7% 0%;
 } 

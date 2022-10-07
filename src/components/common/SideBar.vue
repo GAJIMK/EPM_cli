@@ -76,7 +76,7 @@
         top: 0;
           }  
     #icon-bar a {    
-        font-family: 'GongGothicMedium', sans-serif;
+       font-family: 'LeferiPoint-BlackA', sans-serif;
         display: block;    
         text-align: center;     
         transition: all 0.3s ease;    
@@ -84,11 +84,11 @@
         margin-top: 11%;
     } 
     .home-btn{
-        font-family: 'GongGothicMedium', sans-serif;
+       font-family: 'LeferiPoint-BlackA', sans-serif;
         font-size: var(--font-size-l) ;
     }
     .else-btn{
-        font-family: 'GongGothicMedium', sans-serif;
+       font-family: 'LeferiPoint-BlackA', sans-serif;
         font-size: var(--font-size);
     }
     .btnd{
