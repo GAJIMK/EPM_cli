@@ -7,19 +7,25 @@
     <router-link to="/approval" v-if="user" class="else-btn">승인내역 조희</router-link>       
     <router-link to="/myPage" v-if="user" class="else-btn">마이페이지</router-link>      
     <router-link to="/expense-list" v-if="admin" class="else-btn">경비항목 관리</router-link>   
-    <router-link to="/grade-manage" v-if="admin" class="else-btn">등급별 관리</router-link>       
-    <router-link to="/users-expense" v-if="admin" class="else-btn">사용자 경비조회</router-link>      
+    <router-link to="/grade-manage" v-if="admin" class="else-btn">등급별 관리</router-link>     
+
+    <div class="else-btn btnd"  @click="handleUsersList()"
+    v-if="admin" >사용자 경비조회</div>
+
     <router-link to="/submit-day" v-if="admin" class="else-btn">경비등록 기한</router-link>       
-    
+    <ToastMsgg ref="toastMsgg" :ToastCon="ToastCon" class="toast" />
 </span>
 </template>
 <script>
+    import moment from 'moment'
+import ToastMsgg from '@/components/ToastMsgg.vue'
 import { mapGetters } from 'vuex';
 export default {
     data(){
         return{
         user:false,
         admin:false,
+        ToastCon: '로그인 후 사용 가능합니다❗',
     }
     },
     computed:{
@@ -32,6 +38,7 @@ export default {
     mounted(){
         this.authCheck()
     },
+    components: { ToastMsgg },
     methods:{
        authCheck(){
             if(this.auth === 'USER'){
@@ -41,7 +48,19 @@ export default {
                 this.user = true,
                 this.admin = true
             }
-       }
+       },
+       handleUsersList() {
+      if (this.checkSession())
+        this.$router.push({
+          name: 'usersExpense',
+          params: { date: moment(new Date()).format('YYYY-MM') },
+        })
+    },
+    checkSession() {
+      const state = this.accountId ? true : false
+      if (state) return state
+      else this.$refs.toastMsgg.createToast()
+    },
     },    
 };
 </script>
@@ -49,7 +68,6 @@ export default {
 
 <style>
 #icon-bar {    
-   
     background-color: rgb(255, 223, 158);      
     overflow-x: hidden; 
     display: flex;
@@ -71,6 +89,13 @@ export default {
 .else-btn{
     font-family: 'GongGothicMedium', sans-serif;
     font-size: var(--font-size);
+}
+.btnd{
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    margin-top : 12%;
+    cursor: pointer;
 }
 </style>
 
