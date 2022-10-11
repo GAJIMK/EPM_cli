@@ -45,7 +45,7 @@
         </li>
         <li class="list-item" @click="handelGrade">
           <div class="icon-container basicBtn">
-            <font-awesomeQ-icon icon="fa-solid fa-users-between-lines" class="icon" />
+            <font-awesome-icon icon="fa-solid fa-users-between-lines" class="icon" />
           </div>
           <div class="menu-content">등급별 관리</div>
         </li>
