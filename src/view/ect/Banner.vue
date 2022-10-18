@@ -1,12 +1,11 @@
 <template>
   <section class="container">
-    <div id="banner2"></div>
     <figure class="snip1283">
       <div id="banner1">
         <div class="context1">직원의 경비정산</div>
         <div class="context2">쉽고 빠르게 관리하세요</div>
       </div>
-      <figcaption>
+      <figcaption class="fosize">
         <div class="context1">Expenses for Employee</div>
         <div class="context2">Take care easily and quickly</div>
       </figcaption>
@@ -65,7 +64,7 @@ figure.snip1283 figcaption {
   transform-origin: 50% 100%;
   z-index: 1;
   opacity: 0;
-  padding: 0px 30px;
+  padding: 0px 0px;
 }
 
 figure.snip1283:hover #banner1,
@@ -85,8 +84,8 @@ figure.snip1283.hover figcaption {
 }
 
 .context1 {
-  font-size: 50px;
-  z-index: 99999;
+  font-size: 40px;
+  z-index: 999;
   text-align: center;
   font-family: 'LeferiPoint-BlackA', sans-serif;
 }
@@ -96,6 +95,16 @@ figure.snip1283.hover figcaption {
   text-align: center;
   color: #777;
   font-family: 'LeferiPoint-BlackA', sans-serif;
-  z-index: 99999;
+  z-index: 999;
+}
+
+@media screen and(max-width: 768px) {
+  .context1 {
+    font-size: 30px;
+  }
+
+  .context2 {
+    font-size: 20px;
+  }
 }
 </style>

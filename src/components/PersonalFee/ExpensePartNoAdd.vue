@@ -193,7 +193,7 @@ export default {
   justify-content: space-between;
   margin-top: 30px;
   margin-bottom: 80px;
-  border: 1px double #ffc107;
+  border: 1px solid #ffc107;
   border-radius: 0.75em;
   font-family: 'Happiness-Sans-Bold';
   font-weight: 600;

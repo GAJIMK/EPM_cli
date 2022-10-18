@@ -6,13 +6,6 @@
       </div>
     </div>
     <div v-if="accountId" class="right">
-      <div class="icon-container user">
-        <font-awesome-icon
-          icon="fa-solid fa-user"
-          class="icon"
-          @click="goMypage()"
-        />
-      </div>
       {{ accountNm }}
     </div>
     <button v-if="accountId" @click="logout" class="loginBtn basicBtn">

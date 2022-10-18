@@ -134,8 +134,8 @@ export default {
   width: fit-content;
   white-space: nowrap;
   font-size: 14px;
-  transition-duration: 1s;
 }
+
 .else-btn {
   display: flex;
   align-items: center;

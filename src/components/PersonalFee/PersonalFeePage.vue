@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="subTitle">
       📂<span class="bold">{{ date }}월</span> 경비계산서
-      <div class="btnGroup" v-if="auth">
+      <div class="btnGroup" v-if="auth || manage">
         <button class="rejectBtn loginBtn" @click="reject">
           반려
         </button>
@@ -45,6 +45,7 @@ export default {
       accountPosition: 0,
       expenseList: '',
       auth: this.$store.state.auth === 'ADMIN' ? true : false,
+      manage: this.$store.state.manager === 'Y' ? true : false,
     }
   },
   methods: {
@@ -110,6 +111,7 @@ export default {
 .rejectBtn {
   color: #fff;
   background-color: #c1564c;
+  padding-top: 5px;
   &:hover {
     background-color: #fff;
     color: #c1564c;
@@ -120,7 +122,7 @@ export default {
 .approveBtn {
   color: #fff;
   background-color: #95ba2f;
-
+  padding-top: 5px;
   &:hover {
     background-color: #fff;
     color: #95ba2f;

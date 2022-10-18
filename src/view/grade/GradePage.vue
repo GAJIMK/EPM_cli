@@ -3,7 +3,7 @@
     <MenuTitle menuTitle="👨‍👦‍👦 등급별 경비 관리" />
     <div class="contents">
       <section class="expenses">
-        <div class="col">직급</div>
+        <div class="col fixed">직급</div>
         <div class="col fee" v-for="exp in expenses" :key="exp.summCode">
           {{ exp.summCodeName }}
         </div>
@@ -63,6 +63,11 @@ export default {
   }
   .fee {
     color: #555;
+  }
+
+  .fixed {
+    min-width: 125px;
+    max-width: 125px;
   }
 }
 

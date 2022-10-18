@@ -4,7 +4,7 @@
       <div class="col index">{{ pos.positionNm }}</div>
       <input
         type="text"
-        class="col"
+        class="col "
         v-for="(fee, index) in pos.feeData"
         :key="index"
         v-model="fee.fee"
@@ -26,7 +26,7 @@ export default {
       type: Number,
     },
   },
-  created() {
+  mounted() {
     this.fetchAllList()
   },
   data() {
@@ -96,7 +96,8 @@ input[type='text'] {
   .index {
     border-right: solid #eee 0.5px;
     text-align: left;
-    width: 120px;
+    min-width: 125px;
+    max-width: 125px;
   }
 }
 </style>
