@@ -10,7 +10,7 @@
         ></div>
         <div class="picked" v-else>
           <span class="food" v-if="picked !== -1">{{ menus[picked] }}</span>
-          <span v-else>뭐먹지? 뭐먹어?</span>
+          <span v-else>골라줘</span>
         </div>
       </div>
       <button

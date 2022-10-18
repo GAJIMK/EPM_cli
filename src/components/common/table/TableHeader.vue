@@ -34,12 +34,14 @@ export default {}
 
   width: 100%;
   height: 2em;
+}
+
+.table-head {
   border: 0px;
 }
 
 .table-head {
-  background-color: #FFE4DB;
-
+  background-color: #ffe4db;
 }
 
 .col {

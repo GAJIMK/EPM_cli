@@ -1,78 +1,69 @@
 <template>
   <div class="menu">
-    <div class="all-users-menu">
-      <ul class="menu-items">
-        <li class="list-item" @click="handleWrite">
-          <div class="icon-container basicBtn">
-            <font-awesome-icon icon="fa-solid fa-pen-clip" class="icon" />
-          </div>
-          <div class="menu-content">작성하기</div>
-        </li>
-        <li class="list-item" @click="writtenList">
-          <div class="icon-container basicBtn">
-            <font-awesome-icon
-              icon="fa-solid fa-clock-rotate-left"
-              class="icon"
-            />
-          </div>
-          <div class="menu-content" @click="writtenList">과거내역 조회</div>
-        </li>
-        <li class="list-item" @click="handleApproval">
-          <div class="icon-container basicBtn">
-            <font-awesome-icon icon="fa-solid fa-check" class="icon" />
-          </div>
-          <div class="menu-content">승인내역 조회</div>
-        </li>
-        <li class="list-item">
-          <div class="icon-container basicBtn">
-            <font-awesome-icon
-              icon="fa-solid fa-user"
-              class="icon"
-              @click="goMypage()"
-            />
-          </div>
-          <div class="menu-content">마이페이지</div>
-        </li>
-      </ul>
-    </div>
-    <div class="management-menu" v-if="state === 'ADMIN'">
-      <ul class="menu-items">
-        <li class="list-item" @click="handleExpenseList">
-          <div class="icon-container basicBtn">
-            <font-awesome-icon icon="fa-solid fa-sliders" class="icon" />
-          </div>
-          <div class="menu-content">경비항목 관리</div>
-        </li>
-        <li class="list-item" @click="handelGrade">
-          <div class="icon-container basicBtn">
-            <font-awesome-icon icon="fa-solid fa-users-between-lines" class="icon" />
-          </div>
-          <div class="menu-content">등급별 관리</div>
-        </li>
-        <li class="list-item" @click="handleUsersList">
-          <div class="icon-container basicBtn">
-            <font-awesome-icon icon="fa-solid fa-user-check" class="icon" />
-          </div>
-          <div class="menu-content">사용자 경비조회</div>
-        </li>
-        <li class="list-item" @click="handleSubDay()">
-          <div class="icon-container basicBtn">
-            <font-awesome-icon icon="fa-solid fa-calendar-days" class="icon" />
-          </div>
-          <div class="menu-content">경비등록 기한</div>
-        </li>
-      </ul>
-    </div>
-    <div class="management-menu" v-if="manage === 'Y'">
-      <ul class="menu-items">
-        <li class="list-item" @click="handleUsersList">
-          <div class="icon-container basicBtn">
-            <font-awesome-icon icon="fa-solid fa-user-check" class="icon" />
-          </div>
-          <div class="menu-content">조직원 경비승인</div>
-        </li>
-      </ul>
-    </div>
+    <li class="list-item" @click="handleWrite">
+      <div class="icon-container basicBtn">
+        <font-awesome-icon icon="fa-solid fa-pen-clip" class="icon" />
+      </div>
+      <div class="menu-content">작성하기</div>
+    </li>
+    <li class="list-item" @click="writtenList">
+      <div class="icon-container basicBtn">
+        <font-awesome-icon icon="fa-solid fa-clock-rotate-left" class="icon" />
+      </div>
+      <div class="menu-content" @click="writtenList">과거내역 조회</div>
+    </li>
+    <li class="list-item" @click="handleApproval">
+      <div class="icon-container basicBtn">
+        <font-awesome-icon icon="fa-solid fa-check" class="icon" />
+      </div>
+      <div class="menu-content">승인내역 조회</div>
+    </li>
+    <li class="list-item">
+      <div class="icon-container basicBtn">
+        <font-awesome-icon
+          icon="fa-solid fa-user"
+          class="icon"
+          @click="goMypage()"
+        />
+      </div>
+      <div class="menu-content">마이페이지</div>
+    </li>
+
+    <li v-if="manage == 'Y'" class="list-item" @click="handleUsersList">
+      <div class="icon-container basicBtn">
+        <font-awesome-icon icon="fa-solid fa-user-check" class="icon" />
+      </div>
+      <div class="menu-content">조직원 경비승인</div>
+    </li>
+
+    <li v-if="state === 'ADMIN'" class="list-item" @click="handleExpenseList">
+      <div class="icon-container basicBtn">
+        <font-awesome-icon icon="fa-solid fa-sliders" class="icon" />
+      </div>
+      <div class="menu-content">경비항목 관리</div>
+    </li>
+    <li v-if="state === 'ADMIN'" class="list-item" @click="handelGrade">
+      <div class="icon-container basicBtn">
+        <font-awesome-icon
+          icon="fa-solid fa-users-between-lines"
+          class="icon"
+        />
+      </div>
+      <div class="menu-content">등급별 관리</div>
+    </li>
+    <li v-if="state === 'ADMIN'" class="list-item" @click="handleUsersList">
+      <div class="icon-container basicBtn">
+        <font-awesome-icon icon="fa-solid fa-user-check" class="icon" />
+      </div>
+      <div class="menu-content">사용자 경비조회</div>
+    </li>
+    <li v-if="state === 'ADMIN'" class="list-item" @click="handleSubDay()">
+      <div class="icon-container basicBtn">
+        <font-awesome-icon icon="fa-solid fa-calendar-days" class="icon" />
+      </div>
+      <div class="menu-content">경비등록 기한</div>
+    </li>
+
     <ToastMsgg ref="toastMsgg" :ToastCon="ToastCon" class="toast" />
   </div>
 </template>
@@ -135,6 +126,8 @@ export default {
 @import '@/scss/main.scss';
 
 .menu {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   border: 4px solid var(--color-yellow);
   border-radius: 1rem;
   padding-top: 20px;
@@ -196,6 +189,12 @@ export default {
     height: 1.5rem;
     color: var(--color-yellow);
     font-size: 10px;
+  }
+}
+
+@media (max-width: 648px) {
+  .menu {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 </style>

@@ -105,7 +105,6 @@ export default {
         this.expense.feeCode
       )
       this.items = res.data.list
-      console.log(this.items)
     },
     async addRow() {
       const obj = {

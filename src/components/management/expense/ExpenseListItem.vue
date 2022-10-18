@@ -29,44 +29,44 @@ import {
   createExpense,
   fetchExpense,
   updateExpense,
-} from '@/api/expense/expense';
+} from '@/api/expense/expense'
 export default {
   data() {
     return {
       items: '',
       modalState: false,
       modalTitle: '경비항목 추가',
-    };
+    }
   },
   mounted() {
-    this.fetchData();
+    this.fetchData()
   },
   methods: {
     async fetchData() {
-      const res = await fetchExpense();
-      this.items = res.data.list;
+      const res = await fetchExpense()
+      this.items = res.data.list
     },
     addItem() {
       this.items.push({
         summCode: 0,
         summCodeName: '',
-      });
+      })
     },
     async updateData(item) {
       if (item.summCodeName == '') {
-        return null;
+        return null
       }
       if (item.summCode === 0 && item.summCodeName != '') {
-        const res = createExpense(item);
+        const res = createExpense(item)
       }
       try {
-        await updateExpense(item);
+        await updateExpense(item)
       } catch (e) {
-        console.log(e);
+        console.log(e)
       }
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -74,5 +74,12 @@ export default {
 input[type='text'] {
   border: 0px;
   background: transparent;
+}
+
+.menu-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
 </style>

@@ -2,15 +2,13 @@
   <div class="container-fluid">
     <Header />
     <div class="con">
-      <b-col class="left" cols="2">
-        <side-bar class="sidebar" />
-      </b-col>
+      <div class="left">
+        <side-bar :sideMenuStatus="sideMenuStatus" class="sidebar" />
+      </div>
 
-      <b-col class="twiceCol" cols="10">
-        <div class="container">
-          <slot />
-        </div>
-      </b-col>
+      <div class="contents">
+        <slot />
+      </div>
     </div>
   </div>
 </template>
@@ -23,29 +21,31 @@ export default {
     Header,
     SideBar,
   },
+  data() {
+    return {}
+  },
+  methods: {},
 }
 </script>
 
-<style scoped>
-.container,
+<style lang="scss" scoped>
 .container-fluid {
-  padding: 0px 0px;
-  position: relative;
-  height: 100vh;
+  width: 100%;
+  padding: 0 0;
+  min-height: 100vh;
 }
 .left {
   height: 100vh;
   padding: 0% 0% 0% 0%;
 }
-.twiceCol {
-  padding: 0 3% 0 2%;
-}
-.nav {
-  height: 100vh;
-}
 
 .con {
   display: flex;
-  height: 100vh;
+  min-height: 100%;
+}
+
+.contents {
+  width: 100%;
+  padding: 0 1rem;
 }
 </style>

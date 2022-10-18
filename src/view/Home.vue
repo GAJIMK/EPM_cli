@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <div v-if="state" id="due">경비 마감 
-      <span  id="due-day">D - {{ diffDay }}</span>
-       일</div>
+    <div v-if="state" id="due">
+      경비 마감 D - <span id="due-day">{{ diffDay }}</span> 일
+    </div>
 
     <Menu v-if="state" />
     <Banner v-if="!state" />
@@ -29,9 +29,13 @@ export default {
   mounted() {
     this.loadPast()
   },
+  computed: {
+    state: function() {
+      return this.$store.state.accountId
+    },
+  },
   data() {
     return {
-      state: this.$store.state.accountId,
       diffDay: '',
     }
   },

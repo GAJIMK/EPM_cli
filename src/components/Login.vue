@@ -2,7 +2,7 @@
   <div class="container">
     <h2 class="header">🍆Gaji MarKet🍆</h2>
     <b-col>
-      <b-row><b-input type="email" class="email" placeholder="이메일" /></b-row>
+      <b-row><b-input type="email" class="email" placeholder="이메일"/></b-row>
       <b-row
         ><b-input type="password" class="password" placeholder="비밀번호"
       /></b-row>
@@ -23,10 +23,10 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
-<style>
+<style lang="scss" scoped>
 .header {
   margin-top: 50px;
   font-size: 35px;

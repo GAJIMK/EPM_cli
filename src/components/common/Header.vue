@@ -1,9 +1,20 @@
 <template>
   <div id="header">
-    <div class="title" @click="goHome()">
-      <div id="logo">EPM <span>easy pay management</span></div>
+    <div class="d-flex ">
+      <div class="title" @click="goHome()">
+        <div id="logo">EPM <span class="hidden">easy pay management</span></div>
+      </div>
     </div>
-    <div v-if="accountId" class="right">{{ accountNm }}님, 안녕하세요:)</div>
+    <div v-if="accountId" class="right">
+      <div class="icon-container user">
+        <font-awesome-icon
+          icon="fa-solid fa-user"
+          class="icon"
+          @click="goMypage()"
+        />
+      </div>
+      {{ accountNm }}
+    </div>
     <button v-if="accountId" @click="logout" class="loginBtn basicBtn">
       Logout
     </button>
@@ -25,6 +36,9 @@ export default {
     },
     accountNm: function() {
       return this.$store.state.accountNm
+    },
+    route: function() {
+      return this.$route.name
     },
   },
 
@@ -52,10 +66,11 @@ export default {
     goSignUp: function() {
       this.$router.push({ name: 'SignUp' }).catch(() => {})
     },
+
     logout() {
       this.$store.commit('logout')
-      this.goHome()
       localStorage.clear()
+      this.goHome()
     },
   },
 }
@@ -84,12 +99,19 @@ export default {
     cursor: pointer;
   }
 }
+
 .title {
   font-family: 'LeferiPoint-BlackA', sans-serif;
   display: flex;
+  justify-content: center;
   align-items: center;
   #logo {
+    margin-left: 10px;
     font-size: var(--font-size-l);
+    display: flex;
+    margin-top: 5px;
+    justify-content: center;
+    align-items: center;
     &:hover {
       scale: 1.02;
     }
@@ -100,9 +122,12 @@ export default {
   }
 }
 .right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 20px;
-  right: 125px;
+  right: 130px;
 }
 .loginBtn {
   display: block;
@@ -112,5 +137,21 @@ export default {
   padding: 0px 16px;
   font-family: 'LeferiPoint-BlackA', sans-serif;
   font-size: var(--font-size-m);
+}
+
+.user {
+  border: 3px solid #555;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  margin-right: 4px;
+}
+
+.menu-navi {
+  padding: 0 10px;
 }
 </style>

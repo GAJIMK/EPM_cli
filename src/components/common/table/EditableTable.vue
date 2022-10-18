@@ -107,4 +107,7 @@ select {
 .active {
   background-color: rgba(245, 117, 117, 0.2);
 }
+.table-cell {
+  border-bottom: 1px solid #eee;
+}
 </style>

@@ -107,17 +107,17 @@ li {
 }
 
 .boardBtn {
-  display: block;
   position: absolute;
-  top: 8px;
-  right: 10px;
+  top: 10px;
+  right: 5%;
   border: 2px solid #fff;
   background: transparent;
   outline: 0;
   border-radius: 6px;
-  padding: 0px 16px;
+  padding: 4px 16px;
   font-family: 'LeferiPoint-BlackA', sans-serif;
   font-size: var(--font-size-xs);
+  line-height: 100%;
 
   &:hover {
     background: #ff7a80;

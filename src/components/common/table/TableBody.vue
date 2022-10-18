@@ -39,10 +39,10 @@ export default {
       type: Array,
     },
   },
-};
+}
 </script>
 
-<style>
+<style lang="scss" scoped>
 input[type='text'] {
   text-align: center;
   background-color: white;

@@ -7,7 +7,7 @@
         <div class="context2">쉽고 빠르게 관리하세요</div>
       </div>
       <figcaption>
-        <div class="context1">Expenses for Employee Welfare</div>
+        <div class="context1">Expenses for Employee</div>
         <div class="context2">Take care easily and quickly</div>
       </figcaption>
     </figure>

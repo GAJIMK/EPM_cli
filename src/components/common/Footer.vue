@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    Copyrightⓒ2008 GAJI All rights reserved.
+    Copyrightⓒ2022 GAJI All rights reserved.
   </div>
 </template>
 
