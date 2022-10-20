@@ -134,6 +134,7 @@ export default {
   width: fit-content;
   white-space: nowrap;
   font-size: 14px;
+  z-index: 8888;
 }
 
 .else-btn {
