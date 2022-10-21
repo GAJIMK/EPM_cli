@@ -123,7 +123,7 @@ label {
 }
 
 .loginBtn {
-  background-color: #ffc75f;
+  background-color: #ffb319;
   font-weight: 600;
   margin-top: 10px;
 }

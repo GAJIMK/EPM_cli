@@ -8,6 +8,7 @@
 
       <div class="contents">
         <slot />
+        <Footer />
       </div>
     </div>
   </div>
@@ -16,10 +17,12 @@
 <script>
 import Header from '@/components/common/Header.vue'
 import SideBar from '@/components/common/SideBar.vue'
+import Footer from '../components/common/Footer.vue'
 export default {
   components: {
     Header,
     SideBar,
+    Footer,
   },
   data() {
     return {}
@@ -35,8 +38,12 @@ export default {
   min-height: 100vh;
 }
 .left {
+  position: fixed;
+  margin-top: 60px;
   height: 100vh;
   padding: 0% 0% 0% 0%;
+  background: #f4f8f9;
+  z-index: 8887;
 }
 
 .con {
@@ -46,6 +53,7 @@ export default {
 
 .contents {
   width: 100%;
-  padding: 0 1rem;
+  padding: 100px 0 0 0;
+  margin-left: 50px;
 }
 </style>

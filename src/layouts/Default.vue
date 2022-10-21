@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <Header />
 
-    <div class="container">
+    <div class="slot">
       <slot />
     </div>
     <Footer />
@@ -26,5 +26,9 @@ export default {
   padding: 0px 0px;
   position: relative;
   min-height: 100vh;
+}
+
+.slot {
+  padding: 60px 0;
 }
 </style>

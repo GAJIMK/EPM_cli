@@ -99,10 +99,10 @@ li {
   width: 90%;
   text-align: left;
   border-bottom: 2px solid #fff;
-
+  border-radius: 4px;
+  cursor: pointer;
   &:hover {
-    background-color: #ffc2b8;
-    cursor: pointer;
+    background: rgba(255, 122, 128, 0.2);
   }
 }
 
@@ -120,7 +120,7 @@ li {
   line-height: 100%;
 
   &:hover {
-    background: #ff7a80;
+    background: rgba(255, 122, 128, 0.7);
     color: #fff;
   }
 }

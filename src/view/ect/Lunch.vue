@@ -59,7 +59,7 @@ export default {
   display: flex;
   font-family: 'MonoplexKR-Regular', sans-serif;
   align-items: center;
-  background: rgba(231, 218, 157, 0.3);
+  background: rgba(255, 225, 148, 0.5);
   box-shadow: 0px 2px 32px -5px rgba(167, 167, 167, 0.54);
   backdrop-filter: blur(50%);
   -webkit-backdrop-filter: blur(50%);

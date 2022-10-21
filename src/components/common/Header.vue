@@ -5,9 +5,7 @@
         <div id="logo">EPM <span class="hidden">easy pay management</span></div>
       </div>
     </div>
-    <div v-if="accountId" class="right">
-      {{ accountNm }}
-    </div>
+    <div v-if="accountId" class="right">{{ accountNm }} 님</div>
     <button v-if="accountId" @click="logout" class="loginBtn basicBtn">
       Logout
     </button>
@@ -78,6 +76,7 @@ export default {
 }
 
 #header {
+  position: fixed;
   width: 100%;
   background: var(--color-yellow);
   display: flex;
@@ -88,6 +87,7 @@ export default {
   font-size: var(--font-size-s);
   font-weight: 700;
   height: 60px;
+  z-index: 8889;
   :hover {
     cursor: pointer;
   }
@@ -127,7 +127,7 @@ export default {
   border: 3px solid #fff;
   outline: 0;
   border-radius: 6px;
-  padding: 0px 16px;
+  padding: 5px 16px;
   font-family: 'LeferiPoint-BlackA', sans-serif;
   font-size: var(--font-size-m);
 }

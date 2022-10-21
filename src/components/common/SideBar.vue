@@ -127,7 +127,7 @@ export default {
 }
 .sidebar-container {
   font-family: 'LeferiPoint-BlackA';
-  background: #f4f8f9;
+
   height: 100%;
   display: flex;
   justify-content: center;
@@ -144,7 +144,7 @@ export default {
   color: #666;
   position: relative;
   &:hover {
-    color: #ffc75f;
+    color: #ffb319;
     text-decoration: none;
   }
 }
