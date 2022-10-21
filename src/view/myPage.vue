@@ -142,6 +142,7 @@ export default {
 @import '@/scss/font.scss';
 .container {
   position: relative;
+  min-height: calc(100vh - 220px);
 }
 .title {
   font-family: 'LeferiPoint-BlackA', sans-serif;

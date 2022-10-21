@@ -48,7 +48,6 @@ export default {
 
 .con {
   display: flex;
-  min-height: 100%;
 }
 
 .contents {

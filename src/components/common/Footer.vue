@@ -20,5 +20,6 @@ export default {}
   padding: 20px 10px;
   color: #666;
   font-size: 8px;
+  margin-bottom: 0;
 }
 </style>
